@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta property="og:image:width" content="192x192">
+<meta property="og:image:height" content="192x192">
+<meta property="og:image:alt" content="Alessio Cottonaro — Consulente Sessuale, Torino">
+<meta property="og:site_name" content="aleedusex">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>aleedusex — Alessio Cottonaro · Consulente in sessuologia</title>
+
+<!-- SEO -->
+<meta name="description" content="Alessio Cottonaro, consulente in sessuologia a Torino. Aiuto persone e coppie a parlare di sessualità senza performance, senza vergogna, senza giri di parole. Online · A domicilio. Prima consulenza 60 €." />
+<meta name="theme-color" content="#F0E7D5" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="aleedusex — Consulente in sessuologia" />
+<meta property="og:description" content="Sessualità senza performance, senza vergogna, senza giri di parole. Torino · Online · A domicilio. Prima consulenza 60 €." />
+<meta property="og:image" content="https://aleedusex.net/og.jpg" />
+<meta property="og:url" content="https://aleedusex.net" />
+<meta property="og:locale" content="it_IT" />
+<link rel="canonical" href="https://aleedusex.net/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="aleedusex — Consulente in sessuologia" />
+<meta name="twitter:description" content="Parlare di sessualità senza performance. Torino · Online. Prima consulenza 60 €." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'brand-cream':         '#F0E7D5',
+          'brand-paper':         '#F8F1E0',
+          'brand-burgundy':      '#7A1E2B',
+          'brand-burgundy-deep': '#5C1520',
+          'brand-ink':           '#1A1A1A',
+          'brand-line':          'rgba(122, 30, 43, 0.30)',
+        },
+        fontFamily: {
+          'display': ['"DM Serif Display"', 'Georgia', 'serif'],
+          'body':    ['"Source Serif 4"', 'Georgia', 'serif'],
+          'accent':  ['"Source Serif 4"', 'Georgia', 'serif'],
+          'serif':   ['"Source Serif 4"', 'Georgia', 'serif'],
+        },
+        letterSpacing: {
+          'tightish': '-0.015em',
+          'tighter2': '-0.035em',
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  html, body { background: #F0E7D5; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Source Serif 4', Georgia, serif; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ───────────────── DIVIDERS ───────────────── */
+  /* Inter-section dividers removed by design — the bg color shift between
+     cream and paper already separates sections. */
+  .ed-divider { border-top: 1px solid rgba(122, 30, 43, 0.20); }
+  .ed-divider-glyph { display: none; }
+
+  /* ───────────────── HERO BLOCK-STAMP ───────────────── */
+  .block-stamp {
+    display: inline-block;
+    background: #7A1E2B; color: #F0E7D5;
+    padding: 0.04em 0.32em 0.16em;
+    border-radius: 6px 10px 8px 12px;
+    font-style: italic;
+    transform: rotate(-1.5deg);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.10) inset,
+      0 10px 30px -8px rgba(122,30,43,0.40),
+      0 28px 60px -28px rgba(26,26,26,0.35);
+    will-change: transform;
+  }
+
+  /* ───────────────── HERO LINE STAGGER ───────────────── */
+  .hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(34px);
+    animation: heroLineIn 700ms cubic-bezier(.2,.7,.2,1) var(--d, 0ms) both;
+  }
+  @keyframes heroLineIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ───────────────── DROP-CAP ───────────────── */
+  .drop-cap::first-letter {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 5.8em;
+    font-style: italic;
+    float: left;
+    line-height: 0.78;
+    padding: 0.06em 0.16em 0 0;
+    color: #7A1E2B;
+    text-shadow: 0 1px 0 rgba(122,30,43,0.12);
+  }
+
+  /* ───────────────── NUMERIC ACCENTS ───────────────── */
+  .num-eyebrow {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic; color: #7A1E2B;
+  }
+
+  /* ───────────────── PHOTO GALLERY (chi-sono) ───────────────── */
+  .ale-photos { display: flex; flex-direction: column; gap: 8px; }
+
+  .ale-photo-hero {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border: 1px solid rgba(122,30,43,0.18);
+    border-radius: 2px;
+  }
+
+  .ale-photo-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .ale-photo-thumb {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border: 1px solid rgba(122,30,43,0.18);
+    border-radius: 2px;
+  }
+
+  .ale-photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 600ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  .ale-photo-hero:hover .ale-photo-img,
+  .ale-photo-thumb:hover .ale-photo-img { transform: scale(1.03); }
+
+  /* ───────────────── INDEX-CARD CONCERNS ───────────────── */
+  .concern-card {
+    background: #F8F1E0;
+    border: 1px solid rgba(122,30,43,0.18);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.5) inset,
+      0 14px 30px -22px rgba(26,26,26,0.18),
+      0 4px 10px -6px rgba(122,30,43,0.08);
+    position: relative;
+    transition:
+      transform 600ms cubic-bezier(.2,.7,.2,1),
+      opacity 600ms cubic-bezier(.2,.7,.2,1),
+      box-shadow 300ms ease;
+    will-change: transform;
+  }
+  .concern-card::before {
+    content: ''; position: absolute; top: 14px; left: 14px;
+    width: 7px; height: 7px; border-radius: 50%;
+    border: 1px solid rgba(122,30,43,0.55);
+  }
+  .concern-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.5) inset,
+      0 20px 40px -20px rgba(26,26,26,0.22),
+      0 6px 14px -6px rgba(122,30,43,0.12);
+  }
+
+  /* ───────────────── CTA STAMP ───────────────── */
+  .price-stamp {
+    border: 1px solid rgba(240,231,213,0.4);
+    color: #F0E7D5;
+    padding: 20px 30px;
+    border-radius: 2px;
+    display: inline-block;
+    text-align: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+  }
+
+  /* ───────────────── BUTTON STYLES ───────────────── */
+
+  .btn-burgundy {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #7A1E2B; color: #F0E7D5;
+    padding: 14px 22px 14px 26px;
+    border-radius: 3px;
+    font-family: 'Source Serif 4', serif; font-size: 16px;
+  }
+  .btn-burgundy:hover { background: #5C1520; }
+  .btn-burgundy .arr {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid rgba(240,231,213,0.7);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: transform 220ms ease;
+  }
+  .btn-burgundy:hover .arr { transform: translateX(3px); }
+
+  .btn-outline-cream {
+    display: inline-flex; align-items: center; gap: 12px;
+    border: 1px solid rgba(240,231,213,0.5);
+    color: #F0E7D5;
+    padding: 14px 24px;
+    border-radius: 3px;
+    font-family: 'Source Serif 4', serif; font-size: 16px;
+  }
+  .btn-outline-cream:hover { background: rgba(240,231,213,0.10); border-color: #F0E7D5; }
+
+  .btn-cream-on-burgundy {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #F0E7D5; color: #5C1520;
+    padding: 14px 24px;
+    border-radius: 3px;
+    font-family: 'Source Serif 4', serif; font-size: 16px;
+  }
+  .btn-cream-on-burgundy:hover { background: #fff; }
+
+  /* ───────────────── REVEAL ON SCROLL ───────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 750ms cubic-bezier(.2,.7,.2,1), transform 750ms cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal[data-delay="1"] { transition-delay: 80ms; }
+  .reveal[data-delay="2"] { transition-delay: 160ms; }
+  .reveal[data-delay="3"] { transition-delay: 240ms; }
+  .reveal[data-delay="4"] { transition-delay: 320ms; }
+
+  /* Block-stamp drift-in (lands, then keeps a slow breath) */
+  @keyframes stampIn {
+    0%   { opacity: 0; transform: rotate(-9deg) translateY(28px) scale(0.92); }
+    55%  { transform: rotate(-0.2deg) translateY(-4px) scale(1.03); }
+    100% { opacity: 1; transform: rotate(-1.5deg) translateY(0) scale(1); }
+  }
+  .stamp-in {
+    animation:
+      stampIn 1200ms cubic-bezier(.2,.7,.2,1) 350ms both;
+  }
+
+  /* FAQ marker rotation via <details> */
+  details[open] .faq-plus { transform: rotate(45deg); }
+  .faq-plus { transition: transform 280ms ease; }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* Focus rings */
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid #7A1E2B; outline-offset: 4px;
+  }
+
+  /* Underline link */
+  .ed-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid rgba(26,26,26,0.35);
+    padding-bottom: 2px;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+  .ed-link:hover { color: #7A1E2B; border-color: #7A1E2B; }
+
+  /* Promises row — static, no marquee */
+  .promise-cell {
+    position: relative;
+  }
+  .promise-cell + .promise-cell::before {
+    content: ''; position: absolute; left: 0; top: 20%; bottom: 20%;
+    width: 1px; background: rgba(122,30,43,0.18);
+  }
+
+  /* Roman numerals — gentle scale-in */
+  .step-roman {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic; color: #7A1E2B;
+    line-height: 0.82; letter-spacing: -0.02em;
+    opacity: 0; transform: translateY(20px) scale(0.96);
+    transition: opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1);
+  }
+  .step-roman.in { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* FAQ answer fade */
+  details[open] .faq-answer {
+    animation: faqAnswerIn 480ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes faqAnswerIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .faq-summary {
+    transition: background-color 240ms ease, padding-left 320ms cubic-bezier(.2,.7,.2,1);
+  }
+  .faq-summary:hover {
+    background-color: rgba(122,30,43,0.04);
+  }
+  details[open] .faq-summary {
+    padding-left: 0.5rem;
+  }
+
+  /* Sticky for big roman numerals */
+  .roman-sticky { position: sticky; top: 18vh; }
+
+  /* ───────────────── PHOTO LIGHTBOX ───────────────── */
+  .ale-photo-button {
+    display: block; width: 100%; height: 100%;
+    cursor: zoom-in; background: none; border: 0; padding: 0; font: inherit;
+  }
+  .photo-lightbox {
+    position: fixed; inset: 0; z-index: 10000;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(26,26,26,0.82);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .photo-lightbox.open { display: flex; }
+  .photo-lightbox-inner { max-width: 90vw; max-height: 85vh; }
+  .photo-lightbox img {
+    display: block; max-width: 90vw; max-height: 85vh;
+    object-fit: contain;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.45);
+  }
+  .photo-lightbox-close {
+    position: absolute; top: 18px; right: 20px;
+    width: 44px; height: 44px; border-radius: 999px;
+    border: 1px solid rgba(240,231,213,0.45);
+    color: #F0E7D5; background: rgba(26,26,26,0.35);
+    font-size: 30px; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 200ms ease;
+  }
+  .photo-lightbox-close:hover { background: rgba(240,231,213,0.12); }
+
+  /* Button arrow micro-interaction */
+  .btn-burgundy, .btn-cream-on-burgundy, .btn-outline-cream {
+    transition: background 240ms ease, color 240ms ease, border-color 240ms ease, transform 240ms ease;
+  }
+  .btn-burgundy:hover, .btn-cream-on-burgundy:hover, .btn-outline-cream:hover {
+    transform: translateY(-1px);
+  }
+  .btn-burgundy:active, .btn-cream-on-burgundy:active, .btn-outline-cream:active {
+    transform: translateY(1px) scale(0.98);
+  }
+
+  /* ───────────────── Alt-CTA (low-friction WhatsApp link) ───────────────── */
+  .alt-link { display: inline-flex; }
+  .alt-link:hover .alt-arrow { transform: translateX(4px); }
+
+  /* ───────────────── "PERCHÉ ME" — Roman pillars ───────────────── */
+  .pillar-roman {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic; color: #7A1E2B;
+    line-height: 0.85; letter-spacing: -0.02em;
+    display: inline-block;
+    position: relative;
+  }
+  .pillar-roman::after {
+    content: ''; position: absolute;
+    left: 0; right: 30%; bottom: -16px;
+    height: 1px; background: rgba(122,30,43,0.4);
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform 1100ms cubic-bezier(.2,.7,.2,1) 300ms;
+  }
+  .reveal.in .pillar-roman::after { transform: scaleX(1); }
+
+  /* ───────────────── "COSA NON SONO" — Negation list ───────────────── */
+
+  .negation-row {
+    position: relative;
+    padding: 32px 0;
+  }
+  .negation-row + .negation-row {
+    border-top: 1px solid rgba(122,30,43,0.20);
+  }
+  .negation-row .neg-word {
+    font-family: 'DM Serif Display', Georgia, serif;
+    color: #7A1E2B;
+    font-style: italic;
+  }
+  .neg-line {
+    display: block;
+    width: 32px; height: 2px;
+    background: rgba(122,30,43,0.45);
+    margin-bottom: 14px;
+    transition: width 400ms cubic-bezier(.2,.7,.2,1);
+  }
+  .negation-row:nth-child(2) .neg-line { width: 44px; }
+  .negation-row:nth-child(3) .neg-line { width: 56px; }
+  .negation-row:nth-child(4) .neg-line { width: 68px; }
+  .neg-word { transition: color 220ms ease; }
+  .negation-row:hover .neg-word { color: #5C1520; }
+
+  /* ───────────────── "VOCI DALLA STANZA" — Quote slabs ───────────────── */
+  .quote-slab {
+    position: relative;
+    padding: 30px 0;
+    opacity: 0;
+    transform: translateX(-22px);
+    transition: opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1);
+  }
+  .quote-slab.in { opacity: 1; transform: translateX(0); }
+  .quote-slab + .quote-slab {
+    border-top: 1px dashed rgba(122,30,43,0.30);
+  }
+  .quote-slab .quote-mark {
+    color: rgba(122,30,43,0.45);
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+  }
+  .quote-slab blockquote { transition: color 320ms ease; }
+  .quote-slab:hover blockquote { color: #7A1E2B; }
+
+  /* ───────────────── FAQ — conversational tone ───────────────── */
+  .faq-question {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    color: #1A1A1A;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .faq-question .qmark {
+    color: rgba(122,30,43,0.55);
+    font-style: italic;
+    font-family: 'DM Serif Display', Georgia, serif;
+    margin-right: 0.08em;
+  }
+  .faq-answer-text {
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: rgba(26,26,26,0.85);
+    line-height: 1.7;
+  }
+  .faq-answer-text .sig {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    color: #7A1E2B;
+  }
+
+  /* ───────────────── Footer signature ───────────────── */  .footer-manifesto {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    color: rgba(240,231,213,0.92);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+  .footer-manifesto .sig-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    color: #F0E7D5;
+  }
+
+  /* ───────────────── DIAGRAM CARD — editorial motion map ───────────────── */
+  .diag-card {
+    --diag-ease: cubic-bezier(.16,1,.3,1);
+    position: relative;
+    background: #F8F1E0;
+    border: 1px solid rgba(122,30,43,0.15);
+    border-radius: 2px;
+    padding: 52px 38px 46px;
+    overflow: hidden;
+  }
+
+  .diag-svg {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Diagram node entrance */
+  .diag-svg .diag-node {
+    opacity: 0;
+    transform: translateY(10px);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      opacity 900ms var(--diag-ease),
+      transform 900ms var(--diag-ease);
+  }
+  .diag-svg .diag-node.d1 { transform: translateY(8px) scale(0.96); }
+  .diag-svg.in .diag-node { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* Path filling animation — sequenced, smooth (hierarchy preserved) */
+  .diag-svg .diag-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+    transition:
+      stroke-dashoffset 1000ms var(--diag-ease),
+      opacity 520ms ease;
+  }
+  .diag-svg.in .diag-path { stroke-dashoffset: 0; opacity: 1; }
+  .diag-svg.in .diag-path.p1 { transition-delay: 420ms; }
+  .diag-svg.in .diag-path.p2 { transition-delay: 1220ms; }
+  .diag-svg.in .diag-path.p3 { transition-delay: 1400ms; }
+  .diag-svg.in .diag-path.p4 { transition-delay: 1580ms; }
+
+  /* Arrow tips — gentle scale + fade, lands just as the path completes */
+  .diag-svg .diag-tip {
+    opacity: 0;
+    transform: scale(0.62);
+    transform-origin: center;
+    transform-box: fill-box;
+    transition:
+      opacity 520ms var(--diag-ease),
+      transform 520ms var(--diag-ease);
+  }
+  .diag-svg.in .diag-tip { opacity: 1; transform: scale(1); }
+  .diag-svg.in .diag-tip.t1 { transition-delay: 1120ms; }
+  .diag-svg.in .diag-tip.t2 { transition-delay: 2040ms; }
+  .diag-svg.in .diag-tip.t3 { transition-delay: 2220ms; }
+  .diag-svg.in .diag-tip.t4 { transition-delay: 2400ms; }
+
+  /* Labels appear paired with their arrow */
+  .diag-svg.in .diag-node.d1     { transition-delay: 120ms; }
+  .diag-svg.in .diag-node.d2     { transition-delay: 900ms; }
+  .diag-svg.in .diag-node.label1 { transition-delay: 2200ms; }
+  .diag-svg.in .diag-node.label2 { transition-delay: 2380ms; }
+  .diag-svg.in .diag-node.label3 { transition-delay: 2560ms; }
+  .diag-svg.in .diag-node.caption { transition-delay: 2920ms; }
+
+  /* Ale-node soft inner glow ring (a subtle "card-within-card" feel) */
+  .diag-svg .ale-node-shadow {
+    opacity: 0;
+    transform: translateY(2px);
+    transition:
+      opacity 760ms var(--diag-ease),
+      transform 760ms var(--diag-ease);
+  }
+  .diag-svg.in .ale-node-shadow { opacity: 1; transform: translateY(0); }
+  /* ─── HTML Responsive Diagram ─────────────────────────── */
+  .diag-html-flow { position: relative; z-index: 1; padding: 4px 0 20px; }
+  .diag-tu-outer {
+    width: 124px; height: 124px; border-radius: 50%;
+    border: 1px dashed rgba(122,30,43,0.35);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; flex-shrink: 0;
+  }
+  .diag-tu-outer::before {
+    content: ''; position: absolute; inset: 9px;
+    border-radius: 50%; border: 0.6px solid rgba(122,30,43,0.22);
+    pointer-events: none;
+  }
+  .diag-tu-coin {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, #FBF5E4, #EFE3C8);
+    border: 1.5px solid #7A1E2B;
+    box-shadow: 0 4px 14px rgba(26,26,26,0.16), inset 0 1px 0 rgba(255,255,255,0.6);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+    font-size: 44px; color: #1A1A1A; line-height: 1;
+  }
+  .diag-ale-plaque {
+    background: linear-gradient(180deg, #8A2533 0%, #6A1622 100%);
+    padding: 22px 28px 20px; text-align: center;
+    box-shadow: 0 8px 28px -8px rgba(92,21,32,0.55), 0 2px 8px -2px rgba(122,30,43,0.25);
+    position: relative; flex-shrink: 0; min-width: 164px;
+  }
+  .diag-ale-plaque::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 1px; background: rgba(240,231,213,0.20); pointer-events: none;
+  }
+  .diag-ale-plaque::after {
+    content: ''; position: absolute; top: 50%; left: 18px; right: 18px;
+    height: 0.6px; background: rgba(240,231,213,0.18);
+    pointer-events: none; transform: translateY(-50%);
+  }
+  .diag-specialists {
+    position: relative; padding-left: 22px;
+  }
+  .diag-specialists::before {
+    content: ''; position: absolute;
+    left: 0; top: 18px; bottom: 18px;
+    width: 1.5px; background: rgba(122,30,43,0.45);
+  }
+  .diag-spec-item {
+    position: relative; padding: 14px 0 14px 18px;
+  }
+  .diag-spec-item::before {
+    content: ''; position: absolute;
+    left: -22px; top: 50%; width: 22px; height: 1.5px;
+    background: rgba(122,30,43,0.45); transform: translateY(-50%);
+  }
+  .diag-spec-item + .diag-spec-item {
+    border-top: 0.6px solid rgba(122,30,43,0.12);
+  }
+  .nav-active { color: #7A1E2B !important; }
+</style>
+</head>
+
+<body class="font-body text-brand-ink bg-brand-cream">
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-burgundy focus:text-brand-cream focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-body">
+  Vai al contenuto principale
+</a>
+<!--
+  Se sei arrivato fin qui a guardare il codice, complimenti per la
+  curiosità. È un buon segno. Scrivimi anche solo per dirmelo, mi fa
+  piacere.
+  — Ale
+-->
+
+<!-- ═════════════════════════ NAV ═════════════════════════ -->
+<header id="top" class="sticky top-0 z-40 bg-brand-cream/85 backdrop-blur-md border-b border-brand-line">
+  <nav class="max-w-[1280px] mx-auto px-6 md:px-10 py-4 md:py-5 flex items-center justify-between">
+    <a href="#top" class="font-display text-brand-burgundy text-[22px] md:text-[26px] leading-none tracking-tightish lowercase">aleedusex</a>
+    <ul class="hidden md:flex items-center gap-9 text-[15px] text-brand-ink/85">
+      <li><a href="#manifesto" class="nav-desktop-link hover:text-brand-burgundy">Manifesto</a></li>
+      <li><a href="#chi-sono" class="nav-desktop-link hover:text-brand-burgundy">Chi sono</a></li>
+      <li><a href="#parliamone" class="nav-desktop-link hover:text-brand-burgundy">Di cosa parliamo</a></li>
+      <li><a href="#funziona" class="nav-desktop-link hover:text-brand-burgundy">Come funziona</a></li>
+      <li><a href="#faq" class="nav-desktop-link hover:text-brand-burgundy">FAQ</a></li>
+    </ul>
+    <button id="nav-toggle"
+      class="md:hidden inline-flex flex-col justify-center gap-[5px] w-10 h-10 -mr-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-burgundy"
+      aria-label="Apri menu di navigazione"
+      aria-expanded="false"
+      aria-controls="mobile-menu">
+      <span class="block w-5 h-[1.5px] bg-brand-ink transition-all duration-300 origin-center" id="ham-top"></span>
+      <span class="block w-5 h-[1.5px] bg-brand-ink transition-all duration-300" id="ham-mid"></span>
+      <span class="block w-5 h-[1.5px] bg-brand-ink transition-all duration-300 origin-center" id="ham-bot"></span>
+    </button>
+    <a href="#contatti" class="btn-burgundy !py-2.5 !px-4 md:!px-5 text-[14px]">
+      Scrivimi
+      <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </a>
+  </nav>
+</header>
+
+<!-- ═══════ MOBILE MENU ═══════ -->
+<div id="mobile-menu"
+  class="md:hidden fixed inset-0 z-[9998] flex flex-col justify-center px-8"
+  style="background: rgba(240,231,213,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transform: translateX(100%); transition: transform 320ms cubic-bezier(.2,.7,.2,1);"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu di navigazione">
+
+  <!-- Close button -->
+  <button id="nav-close"
+    class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-brand-ink/60 hover:text-brand-ink transition-colors rounded focus-visible:ring-2 focus-visible:ring-brand-burgundy"
+    aria-label="Chiudi menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <nav>
+    <ul class="flex flex-col gap-7 mb-12">
+      <li><a href="#manifesto"   class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Manifesto</a></li>
+      <li><a href="#chi-sono"   class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Chi sono</a></li>
+      <li><a href="#parliamone" class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Di cosa parliamo</a></li>
+      <li><a href="#funziona"   class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Come funziona</a></li>
+      <li><a href="#faq"        class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">FAQ</a></li>
+    </ul>
+    <a href="#contatti" class="mobile-nav-link btn-burgundy inline-flex">
+      Scrivimi
+      <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </a>
+  </nav>
+</div>
+
+<!-- ═════════════════════════ HERO ═════════════════════════ -->
+<section id="main-content" class="relative overflow-hidden">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 pt-12 md:pt-20 pb-20 md:pb-32 relative">
+
+    <!-- Dateline editoriale — centrata in modo preciso -->
+    <div class="reveal flex items-center justify-center gap-4 mb-8 md:mb-12 text-[11px] tracking-[0.30em] uppercase text-brand-burgundy/75">
+      <span>Aleedusex</span>
+      <span class="w-[80px] h-px bg-brand-line"></span>
+      <span class="text-brand-ink/45">Torino · 2026</span>
+    </div>
+
+    <!-- Headline -->
+    <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-end relative">
+      <div class="md:col-span-12">
+        <h1 class="font-display font-normal text-brand-ink leading-[0.92] tracking-tighter2 text-[60px] sm:text-[88px] md:text-[124px] lg:text-[148px] text-center">
+          <span class="hero-line" style="--d:120ms">Vivere una</span>
+          <span class="hero-line" style="--d:260ms">vita sessuale</span>
+          <span class="hero-line mt-3 md:mt-4" style="--d:400ms">
+            <span class="block-stamp font-display stamp-in text-[1.02em]">PIENA</span>
+          </span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Subhead — centrata -->
+    <div class="mt-12 md:mt-16 flex justify-center">
+      <p class="font-body text-[19px] md:text-[22px] leading-[1.55] text-brand-ink/90 max-w-2xl text-center reveal">
+        Sono Alessio, consulente in sessuologia ed educatore professionale. Aiuto persone e coppie a parlare di sessualità <em class="italic">senza performance, senza vergogna, senza giri di parole.</em>
+      </p>
+    </div>
+
+    <!-- CTA + credentials — colonna centrata -->
+    <div class="mt-12 md:mt-16 flex flex-col items-center gap-10">
+      <div class="reveal flex flex-col items-center" data-delay="1">
+        <a href="#contatti" class="btn-burgundy">
+          Scrivimi
+          <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <div class="mt-3 flex items-center justify-center gap-2 text-[11px] tracking-[0.22em] uppercase text-brand-ink/50">
+          <span>Prima consulenza</span>
+          <span class="text-brand-burgundy/60">·</span>
+          <span class="font-display italic text-brand-burgundy normal-case tracking-normal text-[14px]">60&thinsp;€</span>
+          <span class="text-brand-burgundy/60">·</span>
+          <span>60 min</span>
+        </div>
+        <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer"
+           class="alt-link mt-4 inline-flex items-center gap-1.5 text-[14px] italic text-brand-ink/60 hover:text-brand-burgundy transition-colors">
+          Hai solo una domanda? I primi 15 minuti te li regalo io
+          <span class="alt-arrow inline-block transition-transform">→</span>
+        </a>
+      </div>
+
+      <div class="reveal text-center" data-delay="2">
+        <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] tracking-[0.22em] uppercase text-brand-ink/55">
+          <li>Torino</li>
+          <li class="text-brand-burgundy">·</li>
+          <li>Online</li>
+          <li class="text-brand-burgundy">·</li>
+          <li>A domicilio</li>
+        </ul>
+        <div class="mt-2 text-[11px] tracking-[0.20em] uppercase text-brand-ink/40 italic">Codice deontologico · supervisione · aggiornamento continuo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═════════════════════════ 2 · MANIFESTO ═════════════════════════ -->
+<section id="manifesto" class="bg-brand-paper relative">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-16">
+      <div class="md:col-span-3 reveal">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy">Perché esisto</div>
+      </div>
+      <div class="md:col-span-9">
+        <h2 class="font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[72px] leading-[0.98] tracking-tighter2 reveal">
+          Un manifesto, <span class="italic text-brand-burgundy">tre regole.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <!-- LEFT — manifesto paragraph with drop-cap -->
+      <article class="md:col-span-7 reveal">
+        <p class="drop-cap font-body text-[19px] md:text-[22px] leading-[1.55] text-brand-ink/90">
+          La sessualità non è performance. È linguaggio, permesso, presenza. La maggior parte dei blocchi sessuali non sono problemi di tecnica — sono problemi di parola, di paura, di silenzio. Lavoro su quelli.
+        </p>
+
+        <!-- ENHANCEMENT: blockquote border weight -->
+        <p class="mt-8 font-body italic text-brand-burgundy text-[20px] md:text-[24px] leading-snug border-l-[3px] border-brand-burgundy pl-6">
+          "Se non puoi dirlo a voce, intanto puoi dirlo qui. È un buon primo passo."
+        </p>
+      </article>
+
+      <!-- RIGHT — three short imperatives stacked, magazine-style -->
+      <aside class="md:col-span-5 md:border-l md:border-brand-line md:pl-12 reveal" data-delay="1">
+        <ol class="space-y-0">
+          <li class="pb-8 border-b border-brand-line/40">
+            <div class="num-eyebrow text-[44px] md:text-[56px] leading-none mb-3">1.</div>
+            <p class="font-display text-brand-ink text-[24px] md:text-[28px] leading-[1.15] tracking-tightish">
+              Niente moralismo.<br><span class="italic text-brand-burgundy">Niente clinichese.</span>
+            </p>
+          </li>
+          <li class="py-8 border-b border-brand-line/40">
+            <div class="num-eyebrow text-[44px] md:text-[56px] leading-none mb-3">2.</div>
+            <p class="font-display text-brand-ink text-[24px] md:text-[28px] leading-[1.15] tracking-tightish">
+              Si parla di te, non <span class="italic text-brand-burgundy">della tua diagnosi.</span>
+            </p>
+          </li>
+          <li class="pt-8">
+            <div class="num-eyebrow text-[44px] md:text-[56px] leading-none mb-3">3.</div>
+            <p class="font-display text-brand-ink text-[24px] md:text-[28px] leading-[1.15] tracking-tightish">
+              Ogni parola detta qui <span class="italic text-brand-burgundy">resta qui.</span>
+            </p>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═════════════════════════ 4 · CHI SONO ═════════════════════════ -->
+<section id="chi-sono" class="bg-brand-paper">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+
+      <!-- LEFT: photo gallery -->
+      <div class="md:col-span-5 reveal">
+        <div class="ale-photos" role="group" aria-label="Foto di Alessio Cottonaro">
+          <div class="ale-photo-hero">
+            <button class="ale-photo-button" type="button"
+              data-lightbox-src="img/alessio-cottonaro-ritratto-principale.jpg"
+              data-lightbox-alt="Alessio Cottonaro — consulente in sessuologia">
+              <img
+                src="img/alessio-cottonaro-ritratto-principale.jpg"
+                alt="Alessio Cottonaro — consulente in sessuologia"
+                class="ale-photo-img"
+                loading="eager"
+                decoding="async"
+              />
+            </button>
+          </div>
+          <div class="ale-photo-strip">
+            <div class="ale-photo-thumb">
+              <button class="ale-photo-button" type="button"
+                data-lightbox-src="img/alessio-cottonaro-ritratto.jpg"
+                data-lightbox-alt="Alessio Cottonaro — ritratto">
+                <img
+                  src="img/alessio-cottonaro-ritratto.jpg"
+                  alt="Alessio Cottonaro — ritratto"
+                  class="ale-photo-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            </div>
+            <div class="ale-photo-thumb">
+              <button class="ale-photo-button" type="button"
+                data-lightbox-src="img/alessio-cottonaro-in-consulenza.jpg"
+                data-lightbox-alt="Alessio Cottonaro — in consulenza">
+                <img
+                  src="img/alessio-cottonaro-in-consulenza.jpg"
+                  alt="Alessio Cottonaro — in consulenza"
+                  class="ale-photo-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- mini info-strip -->
+        <div class="mt-6 pt-6 border-t border-dashed border-brand-line grid grid-cols-2 gap-4 text-[12px] tracking-[0.20em] uppercase text-brand-ink/55">
+          <div>
+            <div class="text-brand-burgundy mb-1">Sede</div>
+            <div class="normal-case tracking-normal italic text-brand-ink/85 text-[15px]">Torino &middot; Online</div>
+          </div>
+          <div>
+            <div class="text-brand-burgundy mb-1">Formazione</div>
+            <div class="normal-case tracking-normal italic text-brand-ink/85 text-[15px]">Sessuologia · Educazione professionale</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: bio -->
+      <div class="md:col-span-7 reveal" data-delay="1">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Chi sono</div>
+        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[72px] leading-[1.0] tracking-tighter2 mb-10">
+          Ciao, sono <span class="italic text-brand-burgundy">Alessio.</span>
+        </h2>
+
+        <div class="space-y-5 font-body text-[17px] md:text-[18px] leading-[1.65] text-brand-ink/85 max-w-2xl">
+          <p>
+            Sono consulente in sessuologia. Mi sono formato seriamente — codice deontologico, supervisione, aggiornamento — perché su questi temi l'improvvisazione fa più danni del silenzio.
+          </p>
+          <p>
+            Lavoro con persone tra i 20 e i 50 anni, individui e coppie. Online o, in alcune zone, anche a domicilio. Non propongo percorsi infiniti e non riempio le sedute di parole inutili.
+          </p>
+          <p>
+            Quando scrivo sui social, lo faccio per smontare i tabù: senza pop, senza moralismi, senza fare scena. Quello che trovi qui è lo stesso approccio che porto in consulenza.
+          </p>
+        </div>
+
+        <!-- Pull-quote -->
+        <figure class="mt-12 md:mt-14 max-w-2xl reveal" data-delay="2">
+          <div class="font-display italic text-brand-burgundy text-[28px] md:text-[36px] leading-[1.15] tracking-tightish before:content-['—'] before:mr-3 before:font-display before:not-italic before:text-brand-burgundy/60">
+            Il mio approccio è pratico. Mi interessa cosa <span class="not-italic text-brand-burgundy/90">fare</span>, non solo cosa pensare.
+          </div>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Promise row — static editorial, no marquee -->
+    <div class="mt-20 md:mt-24 -mx-6 md:-mx-10 border-y border-brand-line/60">
+      <ul class="grid grid-cols-1 md:grid-cols-3">
+        <li class="promise-cell px-6 md:px-10 py-10 md:py-12 reveal">
+          <div class="text-[11px] tracking-[0.18em] uppercase text-brand-burgundy/80 mb-3">1 &middot; Performance</div>
+          <div class="font-display italic text-brand-burgundy text-[26px] md:text-[32px] leading-[1.05] tracking-tightish">Niente da dimostrare.</div>
+        </li>
+        <li class="promise-cell px-6 md:px-10 py-10 md:py-12 reveal" data-delay="1">
+          <div class="text-[11px] tracking-[0.18em] uppercase text-brand-burgundy/80 mb-3">2 &middot; Vergogna</div>
+          <div class="font-display italic text-brand-burgundy text-[26px] md:text-[32px] leading-[1.05] tracking-tightish">Niente da nascondere.</div>
+        </li>
+        <li class="promise-cell px-6 md:px-10 py-10 md:py-12 reveal" data-delay="2">
+          <div class="text-[11px] tracking-[0.18em] uppercase text-brand-burgundy/80 mb-3">3 &middot; Linguaggio</div>
+          <div class="font-display italic text-brand-burgundy text-[26px] md:text-[32px] leading-[1.05] tracking-tightish">Niente giri di parole.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═════════════════════════ 3 · DI COSA POSSIAMO PARLARE ═════════════════════════ -->
+<section id="parliamone" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-8 mb-14 md:mb-20">
+      <div class="md:col-span-4 reveal">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Di cosa possiamo parlare</div>
+        <h2 class="font-display text-brand-ink text-[42px] sm:text-[56px] md:text-[72px] leading-[0.98] tracking-tighter2">
+          Le frasi che <span class="italic text-brand-burgundy">non dici</span> a nessuno.
+        </h2>
+      </div>
+      <p class="md:col-span-7 md:col-start-6 self-end font-body italic text-brand-ink/70 text-[19px] md:text-[22px] leading-snug reveal" data-delay="1">
+        Non serve la parola giusta. Bastano queste. Se ti riconosci, è già il momento di scrivere.
+      </p>
+    </div>
+
+    <!-- Index-card grid -->
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <li class="concern-card p-8 pt-12 reveal">
+        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Non desidero più il mio partner, e non capisco perché."</div>
+        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Desiderio</div>
+      </li>
+      <li class="concern-card p-8 pt-12 reveal" data-delay="1">
+        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Ho paura di non essere all'altezza."</div>
+        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Ansia da prestazione</div>
+      </li>
+      <li class="concern-card p-8 pt-12 reveal" data-delay="2">
+        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Ho perso il piacere e non so quando è successo."</div>
+        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Piacere</div>
+      </li>
+      <li class="concern-card p-8 pt-12 reveal">
+        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Con il mio partner abbiamo smesso di parlarne."</div>
+        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Comunicazione</div>
+      </li>
+      <li class="concern-card p-8 pt-12 reveal" data-delay="1">
+        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Mi sento perso/a nelle relazioni o nella mia sessualità."</div>
+        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Identità</div>
+      </li>
+      <li class="bg-brand-burgundy text-brand-cream p-8 pt-12 reveal relative overflow-hidden" data-delay="2"
+          style="box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 18px 40px -18px rgba(92,21,32,0.60), 0 6px 14px -6px rgba(122,30,43,0.30);">
+        <span aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(rgba(240,231,213,0.55) 1px, transparent 1px); background-size: 6px 6px; opacity: 0.10;"></span>
+        <span aria-hidden="true" class="absolute top-[14px] left-[14px] w-[7px] h-[7px] rounded-full" style="border: 1px solid rgba(240,231,213,0.50);"></span>
+        <div class="font-display italic text-[26px] md:text-[28px] leading-[1.12] tracking-tightish relative">Sono tutte cose normali.<br>E si possono affrontare.</div>
+        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-cream/75 relative">→ Prossimo passo</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═════════════════════════ 5 · PERCHÉ VENIRE DA ME ═════════════════════════ -->
+<section id="perche-me" class="bg-brand-paper">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-8 mb-14 md:mb-20">
+      <div class="md:col-span-5 reveal">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Perché me</div>
+        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[80px] leading-[0.96] tracking-tighter2">
+          Tre motivi <span class="italic text-brand-burgundy">onesti</span> per scegliermi.
+        </h2>
+      </div>
+      <p class="md:col-span-6 md:col-start-7 self-end font-body italic text-brand-ink/70 text-[19px] md:text-[22px] leading-snug reveal" data-delay="1">
+        Non quelli che vorresti sentirti dire. Quelli che, secondo me, fanno la differenza.
+      </p>
+    </div>
+
+    <ol class="grid md:grid-cols-3 gap-10 md:gap-12">
+      <li class="reveal">
+        <div class="pillar-roman text-[32px] mb-6">1.</div>
+        <h3 class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.1] tracking-tightish mb-4">
+          Parlo come <span class="italic text-brand-burgundy">parli tu.</span>
+        </h3>
+        <p class="font-body text-brand-ink/85 text-[16.5px] leading-[1.65]">
+          Niente termini clinici, niente giri di parole. La sessualità merita un linguaggio chiaro, non un'altra barriera in più.
+        </p>
+      </li>
+      <li class="reveal" data-delay="1">
+        <div class="pillar-roman text-[32px] mb-6">2.</div>
+        <h3 class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.1] tracking-tightish mb-4">
+          Lavoro su cosa <span class="italic text-brand-burgundy">fare,</span> non solo su cosa pensare.
+        </h3>
+        <p class="font-body text-brand-ink/85 text-[16.5px] leading-[1.65]">
+          La mia formazione è quella di educatore professionale. Mi interessa che da qui tu esca con strumenti pratici, non solo con un'analisi.
+        </p>
+      </li>
+      <li class="reveal" data-delay="2">
+        <div class="pillar-roman text-[32px] mb-6">3.</div>
+        <h3 class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.1] tracking-tightish mb-4">
+          Ti dico con chiarezza quando il tuo tema <span class="italic text-brand-burgundy">richiede un altro professionista.</span>
+        </h3>
+        <p class="font-body text-brand-ink/85 text-[16.5px] leading-[1.65]">
+          E ti accompagno alla persona giusta — andrologo, ginecologo, psicologo, endocrinologo. Senza farti perdere altri mesi.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═════════════════════════ 6 · COSA NON SONO ═════════════════════════ -->
+<section id="non-sono" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-4 reveal">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Onestà</div>
+        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[80px] leading-[0.95] tracking-tighter2 mb-6">
+          Cosa <span class="italic text-brand-burgundy">non</span> sono.
+        </h2>
+        <p class="font-body italic text-brand-ink/70 text-[18px] leading-snug max-w-xs">
+          Dirlo prima, evita di scoprirlo dopo.
+        </p>
+      </div>
+
+      <div class="md:col-span-7 md:col-start-6">
+        <div>
+          <div class="negation-row reveal">
+            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
+              <span class="neg-word">Non</span> sono uno <span class="text-brand-ink">psicoterapeuta.</span>
+            </div>
+            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
+              Se quello che porti richiede un lavoro clinico o terapeutico, lo nominiamo e capiamo a chi rivolgerci. Senza forzare il percorso.
+            </p>
+          </div>
+
+          <div class="negation-row reveal" data-delay="1">
+            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
+              <span class="neg-word">Non</span> sono un <span class="text-brand-ink">esperto di tutto.</span>
+            </div>
+            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
+              La sessualità tocca corpo, relazione, emozioni e storia personale. Il mio lavoro è aiutarti a fare ordine e capire quale pezzo guardare per primo.
+            </p>
+          </div>
+
+          <div class="negation-row reveal" data-delay="2">
+            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
+              <span class="neg-word">Non</span> sono un <span class="text-brand-ink">guru della prestazione.</span>
+            </div>
+            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
+              Non ti insegno tecniche per funzionare meglio a comando. Lavoriamo su consapevolezza, comunicazione e scelte concrete.
+            </p>
+          </div>
+
+          <div class="negation-row reveal" data-delay="3">
+            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
+              <span class="neg-word">Non</span> parlo in <span class="text-brand-ink">clinichese.</span>
+            </div>
+            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
+              Uso parole semplici senza semplificare troppo. I termini tecnici entrano solo quando servono davvero.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ 7 · PAROLE NELLA STANZA ═════════════════════════ -->
+<section id="voci" class="bg-brand-paper">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-16">
+      <div class="md:col-span-4">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4 reveal">Parole nella stanza</div>
+        <h2 class="font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[64px] leading-[1.0] tracking-tighter2 mb-6 reveal">
+          Cose che mi hanno detto, <span class="italic text-brand-burgundy">prima di iniziare.</span>
+        </h2>
+        <p class="font-body italic text-brand-ink/70 text-[17px] leading-snug max-w-xs reveal" data-delay="1">
+          Non sono testimonianze cliniche. Sono i primi minuti, quelli in cui si decide di restare.
+        </p>
+      </div>
+
+      <div class="md:col-span-7 md:col-start-6 relative">
+        <div>
+          <figure class="quote-slab">
+            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
+              <span class="quote-mark">«</span> Pensavo bastasse aspettare. <span class="quote-mark">»</span>
+            </blockquote>
+          </figure>
+          <figure class="quote-slab">
+            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
+              <span class="quote-mark">«</span> Mi vergognavo di chiederlo al medico di base. <span class="quote-mark">»</span>
+            </blockquote>
+          </figure>
+          <figure class="quote-slab">
+            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
+              <span class="quote-mark">«</span> Non sapevo nemmeno da dove cominciare. <span class="quote-mark">»</span>
+            </blockquote>
+          </figure>
+          <figure class="quote-slab">
+            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
+              <span class="quote-mark">«</span> Credevo di essere l'unico ad avere questo problema. <span class="quote-mark">»</span>
+            </blockquote>
+          </figure>
+          <figure class="quote-slab">
+            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
+              <span class="quote-mark">«</span> Ho sempre evitato l'argomento, anche con il mio partner. <span class="quote-mark">»</span>
+            </blockquote>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ 8 · A COSA SERVE DAVVERO UN SESSUOLOGO ═════════════════════════ -->
+<section id="posizione" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-8 mb-14 md:mb-20">
+      <div class="md:col-span-5 reveal">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Posizionamento</div>
+        <h2 class="font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[72px] leading-[0.98] tracking-tighter2">
+          A cosa serve <span class="italic text-brand-burgundy">davvero</span> un sessuologo.
+        </h2>
+      </div>
+      <p class="md:col-span-6 md:col-start-7 self-end font-body text-[18px] md:text-[20px] leading-[1.55] text-brand-ink/85 reveal" data-delay="1">
+        Il consulente in sessuologia è la prima domanda, non l'ultima spiaggia. Aiuta a capire <em class="italic">dove</em> ti trovi — e a quale specialista rivolgersi se serve.
+      </p>
+    </div>
+
+    <!-- Editorial flow diagram — lifted card -->
+    <div class="diag-card reveal" data-delay="2">
+      <div class="diag-html-flow" aria-label="Mappa del ruolo: dal consulente in sessuologia agli specialisti" role="img">
+        <div class="flex flex-col md:flex-row md:items-center">
+
+          <!-- TU -->
+          <div class="diag-tu-outer reveal self-center md:self-auto">
+            <div class="diag-tu-coin">Tu</div>
+          </div>
+
+          <!-- connector Tu→Ale: horizontal on desktop -->
+          <div class="hidden md:flex items-center flex-shrink-0 px-2">
+            <div style="width:44px;height:1.5px;background:#7A1E2B;"></div>
+            <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #7A1E2B;"></div>
+          </div>
+          <!-- connector Tu→Ale: vertical on mobile -->
+          <div class="md:hidden flex justify-center py-2">
+            <div style="width:1.5px;height:28px;background:#7A1E2B;position:relative;">
+              <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #7A1E2B;"></div>
+            </div>
+          </div>
+
+          <!-- ALE PLAQUE -->
+          <div class="diag-ale-plaque reveal self-center md:self-auto" data-delay="1">
+            <span class="block font-body text-[11px] tracking-[0.22em] uppercase mb-1" style="color:rgba(240,231,213,0.65)">consulente in</span>
+            <span class="block font-display italic text-[22px] leading-tight" style="color:#F0E7D5">sessuologia</span>
+            <span class="block font-body text-[9px] tracking-[0.30em] uppercase mt-2" style="color:rgba(240,231,213,0.50)">— Alessio</span>
+          </div>
+
+          <!-- connector Ale→specialists: horizontal on desktop -->
+          <div class="hidden md:flex items-center flex-shrink-0 px-2">
+            <div style="width:44px;height:1.5px;background:#7A1E2B;"></div>
+            <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #7A1E2B;"></div>
+          </div>
+          <!-- connector Ale→specialists: vertical on mobile -->
+          <div class="md:hidden flex justify-center py-2">
+            <div style="width:1.5px;height:28px;background:#7A1E2B;position:relative;">
+              <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #7A1E2B;"></div>
+            </div>
+          </div>
+
+          <!-- SPECIALISTS -->
+          <div class="diag-specialists w-full md:flex-1 reveal" data-delay="2">
+            <div class="diag-spec-item">
+              <span class="block font-display italic text-[20px] md:text-[22px] text-brand-ink leading-tight">psicoterapeuta</span>
+              <span class="block font-body text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-brand-burgundy mt-1">se c'è un vissuto da elaborare</span>
+            </div>
+            <div class="diag-spec-item">
+              <span class="block font-display italic text-[20px] md:text-[22px] text-brand-ink leading-tight">andrologo · ginecologo</span>
+              <span class="block font-body text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-brand-burgundy mt-1">se c'è un aspetto organico</span>
+            </div>
+            <div class="diag-spec-item">
+              <span class="block font-display italic text-[20px] md:text-[22px] text-brand-ink leading-tight">altri professionisti</span>
+              <span class="block font-body text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-brand-burgundy mt-1">se c'è un bisogno specifico</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- caption -->
+        <p class="text-center font-body italic text-[13px] mt-8 reveal" data-delay="3" style="color:rgba(26,26,26,0.55);letter-spacing:0.04em">
+          io ti aiuto a capire dove sei e dove andare
+        </p>
+      </div>
+    </div>
+
+    <!-- Closing line -->
+    <p class="mt-14 md:mt-16 max-w-3xl font-body italic text-brand-burgundy text-[20px] md:text-[24px] leading-snug reveal">
+      Non serve sapere già dove ti trovi. Serve solo cominciare a chiederselo.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═════════════════════════ 6 · COME FUNZIONA ═════════════════════════ -->
+<section id="funziona" class="bg-brand-paper relative">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="mb-14 md:mb-20 max-w-3xl">
+      <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4 reveal">Come funziona</div>
+      <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[80px] leading-[0.95] tracking-tighter2 reveal">
+        Tre passi, <span class="italic text-brand-burgundy">niente acrobazie.</span>
+      </h2>
+    </div>
+
+    <!-- Three steps with sticky romans -->
+    <ol class="space-y-20 md:space-y-32">
+
+      <li class="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 md:pb-0 border-b border-brand-line/25 md:border-0 last:border-0 last:pb-0">
+        <div class="md:col-span-4 reveal">
+          <div class="step-roman text-[140px] md:text-[200px] roman-sticky">1.</div>
+        </div>
+        <div class="md:col-span-8 reveal" data-delay="1">
+          <h3 class="font-display text-brand-ink text-[36px] md:text-[48px] leading-[1.0] tracking-tighter2 mb-5">
+            Scrivi.
+          </h3>
+          <p class="font-body text-brand-ink/85 text-[18px] md:text-[19px] leading-[1.6] max-w-2xl mb-4">
+            Una mail o un messaggio. Due righe, anche solo un titolo. Non serve "saperlo dire bene": serve dire <em class="italic">qualcosa</em>. Rispondo io, dal mio indirizzo personale, entro 24 ore. Se prima vuoi solo capire se ha senso iniziare, ti offro anche una telefonata gratuita di 15 minuti.
+          </p>
+          <p class="font-body italic text-brand-burgundy/80 text-[16px]">— Non c'è una segreteria. Non ci sono moduli infiniti.</p>
+        </div>
+      </li>
+
+      <li class="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 md:pb-0 border-b border-brand-line/25 md:border-0 last:border-0 last:pb-0">
+        <div class="md:col-span-4 reveal">
+          <div class="step-roman text-[140px] md:text-[200px] roman-sticky">2.</div>
+        </div>
+        <div class="md:col-span-8 reveal" data-delay="1">
+          <h3 class="font-display text-brand-ink text-[36px] md:text-[48px] leading-[1.0] tracking-tighter2 mb-5">
+            Prima consulenza <span class="italic text-brand-burgundy">· 60&nbsp;€</span>
+          </h3>
+          <p class="font-body text-brand-ink/85 text-[18px] md:text-[19px] leading-[1.6] max-w-2xl mb-4">
+            Un'ora, in video o a domicilio. Ti faccio domande mirate, ascolto, e ti aiuto a mettere in parole quello che magari non hai mai detto ad alta voce. Alla fine sai due cose, e te le dico chiaramente: <strong class="font-semibold not-italic">cosa</strong> stiamo guardando, e se vale la pena proseguire.
+          </p>
+          <ul class="flex flex-wrap gap-x-5 gap-y-1 text-[12px] tracking-[0.22em] uppercase text-brand-ink/55">
+            <li>60 minuti</li><li class="text-brand-burgundy">·</li>
+            <li>Video o a domicilio</li><li class="text-brand-burgundy">·</li>
+            <li>60&nbsp;€</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 md:pb-0 border-b border-brand-line/25 md:border-0 last:border-0 last:pb-0">
+        <div class="md:col-span-4 reveal">
+          <div class="step-roman text-[140px] md:text-[200px] roman-sticky">3.</div>
+        </div>
+        <div class="md:col-span-8 reveal" data-delay="1">
+          <h3 class="font-display text-brand-ink text-[36px] md:text-[48px] leading-[1.0] tracking-tighter2 mb-5">
+            Decidiamo insieme.
+          </h3>
+          <p class="font-body text-brand-ink/85 text-[18px] md:text-[19px] leading-[1.6] max-w-2xl mb-4">
+            Se ha senso proseguire, ti propongo un percorso breve — di solito tra 4 e 5 incontri — con un obiettivo chiaro e verificabile. Se invece emerge che serve un altro professionista, lo capiamo insieme e ti indirizzo.
+          </p>
+          <p class="font-body italic text-brand-burgundy/80 text-[16px]">— Niente percorsi infiniti. Si lavora su un obiettivo, un passo alla volta.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ═════════════════════════ 7 · FAQ ═════════════════════════ -->
+<section id="faq" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-16">
+      <div class="md:col-span-4">
+        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4 reveal">Pensieri ad alta voce</div>
+        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[72px] leading-[0.98] tracking-tighter2 mb-8 reveal">
+          Quello che <span class="italic text-brand-burgundy">si pensa</span> prima di scrivere.
+        </h2>
+        <p class="font-body italic text-brand-ink/70 text-[19px] leading-snug max-w-sm reveal" data-delay="1">
+          Sono le frasi che mi ripetono in privato, prima di prenotare. Rispondo come risponderei a un amico.
+        </p>
+      </div>
+
+      <div class="md:col-span-8">
+        <ul class="border-y border-brand-line divide-y divide-brand-line">
+          <!-- 1 -->
+          <li>
+            <details class="reveal" open>
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">01</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> Non so se è abbastanza grave da scriverti. <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                Te lo dico subito: non c'è un livello minimo di disagio per meritarsi un'ora di chiarezza. Tante persone arrivano con dubbi vaghi, curiosità, una sensazione che non sanno nominare. E spesso bastano sessanta minuti per metterla a fuoco.
+              </div>
+            </details>
+          </li>
+          <!-- 2 -->
+          <li>
+            <details class="reveal">
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">02</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> Il problema è del mio partner, posso venire da solo? <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                Sì, e succede spesso. Partiamo da quello che dipende da te — di solito è già un buon pezzo della strada. Se serve coinvolgere chi è dall'altra parte, lo decidiamo insieme. Non lo do mai per scontato.
+              </div>
+            </details>
+          </li>
+          <!-- 3 -->
+          <li>
+            <details class="reveal">
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">03</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> Online è la stessa cosa di una sessione vera? <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                Sì. La videocall è criptata, l'ora è la tua, l'attenzione è piena. Lavoro online con persone in tutta Italia da quando ho cominciato, e ti dico la verità: a volte il fatto di essere a casa tua, su una poltrona che conosci, aiuta a parlarne meglio.
+              </div>
+            </details>
+          </li>
+          <!-- 4 -->
+          <li>
+            <details class="reveal">
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">04</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> Quanto mi costa, in tutto? <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                La prima consulenza costa 60 €. Se decidiamo di proseguire, di solito propongo un percorso breve da 4 o 5 incontri, costruito su un obiettivo preciso. Puoi pagare una seduta alla volta oppure scegliere il percorso intero: in quel caso è previsto uno sconto sul totale. Costi e tempi li chiariamo prima di iniziare, senza sorprese.
+              </div>
+            </details>
+          </li>
+          <!-- 5 -->
+          <li>
+            <details class="reveal">
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">05</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> Quello che dico te lo tieni davvero per te? <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                Sì. Quello che porti in consulenza resta in consulenza. Non uso storie, frasi o situazioni riconoscibili sui social e non condivido contenuti personali senza consenso esplicito. La riservatezza è una parte centrale del lavoro.
+              </div>
+            </details>
+          </li>
+          <!-- 6 -->
+          <li>
+            <details class="reveal">
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">06</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> E se non sei tu la persona giusta per me? <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                Può succedere, ed è uno dei motivi per cui esiste la prima consulenza. Il lavoro iniziale serve anche a capire se il tema è sessuologico, medico, psicologico o relazionale. Se emerge che serve un altro professionista — andrologo, ginecologo, psicoterapeuta, endocrinologo o un'altra figura — lo nominiamo con chiarezza e ti aiuto a orientarti.
+              </div>
+            </details>
+          </li>
+          <!-- 7 -->
+          <li>
+            <details class="reveal">
+              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
+                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">07</span>
+                <span class="faq-question text-[22px] md:text-[28px] flex-1">
+                  <span class="qmark">«</span> Tanto magari passa da solo, no? <span class="qmark">»</span>
+                </span>
+                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
+              </summary>
+              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
+                A volte succede. Spesso, però, il tempo da solo non chiarisce: il silenzio si sedimenta, le parole diventano più difficili e il problema prende più spazio. Se ci stai pensando da mesi, è già un segnale che vale la pena ascoltare.
+              </div>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ 8 · CTA FINALE ═════════════════════════ -->
+<section id="contatti" class="bg-brand-burgundy text-brand-cream relative overflow-hidden">
+  <!-- layered texture -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 opacity-[0.045]" style="background-image: linear-gradient(to right, #F0E7D5 1px, transparent 1px), linear-gradient(to bottom, #F0E7D5 1px, transparent 1px); background-size: 96px 96px;"></div>
+    <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(rgba(240,231,213,0.7) 1px, transparent 1px); background-size: 8px 8px;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(80% 55% at 50% 0%, rgba(240,231,213,0.06), transparent 70%);"></div>
+  </div>
+
+  <div class="relative max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-36">
+
+    <div class="text-[11px] tracking-[0.28em] uppercase text-brand-cream/70 mb-10 reveal">Cominciamo da qui</div>
+
+    <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-end">
+      <div class="md:col-span-8 reveal">
+        <h2 class="font-display text-brand-cream text-[64px] sm:text-[96px] md:text-[148px] leading-[0.9] tracking-tighter2">
+          Pronto<br>
+          a <span class="italic">parlarne?</span>
+        </h2>
+        <p class="font-body italic text-brand-cream/85 text-[20px] md:text-[26px] leading-snug mt-10 max-w-xl">
+          Un'ora del tuo tempo. Una mappa chiara di cosa fare.
+        </p>
+      </div>
+
+      <div class="md:col-span-4 flex justify-start md:justify-end reveal" data-delay="1">
+        <div class="price-stamp text-center">
+          <div class="text-[10px] tracking-[0.32em] uppercase opacity-80 mb-1">Prima consulenza</div>
+          <div class="text-[56px] md:text-[68px] leading-none">60 €</div>
+          <div class="text-[10px] tracking-[0.32em] uppercase opacity-80 mt-2">60 minuti</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="mt-14 md:mt-20 flex flex-col sm:flex-row gap-4 reveal" data-delay="2">
+      <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer" class="btn-cream-on-burgundy">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.21-1.62A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.22-3.48-8.52zM12 22a9.94 9.94 0 0 1-5.07-1.38l-.36-.22-3.69.97.98-3.59-.24-.37A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.46-7.36c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.08.15.2 2.09 3.19 5.07 4.47.71.31 1.27.5 1.7.64.71.23 1.36.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+        Scrivimi su WhatsApp
+      </a>
+      <a href="mailto:alessio.edu.sex@gmail.com" class="btn-outline-cream">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Mandami un'email
+      </a>
+    </div>
+
+    <p class="mt-8 font-body italic text-brand-cream/75 text-[16px] reveal" data-delay="3">
+      Rispondo io personalmente entro 24 ore. Nessuna segreteria, nessun modulo, nessuna AI.
+    </p>
+
+    <!-- Richiamo low-friction: 15 minuti gratis (coerente col link dell'hero) -->
+    <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer"
+       class="alt-link mt-4 inline-flex items-center gap-1.5 text-[16px] md:text-[17px] italic text-brand-cream hover:text-white transition-colors reveal" data-delay="3">
+      Hai solo una domanda? I primi 15 minuti te li regalo io
+      <span class="alt-arrow inline-block transition-transform">→</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════ 9 · FOOTER ═════════════════════════ -->
+<footer class="bg-brand-burgundy-deep text-brand-cream/85">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 pt-20 md:pt-24 pb-10">
+
+    <!-- Manifesto signed -->
+    <div class="max-w-3xl pb-16 md:pb-20 border-b border-brand-cream/15">
+      <p class="footer-manifesto text-[19px] md:text-[22px] reveal">
+        Continuo a fare questo lavoro perché credo che la sessualità sia uno dei luoghi più sinceri dove le persone si raccontano. E uno dei più zittiti. Lavoro su quel silenzio.
+      </p>
+      <p class="mt-7 reveal" data-delay="1">
+        <span class="text-brand-burgundy-deep" style="color: rgba(240,231,213,0.5);">—</span>
+        <span class="sig-name text-[26px] md:text-[30px] ml-1" style="font-family: 'DM Serif Display', Georgia, serif; font-style: italic; color: #F0E7D5;">Alessio</span>
+      </p>
+    </div>
+
+    <!-- Credits row — 3 colonne editoriali -->
+    <div class="pt-12 md:pt-16 grid md:grid-cols-12 gap-10 md:gap-12">
+      <!-- Identity -->
+      <div class="md:col-span-5">
+        <div class="font-display text-brand-cream text-[28px] md:text-[32px] lowercase tracking-tightish leading-none">aleedusex</div>
+        <p class="text-[13px] mt-3 text-brand-cream/60 italic leading-[1.65]">
+          Alessio Cottonaro<br>
+          Consulente in sessuologia · Educatore professionale<br>
+          Torino · Online · A domicilio
+        </p>
+      </div>
+      <!-- Indice -->
+      <div class="md:col-span-3">
+        <div class="text-[10px] tracking-[0.28em] uppercase text-brand-cream/40 mb-5">Indice</div>
+        <ul class="space-y-2.5 text-[14px] text-brand-cream/75">
+          <li><a href="#manifesto" class="hover:text-brand-cream transition-colors">Manifesto</a></li>
+          <li><a href="#parliamone" class="hover:text-brand-cream transition-colors">Di cosa parliamo</a></li>
+          <li><a href="#chi-sono" class="hover:text-brand-cream transition-colors">Chi sono</a></li>
+          <li><a href="#funziona" class="hover:text-brand-cream transition-colors">Come funziona</a></li>
+          <li><a href="#faq" class="hover:text-brand-cream transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+      <!-- Social -->
+      <div class="md:col-span-4">
+        <div class="text-[10px] tracking-[0.28em] uppercase text-brand-cream/40 mb-5">Dove trovarmi</div>
+        <ul class="space-y-2.5 text-[14px] text-brand-cream/75">
+          <li><a href="https://instagram.com/aleedusex" target="_blank" rel="noreferrer" class="hover:text-brand-cream transition-colors">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/alessiocottonaro" target="_blank" rel="noreferrer" class="hover:text-brand-cream transition-colors">LinkedIn</a></li>
+          <li><a href="#" class="hover:text-brand-cream transition-colors">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Strip legale -->
+    <div class="mt-14 md:mt-20 pt-6 border-t border-brand-cream/12 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[12px] text-brand-cream/45">
+      <div class="tracking-[0.18em] uppercase">© 2026 · aleedusex</div>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2">
+        <li><a href="#" class="hover:text-brand-cream/75 transition-colors">Privacy</a></li>
+        <li><a href="#" class="hover:text-brand-cream/75 transition-colors">Cookie</a></li>
+        <li><a href="#" class="hover:text-brand-cream/75 transition-colors">Note legali</a></li>
+      </ul>
+      <div class="italic">Sito disegnato con cura.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═════════════════════════ PHOTO LIGHTBOX ═════════════════════════ -->
+<div id="photo-lightbox" class="photo-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Foto ingrandita di Alessio">
+  <button id="photo-lightbox-close" class="photo-lightbox-close" type="button" aria-label="Chiudi immagine">×</button>
+  <div class="photo-lightbox-inner">
+    <img id="photo-lightbox-img" src="" alt="" />
+  </div>
+</div>
+
+<!-- ═════════════════════════ JS ═════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Reveal-on-scroll
+  (function() {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .step-roman, .diag-svg, .diag-card, .negation-row, .quote-slab').forEach(function(el) { io.observe(el); });
+  })();
+
+  // Scroll-spy nav highlight
+  (function() {
+    var navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    var sections = Array.from(document.querySelectorAll('section[id]'));
+    var spy = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function(a) { a.classList.remove('nav-active'); });
+        var active = document.querySelector('header nav a[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('nav-active');
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+    sections.forEach(function(s) { spy.observe(s); });
+  })();
+
+  // Mobile navigation
+  (function() {
+    var toggle  = document.getElementById('nav-toggle');
+    var menu    = document.getElementById('mobile-menu');
+    var closeBtn = document.getElementById('nav-close');
+    var hamTop  = document.getElementById('ham-top');
+    var hamMid  = document.getElementById('ham-mid');
+    var hamBot  = document.getElementById('ham-bot');
+    var links   = menu.querySelectorAll('.mobile-nav-link');
+    var isOpen  = false;
+
+    function openMenu() {
+      isOpen = true;
+      menu.style.transform = 'translateX(0)';
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Animate hamburger → X
+      hamTop.style.transform = 'translateY(6.5px) rotate(45deg)';
+      hamMid.style.opacity = '0';
+      hamBot.style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      menu.style.transform = 'translateX(100%)';
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      // Animate X → hamburger
+      hamTop.style.transform = '';
+      hamMid.style.opacity = '';
+      hamBot.style.transform = '';
+    }
+
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    links.forEach(function(l) { l.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isOpen) closeMenu();
+    });
+  })();
+
+  // Photo lightbox
+  (function() {
+    var lb      = document.getElementById('photo-lightbox');
+    var lbImg   = document.getElementById('photo-lightbox-img');
+    var lbClose = document.getElementById('photo-lightbox-close');
+    var prevOverflow = '';
+
+    function openLightbox(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = prevOverflow;
+      lbImg.src = '';
+    }
+
+    document.querySelectorAll('[data-lightbox-src]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        openLightbox(btn.getAttribute('data-lightbox-src'), btn.getAttribute('data-lightbox-alt'));
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb || e.target === lb.querySelector('.photo-lightbox-inner')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+    });
+  })();
+</script>
+
+</body>
+</html>
