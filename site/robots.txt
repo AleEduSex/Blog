@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /blog/_modello.html
+
+Sitemap: https://aleedusex.net/sitemap.xml
