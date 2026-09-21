@@ -8,11 +8,26 @@ Repo: https://github.com/AleEduSex/Blog · Online: https://aleedusex.net
 ```
 /            ← privato: config e documenti di lavoro (Netlify non lo pubblica)
 ├── netlify.toml   publish = "site", nessun build
+├── verifica.sh    controlli prima di ogni push: `bash verifica.sh` → OK
+├── PUBBLICARE.md  procedura per pubblicare un articolo
+├── docs/          spec e piani
 └── site/          ← unica cartella pubblicata
-    ├── index.html     HTML + Tailwind da CDN, JS inline
-    ├── favicon-192.png, og.jpg
-    └── img/
+    ├── index.html     landing: HTML + Tailwind da CDN, JS inline
+    ├── favicon-192.png, og.jpg, img/
+    ├── robots.txt, sitemap.xml
+    └── blog/
+        ├── index.html     elenco articoli
+        ├── blog.css       stile del blog (stessi token della landing, niente Tailwind)
+        ├── _modello.html  modello articolo (noindex)
+        ├── esempio-*.html segnaposto, da cancellare al primo articolo vero
+        └── img/           foto degli articoli
 ```
+
+## Due pagine, due intenti
+
+- **Landing** (`/`): converte verso la prima consulenza. Non si tocca per pubblicare articoli.
+- **Blog** (`/blog/`): farsi trovare su Google. Un file HTML statico per articolo, niente JS.
+  Per pubblicare segui `PUBBLICARE.md` alla lettera.
 
 ## Regole
 
@@ -21,6 +36,7 @@ Repo: https://github.com/AleEduSex/Blog · Online: https://aleedusex.net
 - Nessun build step, nessun npm, nessuna dipendenza.
 - Push su `main` = sito online (quando Netlify sarà collegato). Ogni modifica a `site/` è una modifica al sito.
 - Niente modifiche a `site/` senza richiesta esplicita.
+- Prima di ogni push: `bash verifica.sh` deve stampare OK.
 
 ## Stato noto
 
