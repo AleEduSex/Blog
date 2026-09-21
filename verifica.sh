@@ -17,7 +17,7 @@ for f in blog/*.html; do
 done
 
 # 3. Riferimenti locali esistenti (ignora i 404 storici della landing)
-for f in $(find . -name '*.html'); do
+for f in $(find . -name '*.html' ! -name '_*'); do
   dir=$(dirname "$f")
   grep -oE '(href|src)="[^"]*"' "$f" | sed -E 's/^(href|src)="//; s/"$//' | while read -r u; do
     case "$u" in ''|'#'*|http:*|https:*|mailto:*|tel:*|/favicon.ico|/cdn-cgi/*|*"'"*) continue ;; esac
