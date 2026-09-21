@@ -145,8 +145,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--burgundy); outl
 .post-item--lead .post-excerpt { font-size: 19px; }
 
 @media (min-width: 768px) {
-  .post-item > a { grid-template-columns: 200px 1fr; column-gap: 48px; padding: 48px 0; }
-  .post-item > a .post-meta { padding-top: 10px; }
+  .post-item > a { grid-template-columns: 240px 1fr; column-gap: 48px; padding: 48px 0; }
+  .post-item > a .post-meta { padding-top: 10px; white-space: nowrap; align-self: start; }
   .post-item > a > :not(.post-meta) { grid-column: 2; }
   .post-title { font-size: 36px; }
   .post-item--lead > a { padding: 72px 0; }
