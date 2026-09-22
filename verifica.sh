@@ -14,6 +14,8 @@ done
 for f in blog/*.html; do
   [ "$f" = blog/_modello.html ] && continue
   grep -q '{{' "$f" 2>/dev/null && fail "$f contiene ancora {{…}}"
+  grep -hE '^[[:space:]]*"(headline|description)": ' "$f" | awk -F'"' 'NF!=5{exit 1}' \
+    || fail "$f: virgolette doppie in titolo/descrizione rompono il JSON-LD"
 done
 
 # 3. Riferimenti locali esistenti (ignora i 404 storici della landing)
