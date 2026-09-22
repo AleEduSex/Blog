@@ -81,17 +81,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--burgundy); outl
   border-radius: 3px; font-family: var(--body); font-size: 16px; line-height: 1.2;
   transition: background 200ms ease, border-color 200ms ease, transform 200ms var(--ease);
 }
-.btn-burgundy { background: var(--burgundy); color: var(--cream); padding: 14px 22px 14px 26px; }
+.btn-burgundy { background: var(--burgundy); color: var(--cream); font-size: 14px; padding: 10px 16px; gap: 10px; }
 .btn-burgundy:hover { background: var(--burgundy-deep); }
 .btn-burgundy .arr {
-  width: 30px; height: 30px; border-radius: 50%;
+  width: 24px; height: 24px; border-radius: 50%;
   border: 1px solid rgba(240, 231, 213, 0.7);
   display: inline-flex; align-items: center; justify-content: center;
   transition: transform 220ms ease;
 }
 .btn-burgundy:hover .arr { transform: translateX(3px); }
-.btn-burgundy.small { font-size: 14px; padding: 10px 16px; gap: 10px; }
-.btn-burgundy.small .arr { width: 24px; height: 24px; }
 .btn-cream { background: var(--cream); color: var(--burgundy-deep); padding: 14px 24px; }
 .btn-cream:hover { background: #fff; }
 .btn-outline-cream { border: 1px solid rgba(240, 231, 213, 0.5); color: var(--cream); padding: 14px 24px; }
