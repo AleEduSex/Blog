@@ -1,7 +1,8 @@
 # Riprendi da qui — 21/09/2026
 
-Stato: blog costruito e pushato (commit 0bfec91). Verifica completa fatta.
-Prossimo passo: eseguire il prompt "Correzioni blog" qui sotto in una nuova sessione.
+Stato (22/09/2026): prompt "Correzioni blog" ESEGUITO — commit 90254e9, 1261415, a384725, 6e30f70, 1139765.
+Punti 1-4 della sezione "Non funziona" risolti. Il prompt qui sotto resta solo come storico: NON rieseguirlo.
+Prossimo passo: sezione "Dopo le correzioni" in fondo.
 
 ## Nuovo PC — preparazione
 
