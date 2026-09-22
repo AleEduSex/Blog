@@ -46,7 +46,7 @@ e le loro tre voci `<li>` in `site/blog/index.html`.
      `<strong>` `<em>` `<a href>` `<hr>` e, per foto nel testo,
      `<figure><img src="/blog/img/…" alt="…" loading="lazy"><figcaption>…</figcaption></figure>`.
      Niente `<h1>` (c'è già il titolo), niente stili inline.
-   - Nei testi dentro attributi (`content="…"`) non usare virgolette doppie `"`: usa « » o '.
+   - Titolo, descrizione e sommario: MAI virgolette doppie `"`, usa « » o ' (rompono i dati per Google).
 3. Elimina il commento in testa al file (da `<!--` a `-->` iniziali).
 4. Elimina l'intera riga `<!-- RIMUOVERE -->…<!-- /RIMUOVERE -->` (altrimenti Google non la vede).
 5. Senza foto: elimina il blocco da `<!-- COPERTINA:` a `<!-- /COPERTINA -->` compresi.
