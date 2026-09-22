@@ -19,7 +19,7 @@ for f in blog/*.html; do
 done
 
 # 3. Riferimenti locali esistenti (ignora i 404 storici della landing)
-for f in $(find . -name '*.html' ! -name '_*'); do
+out=$(for f in $(find . -name '*.html' ! -name '_*'); do
   dir=$(dirname "$f")
   grep -oE '(href|src)="[^"]*"' "$f" | sed -E 's/^(href|src)="//; s/"$//' | while read -r u; do
     case "$u" in ''|'#'*|http:*|https:*|mailto:*|tel:*|/favicon.ico|/cdn-cgi/*|*"'"*) continue ;; esac
@@ -28,7 +28,8 @@ for f in $(find . -name '*.html' ! -name '_*'); do
     case "$t" in */) t="${t}index.html" ;; esac
     [ -e "$t" ] || echo "ERRORE: $f → $u non esiste"
   done
-done | tee /tmp/verifica_ref.$$ ; [ -s /tmp/verifica_ref.$$ ] && err=1; rm -f /tmp/verifica_ref.$$
+done)
+[ -n "$out" ] && { echo "$out"; err=1; }
 
 # 4. Articoli pubblicati: indicizzabili, in elenco, in sitemap
 for f in blog/*.html; do
@@ -37,7 +38,10 @@ for f in blog/*.html; do
   grep -q 'noindex' "$f" && fail "$f ha ancora noindex"
   grep -q "href=\"/blog/$b\"" blog/index.html || fail "$b non è nell'elenco blog/index.html"
   grep -q "/blog/$b</loc>" sitemap.xml || fail "$b non è in sitemap.xml"
+  og=$(grep -o 'og:image" content="https://aleedusex.net/blog/img/[^"]*' "$f" | sed 's|.*aleedusex.net/||')
+  [ -z "$og" ] || [ -f "$og" ] || fail "$b: foto og:image site/$og non esiste"
 done
+[ "$(grep -c 'class="post-item post-item--lead"' blog/index.html)" = 1 ] || fail "blog/index.html: serve esattamente un post-item--lead"
 
 # 5. Sitemap
 if [ -f sitemap.xml ]; then
