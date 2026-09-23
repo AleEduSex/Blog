@@ -53,12 +53,16 @@ fi
 w=$(find . -type f \( -iname '*.md' -o -iname '*.zip' -o -iname '*.psd' -o -iname '*.fig' -o -iname '*.docx' \))
 [ -n "$w" ] && fail "file di lavoro in site/: $w"
 
-# 7. Testata e footer identici in tutte le pagine del blog e nella 404
+# 7. Testata e footer identici in tutte le pagine del blog, nella 404 e nella pagina legale
 ref=""
-for f in blog/*.html 404.html; do
+for f in blog/*.html 404.html legale.html; do
   h=$(sed -n '/<header class="site-header">/,/<\/header>/p; /<footer class="site-footer">/,/<\/footer>/p' "$f" | sed 's/ aria-current="page"//' | cksum)
   if [ -z "$ref" ]; then ref=$h; rf=$f; else [ "$h" = "$ref" ] || fail "$f: testata o footer diversi da $rf"; fi
 done
+
+# 8. Dati mancanti: niente online finché resta un [DA COMPLETARE]
+d=$(grep -rl "DA COMPLETARE" --include="*.html" .)
+[ -n "$d" ] && fail "dati da completare in: $(echo $d)"
 
 [ $err = 0 ] && echo OK
 exit $err
