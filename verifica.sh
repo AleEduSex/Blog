@@ -18,11 +18,11 @@ for f in blog/*.html; do
     || fail "$f: virgolette doppie in titolo/descrizione rompono il JSON-LD"
 done
 
-# 3. Riferimenti locali esistenti (ignora i 404 storici della landing)
+# 3. Riferimenti locali esistenti
 out=$(for f in $(find . -name '*.html' ! -name '_*'); do
   dir=$(dirname "$f")
   grep -oE '(href|src)="[^"]*"' "$f" | sed -E 's/^(href|src)="//; s/"$//' | while read -r u; do
-    case "$u" in ''|'#'*|http:*|https:*|mailto:*|tel:*|/favicon.ico|*"'"*) continue ;; esac
+    case "$u" in ''|'#'*|http:*|https:*|mailto:*|tel:*|*"'"*) continue ;; esac
     p=${u%%#*}; p=${p%%\?*}
     case "$p" in /*) t=".$p" ;; *) t="$dir/$p" ;; esac
     case "$t" in */) t="${t}index.html" ;; esac
