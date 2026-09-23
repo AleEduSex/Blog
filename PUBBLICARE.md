@@ -29,6 +29,14 @@ Mostra ad Alessio, in chat:
 
 Aspetta "pubblica". Se chiede modifiche, rifai questo passo.
 
+### Se ricevi una SCHEDA ARTICOLO (Alessio la scrive nel suo Claude e la manda a Mirko)
+
+La scheda (`=== SCHEDA ARTICOLO === … === FINE SCHEDA ===`) vale già come «pubblica»: salta il passo 1.
+Campi → segnaposto: TITOLO → `{{TITOLO}}`, DESCRIZIONE → `{{DESCRIZIONE}}`, FRASE → `{{FRASE}}`,
+SOMMARIO → `{{SOMMARIO}}`, IN BREVE (3 righe `- …`) → `{{IN_BREVE}}`, SLUG → `{{SLUG}}`, FOTO → passo 4.
+TESTO → `{{CONTENUTO}}`: paragrafi → `<p>`, righe `## …` → `<h2>`, righe `> …` → `<blockquote><p>…</p></blockquote>`,
+righe `- …` consecutive → `<ul><li>`. Non cambiare le parole di Alessio: correggi solo refusi evidenti e segnalali.
+
 ## 2. Primo articolo vero? Togli i segnaposto
 
 Solo la prima volta: cancella `site/blog/esempio-1.html`, `esempio-2.html`, `esempio-3.html`
