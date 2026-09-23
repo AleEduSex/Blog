@@ -42,4 +42,5 @@ Repo: https://github.com/AleEduSex/Blog · Online: https://aleedusex.net
 
 - Import iniziale (commit 6eb8d9a): copia byte per byte del deploy online al 21/09/2026.
 - Fase 1 di PIANO_MIGLIORAMENTO.md fatta (23/09/2026): niente più 404 in landing, `site/404.html` aggiunta.
+- Da fare: P.IVA (e sede) di Ale nel footer della landing (`© 2026 · aleedusex`) e in `site/legale.html` › Note legali. Rimandata su richiesta.
 - Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.
