@@ -6,7 +6,10 @@
   Copia in site/blog/<slug>.html e sostituisci OGNI segnaposto:
     {{TITOLO}}             titolo dell'articolo (anche nel <title>)
     {{DESCRIZIONE}}        max 155 caratteri, per Google e anteprime social
+    {{FRASE}}              la frase che direbbe chi legge, in prima persona, max ~15 parole
+                           (es. Non desidero più il mio partner, e non capisco perché.)
     {{SOMMARIO}}           1-2 frasi in corsivo sotto il titolo
+    {{IN_BREVE}}           3 righe <li>…</li>, un punto chiave ciascuna, max ~20 parole
     {{SLUG}}               nome file senza .html (minuscolo, trattini, niente accenti)
     {{DATA_ISO}}           data pubblicazione, es. 2026-10-05
     {{DATA_LEGGIBILE}}     es. 5 ottobre 2026
@@ -88,10 +91,18 @@
     <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
 
     <header class="article-head">
+      <p class="frase">«{{FRASE}}»</p>
       <p class="post-meta"><time datetime="{{DATA_ISO}}">{{DATA_LEGGIBILE}}</time><span class="sep">·</span>{{MINUTI}} min di lettura</p>
       <h1>{{TITOLO}}</h1>
       <p class="lede">{{SOMMARIO}}</p>
     </header>
+
+    <aside class="in-breve" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+{{IN_BREVE}}
+      </ul>
+    </aside>
 
     <!-- COPERTINA: senza foto elimina da questa riga fino a /COPERTINA inclusa -->
     <figure class="cover">

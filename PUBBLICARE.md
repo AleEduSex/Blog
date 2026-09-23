@@ -19,7 +19,9 @@ Mostra ad Alessio, in chat:
 
 - **Titolo** (contiene la domanda o la parola che la gente cerca su Google)
 - **Descrizione** (max 155 caratteri)
+- **Frase** (quello che direbbe chi legge, in prima persona, max ~15 parole; apre l'articolo tra « »)
 - **Sommario** (1-2 frasi, andrà in corsivo sotto il titolo)
+- **In breve** (3 punti chiave, max ~20 parole ciascuno)
 - **Slug** (nome del file: minuscolo, trattini, niente accenti, parola chiave in testa;
   es. `calo-del-desiderio-in-coppia`)
 - **Testo completo**
@@ -38,6 +40,8 @@ e le loro tre voci `<li>` in `site/blog/index.html`.
 2. Sostituisci ogni segnaposto (l'elenco è nel commento in testa al modello):
    - `{{DATA_ISO}}` e `{{DATA_MODIFICA_ISO}}`: data di oggi, formato `2026-10-05`
    - `{{DATA_LEGGIBILE}}`: `5 ottobre 2026`
+   - `{{FRASE}}`: solo il testo, le « » sono già nel modello
+   - `{{IN_BREVE}}`: esattamente 3 righe `        <li>…</li>` (indentate di 8 spazi)
    - `{{MINUTI}}`: parole del testo / 200, arrotondato, minimo 2
    - `{{IMMAGINE_OG}}`: `https://aleedusex.net/blog/img/<slug>.jpg` se c'è la foto,
      altrimenti `https://aleedusex.net/og.jpg`

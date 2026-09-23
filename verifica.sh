@@ -40,6 +40,8 @@ for f in blog/*.html; do
   grep -q "/blog/$b</loc>" sitemap.xml || fail "$b non è in sitemap.xml"
   og=$(grep -o 'og:image" content="https://aleedusex.net/blog/img/[^"]*' "$f" | sed 's|.*aleedusex.net/||')
   [ -z "$og" ] || [ -f "$og" ] || fail "$b: foto og:image site/$og non esiste"
+  grep -q 'class="frase"' "$f" || fail "$b: manca la frase di apertura"
+  [ "$(sed -n '/class="in-breve"/,/<\/aside>/p' "$f" | grep -c '<li>')" = 3 ] || fail "$b: In breve deve avere 3 punti"
 done
 [ "$(grep -c 'class="post-item post-item--lead"' blog/index.html)" = 1 ] || fail "blog/index.html: serve esattamente un post-item--lead"
 
