@@ -22,7 +22,7 @@ done
 out=$(for f in $(find . -name '*.html' ! -name '_*'); do
   dir=$(dirname "$f")
   grep -oE '(href|src)="[^"]*"' "$f" | sed -E 's/^(href|src)="//; s/"$//' | while read -r u; do
-    case "$u" in ''|'#'*|http:*|https:*|mailto:*|tel:*|*"'"*) continue ;; esac
+    case "$u" in ''|'#'*|http:*|https:*|mailto:*|tel:*|data:*|*"'"*) continue ;; esac
     p=${u%%#*}; p=${p%%\?*}
     case "$p" in /*) t=".$p" ;; *) t="$dir/$p" ;; esac
     case "$t" in */) t="${t}index.html" ;; esac
