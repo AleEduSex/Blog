@@ -10,7 +10,7 @@ Tutto ciò che va online sta in `site/`. Questo file resta privato.
   l'eventuale foto in `site/blog/img/`. Mai `site/index.html`, mai `blog.css`, mai altri articoli
   (salvo correzioni richieste, vedi in fondo).
 - Niente file di lavoro in `site/` (note, bozze, .md, .docx, zip).
-- Testo: voce di Alessio (vedi `EDITORIALE.md` quando esiste). Niente moralismo, niente clinichese,
+- Testo: voce di Alessio (vedi `CLAUDE.md` › Voce di Alessio). Niente moralismo, niente clinichese,
   niente promesse terapeutiche. Temi medici o psicologici: rimanda al professionista giusto.
 
 ## 1. Bozza in chat
