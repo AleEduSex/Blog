@@ -41,6 +41,5 @@ Repo: https://github.com/AleEduSex/Blog · Online: https://aleedusex.net
 ## Stato noto
 
 - Import iniziale (commit 6eb8d9a): copia byte per byte del deploy online al 21/09/2026.
-- `index.html` cita `/favicon.ico` e `/cdn-cgi/.../email-decode.min.js` (aggiunta Cloudflare
-  presente nella versione pubblicata): entrambi 404 online. Lasciati così di proposito.
+- Fase 1 di PIANO_MIGLIORAMENTO.md fatta (23/09/2026): niente più 404 in landing, `site/404.html` aggiunta.
 - Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.
