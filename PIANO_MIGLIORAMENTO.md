@@ -1,6 +1,6 @@
 # Piano di miglioramento — aleedusex.net
 
-Data: 23/09/2026 · Base: commit `009b5fb` · Stato: **proposta, niente implementato**
+Data: 23/09/2026 · Base: commit `009b5fb` · Stato: **Fase 1 e 2 fatte** (23/09/2026), più la pagina legale
 
 Legenda affidabilità: **[V]** = verificato leggendo il codice o misurando · **[I]** = ipotesi da confermare.
 
@@ -107,9 +107,9 @@ Ogni fase si chiude con `bash verifica.sh` → OK e con il push. Il sito resta f
 ### Fase 2 — Velocità delle foto (P1)
 | Task | File | Sforzo | Rischio | Come verificare che è fatto |
 |---|---|---|---|---|
-| 2.1 Ridimensionare le 3 foto (lato lungo ≤ 1600 px, ≤ 250 KB) | `site/img/*.jpg` | S | basso: resa visiva | peso totale da 1.3 MB a ≤ 600 KB, confronto a occhio |
-| 2.2 Aggiungere `width`/`height` agli `<img>` | `site/index.html:808,822,835` | S | basso | CLS a 0 su Lighthouse, stesso aspetto |
-| 2.3 Intestazioni di cache per `/img/*`, `/blog/*.css` (P16) | `netlify.toml` | S | basso | valido dopo il collegamento a Netlify [I] |
+| ✅ 2.1 Ridimensionare le foto | `site/img/*.jpg` | S | basso | FATTO: 1266 → 440 KB, PSNR 42-43 dB, profilo colore mantenuto; foto orizzontale 2048 px per la lightbox su schermi 2× |
+| ~~2.2 `width`/`height` agli `<img>`~~ | — | — | — | **SALTATO**: i riquadri hanno già `aspect-ratio` (`index.html:124,137`), niente CLS. Errore del piano |
+| ~~2.3 Header di cache~~ | — | — | — | **SALTATO**: la rivalidazione di default di Netlify va bene; una cache lunga servirebbe foto vecchie se sostituite con lo stesso nome |
 
 ### Fase 3 — Pronto per andare online (dipende da Ale)
 | Task | File | Sforzo | Rischio | Come verificare che è fatto |
