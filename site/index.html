@@ -540,27 +540,23 @@
   .pm-t-st-big { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 36px; fill: #F0E7D5; }
   .pm-t-st-sig { font-family: 'Source Serif 4', Georgia, serif; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; fill: rgba(240,231,213,.55); }
   .pm-ink { fill: none; stroke: #7A1E2B; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
-  .pm-glyph { stroke-width: 1.5; }
   .pm-dot { fill: #7A1E2B; }
-  .pm-badge { fill: #F8F1E0; stroke: #7A1E2B; stroke-width: 1.3; }
   .pm-ripple { fill: none; stroke: #7A1E2B; stroke-width: 1; opacity: 0; }
-  .pm-dot, .pm-badge, .pm-ripple, .pm-fade, .pm-stamp { transform-box: fill-box; transform-origin: center; }
-  .pm-dot, .pm-badge { opacity: 0; transform: scale(.3); }
+  .pm-dot, .pm-ripple, .pm-fade, .pm-stamp { transform-box: fill-box; transform-origin: center; }
+  .pm-dot { opacity: 0; transform: scale(.3); }
   .pm-fade { opacity: 0; transform: translateY(10px); }
   .pm-stamp { opacity: 0; }
 
   .diag-card.in .pm-ink { animation: pmDraw var(--dur, 800ms) var(--pm-ease) var(--d, 0ms) forwards; }
   .diag-card.in .pm-trunk { animation-timing-function: cubic-bezier(.4,0,.6,1); }
   .diag-card.in .pm-fade { animation: pmRise 700ms var(--pm-ease) var(--d, 0ms) forwards; }
-  .diag-card.in .pm-dot, .diag-card.in .pm-badge { animation: pmPop 440ms var(--pm-ease) var(--d, 0ms) forwards; }
+  .diag-card.in .pm-dot { animation: pmPop 440ms var(--pm-ease) var(--d, 0ms) forwards; }
   .diag-card.in .pm-stamp { animation: pmStamp 1100ms var(--pm-ease) var(--d, 0ms) forwards; }
   .diag-card.in .pm-ripple { animation: pmRipple 900ms ease-out var(--d, 0ms) forwards; }
-  .diag-card.in .pm-ripple.pm-ico { animation-name: pmRippleBadge; }
   @keyframes pmDraw { to { stroke-dashoffset: 0; } }
   @keyframes pmRise { to { opacity: 1; transform: translateY(0); } }
   @keyframes pmPop { to { opacity: 1; transform: scale(1); } }
   @keyframes pmRipple { from { opacity: .55; transform: scale(1); } to { opacity: 0; transform: scale(3.4); } }
-  @keyframes pmRippleBadge { from { opacity: .5; transform: scale(1); } to { opacity: 0; transform: scale(1.9); } }
   /* stessa curva del timbro «PIENA» (stampIn) */
   @keyframes pmStamp {
     0%   { opacity: 0; transform: rotate(-9deg) translateY(24px) scale(.92); }
@@ -569,9 +565,9 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .pm-ink { stroke-dashoffset: 0; }
-    .pm-fade, .pm-dot, .pm-badge { opacity: 1; transform: none; }
+    .pm-fade, .pm-dot { opacity: 1; transform: none; }
     .pm-stamp { opacity: 1; transform: rotate(-1.5deg); }
-    .diag-card.in .pm-ink, .diag-card.in .pm-fade, .diag-card.in .pm-dot, .diag-card.in .pm-badge,
+    .diag-card.in .pm-ink, .diag-card.in .pm-fade, .diag-card.in .pm-dot,
     .diag-card.in .pm-stamp, .diag-card.in .pm-ripple { animation: none; }
   }
   .nav-active { color: #7A1E2B !important; }
@@ -581,7 +577,7 @@
   .reveal, .step-roman, .quote-slab { opacity: 1; transform: none; }
   .reveal .pillar-roman::after { transform: scaleX(1); }
   .pm-ink { stroke-dashoffset: 0; }
-  .pm-fade, .pm-dot, .pm-badge { opacity: 1; transform: none; }
+  .pm-fade, .pm-dot { opacity: 1; transform: none; }
   .pm-stamp { opacity: 1; transform: rotate(-1.5deg); }
 </style></noscript>
 </head>
@@ -1164,18 +1160,15 @@
         </g>
         <!-- una sola linea: scende dal timbro, piega a sinistra e diventa la «linea» con tre fermate -->
         <path class="pm-ink pm-trunk" pathLength="1" style="--d:1450ms;--dur:1300ms" d="M180 298 C 180 326, 40 318, 40 352 L 40 540"/>
-        <circle class="pm-ripple pm-ico" cx="40" cy="364" r="14" style="--d:2000ms"/>
-        <circle class="pm-badge pm-ico" cx="40" cy="364" r="14" style="--d:2000ms"/>
-        <g class="pm-ico" transform="translate(30.3 354.3) scale(0.933)"><path class="pm-ink pm-glyph" pathLength="1" style="--d:2180ms;--dur:650ms" d="M11.4 12.0 L11.1 11.8 L11.0 11.4 L11.0 10.9 L11.2 10.5 L11.6 10.0 L12.1 9.7 L12.9 9.5 L13.6 9.6 L14.4 10.0 L15.2 10.6 L15.7 11.5 L16.0 12.5 L16.0 13.7 L15.6 14.9 L14.9 16.0 L13.8 16.8 L12.5 17.4 L10.9 17.6 L9.3 17.4 L7.8 16.7 L6.4 15.5 L5.4 14.0 L4.8 12.2 L4.8 10.1 L5.3 8.1 L6.4 6.3 L8.0 4.7 L10.0 3.6 L12.4 3.1 L14.8 3.3"/></g>
-        <circle class="pm-ripple pm-ico" cx="40" cy="452" r="14" style="--d:2330ms"/>
-        <circle class="pm-badge pm-ico" cx="40" cy="452" r="14" style="--d:2330ms"/>
-        <g class="pm-ico" transform="translate(28.8 440.8) scale(0.933)"><path class="pm-ink pm-glyph" pathLength="1" style="--d:2510ms;--dur:650ms" d="M2.5 13 H7.2 L9.2 8 L12.2 17.5 L14.6 9.5 L16.2 13 H21.5"/></g>
-        <circle class="pm-ripple pm-ico" cx="40" cy="540" r="14" style="--d:2680ms"/>
-        <circle class="pm-badge pm-ico" cx="40" cy="540" r="14" style="--d:2680ms"/>
-        <g class="pm-ico" transform="translate(28.8 528.8) scale(0.933)"><path class="pm-ink pm-glyph" pathLength="1" style="--d:2860ms;--dur:650ms" d="M12 3.5 V21"/><path class="pm-ink pm-glyph" pathLength="1" style="--d:2860ms;--dur:650ms" d="M12 6 H18 L20.2 8.2 L18 10.4 H12"/><path class="pm-ink pm-glyph" pathLength="1" style="--d:2860ms;--dur:650ms" d="M12 12.2 H6 L3.8 14.4 L6 16.6 H12"/></g>
-        <g class="pm-fade" style="--d:2060ms"><text class="pm-t-name" x="68" y="372">psicoterapeuta</text><text class="pm-t-cond pm-t-cond-v" x="69" y="396">se c'è un vissuto da elaborare</text></g>
-        <g class="pm-fade" style="--d:2390ms"><text class="pm-t-name" x="68" y="460">andrologo · ginecologo</text><text class="pm-t-cond pm-t-cond-v" x="69" y="484">se c'è un aspetto organico</text></g>
-        <g class="pm-fade" style="--d:2740ms"><text class="pm-t-name" x="68" y="548">altri professionisti</text><text class="pm-t-cond pm-t-cond-v" x="69" y="572">se c'è un bisogno specifico</text></g>
+        <circle class="pm-ripple" cx="40" cy="364" r="5" style="--d:2000ms"/>
+        <circle class="pm-ripple" cx="40" cy="452" r="5" style="--d:2330ms"/>
+        <circle class="pm-ripple" cx="40" cy="540" r="5" style="--d:2680ms"/>
+        <circle class="pm-dot" cx="40" cy="364" r="5" style="--d:2000ms"/>
+        <circle class="pm-dot" cx="40" cy="452" r="5" style="--d:2330ms"/>
+        <circle class="pm-dot" cx="40" cy="540" r="5" style="--d:2680ms"/>
+        <g class="pm-fade" style="--d:2060ms"><text class="pm-t-name" x="64" y="372">psicoterapeuta</text><text class="pm-t-cond pm-t-cond-v" x="65" y="396">se c'è un vissuto da elaborare</text></g>
+        <g class="pm-fade" style="--d:2390ms"><text class="pm-t-name" x="64" y="460">andrologo · ginecologo</text><text class="pm-t-cond pm-t-cond-v" x="65" y="484">se c'è un aspetto organico</text></g>
+        <g class="pm-fade" style="--d:2740ms"><text class="pm-t-name" x="64" y="548">altri professionisti</text><text class="pm-t-cond pm-t-cond-v" x="65" y="572">se c'è un bisogno specifico</text></g>
       </svg>
 
       <!-- caption -->
