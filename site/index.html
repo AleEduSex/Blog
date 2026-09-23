@@ -457,138 +457,67 @@
     color: #F0E7D5;
   }
 
-  /* ───────────────── DIAGRAM CARD — editorial motion map ───────────────── */
+  /* ───────────────── MAPPA «percorso a inchiostro» (sezione posizione) ─────────────────
+     Linea che si disegna da «Tu» al timbro del consulente e si apre verso gli specialisti.
+     Parte quando .diag-card riceve .in dall'IntersectionObserver. Classi con prefisso pm-. */
   .diag-card {
-    --diag-ease: cubic-bezier(.16,1,.3,1);
+    --pm-ease: cubic-bezier(.16,1,.3,1);
     position: relative;
     background: #F8F1E0;
     border: 1px solid rgba(122,30,43,0.15);
     border-radius: 2px;
-    padding: 52px 38px 46px;
+    padding: 44px 32px 32px;
     overflow: hidden;
   }
+  .pm-map { display: block; width: 100%; height: auto; }
+  .pm-map-v { display: none; max-width: 400px; margin: 0 auto; }
+  @media (max-width: 767px) {
+    .diag-card { padding: 28px 12px 24px; }
+    .pm-map-h { display: none; }
+    .pm-map-v { display: block; }
+  }
+  .pm-t-tu { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 68px; fill: #1A1A1A; }
+  .pm-t-name { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 30px; fill: #1A1A1A; }
+  .pm-map-v .pm-t-name { font-size: 28px; }
+  .pm-t-cond { font-family: 'Source Serif 4', Georgia, serif; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; fill: #7A1E2B; }
+  .pm-t-cond-v { font-size: 14px; letter-spacing: .1em; }
+  .pm-t-st-small { font-family: 'Source Serif 4', Georgia, serif; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; fill: rgba(240,231,213,.72); }
+  .pm-t-st-big { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 36px; fill: #F0E7D5; }
+  .pm-t-st-sig { font-family: 'Source Serif 4', Georgia, serif; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; fill: rgba(240,231,213,.55); }
+  .pm-ink { fill: none; stroke: #7A1E2B; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .pm-glyph { stroke-width: 1.5; }
+  .pm-dot { fill: #7A1E2B; }
+  .pm-badge { fill: #F8F1E0; stroke: #7A1E2B; stroke-width: 1.3; }
+  .pm-ripple { fill: none; stroke: #7A1E2B; stroke-width: 1; opacity: 0; }
+  .pm-dot, .pm-badge, .pm-ripple, .pm-fade, .pm-stamp { transform-box: fill-box; transform-origin: center; }
+  .pm-dot, .pm-badge { opacity: 0; transform: scale(.3); }
+  .pm-fade { opacity: 0; transform: translateY(10px); }
+  .pm-stamp { opacity: 0; }
 
-  .diag-svg {
-    position: relative;
-    z-index: 1;
+  .diag-card.in .pm-ink { animation: pmDraw var(--dur, 800ms) var(--pm-ease) var(--d, 0ms) forwards; }
+  .diag-card.in .pm-trunk { animation-timing-function: cubic-bezier(.4,0,.6,1); }
+  .diag-card.in .pm-fade { animation: pmRise 700ms var(--pm-ease) var(--d, 0ms) forwards; }
+  .diag-card.in .pm-dot, .diag-card.in .pm-badge { animation: pmPop 440ms var(--pm-ease) var(--d, 0ms) forwards; }
+  .diag-card.in .pm-stamp { animation: pmStamp 1100ms var(--pm-ease) var(--d, 0ms) forwards; }
+  .diag-card.in .pm-ripple { animation: pmRipple 900ms ease-out var(--d, 0ms) forwards; }
+  .diag-card.in .pm-ripple.pm-ico { animation-name: pmRippleBadge; }
+  @keyframes pmDraw { to { stroke-dashoffset: 0; } }
+  @keyframes pmRise { to { opacity: 1; transform: translateY(0); } }
+  @keyframes pmPop { to { opacity: 1; transform: scale(1); } }
+  @keyframes pmRipple { from { opacity: .55; transform: scale(1); } to { opacity: 0; transform: scale(3.4); } }
+  @keyframes pmRippleBadge { from { opacity: .5; transform: scale(1); } to { opacity: 0; transform: scale(1.9); } }
+  /* stessa curva del timbro «PIENA» (stampIn) */
+  @keyframes pmStamp {
+    0%   { opacity: 0; transform: rotate(-9deg) translateY(24px) scale(.92); }
+    55%  { opacity: 1; transform: rotate(-.2deg) translateY(-3px) scale(1.03); }
+    100% { opacity: 1; transform: rotate(-1.5deg) translateY(0) scale(1); }
   }
-
-  /* Diagram node entrance */
-  .diag-svg .diag-node {
-    opacity: 0;
-    transform: translateY(10px);
-    transform-box: fill-box;
-    transform-origin: center;
-    transition:
-      opacity 900ms var(--diag-ease),
-      transform 900ms var(--diag-ease);
-  }
-  .diag-svg .diag-node.d1 { transform: translateY(8px) scale(0.96); }
-  .diag-svg.in .diag-node { opacity: 1; transform: translateY(0) scale(1); }
-
-  /* Path filling animation — sequenced, smooth (hierarchy preserved) */
-  .diag-svg .diag-path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    opacity: 0;
-    transition:
-      stroke-dashoffset 1000ms var(--diag-ease),
-      opacity 520ms ease;
-  }
-  .diag-svg.in .diag-path { stroke-dashoffset: 0; opacity: 1; }
-  .diag-svg.in .diag-path.p1 { transition-delay: 420ms; }
-  .diag-svg.in .diag-path.p2 { transition-delay: 1220ms; }
-  .diag-svg.in .diag-path.p3 { transition-delay: 1400ms; }
-  .diag-svg.in .diag-path.p4 { transition-delay: 1580ms; }
-
-  /* Arrow tips — gentle scale + fade, lands just as the path completes */
-  .diag-svg .diag-tip {
-    opacity: 0;
-    transform: scale(0.62);
-    transform-origin: center;
-    transform-box: fill-box;
-    transition:
-      opacity 520ms var(--diag-ease),
-      transform 520ms var(--diag-ease);
-  }
-  .diag-svg.in .diag-tip { opacity: 1; transform: scale(1); }
-  .diag-svg.in .diag-tip.t1 { transition-delay: 1120ms; }
-  .diag-svg.in .diag-tip.t2 { transition-delay: 2040ms; }
-  .diag-svg.in .diag-tip.t3 { transition-delay: 2220ms; }
-  .diag-svg.in .diag-tip.t4 { transition-delay: 2400ms; }
-
-  /* Labels appear paired with their arrow */
-  .diag-svg.in .diag-node.d1     { transition-delay: 120ms; }
-  .diag-svg.in .diag-node.d2     { transition-delay: 900ms; }
-  .diag-svg.in .diag-node.label1 { transition-delay: 2200ms; }
-  .diag-svg.in .diag-node.label2 { transition-delay: 2380ms; }
-  .diag-svg.in .diag-node.label3 { transition-delay: 2560ms; }
-  .diag-svg.in .diag-node.caption { transition-delay: 2920ms; }
-
-  /* Ale-node soft inner glow ring (a subtle "card-within-card" feel) */
-  .diag-svg .ale-node-shadow {
-    opacity: 0;
-    transform: translateY(2px);
-    transition:
-      opacity 760ms var(--diag-ease),
-      transform 760ms var(--diag-ease);
-  }
-  .diag-svg.in .ale-node-shadow { opacity: 1; transform: translateY(0); }
-  /* ─── HTML Responsive Diagram ─────────────────────────── */
-  .diag-html-flow { position: relative; z-index: 1; padding: 4px 0 20px; }
-  .diag-tu-outer {
-    width: 124px; height: 124px; border-radius: 50%;
-    border: 1px dashed rgba(122,30,43,0.35);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; flex-shrink: 0;
-  }
-  .diag-tu-outer::before {
-    content: ''; position: absolute; inset: 9px;
-    border-radius: 50%; border: 0.6px solid rgba(122,30,43,0.22);
-    pointer-events: none;
-  }
-  .diag-tu-coin {
-    width: 100px; height: 100px; border-radius: 50%;
-    background: radial-gradient(circle at 50% 38%, #FBF5E4, #EFE3C8);
-    border: 1.5px solid #7A1E2B;
-    box-shadow: 0 4px 14px rgba(26,26,26,0.16), inset 0 1px 0 rgba(255,255,255,0.6);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-style: italic;
-    font-size: 44px; color: #1A1A1A; line-height: 1;
-  }
-  .diag-ale-plaque {
-    background: linear-gradient(180deg, #8A2533 0%, #6A1622 100%);
-    padding: 22px 28px 20px; text-align: center;
-    box-shadow: 0 8px 28px -8px rgba(92,21,32,0.55), 0 2px 8px -2px rgba(122,30,43,0.25);
-    position: relative; flex-shrink: 0; min-width: 164px;
-  }
-  .diag-ale-plaque::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 1px; background: rgba(240,231,213,0.20); pointer-events: none;
-  }
-  .diag-ale-plaque::after {
-    content: ''; position: absolute; top: 50%; left: 18px; right: 18px;
-    height: 0.6px; background: rgba(240,231,213,0.18);
-    pointer-events: none; transform: translateY(-50%);
-  }
-  .diag-specialists {
-    position: relative; padding-left: 22px;
-  }
-  .diag-specialists::before {
-    content: ''; position: absolute;
-    left: 0; top: 18px; bottom: 18px;
-    width: 1.5px; background: rgba(122,30,43,0.45);
-  }
-  .diag-spec-item {
-    position: relative; padding: 14px 0 14px 18px;
-  }
-  .diag-spec-item::before {
-    content: ''; position: absolute;
-    left: -22px; top: 50%; width: 22px; height: 1.5px;
-    background: rgba(122,30,43,0.45); transform: translateY(-50%);
-  }
-  .diag-spec-item + .diag-spec-item {
-    border-top: 0.6px solid rgba(122,30,43,0.12);
+  @media (prefers-reduced-motion: reduce) {
+    .pm-ink { stroke-dashoffset: 0; }
+    .pm-fade, .pm-dot, .pm-badge { opacity: 1; transform: none; }
+    .pm-stamp { opacity: 1; transform: rotate(-1.5deg); }
+    .diag-card.in .pm-ink, .diag-card.in .pm-fade, .diag-card.in .pm-dot, .diag-card.in .pm-badge,
+    .diag-card.in .pm-stamp, .diag-card.in .pm-ripple { animation: none; }
   }
   .nav-active { color: #7A1E2B !important; }
 </style>
@@ -1127,68 +1056,69 @@
 
     <!-- Editorial flow diagram — lifted card -->
     <div class="diag-card reveal" data-delay="2">
-      <div class="diag-html-flow" aria-label="Mappa del ruolo: dal consulente in sessuologia agli specialisti" role="img">
-        <div class="flex flex-col md:flex-row md:items-center">
+      <svg class="pm-map pm-map-h" viewBox="0 0 1070 330" role="img" aria-label="Tu, poi il consulente in sessuologia Alessio, che indirizza a psicoterapeuta se c'è un vissuto da elaborare, ad andrologo o ginecologo se c'è un aspetto organico, ad altri professionisti se c'è un bisogno specifico.">
+        <defs>
+          <filter id="pm-shadow-h" x="-20%" y="-30%" width="140%" height="170%">
+            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#5C1520" flood-opacity=".32"/>
+          </filter>
+        </defs>
+        <text class="pm-t-tu pm-fade" x="36" y="186" style="--d:0ms">Tu</text>
+        <!-- tratto a mano: piccola onda, non una riga dritta -->
+        <path class="pm-ink" pathLength="1" style="--d:350ms;--dur:750ms" d="M128 165 C 168 150, 196 181, 240 166 S 292 158, 318 164"/>
+        <g class="pm-stamp" style="--d:950ms" filter="url(#pm-shadow-h)">
+          <rect x="330" y="104" width="252" height="124" rx="9" fill="#7A1E2B"/>
+          <text class="pm-t-st-small" x="456" y="146" text-anchor="middle">consulente in</text>
+          <text class="pm-t-st-big" x="456" y="185" text-anchor="middle">sessuologia</text>
+          <text class="pm-t-st-sig" x="456" y="211" text-anchor="middle">— Alessio</text>
+        </g>
+        <!-- tre rami che si aprono dal timbro -->
+        <path class="pm-ink" pathLength="1" style="--d:1650ms" d="M596 160 C 650 158, 648 72, 712 70"/>
+        <path class="pm-ink" pathLength="1" style="--d:1780ms" d="M596 166 C 640 170, 668 164, 712 166"/>
+        <path class="pm-ink" pathLength="1" style="--d:1910ms" d="M596 172 C 650 176, 646 262, 712 262"/>
+        <circle class="pm-ripple pm-plain" cx="716" cy="70" r="4" style="--d:2300ms"/>
+        <circle class="pm-ripple pm-plain" cx="716" cy="166" r="4" style="--d:2430ms"/>
+        <circle class="pm-ripple pm-plain" cx="716" cy="262" r="4" style="--d:2560ms"/>
+        <circle class="pm-dot pm-plain" cx="716" cy="70" r="4" style="--d:2300ms"/>
+        <circle class="pm-dot pm-plain" cx="716" cy="166" r="4" style="--d:2430ms"/>
+        <circle class="pm-dot pm-plain" cx="716" cy="262" r="4" style="--d:2560ms"/>
+        <g class="pm-fade" style="--d:2350ms"><text class="pm-t-name" x="754" y="72">psicoterapeuta</text><text class="pm-t-cond" x="756" y="96">se c'è un vissuto da elaborare</text></g>
+        <g class="pm-fade" style="--d:2480ms"><text class="pm-t-name" x="754" y="168">andrologo · ginecologo</text><text class="pm-t-cond" x="756" y="192">se c'è un aspetto organico</text></g>
+        <g class="pm-fade" style="--d:2610ms"><text class="pm-t-name" x="754" y="264">altri professionisti</text><text class="pm-t-cond" x="756" y="288">se c'è un bisogno specifico</text></g>
+      </svg>
+      <svg class="pm-map pm-map-v" viewBox="0 0 360 590" role="img" aria-label="Tu, poi il consulente in sessuologia Alessio, che indirizza a psicoterapeuta se c'è un vissuto da elaborare, ad andrologo o ginecologo se c'è un aspetto organico, ad altri professionisti se c'è un bisogno specifico.">
+        <defs>
+          <filter id="pm-shadow-v" x="-20%" y="-30%" width="140%" height="170%">
+            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#5C1520" flood-opacity=".32"/>
+          </filter>
+        </defs>
+        <text class="pm-t-tu pm-fade" x="180" y="60" text-anchor="middle" style="--d:0ms">Tu</text>
+        <path class="pm-ink" pathLength="1" style="--d:350ms;--dur:600ms" d="M180 84 C 187 104, 173 122, 180 142 S 181 160, 180 166"/>
+        <g class="pm-stamp" style="--d:800ms" filter="url(#pm-shadow-v)">
+          <rect x="60" y="174" width="240" height="112" rx="9" fill="#7A1E2B"/>
+          <text class="pm-t-st-small" x="180" y="211" text-anchor="middle">consulente in</text>
+          <text class="pm-t-st-big" x="180" y="248" text-anchor="middle">sessuologia</text>
+          <text class="pm-t-st-sig" x="180" y="272" text-anchor="middle">— Alessio</text>
+        </g>
+        <!-- una sola linea: scende dal timbro, piega a sinistra e diventa la «linea» con tre fermate -->
+        <path class="pm-ink pm-trunk" pathLength="1" style="--d:1450ms;--dur:1300ms" d="M180 298 C 180 326, 40 318, 40 352 L 40 540"/>
+        <circle class="pm-ripple pm-ico" cx="40" cy="364" r="14" style="--d:2000ms"/>
+        <circle class="pm-badge pm-ico" cx="40" cy="364" r="14" style="--d:2000ms"/>
+        <g class="pm-ico" transform="translate(30.3 354.3) scale(0.933)"><path class="pm-ink pm-glyph" pathLength="1" style="--d:2180ms;--dur:650ms" d="M11.4 12.0 L11.1 11.8 L11.0 11.4 L11.0 10.9 L11.2 10.5 L11.6 10.0 L12.1 9.7 L12.9 9.5 L13.6 9.6 L14.4 10.0 L15.2 10.6 L15.7 11.5 L16.0 12.5 L16.0 13.7 L15.6 14.9 L14.9 16.0 L13.8 16.8 L12.5 17.4 L10.9 17.6 L9.3 17.4 L7.8 16.7 L6.4 15.5 L5.4 14.0 L4.8 12.2 L4.8 10.1 L5.3 8.1 L6.4 6.3 L8.0 4.7 L10.0 3.6 L12.4 3.1 L14.8 3.3"/></g>
+        <circle class="pm-ripple pm-ico" cx="40" cy="452" r="14" style="--d:2330ms"/>
+        <circle class="pm-badge pm-ico" cx="40" cy="452" r="14" style="--d:2330ms"/>
+        <g class="pm-ico" transform="translate(28.8 440.8) scale(0.933)"><path class="pm-ink pm-glyph" pathLength="1" style="--d:2510ms;--dur:650ms" d="M2.5 13 H7.2 L9.2 8 L12.2 17.5 L14.6 9.5 L16.2 13 H21.5"/></g>
+        <circle class="pm-ripple pm-ico" cx="40" cy="540" r="14" style="--d:2680ms"/>
+        <circle class="pm-badge pm-ico" cx="40" cy="540" r="14" style="--d:2680ms"/>
+        <g class="pm-ico" transform="translate(28.8 528.8) scale(0.933)"><path class="pm-ink pm-glyph" pathLength="1" style="--d:2860ms;--dur:650ms" d="M12 3.5 V21"/><path class="pm-ink pm-glyph" pathLength="1" style="--d:2860ms;--dur:650ms" d="M12 6 H18 L20.2 8.2 L18 10.4 H12"/><path class="pm-ink pm-glyph" pathLength="1" style="--d:2860ms;--dur:650ms" d="M12 12.2 H6 L3.8 14.4 L6 16.6 H12"/></g>
+        <g class="pm-fade" style="--d:2060ms"><text class="pm-t-name" x="68" y="372">psicoterapeuta</text><text class="pm-t-cond pm-t-cond-v" x="69" y="396">se c'è un vissuto da elaborare</text></g>
+        <g class="pm-fade" style="--d:2390ms"><text class="pm-t-name" x="68" y="460">andrologo · ginecologo</text><text class="pm-t-cond pm-t-cond-v" x="69" y="484">se c'è un aspetto organico</text></g>
+        <g class="pm-fade" style="--d:2740ms"><text class="pm-t-name" x="68" y="548">altri professionisti</text><text class="pm-t-cond pm-t-cond-v" x="69" y="572">se c'è un bisogno specifico</text></g>
+      </svg>
 
-          <!-- TU -->
-          <div class="diag-tu-outer reveal self-center md:self-auto">
-            <div class="diag-tu-coin">Tu</div>
-          </div>
-
-          <!-- connector Tu→Ale: horizontal on desktop -->
-          <div class="hidden md:flex items-center flex-shrink-0 px-2">
-            <div style="width:44px;height:1.5px;background:#7A1E2B;"></div>
-            <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #7A1E2B;"></div>
-          </div>
-          <!-- connector Tu→Ale: vertical on mobile -->
-          <div class="md:hidden flex justify-center py-2">
-            <div style="width:1.5px;height:28px;background:#7A1E2B;position:relative;">
-              <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #7A1E2B;"></div>
-            </div>
-          </div>
-
-          <!-- ALE PLAQUE -->
-          <div class="diag-ale-plaque reveal self-center md:self-auto" data-delay="1">
-            <span class="block font-body text-[11px] tracking-[0.22em] uppercase mb-1" style="color:rgba(240,231,213,0.65)">consulente in</span>
-            <span class="block font-display italic text-[22px] leading-tight" style="color:#F0E7D5">sessuologia</span>
-            <span class="block font-body text-[9px] tracking-[0.30em] uppercase mt-2" style="color:rgba(240,231,213,0.50)">— Alessio</span>
-          </div>
-
-          <!-- connector Ale→specialists: horizontal on desktop -->
-          <div class="hidden md:flex items-center flex-shrink-0 px-2">
-            <div style="width:44px;height:1.5px;background:#7A1E2B;"></div>
-            <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #7A1E2B;"></div>
-          </div>
-          <!-- connector Ale→specialists: vertical on mobile -->
-          <div class="md:hidden flex justify-center py-2">
-            <div style="width:1.5px;height:28px;background:#7A1E2B;position:relative;">
-              <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #7A1E2B;"></div>
-            </div>
-          </div>
-
-          <!-- SPECIALISTS -->
-          <div class="diag-specialists w-full md:flex-1 reveal" data-delay="2">
-            <div class="diag-spec-item">
-              <span class="block font-display italic text-[20px] md:text-[22px] text-brand-ink leading-tight">psicoterapeuta</span>
-              <span class="block font-body text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-brand-burgundy mt-1">se c'è un vissuto da elaborare</span>
-            </div>
-            <div class="diag-spec-item">
-              <span class="block font-display italic text-[20px] md:text-[22px] text-brand-ink leading-tight">andrologo · ginecologo</span>
-              <span class="block font-body text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-brand-burgundy mt-1">se c'è un aspetto organico</span>
-            </div>
-            <div class="diag-spec-item">
-              <span class="block font-display italic text-[20px] md:text-[22px] text-brand-ink leading-tight">altri professionisti</span>
-              <span class="block font-body text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-brand-burgundy mt-1">se c'è un bisogno specifico</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- caption -->
-        <p class="text-center font-body italic text-[13px] mt-8 reveal" data-delay="3" style="color:rgba(26,26,26,0.55);letter-spacing:0.04em">
+      <!-- caption -->
+      <p class="text-center font-body italic text-[15px] mt-5" style="color:rgba(26,26,26,0.62);letter-spacing:0.02em">
           io ti aiuto a capire dove sei e dove andare
         </p>
-      </div>
     </div>
 
     <!-- Closing line -->
@@ -1535,7 +1465,7 @@
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    document.querySelectorAll('.reveal, .step-roman, .diag-svg, .diag-card, .negation-row, .quote-slab').forEach(function(el) { io.observe(el); });
+    document.querySelectorAll('.reveal, .step-roman, .diag-card, .negation-row, .quote-slab').forEach(function(el) { io.observe(el); });
   })();
 
   // Scroll-spy nav highlight
