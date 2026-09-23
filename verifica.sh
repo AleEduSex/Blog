@@ -53,5 +53,12 @@ fi
 w=$(find . -type f \( -iname '*.md' -o -iname '*.zip' -o -iname '*.psd' -o -iname '*.fig' -o -iname '*.docx' \))
 [ -n "$w" ] && fail "file di lavoro in site/: $w"
 
+# 7. Testata e footer identici in tutte le pagine del blog e nella 404
+ref=""
+for f in blog/*.html 404.html; do
+  h=$(sed -n '/<header class="site-header">/,/<\/header>/p; /<footer class="site-footer">/,/<\/footer>/p' "$f" | sed 's/ aria-current="page"//' | cksum)
+  if [ -z "$ref" ]; then ref=$h; rf=$f; else [ "$h" = "$ref" ] || fail "$f: testata o footer diversi da $rf"; fi
+done
+
 [ $err = 0 ] && echo OK
 exit $err
