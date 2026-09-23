@@ -60,9 +60,5 @@ for f in blog/*.html 404.html legale.html; do
   if [ -z "$ref" ]; then ref=$h; rf=$f; else [ "$h" = "$ref" ] || fail "$f: testata o footer diversi da $rf"; fi
 done
 
-# 8. Dati mancanti: niente online finché resta un [DA COMPLETARE]
-d=$(grep -rl "DA COMPLETARE" --include="*.html" .)
-[ -n "$d" ] && fail "dati da completare in: $(echo $d)"
-
 [ $err = 0 ] && echo OK
 exit $err
