@@ -327,6 +327,7 @@ figcaption {
   margin: 0 0 48px; padding: 24px 28px;
   background: var(--paper); border: 1px solid var(--line-soft); border-radius: 2px;
 }
+.prose + .in-breve { margin-top: 48px; }
 .in-breve .eyebrow { margin-bottom: 12px; }
 .in-breve ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-size: 17px; line-height: 1.55; }
 .in-breve li::marker { color: var(--burgundy); }
