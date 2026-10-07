@@ -1,2 +1,41 @@
 [build]
   publish = "site"
+
+# Gli indirizzi ufficiali del sito finiscono in .html (canonical, sitemap, link interni).
+# Pretty URLs riscriverebbe i link al deploy e creerebbe due indirizzi per pagina: spento.
+[build.processing.html]
+  pretty_urls = false
+
+# Chi arriva all'indirizzo senza .html va portato su quello ufficiale.
+# force = true serve perché il file .html esiste: senza, Netlify ignorerebbe la regola.
+# Una riga per articolo (Netlify non accetta il jolly a metà percorso): vedi PUBBLICARE.md passo 6b.
+[[redirects]]
+  from = "/legale"
+  to = "/legale.html"
+  status = 301
+  force = true
+
+# NUOVO REINDIRIZZAMENTO QUI
+[[redirects]]
+  from = "/blog/preservativo-chi-deve-saperlo-mettere"
+  to = "/blog/preservativo-chi-deve-saperlo-mettere.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/lubrificante-e-preservativo"
+  to = "/blog/lubrificante-e-preservativo.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/come-mettere-il-preservativo"
+  to = "/blog/come-mettere-il-preservativo.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/perdita-di-erezione-durante-il-rapporto"
+  to = "/blog/perdita-di-erezione-durante-il-rapporto.html"
+  status = 301
+  force = true
