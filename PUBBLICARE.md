@@ -6,7 +6,7 @@ Tutto ciò che va online sta in `site/`. Questo file resta privato.
 ## 0. Regole fisse
 
 - Nulla va online senza il "pubblica" esplicito di Alessio in chat.
-- Tocchi SOLO: il nuovo `site/blog/<slug>.html`, `site/blog/index.html`, `site/sitemap.xml`,
+- Tocchi SOLO: il nuovo `site/blog/<slug>.html`, `site/blog/index.html`, `site/sitemap.xml`, `netlify.toml`,
   l'eventuale foto in `site/blog/img/`. Mai `site/index.html`, mai `blog.css`, mai altri articoli
   (salvo correzioni richieste, vedi in fondo).
 - Niente file di lavoro in `site/` (note, bozze, .md, .docx, zip).
@@ -93,6 +93,20 @@ In `site/sitemap.xml`, subito sotto `<!-- NUOVO ARTICOLO QUI -->`:
   <url><loc>https://aleedusex.net/blog/SLUG.html</loc><lastmod>2026-10-05</lastmod></url>
 ```
 
+## 6b. Aggiungi il reindirizzamento
+
+In `netlify.toml`, subito sotto `# NUOVO REINDIRIZZAMENTO QUI`:
+
+```toml
+[[redirects]]
+  from = "/blog/SLUG"
+  to = "/blog/SLUG.html"
+  status = 301
+  force = true
+```
+
+Serve a chi arriva all'indirizzo senza `.html`: viene portato su quello ufficiale.
+
 ## 7. Verifica
 
 Dalla radice del repository:
@@ -107,7 +121,7 @@ comparire solo i file del passo 0.
 ## 8. Pubblica
 
 ```bash
-git add site
+git add site netlify.toml
 git commit -m "Blog: TITOLO"
 git push origin main
 ```
