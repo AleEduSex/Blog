@@ -17,6 +17,12 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/sesso-anale-in-sicurezza"
+  to = "/blog/sesso-anale-in-sicurezza.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/preservativo-chi-deve-saperlo-mettere"
   to = "/blog/preservativo-chi-deve-saperlo-mettere.html"
   status = 301
