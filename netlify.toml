@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/sex-toys-in-sicurezza"
+  to = "/blog/sex-toys-in-sicurezza.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/preservativo-interno"
+  to = "/blog/preservativo-interno.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/come-scegliere-un-lubrificante-intimo"
   to = "/blog/come-scegliere-un-lubrificante-intimo.html"
   status = 301
