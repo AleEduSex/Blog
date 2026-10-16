@@ -17,6 +17,12 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/pillola-del-giorno-dopo"
+  to = "/blog/pillola-del-giorno-dopo.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/preservativo-rotto-cosa-fare"
   to = "/blog/preservativo-rotto-cosa-fare.html"
   status = 301
