@@ -17,6 +17,12 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/stealthing-preservativo-tolto-di-nascosto"
+  to = "/blog/stealthing-preservativo-tolto-di-nascosto.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/pillola-del-giorno-dopo"
   to = "/blog/pillola-del-giorno-dopo.html"
   status = 301
