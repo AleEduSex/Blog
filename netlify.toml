@@ -17,6 +17,12 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/consenso-sessuale-cosa-vuol-dire-e-cosa-no"
+  to = "/blog/consenso-sessuale-cosa-vuol-dire-e-cosa-no.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/stealthing-preservativo-tolto-di-nascosto"
   to = "/blog/stealthing-preservativo-tolto-di-nascosto.html"
   status = 301
