@@ -1,0 +1,8 @@
+Qui dentro metti quello che Alessio ha già pubblicato su Instagram, anche copiato in un file di testo:
+- i testi dei reel e dei caroselli che hanno funzionato di più
+- le caption migliori
+- le trascrizioni dei video
+- (facoltativo) come risponde nei messaggi, senza nomi né dettagli di altre persone
+
+Più materiale c'è, più i testi suoneranno suoi. Niente storie o dati riconoscibili di persone che segue.
+Questa cartella non va online: il sito pubblica solo la cartella site/.

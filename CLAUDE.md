@@ -66,6 +66,15 @@ aggiornarla qui.
 
 ---
 
+## Instagram (@aleedusex)
+
+Quando Alessio parla di reel, caption, ganci o contenuti per Instagram usa la skill
+`.claude/skills/instagram/SKILL.md`: argomento → angoli → ganci → script → caption, con le
+stesse regole e la stessa voce di questa guida. Suoi materiali in `instagram/materiali/`,
+contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li copia lui.
+
+---
+
 ## Parte tecnica
 
 ```
