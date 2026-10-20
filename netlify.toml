@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/orgasmo-cos-e-cosa-succede-nel-corpo"
+  to = "/blog/orgasmo-cos-e-cosa-succede-nel-corpo.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/infezioni-sessualmente-trasmissibili-test"
+  to = "/blog/infezioni-sessualmente-trasmissibili-test.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/pep-e-prep-hiv"
   to = "/blog/pep-e-prep-hiv.html"
   status = 301
