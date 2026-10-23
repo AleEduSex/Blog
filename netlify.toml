@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/kink-cos-e-come-sperimentare"
+  to = "/blog/kink-cos-e-come-sperimentare.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/masturbazione-e-normale-quando-preoccuparsi"
+  to = "/blog/masturbazione-e-normale-quando-preoccuparsi.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/orgasmo-che-non-arriva-cause-e-cosa-fare"
   to = "/blog/orgasmo-che-non-arriva-cause-e-cosa-fare.html"
   status = 301
