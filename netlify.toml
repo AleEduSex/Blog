@@ -17,6 +17,24 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/sesso-vanilla-cosa-significa"
+  to = "/blog/sesso-vanilla-cosa-significa.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/come-parlare-di-sesso-con-il-partner"
+  to = "/blog/come-parlare-di-sesso-con-il-partner.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/fantasie-sessuali-e-immaginario-erotico"
+  to = "/blog/fantasie-sessuali-e-immaginario-erotico.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/kink-cos-e-come-sperimentare"
   to = "/blog/kink-cos-e-come-sperimentare.html"
   status = 301
