@@ -100,6 +100,8 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 - Skill di design esterne (Impeccable, Taste, UI/UX Pro Max, Hallmark, web-quality, Vercel
   guidelines) in `.claude/skills/`: solo per il lavoro tecnico di Mirko, mai per gli articoli.
   Origine, licenze e verifiche in `.claude/SKILL-ESTERNE.md`.
+- `prototipi/NON-TOCCARE/`: prove del blog diviso per temi (non pubblicate). Non modificarle e
+  non usarle per gli articoli; spiegazione in `prototipi/NON-TOCCARE/LEGGIMI.md`.
 
 ### Da fare
 
