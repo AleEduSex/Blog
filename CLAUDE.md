@@ -97,6 +97,9 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 - Push su `main` = sito online (quando Netlify è collegato al repo).
 - Prima di ogni push: `bash verifica.sh` deve stampare OK.
 - Testata e footer sono identici in blog, 404 e pagina legale: `verifica.sh` lo controlla.
+- Skill di design esterne (Impeccable, Taste, UI/UX Pro Max, Hallmark, web-quality, Vercel
+  guidelines) in `.claude/skills/`: solo per il lavoro tecnico di Mirko, mai per gli articoli.
+  Origine, licenze e verifiche in `.claude/SKILL-ESTERNE.md`.
 
 ### Da fare
 
