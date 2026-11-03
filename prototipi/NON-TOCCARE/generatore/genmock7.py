@@ -20,6 +20,7 @@ for s in SEZ:
 assert sum(len(s['posts']) for s in SEZ) == len(items), 'ogni articolo deve stare in una sezione'
 sez_of = {a: s for s in SEZ for a in s['articoli']}
 def href(s): return f'sezione-{s["slug"]}.html'          # online: /blog/<slug>/
+def anchor(n): return re.sub(r'[^a-z]+', '-', n.lower().replace('à','a')).strip('-')
 
 SMALL = {
  'prevenzione': '<path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/>',
@@ -38,12 +39,13 @@ h1,h2,h3{text-wrap:balance} p{text-wrap:pretty}
 .ico{width:22px;height:22px;flex:none;color:var(--burgundy)}
 .lbl{font-size:14px;font-style:italic;color:var(--muted)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@keyframes fade7{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fade7{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
 @media (prefers-reduced-motion:no-preference){.in{animation:fade7 380ms cubic-bezier(.2,.7,.2,1) var(--td,0ms) both}}
 /* pizzino: foglietto di carta con nastro adesivo */
 .pz{position:relative;background:var(--paper);border-radius:3px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -16px rgba(60,30,20,.35),0 2px 5px -3px rgba(60,30,20,.25)}
 .pz::before{content:"";position:absolute;top:-11px;left:50%;width:86px;height:24px;transform:translateX(-50%) rotate(-2deg);background:var(--tape);border-left:1px dashed rgba(122,30,43,.10);border-right:1px dashed rgba(122,30,43,.10);pointer-events:none}
 .pz.alt::before{transform:translateX(-50%) rotate(3deg);left:38%}
+.c1::before{width:104px;left:30%;transform:translateX(-50%) rotate(-4deg)}.c3::before{width:72px;left:64%}.c4::before{width:92px;left:24%;transform:translateX(-50%) rotate(5deg)}.c5::before{width:80px;left:70%;transform:translateX(-50%) rotate(-3deg)}.invite::before{width:110px;left:12%}.close::before{width:76px;left:84%}
 '''
 def page(title, desc, body, css):
     return f'''<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
@@ -73,12 +75,13 @@ cssH = '''
 .card li a{display:block;padding:11px 0;border-top:1px solid var(--line-soft);font-size:15.5px;line-height:1.4}
 .card li a:hover{color:var(--burgundy);text-decoration:underline;text-underline-offset:3px}
 .card .parts{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1;margin-top:4px}
-.card .parts span{font-size:14px;padding:4px 10px;border-radius:999px;background:var(--cream);color:var(--burgundy)}
+.card .parts a{font-size:14px;padding:10px 12px;border-radius:999px;background:var(--cream);color:var(--burgundy);line-height:1.2}
+.card .parts a:hover{text-decoration:underline;text-underline-offset:3px}
 .card .all{position:relative;z-index:1;align-self:flex-start;margin-top:auto;padding:12px 0 6px;font-style:italic;color:var(--burgundy);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
 .card .all:focus-visible{outline:2px solid var(--burgundy);outline-offset:2px}
 .invite{background:var(--burgundy);color:var(--cream);padding:30px 26px;display:grid;gap:18px;margin:16px 0 56px}
 .invite::before{background:rgba(240,231,213,.35)}
-.invite p{font-family:var(--display);font-size:28px;line-height:1.1;letter-spacing:-.02em;max-width:30ch}
+.invite p{font-family:var(--display);font-size:23px;line-height:1.1;letter-spacing:-.02em;max-width:30ch}
 .invite .btn-cream{justify-self:start}
 .chron h2{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.02em}
 .chron .intro2{margin-top:8px;color:var(--muted);font-style:italic}
@@ -104,7 +107,7 @@ cssH = '''
 R = [-1.4, 1.6, -1.0, 1.8, -1.6]
 def card(s, k):
     if s.get('parti'):
-        inner = '<div class="parts">' + ''.join(f'<span>{p["nome"]}</span>' for p in s['parti']) + '</div>' + \
+        inner = '<div class="parts">' + ''.join(f'<a href="{href(s)}#{anchor(p["nome"])}">{p["nome"]}</a>' for p in s['parti']) + '</div>' + \
                 '<ul>' + ''.join(f'<li><a href="/blog/{by[a]["slug"]}.html">{by[a]["title"]}</a></li>' for a in s['vetrina']) + '</ul>'
     else:
         inner = '<ul>' + ''.join(f'<li><a href="/blog/{by[a]["slug"]}.html">{by[a]["title"]}</a></li>' for a in s['vetrina']) + '</ul>'
@@ -150,13 +153,16 @@ cssS = '''
 .part{margin-top:36px}.part:first-child{margin-top:0}
 .part h2{font-family:var(--display);font-size:30px;line-height:1}
 .part .pd{margin-top:6px;color:var(--muted);font-style:italic}
-.part .empty{padding:16px 0;border-bottom:1px solid var(--line-soft);color:var(--muted)}
+.part{scroll-margin-top:110px}
+.soon{margin-top:44px;padding:24px 24px 16px;display:grid;gap:4px;max-width:30em}
+.soon-t{font-family:var(--display);font-size:26px;line-height:1.1}
+.soon a{justify-self:start;padding:10px 0;font-style:italic;color:var(--burgundy);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
 .about{margin-top:48px;max-width:38em}
 .about h2{font-family:var(--display);font-size:30px;line-height:1;margin-bottom:14px}
 .about p{font-size:18px;line-height:1.7;margin-top:14px}
 .close{background:var(--burgundy);color:var(--cream);padding:26px 24px;margin:48px 0 28px;display:grid;gap:16px}
 .close::before{background:rgba(240,231,213,.35)}
-.close p{font-family:var(--display);font-size:26px;line-height:1.1;max-width:30ch}
+.close p{font-family:var(--display);font-size:22px;line-height:1.1;max-width:30ch}
 .close .btn-cream{justify-self:start}
 .next{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 40px;padding:20px 22px;transition:transform .3s var(--ease)}
 .next:hover{transform:translateY(-3px)}
@@ -165,8 +171,8 @@ cssS = '''
 .next .ill{width:72px;height:72px;flex:none}
 @media(min-width:900px){
  .toc-mob{display:none}
- .sec-hero{padding-top:40px}.sec-hero .box{grid-template-columns:1fr 220px;column-gap:48px;padding:36px 40px 40px;transform:rotate(-.5deg)}
- .sec-hero .box>*{grid-column:1}.sec-hero .ill{grid-column:2;grid-row:1/6;width:200px;height:200px;margin:0;justify-self:end;align-self:center}
+ .sec-hero{padding-top:40px}.sec-hero .box{grid-template-columns:1fr 250px;column-gap:48px;padding:36px 40px 40px;transform:rotate(-.5deg)}
+ .sec-hero .box>*{grid-column:1}.sec-hero .ill{grid-column:2;grid-row:1/6;width:240px;height:240px;margin:-24px -12px 0 0;justify-self:end;align-self:start}
  .sec-hero h1{font-size:80px}
  .book{grid-template-columns:270px 1fr;gap:64px;padding-top:40px}
  .toc-side{display:block;position:sticky;top:110px;align-self:start}
@@ -176,7 +182,7 @@ cssS = '''
  .toc-side a[aria-current]{background:var(--paper);color:var(--burgundy)}
  .toc-side .all{display:inline-block;margin-top:14px;padding:10px 0;font-style:italic;color:var(--burgundy)}
  .idx a.t{font-size:22px}
- .close{grid-template-columns:1fr auto;align-items:center;padding:30px 36px;transform:rotate(.5deg)}
+ .close{grid-template-columns:1fr auto;align-items:center;padding:30px 36px;transform:rotate(.5deg)}.close p{font-size:26px}
  .next{margin-bottom:96px;transform:rotate(-.6deg)}.next:hover{transform:rotate(0) translateY(-3px)}
 }
 '''
@@ -191,9 +197,12 @@ for i, s in enumerate(SEZ):
     mob = '<nav class="toc-mob" aria-label="Altre sezioni"><p class="lbl" style="width:100%">Altre sezioni</p>' + ''.join(
         f'<a href="{href(o)}"{" aria-current=page" if o is s else ""}>{small(o["icona"])}{o["nome"]}</a>' for o in SEZ) + '</nav>'
     if s.get('parti'):
-        lista = ''.join(f'''<section class="part"><h2>{p["nome"]}</h2><p class="pd">{p["descrizione"]}</p>''' +
-            (f'<ol class="idx">{lis([by[a] for a in p["articoli"]])}</ol>' if p['articoli'] else '<p class="empty">Ancora nessun articolo in questa parte.</p>') +
-            '</section>' for p in s['parti'])
+        piene = [p for p in s['parti'] if p['articoli']]; vuote = [p for p in s['parti'] if not p['articoli']]
+        lista = ''.join(f'''<section class="part" id="{anchor(p["nome"])}"><h2>{p["nome"]}</h2><ol class="idx">{lis([by[a] for a in p["articoli"]])}</ol></section>''' for p in piene)
+        if vuote:
+            lista += ''.join(f'<span id="{anchor(p["nome"])}"></span>' for p in vuote) + \
+                f'''<aside class="soon pz alt"><p class="lbl">In arrivo</p><p class="soon-t">{" e ".join(p["nome"] for p in vuote)}</p>
+<a href="/#contatti">Scrivimi cosa vorresti leggere</a></aside>'''
     else:
         lista = f'<h2 class="sr">Articoli</h2><ol class="idx">{lis(s["posts"])}</ol>'
     nomi_parti = [q['nome'] + '.' for q in s.get('parti', [])]
@@ -222,7 +231,11 @@ plates = ''.join(f'<article class="plate pz{" alt" if k%2 else ""} live" tabinde
 for slug, nome in [('sesso-vanilla-cosa-significa', 'articolo-esempio.html'), ('foucault-storia-della-sessualita', 'articolo-approfondimenti.html')]:
     art = (SITE/f'blog/{slug}.html').read_text(); s = sez_of[slug]
     art = art.replace('<p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>',
-      f'<p class="crumb"><a href="blog.html">Blog</a> <span aria-hidden="true">/</span> <a class="tchip" href="{href(s)}">{s["nome"]}</a></p>')
+      f'<p class="crumb"><a href="blog.html">Blog</a> <span aria-hidden="true">/</span> <a class="tchip" href="{href(s)}">{small(s["icona"])}{s["nome"]}</a></p>')
+    ib = re.search(r'\n\s*<aside class="in-breve".*?</aside>', art, re.S)
+    if ib:
+        art = art.replace(ib.group(0), '')
+        art = art.replace('<div class="prose">', ib.group(0).strip().replace('class="in-breve"', 'class="in-breve pz"') + '\n    <div class="prose">', 1)
     others = [p for p in s['posts'] if p['slug'] != slug]
     box = (f'<p class="lbl">Altri articoli in {s["nome"]}</p><ul>' + ''.join(f'<li><a href="/blog/{p["slug"]}.html">{p["title"]}</a></li>' for p in others) + '</ul>') if others \
           else f'<p class="lbl">Questo articolo fa parte di {s["nome"]}</p>'
@@ -236,7 +249,9 @@ for slug, nome in [('sesso-vanilla-cosa-significa', 'articolo-esempio.html'), ('
 .more ul{list-style:none;margin:10px 0 12px;padding:0}.more li a{display:block;padding:10px 0;border-top:1px solid var(--line-soft);font-size:18px}
 .more>a{font-style:italic;color:var(--burgundy);display:inline-block;padding:8px 0}.lbl{font-size:14px;font-style:italic;color:rgba(26,26,26,.7)}
 .prose a{overflow-wrap:anywhere}
-.crumb .tchip{display:inline-block;background:var(--paper);color:var(--burgundy);border:1px solid var(--line-soft);border-radius:999px;padding:4px 12px;margin-left:2px}
+.crumb .tchip{display:inline-flex;gap:6px;align-items:center;background:var(--paper);color:var(--burgundy);border:1px solid var(--line-soft);border-radius:999px;padding:4px 12px 4px 8px;margin-left:2px}
+.crumb .tchip .ico{width:18px;height:18px;color:var(--burgundy)}
+.in-breve.pz{border:0;margin:8px 0 40px;padding:28px 26px 22px}.in-breve .eyebrow{letter-spacing:0;text-transform:none;font-size:15px;font-style:italic}
 </style><meta name="robots" content="noindex"></head>''')
     (OUT/nome).write_text(art)
 print('ok', len(items), [(s['nome'], len(s['posts'])) for s in SEZ])

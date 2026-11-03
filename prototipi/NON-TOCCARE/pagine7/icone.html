@@ -85,12 +85,13 @@ h1,h2,h3{text-wrap:balance} p{text-wrap:pretty}
 .ico{width:22px;height:22px;flex:none;color:var(--burgundy)}
 .lbl{font-size:14px;font-style:italic;color:var(--muted)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@keyframes fade7{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fade7{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
 @media (prefers-reduced-motion:no-preference){.in{animation:fade7 380ms cubic-bezier(.2,.7,.2,1) var(--td,0ms) both}}
 /* pizzino: foglietto di carta con nastro adesivo */
 .pz{position:relative;background:var(--paper);border-radius:3px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -16px rgba(60,30,20,.35),0 2px 5px -3px rgba(60,30,20,.25)}
 .pz::before{content:"";position:absolute;top:-11px;left:50%;width:86px;height:24px;transform:translateX(-50%) rotate(-2deg);background:var(--tape);border-left:1px dashed rgba(122,30,43,.10);border-right:1px dashed rgba(122,30,43,.10);pointer-events:none}
 .pz.alt::before{transform:translateX(-50%) rotate(3deg);left:38%}
+.c1::before{width:104px;left:30%;transform:translateX(-50%) rotate(-4deg)}.c3::before{width:72px;left:64%}.c4::before{width:92px;left:24%;transform:translateX(-50%) rotate(5deg)}.c5::before{width:80px;left:70%;transform:translateX(-50%) rotate(-3deg)}.invite::before{width:110px;left:12%}.close::before{width:76px;left:84%}
 .sheet{display:grid;gap:32px;padding:24px 0 96px}.plate{padding:48px 24px 24px;display:grid;gap:12px;justify-items:center;text-align:center}
 .plate .ill{width:200px;height:200px}.plate h2{font-family:var(--display);font-size:26px;line-height:1.05}
 @media(min-width:768px){.sheet{grid-template-columns:repeat(3,1fr);gap:40px 28px}}</style></head><body>
