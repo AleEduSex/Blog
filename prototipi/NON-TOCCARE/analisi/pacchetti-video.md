@@ -1,52 +1,62 @@
 # Pacchetti e video: una parte nel sito? (analisi, 3 novembre 2026)
 
-Fonte: cartella Drive di Alessio «OnDelights» (documento «Pacchetti», elenco dei video).
-**I video non li ho potuti guardare**: la rete di questa sessione blocca `drive.google.com`
-(vedi in fondo come sbloccarla). Quello che segue viene dal documento e dai dati dei file.
+Fonte: cartella Drive di Alessio «OnDelights» (documento «Pacchetti» e i 6 video).
+Prezzo della prima consulenza sul sito: **resta 60 €** (deciso da Mirko il 3/11).
 
-## Cosa c'è
+## I video, guardati
 
-| # | Pacchetto | Per chi | Sessioni | Prezzo | Video (peso) |
-|---|---|---|---|---|---|
-| 1 | Chiarificazione sessuale iniziale | singoli o coppie | 1 × 60' | 100 € | 54 MB |
-| 2 | DEOPIARCA: al cuore del tuo problema sessuale | singoli o coppie | 5 × 60', ogni 2 settimane | 450 € | 58 MB |
-| 3 | Dialogo positivo sul desiderio | gruppo (max 8) | 3 × 90' | 240 € a coppia, 300 € singolo | 163 MB |
-| 4 | Laboratorio del piacere consapevole | coppie, gruppo (max 6) | 4 × 90' | 400 € a coppia | 205 MB |
-| 5 | Parliamo di sessualità ai figli | genitori, gruppo (max 8) | 4 × 90' | 280 € | 117 MB |
-| 6 | Aziende (workshop) | aziende | 2 h | da 900 € + IVA | 103 MB — «coming soon» |
+Tutti verticali 1080×1920 (formato reel), Alessio parla in camera su fondo chiaro, **sottotitoli
+impressi una parola alla volta** e titolo del pacchetto in rosso. **Nessun video dice un prezzo**:
+vanno bene così con i 60 € del sito. Fotogrammi e testo (ricostruito dai sottotitoli, con
+ripetizioni da ripulire) in `video/`.
 
-Il documento contiene anche politica di cancellazione, rimborsi («regola del valore trattenuto»),
-credenziali e un accordo di servizio pensato per la piattaforma OnDelights.
+| # | Video | Durata | Peso originale → compresso 720p | Di cosa parla |
+|---|---|---|---|---|
+| 1 | Chiarificazione sessuale iniziale | 44 s | 51 → 4 MB | Prima sessione: capire cosa succede, 3 passi concreti, nessun impegno lungo |
+| 2 | DEOPIARCA | 58 s | 55 → 4 MB | Il metodo della Scuola di Torino (desiderio, eccitazione, orgasmo, piacere, identità, affetti, relazione, creatività, amore); da soli o in coppia |
+| 3 | Dialogo positivo sul desiderio | 116 s | 155 → 11 MB | Coppie con desideri diversi; 3 incontri in gruppi di 4 coppie |
+| 4 | Laboratorio del piacere consapevole | 136 s | 195 → 12 MB | Coppie: corpo, desiderio e comunicazione, sex toys, «patto intimo» |
+| 5 | Parliamo di sessualità ai figli | 106 s | 111 → 10 MB | Genitori: come rispondere alle domande dei figli, script per età |
+| 6 | Aziende | 90 s | 98 → 8 MB | Molestie, linguaggio, microaggressioni, transizioni di genere sul lavoro («coming soon») |
 
-## Da chiarire con Alessio prima di tutto
+## Idee
 
-1. **Prezzo della prima consulenza**: sul sito è **60 €** (landing, box in fondo a ogni articolo,
-   dati per Google); nel documento la chiarificazione iniziale è **100 €**. Sono due cose diverse
-   (sito diretto e piattaforma) o va aggiornato il sito?
-2. **Dove si compra**: i pacchetti si prenotano su OnDelights o direttamente con lui (WhatsApp/email
-   come oggi)? Cambia il pulsante di ogni pacchetto.
-3. **Aziende** è «coming soon»: va mostrato o no?
+1. **Landing: sezione «Percorsi»** dopo «Come funziona». Una scheda-pizzino per pacchetto (nome,
+   per chi, sessioni, cosa ottieni, pulsante «Scrivimi»); il video si apre dalla scheda con il
+   comando nativo del browser (`<video controls preload="none" playsinline poster>`): niente peso
+   finché non si preme play, niente servizi esterni né cookie. Aziende a parte, come «in arrivo».
+2. **Il video 1 accanto alla prima consulenza.** Parla proprio della prima sessione e non cita
+   prezzi: è il video giusto vicino al riquadro «60 €» della landing, come «Ti spiego in 45 secondi
+   come funziona».
+3. **Ponte dal blog ai percorsi.** In fondo a ogni pagina di sezione, prima di «Scrivimi», un
+   pizzino «Se vuoi lavorarci insieme» con il video del percorso affine. Funziona senza JavaScript.
+   - Corpo, piacere e fantasie → Laboratorio del piacere consapevole (4)
+   - Comunicazione, relazioni e consenso → Dialogo positivo sul desiderio (3)
+   - Difficoltà e blocchi → DEOPIARCA (2)
+   - Prevenzione e salute → Chiarificazione iniziale (1)
+   - Approfondimenti → nessun video (è la sezione «da lontano»)
+4. **Testo sotto ogni video.** I sottotitoli sono dentro l'immagine: Google e i lettori di schermo
+   non li leggono. Sotto ogni video una trascrizione breve (bozza già pronta in `video/`, Alessio la
+   corregge) aiuta accessibilità e ricerca.
+5. **Copertine nei colori del sito.** Invece del primo fotogramma, un fermo immagine di Alessio che
+   guarda in camera, senza parole impresse, con il nome del percorso in DM Serif su carta.
+6. **Spunto per il blog.** Il video 5 apre un tema che il blog non ha: parlare di sessualità ai
+   figli. Potrebbe diventare un articolo (in Comunicazione o in una sezione futura).
 
-## Proposta
+## Peso e formato
 
-- **Dove**: nella landing (`/`), non nel blog. La landing converte verso la consulenza, il blog
-  serve a farsi trovare. Nel blog basta un link «Percorsi» nel box finale degli articoli.
-- **Come**: una sezione «Percorsi» dopo «Come funziona»: una scheda per pacchetto (nome, per chi,
-  sessioni, prezzo, cosa ottieni in 2 righe, pulsante). Il video si apre dalla scheda, non parte da
-  solo. Stile coerente con i «pizzini» del blog.
-- **Video**: troppo pesanti così (54–205 MB). Due strade:
-  - **Sul sito** (consigliata per privacy): ricompressi a 720p, 3–10 MB l'uno se durano pochi
-    minuti, con immagine di copertina e **sottotitoli** (molti guardano senza audio, e servono per
-    l'accessibilità). Netlify li serve senza servizi esterni né cookie.
-  - **YouTube/Vimeo non in elenco**: niente peso sul sito, ma cookie di terzi: si caricano solo al
-    clic (versione «nocookie») e va aggiornata la pagina privacy.
-- **Da evitare**: video in riproduzione automatica, video con pazienti o persone riconoscibili.
+Compressi a 720p H.264 (compatibile con tutti i browser) pesano 4–12 MB: con `preload="none"` il
+sito non li scarica finché non si preme play. Si possono ridurre ancora (540p) se serve. I file
+compressi non sono nel repository: si rigenerano dagli originali quando si passa al sito.
 
-## Per guardare i video in una prossima sessione
+## Da chiarire con Alessio
 
-Nelle impostazioni dell'ambiente cloud (menu dell'ambiente nella barra del titolo della sessione →
-Edit → Network access) aggiungere tra gli **Allowed domains**: `drive.google.com` e
-`drive.usercontent.google.com`, lasciando attiva l'opzione per i package manager.
-Guida: https://code.claude.com/docs/en/cloud-environments#network-access
-Con quei domini aperti posso scaricarli, estrarre fotogrammi e durata, misurare l'audio e prepararne
-versioni compresse da provare.
+- Dove si prenota ogni percorso: con lui direttamente (come oggi) o su OnDelights?
+- Prezzi dei percorsi sul sito sì o no (il documento li ha: 450 €, 240/300 €, 400 €, 280 €).
+- Aziende: mostrarlo già come «in arrivo» o aspettare.
+
+## Rete
+
+Oggi i domini di Drive sono raggiungibili da questa sessione. Se una sessione futura li trova
+bloccati: impostazioni dell'ambiente cloud → Edit → Network access → Allowed domains:
+`drive.google.com`, `drive.usercontent.google.com`.
