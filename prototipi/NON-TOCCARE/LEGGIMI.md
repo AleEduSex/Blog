@@ -88,3 +88,18 @@ quale tema ha il riquadro grande.
   pagina del tema. `verifica.sh`: ogni articolo in esattamente un tema e nella sua pagina.
 - Difetto già presente online: negli articoli gli indirizzi lunghi delle fonti escono dallo
   schermo del telefono. Basta `.prose a{overflow-wrap:anywhere}` in `blog.css`.
+
+## Anteprima completa del sito (3 novembre 2026)
+
+`generatore/anteprima.py` copia `site/` e ci applica tutto quello che è in prova: blog per sezioni
+(`/blog/<sezione>/`), articoli con sezione, In breve in alto e «Fai una domanda» (Netlify Forms,
+senza JavaScript), pagina `domanda-inviata.html`, percorsi con i prezzi nella landing, privacy e
+disdette (segnaposto da scrivere con Alessio), sitemap.
+
+    python3 prototipi/NON-TOCCARE/generatore/anteprima.py /percorso/uscita --prova
+
+Con `--prova` aggiunge la striscia «Versione di prova», noindex ovunque e un robots.txt che blocca
+tutto: si carica su Netlify come **sito nuovo e separato** (mai sopra aleedusex.net) e si manda il
+link ad Alessio. Senza `--prova` esce la versione definitiva; quando si passa al sito vero va
+aggiornato anche `verifica.sh` (niente più `post-item--lead`, In breve con classe `in-breve pz`) e
+`PUBBLICARE.md` (ogni articolo nuovo va anche nella sua sezione).
