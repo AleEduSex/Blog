@@ -107,6 +107,7 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 
 - P.IVA (e sede) di Alessio nel footer della landing (`© 2026 · aleedusex`) e in
   `site/legale.html` › Note legali. Rimandata su richiesta.
-- Logo originale in alta risoluzione: se arriva, rifare `og.jpg` (oggi logo 192 px ingrandito).
+- Logo ufficiale in alta definizione in `materiali/logo/` (SVG e PNG 4000 px): rifare `og.jpg`
+  (oggi logo 192 px ingrandito); proposta pronta in `materiali/logo/og-proposta.jpg`.
 - Togliere Tailwind da CDN dalla landing (CSS statico equivalente, confronto screenshot).
 - Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.

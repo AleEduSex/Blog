@@ -5,15 +5,36 @@ Netlify pubblica solo `site/`. Non modificare questi file e non usarli come mode
 articoli. Servono a Mirko e Alessio per decidere; quando la proposta sarà approvata si scriveranno
 specifica e piano, e il lavoro vero si farà in `site/`.
 
+## Versione 7 (attuale, 3 novembre 2026): le decisioni di Alessio
+
+Fonte: la sua nota del 2/11 (`ale/nota-sezioni-2026-11-02.txt`, testo esatto del PDF) e i messaggi
+del 3/11. Dati in `generatore/sezioni.py`, pagine in `pagine7/`, generatore `generatore/genmock7.py`.
+
+- **5 sezioni**, in quest'ordine: Corpo, piacere e fantasie (si apre con questa) · Prevenzione e
+  salute · Comunicazione, relazioni e consenso · Difficoltà e blocchi · Approfondimenti e attualità
+  (parti: Storia e idee, Letture e ascolti, Notizie). 23 articoli, uno solo per sezione.
+- **Testi**: titolo pagina, descrizione, H1 e introduzione (339–367 parole) di ogni sezione sono
+  quelli di Alessio, parola per parola. Le frasi dei riquadri sono frasi sue prese dalle introduzioni.
+- **Stile «pizzino attaccato»** (scelto da lui): foglietti di carta con nastro, inclinati solo su
+  schermi grandi. **Solo i colori del sito** (crema, carta, bordeaux, inchiostro): niente pastelli.
+- **Icone**: fiamma, scudo, fumetti restano; il lucchetto (non gli piaceva) diventa un germoglio
+  dal sasso; nuova icona libro per Approfondimenti. Maschera non più usata.
+- **Analisi** in `analisi/`: `commenti.md` (sconsigliati; meglio una domanda anonima),
+  `pacchetti-video.md` (proposta «Percorsi» nella landing; video non visti: rete bloccata).
+- **Logo HD** ufficiale in `materiali/logo/` (fuori da questa cartella).
+
 ## Cosa c'è
 
 | Cartella | Contenuto |
 |---|---|
-| `pagine/` | Le pagine di prova (versione 6): `blog.html`, le 5 `sezione-*.html`, `articolo-esempio.html`, `icone.html` |
+| `pagine7/` | **Versione 7**: `blog.html`, 5 `sezione-*.html`, `articolo-esempio.html`, `articolo-approfondimenti.html`, `icone.html` |
+| `pagine/` | Versione 6 (pastelli, temi provvisori), tenuta per confronto |
 | `tavole/` | Le 3 tavole per Alessio (`tavole.html` più le immagini che usa) |
 | `immagini/per-ale/` | Le 3 tavole già pronte in PNG, da mandare su WhatsApp |
 | `immagini/schermate/` | Schermate desktop e telefono delle pagine |
-| `generatore/` | `genmock6.py` (pagine) e `icons5.py` (le 5 icone animate, solo CSS) |
+| `generatore/` | v7: `genmock7.py`, `sezioni.py`, `icone7.py` · v6: `genmock6.py`, `icons5.py` |
+| `ale/` | Testo esatto della nota di Alessio sulle sezioni |
+| `analisi/` | Commenti, pacchetti e video |
 
 ## Come riaprire le prove
 
@@ -22,7 +43,7 @@ bash prototipi/NON-TOCCARE/apri.sh
 ```
 
 Poi apri http://localhost:8766/prove/blog.html. Per rigenerare le pagine dopo una modifica al
-generatore: `python3 prototipi/NON-TOCCARE/generatore/genmock6.py prototipi/NON-TOCCARE/pagine`.
+generatore: `python3 prototipi/NON-TOCCARE/generatore/genmock7.py prototipi/NON-TOCCARE/pagine7`.
 
 ## Scelte fatte
 

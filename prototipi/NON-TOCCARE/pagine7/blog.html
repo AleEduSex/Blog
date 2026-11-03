@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Blog di sessuologia, per sezioni — Alessio Cottonaro</title>
+<meta name="description" content="Corpo e piacere, prevenzione, comunicazione e consenso, difficoltà, approfondimenti: gli articoli di Alessio Cottonaro, consulente in sessuologia a Torino."><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts/fonts.css"><link rel="stylesheet" href="/blog/blog.css">
+<style>
+.ill{color:var(--fg);overflow:visible}
+.ill *{transform-box:fill-box;transform-origin:center}
+.ill .dash{stroke-dasharray:2 3;opacity:.55}
+.ill .dotf,.ill .fillfg{fill:currentColor;stroke:none}
+.ill .fillsoft{fill:color-mix(in srgb,var(--fg) 12%,transparent)}
+.ill .fillcore{fill:color-mix(in srgb,var(--fg) 45%,transparent);stroke:none}
+.ill .bgfill{fill:var(--bg);stroke:currentColor}
+.ill .si{font-family:var(--display);font-style:italic;font-size:15px;fill:currentColor;stroke:none;text-anchor:middle}
+.ill .fillleaf{fill:color-mix(in srgb,var(--fg) 22%,transparent);stroke:currentColor}
+.ill-approfondimenti .lp-page{opacity:0;transform-origin:0% 50%}
+.ill-difficolta .g-leaf.l,.ill-difficolta .lp-leaf.l{transform-origin:100% 100%}
+.ill-difficolta .g-leaf.r,.ill-difficolta .lp-leaf.r{transform-origin:0% 100%}
+@keyframes ill-grow{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes lp-leaf{0%,100%{transform:rotate(0)}50%{transform:rotate(var(--sw))}}
+@keyframes lp-page{0%{opacity:0;transform:scaleX(1)}12%{opacity:1;transform:scaleX(1)}50%{transform:scaleX(0)}86%{opacity:1;transform:scaleX(-1)}100%{opacity:0;transform:scaleX(-1)}}
+.ill .glow{fill:color-mix(in srgb,var(--fg) 22%,transparent);stroke:none;opacity:0}
+.ill .dr{stroke-dasharray:1;stroke-dashoffset:0}
+
+@keyframes ill-draw{from{stroke-dashoffset:1;stroke-opacity:0}7%{stroke-opacity:1}to{stroke-dashoffset:0;stroke-opacity:1}}
+@keyframes ill-fillin{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes ill-fade{from{opacity:0}to{opacity:1}}
+@keyframes ill-pop{from{opacity:0}to{opacity:1}}
+@keyframes ill-reply{0%{opacity:0;transform:translate(4px,8px) scale(.7)}70%{opacity:1;transform:translate(0,-1px) scale(1.03)}100%{opacity:1;transform:none}}
+/* vita (solo al passaggio): partono tutte dalla posa di riposo e ci tornano */
+@keyframes lp-beat{0%,46%,100%{transform:scale(1)}8%{transform:scale(1.14)}16%{transform:scale(.98)}24%{transform:scale(1.09)}34%{transform:scale(1)}}
+@keyframes lp-tw{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}
+@keyframes lp-fla{0%,100%{transform:none}30%{transform:scaleY(1.045) skewX(-1.8deg)}60%{transform:scaleY(.975) skewX(1.4deg)}82%{transform:scaleY(1.02) skewX(-.5deg)}}
+@keyframes lp-flb{0%,100%{transform:none}35%{transform:scaleY(.95) skewX(2.2deg)}70%{transform:scaleY(1.06) skewX(-1.6deg)}}
+@keyframes lp-core{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.12);opacity:.8}}
+@keyframes lp-halo{0%,100%{transform:rotate(0)}50%{transform:rotate(7deg)}}
+@keyframes lp-wave{0%,100%{transform:translateX(0)}50%{transform:translateX(-2.5px)}}
+@keyframes lp-spark{0%{opacity:1;transform:translateY(0)}70%{opacity:0;transform:translateY(-12px)}71%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes lp-type{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-3.5px)}}
+@keyframes lp-reply{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+@media (prefers-reduced-motion:no-preference){
+ /* entrata: una volta sola, tutto finito entro ~4,5 s */
+ .ill .d1{animation:ill-draw 1300ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 200ms) both}
+ .ill .d2{animation:ill-draw 1000ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 900ms) both}
+ .ill .d3{animation:ill-draw 900ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 1300ms) both}
+ .ill .d4{animation:ill-draw 800ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 1700ms) both}
+ .ill .dr.d1.fillsoft{animation:ill-draw 1300ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 200ms) both,ill-fillin 700ms ease calc(var(--d,0ms) + 1200ms) both}
+ .ill .dr.d2.fillsoft{animation:ill-draw 1000ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 900ms) both,ill-fillin 700ms ease calc(var(--d,0ms) + 1700ms) both}
+ .ill .f1{animation:ill-fade 900ms ease calc(var(--d,0ms) + 1000ms) both}
+ .ill .f2{animation:ill-fade 900ms ease calc(var(--d,0ms) + 1500ms) both}
+ .ill .f3{animation:ill-fade 900ms ease calc(var(--d,0ms) + 1900ms) both}
+ .ill .f4{animation:ill-fade 700ms ease calc(var(--d,0ms) + 1700ms) both}
+ .ill .p1{animation:ill-pop 700ms var(--ease) calc(var(--d,0ms) + 1700ms) both}
+ .ill .p3{animation:ill-pop 700ms var(--ease) calc(var(--d,0ms) + 2300ms) both}
+ .ill .p4{animation:ill-pop 700ms var(--ease) calc(var(--d,0ms) + 3100ms) both}
+ .ill-difficolta .g-leaf.l{animation:ill-grow 700ms var(--ease) calc(var(--d,0ms) + 1900ms) both}
+ .ill-difficolta .g-leaf.r{animation:ill-grow 700ms var(--ease) calc(var(--d,0ms) + 2100ms) both}
+ .ill-comunicazione .reply{transform-origin:75% 100%;animation:ill-reply 800ms var(--ease) calc(var(--d,0ms) + 2500ms) both}
+
+ /* vita: solo con il puntatore sopra o il fuoco dentro il contenitore .live */
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-leaf.l{--sw:-7deg;animation:lp-leaf 3.2s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-leaf.r{--sw:7deg;animation:lp-leaf 3.2s ease-in-out .4s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-page{animation:lp-page 3.6s cubic-bezier(.45,0,.3,1) infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-beat{animation:lp-beat 2.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-tw.a{animation:lp-tw 2.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-tw.b{animation:lp-tw 3.1s ease-in-out .4s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-tw.c{animation:lp-tw 2.2s ease-in-out .8s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-fla{transform-origin:50% 100%;animation:lp-fla 2.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-flb{transform-origin:50% 100%;animation:lp-flb 1.9s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-core{transform-origin:50% 100%;animation:lp-core 1.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-halo{animation:lp-halo 4s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-wave.a{animation:lp-wave 3.2s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-wave.b{animation:lp-wave 3.2s ease-in-out -1.6s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark{animation:lp-spark 2.4s ease-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark.b{animation-delay:-.6s} .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark.c{animation-delay:-1.2s} .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark.d{animation-delay:-1.8s}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-type{animation:lp-type 1.2s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-type.b{animation-delay:.15s} .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-type.c{animation-delay:.3s}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-reply{transform-origin:75% 100%;animation:lp-reply 3s ease-in-out infinite}
+}
+
+:root{--fg:var(--burgundy);--bg:var(--paper);--muted:rgba(26,26,26,.7);--tape:rgba(214,196,163,.55)}
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+h1,h2,h3{text-wrap:balance} p{text-wrap:pretty}
+.ico{width:22px;height:22px;flex:none;color:var(--burgundy)}
+.lbl{font-size:14px;font-style:italic;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes fade7{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){.in{animation:fade7 380ms cubic-bezier(.2,.7,.2,1) var(--td,0ms) both}}
+/* pizzino: foglietto di carta con nastro adesivo */
+.pz{position:relative;background:var(--paper);border-radius:3px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -16px rgba(60,30,20,.35),0 2px 5px -3px rgba(60,30,20,.25)}
+.pz::before{content:"";position:absolute;top:-11px;left:50%;width:86px;height:24px;transform:translateX(-50%) rotate(-2deg);background:var(--tape);border-left:1px dashed rgba(122,30,43,.10);border-right:1px dashed rgba(122,30,43,.10);pointer-events:none}
+.pz.alt::before{transform:translateX(-50%) rotate(3deg);left:38%}
+
+.hero7{padding:56px 0 24px}
+.hero7 h1{font-family:var(--display);font-size:48px;line-height:.98;letter-spacing:-.035em;max-width:15ch}
+.hero7 .intro{margin-top:22px;max-width:34em;font-size:19px;line-height:1.6;color:rgba(26,26,26,.85)}
+.board{display:grid;gap:30px;padding:44px 0 32px}
+.card{padding:26px 22px 18px;display:flex;flex-direction:column;gap:10px;transition:transform 350ms var(--ease),box-shadow 350ms var(--ease)}
+.card:has(.lk:focus-visible){outline:2px solid var(--burgundy);outline-offset:4px}
+.card .ill{width:76px;height:76px;margin:-4px 0 0 -6px}
+.card h2{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.025em}
+.card h2 a{outline:none}
+.card h2 a::after{content:"";position:absolute;inset:0}
+.card .tag{font-size:17px;line-height:1.5;font-style:italic;color:rgba(26,26,26,.82)}
+.card ul{list-style:none;margin:6px 0 0;padding:0;position:relative;z-index:1}
+.card li a{display:block;padding:11px 0;border-top:1px solid var(--line-soft);font-size:15.5px;line-height:1.4}
+.card li a:hover{color:var(--burgundy);text-decoration:underline;text-underline-offset:3px}
+.card .parts{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1;margin-top:4px}
+.card .parts span{font-size:14px;padding:4px 10px;border-radius:999px;background:var(--cream);color:var(--burgundy)}
+.card .all{position:relative;z-index:1;align-self:flex-start;margin-top:auto;padding:12px 0 6px;font-style:italic;color:var(--burgundy);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
+.card .all:focus-visible{outline:2px solid var(--burgundy);outline-offset:2px}
+.invite{background:var(--burgundy);color:var(--cream);padding:30px 26px;display:grid;gap:18px;margin:16px 0 56px}
+.invite::before{background:rgba(240,231,213,.35)}
+.invite p{font-family:var(--display);font-size:28px;line-height:1.1;letter-spacing:-.02em;max-width:30ch}
+.invite .btn-cream{justify-self:start}
+.chron h2{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.02em}
+.chron .intro2{margin-top:8px;color:var(--muted);font-style:italic}
+.chron ol{list-style:none;margin:20px 0 96px;padding:0;border-top:1px solid var(--line)}
+.chron li a{display:grid;gap:4px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.chron .t{font-size:18px;line-height:1.35;transition:color .2s}
+.chron a:hover .t{color:var(--burgundy)}
+.chron .m{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.chron .m .ico{width:18px;height:18px}
+@media(max-width:767px){.card ul{display:none}.card{gap:6px}.card .ill{width:60px;height:60px}}
+@media(min-width:768px){
+ .hero7{padding:96px 0 40px}.hero7 h1{font-size:84px}.hero7 .intro{font-size:21px}
+ .board{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:40px 28px;padding:64px 0 40px}
+ .card{width:calc(50% - 14px);transform:rotate(var(--r,0deg)) translateY(var(--y,0px))}
+ .card:hover{transform:rotate(0) translateY(-4px)}
+ .c1{width:calc(58% - 14px)}.c2{width:calc(42% - 14px);--y:36px}.c3{width:calc(34% - 19px)}.c4{width:calc(31% - 19px);--y:24px}.c5{width:calc(35% - 19px);--y:-8px}
+ .c1 .ill{width:120px;height:120px}.c1 h2{font-size:52px}
+ .invite{grid-template-columns:1fr auto;align-items:center;padding:36px 44px;transform:rotate(-.6deg)}.invite p{font-size:36px}
+ .chron li a{grid-template-columns:150px 1fr 290px;align-items:baseline;gap:24px}
+ .chron .m.th{justify-content:flex-end}
+}
+</style></head><body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">aleedusex</a>
+    <nav class="nav" aria-label="Principale">
+      <ul>
+        <li><a href="/blog/" aria-current="page">Blog</a></li>
+        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
+      </ul>
+      <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+    </nav>
+  </div>
+</header>
+<main id="contenuto"><section class="hero7"><div class="wrap">
+<h1>Sessualità, senza giri di <span class="stamp">parole.</span></h1>
+<p class="intro">Le domande che si fanno a bassa voce, con risposte scritte in chiaro. Gli articoli sono divisi in cinque sezioni: parti da quella che ti riguarda, oppure leggili dal più recente.</p></div></section>
+<div class="wrap">
+<section class="board" aria-label="Sezioni"><article class="card pz c1 live in" style="--r:-1.4deg;--td:40ms;--d:200ms">
+<svg class="ill ill-corpo " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<g class="lp-wave a"><path class="dr d1" pathLength="1" d="M13 51.5c3-2 6-2 9.5 0s6.5 2 9.5 0 6-2 9.5 0 6.5 2 9.5 0"/></g>
+<g class="lp-wave b"><path class="dr d1" pathLength="1" d="M19.4 57c2.6-1.8 5.4-1.8 8.4 0s5.4 1.8 8.4 0 5.4-1.8 8.4 0"/></g>
+<g class="lp-fla"><path class="dr d2 fillsoft" pathLength="1" d="M32 46c-8.5 0-14-6-14-13.5 0-6 3.2-10.1 6.4-13.1-.2 4 1.4 6.8 4 7.8-1-7.6 2-15.6 8-21.8-.8 6 2.2 10.4 5.6 14.8 2.6 3.4 4 7.4 4 12.3C46 40 40.5 46 32 46z"/></g>
+<g class="lp-flb"><path class="dr d3" pathLength="1" d="M32 46c-5 0-8.2-3.6-8.2-8.2 0-4.2 2.6-6.8 5.2-9.2.4 3 2 4.8 4.2 5-.6-4.6 1.4-9 4.6-12 .2 4.4 2.4 7 2.4 12.2 0 7.2-3.6 12.2-8.2 12.2z"/></g>
+<g class="lp-core"><path class="pop p1 fillcore" d="M32 46c-2.6 0-4.2-2-4.2-4.4 0-2.6 1.8-4.2 3.6-5.8.2 2 1.6 3 2.8 3.2 1.2 1 2 2 2 3 0 2.4-1.8 4-4.2 4z"/></g>
+<g class="f f3"><g class="lp-spark a"><circle class="dotf" cx="41" cy="5" r="1.1"/></g><g class="lp-spark b"><circle class="dotf" cx="26" cy="8" r=".9"/></g><g class="lp-spark c"><circle class="dotf" cx="55" cy="22" r=".8"/></g><g class="lp-spark d"><circle class="dotf" cx="9" cy="24" r=".8"/></g></g>
+</svg><h2><a class="lk" href="sezione-corpo-piacere-e-fantasie.html">Corpo, piacere e fantasie</a></h2><p class="tag">La sessualità non è performance. È linguaggio, permesso, presenza.</p><ul><li><a href="/blog/orgasmo-cos-e-cosa-succede-nel-corpo.html">Orgasmo: cos'è e cosa succede nel corpo</a></li><li><a href="/blog/fantasie-sessuali-e-immaginario-erotico.html">Fantasie sessuali e immaginario erotico: cosa sono</a></li><li><a href="/blog/kink-cos-e-come-sperimentare.html">Kink: cos'è e come sperimentare con piacere</a></li></ul>
+<a class="all" href="sezione-corpo-piacere-e-fantasie.html">Tutti gli articoli della sezione</a></article><article class="card pz alt c2 live in" style="--r:1.6deg;--td:100ms;--d:350ms">
+<svg class="ill ill-prevenzione " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path class="dr d1" pathLength="1" d="M32 6 52 13v16c0 13-8.5 23-20 29-11.5-6-20-16-20-29V13z"/>
+<path class="f f1 dash" d="M32 11.5 47 17v12.5c0 10-6.2 17.9-15 22.9-8.8-5-15-12.9-15-22.9V17z"/>
+<g class="lp-beat"><path class="dr d2 fillsoft" pathLength="1" d="M32 41s-9-5.5-9-11.7c0-3.1 2.4-5.3 5.1-5.3 1.8 0 3.2 1 3.9 2.4.7-1.4 2.1-2.4 3.9-2.4 2.7 0 5.1 2.2 5.1 5.3C41 35.5 32 41 32 41z"/></g>
+</svg><h2><a class="lk" href="sezione-prevenzione-e-salute.html">Prevenzione e salute</a></h2><p class="tag">Prendersi cura di sé fa parte del piacere.</p><ul><li><a href="/blog/preservativo-rotto-cosa-fare.html">Preservativo rotto: cosa fare adesso, senza panico</a></li><li><a href="/blog/infezioni-sessualmente-trasmissibili-test.html">Infezioni sessualmente trasmissibili: quali test fare e dove</a></li><li><a href="/blog/pep-e-prep-hiv.html">PEP e PrEP per l'HIV: cosa sono, differenze e dove trovarle</a></li></ul>
+<a class="all" href="sezione-prevenzione-e-salute.html">Tutti gli articoli della sezione</a></article><article class="card pz c3 live in" style="--r:-1.0deg;--td:160ms;--d:500ms">
+<svg class="ill ill-comunicazione " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path class="dr d1 fillsoft" pathLength="1" d="M10 9h26a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H21l-8 7v-7h-3a5 5 0 0 1-5-5V14a5 5 0 0 1 5-5z"/>
+<g class="f f2"><g class="lp-type a"><circle class="dotf" cx="15" cy="21" r="1.9"/></g><g class="lp-type b"><circle class="dotf" cx="23" cy="21" r="1.9"/></g><g class="lp-type c"><circle class="dotf" cx="31" cy="21" r="1.9"/></g></g>
+<g class="reply"><g class="lp-reply"><path class="bgfill" d="M28 29h26a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5h-3v7l-8-7H28a5 5 0 0 1-5-5V34a5 5 0 0 1 5-5z"/>
+<text x="41" y="45.5" class="si">sì</text></g></g>
+</svg><h2><a class="lk" href="sezione-comunicazione-relazioni-e-consenso.html">Comunicazione, relazioni e consenso</a></h2><p class="tag">Questa sezione serve proprio a questo: a trovare le parole.</p><ul><li><a href="/blog/come-parlare-di-sesso-con-il-partner.html">Come parlare di sesso con il partner: da dove cominciare</a></li><li><a href="/blog/consenso-sessuale-cosa-vuol-dire-e-cosa-no.html">Consenso sessuale: cosa vuol dire e cosa no</a></li><li><a href="/blog/stealthing-preservativo-tolto-di-nascosto.html">Stealthing: preservativo tolto di nascosto, cosa puoi fare</a></li></ul>
+<a class="all" href="sezione-comunicazione-relazioni-e-consenso.html">Tutti gli articoli della sezione</a></article><article class="card pz alt c4 live in" style="--r:1.8deg;--td:220ms;--d:650ms">
+<svg class="ill ill-difficolta " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path class="f f1 dash" d="M3 58.5h58"/>
+<path class="dr d1 fillsoft" pathLength="1" d="M8 54.5c0-10 6-17.5 16-19.5 6-1.2 10.5 1.5 15 0 8.5-2.8 16.5 3.6 16.5 13.5 0 3.5-2 6-5.5 6z"/>
+<path class="dr d2" pathLength="1" d="M31.5 35.4l2.3 6.2-3.4 4.6 2.2 8.2"/>
+<path class="dr d3" pathLength="1" d="M31.5 35.4c0-6.6 1-13 3.2-19"/>
+<g class="g-leaf l"><g class="lp-leaf l"><path class="fillleaf" d="M32.6 23.5c-6.4.2-10.6-3.8-11.6-9.4 6-.2 10.6 3.4 11.6 9.4z"/></g></g>
+<g class="g-leaf r"><g class="lp-leaf r"><path class="fillleaf" d="M34 18.5c3.6-5.4 9.6-7.2 14.6-5.2-2.2 5.2-8.6 7.6-14.6 5.2z"/></g></g>
+</svg><h2><a class="lk" href="sezione-difficolta-e-blocchi.html">Difficoltà e blocchi</a></h2><p class="tag">Sono tutte cose normali. E si possono affrontare.</p><ul><li><a href="/blog/ansia-da-prestazione-sessuale.html">Ansia da prestazione sessuale: cos'è e come superarla</a></li><li><a href="/blog/perdita-di-erezione-durante-il-rapporto.html">Perdita di erezione durante il rapporto: cause e cosa fare</a></li><li><a href="/blog/orgasmo-che-non-arriva-cause-e-cosa-fare.html">Orgasmo che non arriva: cause e cosa fare</a></li></ul>
+<a class="all" href="sezione-difficolta-e-blocchi.html">Tutti gli articoli della sezione</a></article><article class="card pz c5 live in" style="--r:-1.6deg;--td:280ms;--d:800ms">
+<svg class="ill ill-approfondimenti " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path class="dr d1 fillsoft" pathLength="1" d="M32 50C26 46 16 45 8 46.5V16c8-1.5 18-.5 24 3.5z"/>
+<path class="dr d1 fillsoft" pathLength="1" d="M32 50c6-4 16-5 24-3.5V16c-8-1.5-18-.5-24 3.5z"/>
+<path class="dr d2" pathLength="1" d="M8 46.5V50c8-1.5 18-1 24 3 6-4 16-4.5 24-3v-3.5"/>
+<g class="f f2"><path d="M13 24c5-.8 10-.3 14 1.6M13 30c5-.8 10-.3 14 1.6M13 36c5-.8 10-.3 14 1.6M37 25.6c4-1.9 9-2.4 14-1.6M37 31.6c4-1.9 9-2.4 14-1.6"/></g>
+<g class="pop p1"><path class="fillfg" d="M45 15.3V27l2.6-2.2 2.6 2.2V14.9z"/></g>
+<g class="lp-page"><path class="bgfill" d="M32 19.5c6-4 16-5 24-3.5v30.5c-8-1.5-18-.5-24 3.5z"/></g>
+</svg><h2><a class="lk" href="sezione-approfondimenti-e-attualita.html">Approfondimenti e attualità</a></h2><p class="tag">Questa è la sezione dove il sesso si guarda da un po' più lontano.</p><div class="parts"><span>Storia e idee</span><span>Letture e ascolti</span><span>Notizie</span></div><ul><li><a href="/blog/foucault-storia-della-sessualita.html">Foucault e la storia della sessualità: cosa dice davvero</a></li></ul>
+<a class="all" href="sezione-approfondimenti-e-attualita.html">Tutti gli articoli della sezione</a></article></section>
+<aside class="invite pz"><p>Non c’è un livello minimo di disagio per meritarsi un’ora di chiarezza.</p><a class="btn-cream" href="/#contatti">Scrivimi</a></aside>
+<section class="chron" aria-labelledby="tutti"><h2 id="tutti">Tutti gli articoli</h2><p class="intro2">Dal più recente.</p><ol><li><a href="/blog/foucault-storia-della-sessualita.html"><span class="m"><time datetime="2026-11-02">2 novembre 2026</time></span><span class="t">Foucault e la storia della sessualità: cosa dice davvero</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.8C9.8 17.2 6 16.9 3 17.4V6c3-.6 6.8-.2 9 1.3zM12 18.8c2.2-1.6 6-1.9 9-1.4V6c-3-.6-6.8-.2-9 1.3z"/><path d="M16.9 5.7v4.4l1-.8 1 .8V5.5"/></svg>Approfondimenti e attualità</span></a></li><li><a href="/blog/sesso-vanilla-cosa-significa.html"><span class="m"><time datetime="2026-10-29">29 ottobre 2026</time></span><span class="t">Sesso vanilla: cosa significa e come si distingue dal kink</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</span></a></li><li><a href="/blog/come-parlare-di-sesso-con-il-partner.html"><span class="m"><time datetime="2026-10-29">29 ottobre 2026</time></span><span class="t">Come parlare di sesso con il partner: da dove cominciare</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.6L5.5 16v-3H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M17.8 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v3l-3.1-3h-3.9a2 2 0 0 1-2-2v-.4"/></svg>Comunicazione, relazioni e consenso</span></a></li><li><a href="/blog/fantasie-sessuali-e-immaginario-erotico.html"><span class="m"><time datetime="2026-10-29">29 ottobre 2026</time></span><span class="t">Fantasie sessuali e immaginario erotico: cosa sono</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</span></a></li><li><a href="/blog/kink-cos-e-come-sperimentare.html"><span class="m"><time datetime="2026-10-23">23 ottobre 2026</time></span><span class="t">Kink: cos'è e come sperimentare con piacere</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</span></a></li><li><a href="/blog/masturbazione-e-normale-quando-preoccuparsi.html"><span class="m"><time datetime="2026-10-23">23 ottobre 2026</time></span><span class="t">Masturbazione: è normale? Quando preoccuparsi</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</span></a></li><li><a href="/blog/orgasmo-che-non-arriva-cause-e-cosa-fare.html"><span class="m"><time datetime="2026-10-22">22 ottobre 2026</time></span><span class="t">Orgasmo che non arriva: cause e cosa fare</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5c0-3.8 2.3-6.6 6-7.3 2.3-.5 3.9.6 5.6 0 3.2-1 6.2 1.3 6.2 5 0 1.4-.8 2.3-2.1 2.3z"/><path d="M11.8 13.3c0-2.5.4-4.9 1.2-7.1"/><path d="M12.2 8.8c-2.4.1-4-1.4-4.4-3.5 2.3-.1 4 1.3 4.4 3.5zM12.8 6.9c1.4-2 3.6-2.7 5.5-1.9-.8 1.9-3.2 2.8-5.5 1.9z"/></svg>Difficoltà e blocchi</span></a></li><li><a href="/blog/orgasmo-cos-e-cosa-succede-nel-corpo.html"><span class="m"><time datetime="2026-10-20">20 ottobre 2026</time></span><span class="t">Orgasmo: cos'è e cosa succede nel corpo</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</span></a></li><li><a href="/blog/infezioni-sessualmente-trasmissibili-test.html"><span class="m"><time datetime="2026-10-20">20 ottobre 2026</time></span><span class="t">Infezioni sessualmente trasmissibili: quali test fare e dove</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/pep-e-prep-hiv.html"><span class="m"><time datetime="2026-10-19">19 ottobre 2026</time></span><span class="t">PEP e PrEP per l'HIV: cosa sono, differenze e dove trovarle</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/consenso-sessuale-cosa-vuol-dire-e-cosa-no.html"><span class="m"><time datetime="2026-10-16">16 ottobre 2026</time></span><span class="t">Consenso sessuale: cosa vuol dire e cosa no</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.6L5.5 16v-3H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M17.8 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v3l-3.1-3h-3.9a2 2 0 0 1-2-2v-.4"/></svg>Comunicazione, relazioni e consenso</span></a></li><li><a href="/blog/stealthing-preservativo-tolto-di-nascosto.html"><span class="m"><time datetime="2026-10-16">16 ottobre 2026</time></span><span class="t">Stealthing: preservativo tolto di nascosto, cosa puoi fare</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.6L5.5 16v-3H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M17.8 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v3l-3.1-3h-3.9a2 2 0 0 1-2-2v-.4"/></svg>Comunicazione, relazioni e consenso</span></a></li><li><a href="/blog/pillola-del-giorno-dopo.html"><span class="m"><time datetime="2026-10-16">16 ottobre 2026</time></span><span class="t">Pillola del giorno dopo: come funziona e quando prenderla</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/preservativo-rotto-cosa-fare.html"><span class="m"><time datetime="2026-10-15">15 ottobre 2026</time></span><span class="t">Preservativo rotto: cosa fare adesso, senza panico</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/sex-toys-in-sicurezza.html"><span class="m"><time datetime="2026-10-08">8 ottobre 2026</time></span><span class="t">Sex toys: come scegliere, usare e pulire in sicurezza</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/preservativo-interno.html"><span class="m"><time datetime="2026-10-08">8 ottobre 2026</time></span><span class="t">Preservativo interno: cos'è, come si usa e dove trovarlo</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/come-scegliere-un-lubrificante-intimo.html"><span class="m"><time datetime="2026-10-08">8 ottobre 2026</time></span><span class="t">Come scegliere un lubrificante intimo: guida pratica</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/ansia-da-prestazione-sessuale.html"><span class="m"><time datetime="2026-10-08">8 ottobre 2026</time></span><span class="t">Ansia da prestazione sessuale: cos'è e come superarla</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5c0-3.8 2.3-6.6 6-7.3 2.3-.5 3.9.6 5.6 0 3.2-1 6.2 1.3 6.2 5 0 1.4-.8 2.3-2.1 2.3z"/><path d="M11.8 13.3c0-2.5.4-4.9 1.2-7.1"/><path d="M12.2 8.8c-2.4.1-4-1.4-4.4-3.5 2.3-.1 4 1.3 4.4 3.5zM12.8 6.9c1.4-2 3.6-2.7 5.5-1.9-.8 1.9-3.2 2.8-5.5 1.9z"/></svg>Difficoltà e blocchi</span></a></li><li><a href="/blog/sesso-anale-in-sicurezza.html"><span class="m"><time datetime="2026-10-08">8 ottobre 2026</time></span><span class="t">Sesso anale: come farlo con piacere e in sicurezza</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/preservativo-chi-deve-saperlo-mettere.html"><span class="m"><time datetime="2026-10-04">4 ottobre 2026</time></span><span class="t">Preservativo: chi deve saperlo mettere? Non solo chi ha il pene</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/lubrificante-e-preservativo.html"><span class="m"><time datetime="2026-10-04">4 ottobre 2026</time></span><span class="t">Lubrificante e preservativo: quale usare e quale evitare</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/come-mettere-il-preservativo.html"><span class="m"><time datetime="2026-10-02">2 ottobre 2026</time></span><span class="t">Come mettere il preservativo: guida passo per passo</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</span></a></li><li><a href="/blog/perdita-di-erezione-durante-il-rapporto.html"><span class="m"><time datetime="2026-10-01">1 ottobre 2026</time></span><span class="t">Perdita di erezione durante il rapporto: cause e cosa fare</span>
+<span class="m th"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5c0-3.8 2.3-6.6 6-7.3 2.3-.5 3.9.6 5.6 0 3.2-1 6.2 1.3 6.2 5 0 1.4-.8 2.3-2.1 2.3z"/><path d="M11.8 13.3c0-2.5.4-4.9 1.2-7.1"/><path d="M12.2 8.8c-2.4.1-4-1.4-4.4-3.5 2.3-.1 4 1.3 4.4 3.5zM12.8 6.9c1.4-2 3.6-2.7 5.5-1.9-.8 1.9-3.2 2.8-5.5 1.9z"/></svg>Difficoltà e blocchi</span></a></li></ol></section>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brand">aleedusex</div>
+        <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
+      </div>
+      <div>
+        <div class="label">Indice</div>
+        <ul>
+          <li><a href="/#manifesto">Manifesto</a></li>
+          <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="label">Dove trovarmi</div>
+        <ul>
+          <li><a href="https://instagram.com/aleedusex" target="_blank" rel="noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/alessiocottonaro" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span class="copy">© 2026 · aleedusex</span>
+      <a href="/legale.html">Privacy, cookie e note legali</a>
+      <span><em>Sito disegnato con cura.</em></span>
+    </div>
+  </div>
+</footer></body></html>

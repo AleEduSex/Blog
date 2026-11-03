@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Corpo, piacere e fantasie: come funziona il piacere</title>
+<meta name="description" content="Come funziona il corpo quando si eccita, come nasce il desiderio e cosa sono fantasie e kink: guide semplici per vivere il piacere a modo tuo."><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts/fonts.css"><link rel="stylesheet" href="/blog/blog.css">
+<style>
+.ill{color:var(--fg);overflow:visible}
+.ill *{transform-box:fill-box;transform-origin:center}
+.ill .dash{stroke-dasharray:2 3;opacity:.55}
+.ill .dotf,.ill .fillfg{fill:currentColor;stroke:none}
+.ill .fillsoft{fill:color-mix(in srgb,var(--fg) 12%,transparent)}
+.ill .fillcore{fill:color-mix(in srgb,var(--fg) 45%,transparent);stroke:none}
+.ill .bgfill{fill:var(--bg);stroke:currentColor}
+.ill .si{font-family:var(--display);font-style:italic;font-size:15px;fill:currentColor;stroke:none;text-anchor:middle}
+.ill .fillleaf{fill:color-mix(in srgb,var(--fg) 22%,transparent);stroke:currentColor}
+.ill-approfondimenti .lp-page{opacity:0;transform-origin:0% 50%}
+.ill-difficolta .g-leaf.l,.ill-difficolta .lp-leaf.l{transform-origin:100% 100%}
+.ill-difficolta .g-leaf.r,.ill-difficolta .lp-leaf.r{transform-origin:0% 100%}
+@keyframes ill-grow{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes lp-leaf{0%,100%{transform:rotate(0)}50%{transform:rotate(var(--sw))}}
+@keyframes lp-page{0%{opacity:0;transform:scaleX(1)}12%{opacity:1;transform:scaleX(1)}50%{transform:scaleX(0)}86%{opacity:1;transform:scaleX(-1)}100%{opacity:0;transform:scaleX(-1)}}
+.ill .glow{fill:color-mix(in srgb,var(--fg) 22%,transparent);stroke:none;opacity:0}
+.ill .dr{stroke-dasharray:1;stroke-dashoffset:0}
+
+@keyframes ill-draw{from{stroke-dashoffset:1;stroke-opacity:0}7%{stroke-opacity:1}to{stroke-dashoffset:0;stroke-opacity:1}}
+@keyframes ill-fillin{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes ill-fade{from{opacity:0}to{opacity:1}}
+@keyframes ill-pop{from{opacity:0}to{opacity:1}}
+@keyframes ill-reply{0%{opacity:0;transform:translate(4px,8px) scale(.7)}70%{opacity:1;transform:translate(0,-1px) scale(1.03)}100%{opacity:1;transform:none}}
+/* vita (solo al passaggio): partono tutte dalla posa di riposo e ci tornano */
+@keyframes lp-beat{0%,46%,100%{transform:scale(1)}8%{transform:scale(1.14)}16%{transform:scale(.98)}24%{transform:scale(1.09)}34%{transform:scale(1)}}
+@keyframes lp-tw{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}
+@keyframes lp-fla{0%,100%{transform:none}30%{transform:scaleY(1.045) skewX(-1.8deg)}60%{transform:scaleY(.975) skewX(1.4deg)}82%{transform:scaleY(1.02) skewX(-.5deg)}}
+@keyframes lp-flb{0%,100%{transform:none}35%{transform:scaleY(.95) skewX(2.2deg)}70%{transform:scaleY(1.06) skewX(-1.6deg)}}
+@keyframes lp-core{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.12);opacity:.8}}
+@keyframes lp-halo{0%,100%{transform:rotate(0)}50%{transform:rotate(7deg)}}
+@keyframes lp-wave{0%,100%{transform:translateX(0)}50%{transform:translateX(-2.5px)}}
+@keyframes lp-spark{0%{opacity:1;transform:translateY(0)}70%{opacity:0;transform:translateY(-12px)}71%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes lp-type{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-3.5px)}}
+@keyframes lp-reply{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+@media (prefers-reduced-motion:no-preference){
+ /* entrata: una volta sola, tutto finito entro ~4,5 s */
+ .ill .d1{animation:ill-draw 1300ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 200ms) both}
+ .ill .d2{animation:ill-draw 1000ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 900ms) both}
+ .ill .d3{animation:ill-draw 900ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 1300ms) both}
+ .ill .d4{animation:ill-draw 800ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 1700ms) both}
+ .ill .dr.d1.fillsoft{animation:ill-draw 1300ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 200ms) both,ill-fillin 700ms ease calc(var(--d,0ms) + 1200ms) both}
+ .ill .dr.d2.fillsoft{animation:ill-draw 1000ms cubic-bezier(.42,0,.18,1) calc(var(--d,0ms) + 900ms) both,ill-fillin 700ms ease calc(var(--d,0ms) + 1700ms) both}
+ .ill .f1{animation:ill-fade 900ms ease calc(var(--d,0ms) + 1000ms) both}
+ .ill .f2{animation:ill-fade 900ms ease calc(var(--d,0ms) + 1500ms) both}
+ .ill .f3{animation:ill-fade 900ms ease calc(var(--d,0ms) + 1900ms) both}
+ .ill .f4{animation:ill-fade 700ms ease calc(var(--d,0ms) + 1700ms) both}
+ .ill .p1{animation:ill-pop 700ms var(--ease) calc(var(--d,0ms) + 1700ms) both}
+ .ill .p3{animation:ill-pop 700ms var(--ease) calc(var(--d,0ms) + 2300ms) both}
+ .ill .p4{animation:ill-pop 700ms var(--ease) calc(var(--d,0ms) + 3100ms) both}
+ .ill-difficolta .g-leaf.l{animation:ill-grow 700ms var(--ease) calc(var(--d,0ms) + 1900ms) both}
+ .ill-difficolta .g-leaf.r{animation:ill-grow 700ms var(--ease) calc(var(--d,0ms) + 2100ms) both}
+ .ill-comunicazione .reply{transform-origin:75% 100%;animation:ill-reply 800ms var(--ease) calc(var(--d,0ms) + 2500ms) both}
+
+ /* vita: solo con il puntatore sopra o il fuoco dentro il contenitore .live */
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-leaf.l{--sw:-7deg;animation:lp-leaf 3.2s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-leaf.r{--sw:7deg;animation:lp-leaf 3.2s ease-in-out .4s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-page{animation:lp-page 3.6s cubic-bezier(.45,0,.3,1) infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-beat{animation:lp-beat 2.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-tw.a{animation:lp-tw 2.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-tw.b{animation:lp-tw 3.1s ease-in-out .4s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-tw.c{animation:lp-tw 2.2s ease-in-out .8s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-fla{transform-origin:50% 100%;animation:lp-fla 2.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-flb{transform-origin:50% 100%;animation:lp-flb 1.9s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-core{transform-origin:50% 100%;animation:lp-core 1.6s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-halo{animation:lp-halo 4s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-wave.a{animation:lp-wave 3.2s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-wave.b{animation:lp-wave 3.2s ease-in-out -1.6s infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark{animation:lp-spark 2.4s ease-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark.b{animation-delay:-.6s} .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark.c{animation-delay:-1.2s} .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-spark.d{animation-delay:-1.8s}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-type{animation:lp-type 1.2s ease-in-out infinite}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-type.b{animation-delay:.15s} .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-type.c{animation-delay:.3s}
+ .live:is(:hover,:focus-visible,:has(.lk:focus-visible)) .lp-reply{transform-origin:75% 100%;animation:lp-reply 3s ease-in-out infinite}
+}
+
+:root{--fg:var(--burgundy);--bg:var(--paper);--muted:rgba(26,26,26,.7);--tape:rgba(214,196,163,.55)}
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+h1,h2,h3{text-wrap:balance} p{text-wrap:pretty}
+.ico{width:22px;height:22px;flex:none;color:var(--burgundy)}
+.lbl{font-size:14px;font-style:italic;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes fade7{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){.in{animation:fade7 380ms cubic-bezier(.2,.7,.2,1) var(--td,0ms) both}}
+/* pizzino: foglietto di carta con nastro adesivo */
+.pz{position:relative;background:var(--paper);border-radius:3px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -16px rgba(60,30,20,.35),0 2px 5px -3px rgba(60,30,20,.25)}
+.pz::before{content:"";position:absolute;top:-11px;left:50%;width:86px;height:24px;transform:translateX(-50%) rotate(-2deg);background:var(--tape);border-left:1px dashed rgba(122,30,43,.10);border-right:1px dashed rgba(122,30,43,.10);pointer-events:none}
+.pz.alt::before{transform:translateX(-50%) rotate(3deg);left:38%}
+
+.sec-hero{padding:24px 0 8px}
+.sec-hero .box{padding:22px 22px 26px;display:grid;gap:6px;margin-top:18px}
+.sec-hero .crumb{padding-top:0;font-size:15px}
+.sec-hero .crumb a{display:inline-block;padding:10px 0;border:0;color:var(--burgundy);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
+.sec-hero .ill{width:72px;height:72px;margin:2px 0 0 -6px}
+.sec-hero h1{font-family:var(--display);font-size:46px;line-height:.95;letter-spacing:-.035em}
+.sec-hero .lead{margin-top:12px;font-size:19px;line-height:1.6;max-width:36em;color:rgba(26,26,26,.86)}
+.book{display:grid;padding:24px 0}
+.toc-side{display:none}
+.toc-mob{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 64px}
+.toc-mob a{display:inline-flex;gap:6px;align-items:center;border-radius:999px;min-height:44px;padding:8px 12px 8px 8px;font-size:14px;background:var(--paper)}
+.idx{list-style:none;margin:0;padding:0}
+.idx li{position:relative;display:grid;gap:4px;padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.idx .row{display:flex;align-items:baseline;gap:12px}
+.idx a.t{font-size:20px;line-height:1.35;transition:color .2s}
+.idx a.t::after{content:"";position:absolute;inset:0}
+.idx a.t:focus-visible{outline:none}.idx li:has(a.t:focus-visible){outline:2px solid var(--burgundy);outline-offset:4px;border-radius:4px}
+.idx li:hover a.t{color:var(--burgundy)}
+.idx .dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-5px);min-width:24px}
+.idx .m{font-size:14px;color:var(--muted);white-space:nowrap;font-style:italic}
+.idx .x{font-size:16px;line-height:1.55;font-style:italic;color:rgba(26,26,26,.7);max-width:40em}
+.part{margin-top:36px}.part:first-child{margin-top:0}
+.part h2{font-family:var(--display);font-size:30px;line-height:1}
+.part .pd{margin-top:6px;color:var(--muted);font-style:italic}
+.part .empty{padding:16px 0;border-bottom:1px solid var(--line-soft);color:var(--muted)}
+.about{margin-top:48px;max-width:38em}
+.about h2{font-family:var(--display);font-size:30px;line-height:1;margin-bottom:14px}
+.about p{font-size:18px;line-height:1.7;margin-top:14px}
+.close{background:var(--burgundy);color:var(--cream);padding:26px 24px;margin:48px 0 28px;display:grid;gap:16px}
+.close::before{background:rgba(240,231,213,.35)}
+.close p{font-family:var(--display);font-size:26px;line-height:1.1;max-width:30ch}
+.close .btn-cream{justify-self:start}
+.next{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 40px;padding:20px 22px;transition:transform .3s var(--ease)}
+.next:hover{transform:translateY(-3px)}
+.next:focus-visible{outline:2px solid var(--burgundy);outline-offset:3px}
+.next b{display:block;font-weight:400;font-family:var(--display);font-size:30px;line-height:1;margin-top:6px}
+.next .ill{width:72px;height:72px;flex:none}
+@media(min-width:900px){
+ .toc-mob{display:none}
+ .sec-hero{padding-top:40px}.sec-hero .box{grid-template-columns:1fr 220px;column-gap:48px;padding:36px 40px 40px;transform:rotate(-.5deg)}
+ .sec-hero .box>*{grid-column:1}.sec-hero .ill{grid-column:2;grid-row:1/6;width:200px;height:200px;margin:0;justify-self:end;align-self:center}
+ .sec-hero h1{font-size:80px}
+ .book{grid-template-columns:270px 1fr;gap:64px;padding-top:40px}
+ .toc-side{display:block;position:sticky;top:110px;align-self:start}
+ .toc-side ol{list-style:none;margin:12px 0 0;padding:0}
+ .toc-side a{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;margin-left:-10px;transition:background .2s}
+ .toc-side a:hover{background:var(--paper)}
+ .toc-side a[aria-current]{background:var(--paper);color:var(--burgundy)}
+ .toc-side .all{display:inline-block;margin-top:14px;padding:10px 0;font-style:italic;color:var(--burgundy)}
+ .idx a.t{font-size:22px}
+ .close{grid-template-columns:1fr auto;align-items:center;padding:30px 36px;transform:rotate(.5deg)}
+ .next{margin-bottom:96px;transform:rotate(-.6deg)}.next:hover{transform:rotate(0) translateY(-3px)}
+}
+</style></head><body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">aleedusex</a>
+    <nav class="nav" aria-label="Principale">
+      <ul>
+        <li><a href="/blog/" aria-current="page">Blog</a></li>
+        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
+      </ul>
+      <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+    </nav>
+  </div>
+</header>
+<main id="contenuto"><section class="sec-hero"><div class="wrap">
+<div class="box pz live" style="--d:100ms"><p class="crumb"><a href="blog.html">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Corpo, piacere e fantasie</span></p><svg class="ill ill-corpo " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<g class="lp-wave a"><path class="dr d1" pathLength="1" d="M13 51.5c3-2 6-2 9.5 0s6.5 2 9.5 0 6-2 9.5 0 6.5 2 9.5 0"/></g>
+<g class="lp-wave b"><path class="dr d1" pathLength="1" d="M19.4 57c2.6-1.8 5.4-1.8 8.4 0s5.4 1.8 8.4 0 5.4-1.8 8.4 0"/></g>
+<g class="lp-fla"><path class="dr d2 fillsoft" pathLength="1" d="M32 46c-8.5 0-14-6-14-13.5 0-6 3.2-10.1 6.4-13.1-.2 4 1.4 6.8 4 7.8-1-7.6 2-15.6 8-21.8-.8 6 2.2 10.4 5.6 14.8 2.6 3.4 4 7.4 4 12.3C46 40 40.5 46 32 46z"/></g>
+<g class="lp-flb"><path class="dr d3" pathLength="1" d="M32 46c-5 0-8.2-3.6-8.2-8.2 0-4.2 2.6-6.8 5.2-9.2.4 3 2 4.8 4.2 5-.6-4.6 1.4-9 4.6-12 .2 4.4 2.4 7 2.4 12.2 0 7.2-3.6 12.2-8.2 12.2z"/></g>
+<g class="lp-core"><path class="pop p1 fillcore" d="M32 46c-2.6 0-4.2-2-4.2-4.4 0-2.6 1.8-4.2 3.6-5.8.2 2 1.6 3 2.8 3.2 1.2 1 2 2 2 3 0 2.4-1.8 4-4.2 4z"/></g>
+<g class="f f3"><g class="lp-spark a"><circle class="dotf" cx="41" cy="5" r="1.1"/></g><g class="lp-spark b"><circle class="dotf" cx="26" cy="8" r=".9"/></g><g class="lp-spark c"><circle class="dotf" cx="55" cy="22" r=".8"/></g><g class="lp-spark d"><circle class="dotf" cx="9" cy="24" r=".8"/></g></g>
+</svg>
+<h1>Corpo, piacere e fantasie</h1><p class="lead">La sessualità non è performance. È linguaggio, permesso, presenza. Se c'è una frase che riassume questa sezione è questa: nessuno ha da dimostrare niente, e il piacere non si misura con un cronometro.</p></div></div></section>
+<div class="wrap"><div class="book"><nav class="toc-side" aria-label="Sezioni del blog"><p class="lbl">Sezioni del blog</p><ol><li><a href="sezione-corpo-piacere-e-fantasie.html" aria-current=page><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</a></li><li><a href="sezione-prevenzione-e-salute.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</a></li><li><a href="sezione-comunicazione-relazioni-e-consenso.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.6L5.5 16v-3H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M17.8 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v3l-3.1-3h-3.9a2 2 0 0 1-2-2v-.4"/></svg>Comunicazione, relazioni e consenso</a></li><li><a href="sezione-difficolta-e-blocchi.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5c0-3.8 2.3-6.6 6-7.3 2.3-.5 3.9.6 5.6 0 3.2-1 6.2 1.3 6.2 5 0 1.4-.8 2.3-2.1 2.3z"/><path d="M11.8 13.3c0-2.5.4-4.9 1.2-7.1"/><path d="M12.2 8.8c-2.4.1-4-1.4-4.4-3.5 2.3-.1 4 1.3 4.4 3.5zM12.8 6.9c1.4-2 3.6-2.7 5.5-1.9-.8 1.9-3.2 2.8-5.5 1.9z"/></svg>Difficoltà e blocchi</a></li><li><a href="sezione-approfondimenti-e-attualita.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.8C9.8 17.2 6 16.9 3 17.4V6c3-.6 6.8-.2 9 1.3zM12 18.8c2.2-1.6 6-1.9 9-1.4V6c-3-.6-6.8-.2-9 1.3z"/><path d="M16.9 5.7v4.4l1-.8 1 .8V5.5"/></svg>Approfondimenti e attualità</a></li></ol><a class="all" href="blog.html">Tutti gli articoli</a></nav><div><h2 class="sr">Articoli</h2><ol class="idx"><li><span class="row"><a class="t" href="/blog/fantasie-sessuali-e-immaginario-erotico.html">Fantasie sessuali e immaginario erotico: cosa sono</a><span class="dots" aria-hidden="true"></span><span class="m">5 min</span></span>
+<span class="x">Le fantasie sessuali sono il linguaggio dell'immaginario erotico, e fanno parte dell'eccitazione. Ecco cosa sono, perché sono normali e cosa non dicono di te.</span><span class="lbl"><time datetime="2026-10-29">29 ottobre 2026</time></span></li><li><span class="row"><a class="t" href="/blog/sesso-vanilla-cosa-significa.html">Sesso vanilla: cosa significa e come si distingue dal kink</a><span class="dots" aria-hidden="true"></span><span class="m">5 min</span></span>
+<span class="x">Vanilla è il sesso convenzionale, quello senza elementi kink. Non è noioso e non è sbagliato: ecco cosa significa, da dove viene e come si colloca rispetto al kink.</span><span class="lbl"><time datetime="2026-10-29">29 ottobre 2026</time></span></li><li><span class="row"><a class="t" href="/blog/masturbazione-e-normale-quando-preoccuparsi.html">Masturbazione: è normale? Quando preoccuparsi</a><span class="dots" aria-hidden="true"></span><span class="m">6 min</span></span>
+<span class="x">La masturbazione è una delle attività sessuali più comuni, a qualsiasi età. Non esiste un numero di volte giusto: conta come la vivi e cosa cambia nella tua vita.</span><span class="lbl"><time datetime="2026-10-23">23 ottobre 2026</time></span></li><li><span class="row"><a class="t" href="/blog/kink-cos-e-come-sperimentare.html">Kink: cos'è e come sperimentare con piacere</a><span class="dots" aria-hidden="true"></span><span class="m">4 min</span></span>
+<span class="x">Il kink è fantasia che prende forma: gusti erotici fuori dal comune da esplorare con curiosità. Ecco cos'è, perché è una cosa bella e come cominciare a sperimentare.</span><span class="lbl"><time datetime="2026-10-23">23 ottobre 2026</time></span></li><li><span class="row"><a class="t" href="/blog/orgasmo-cos-e-cosa-succede-nel-corpo.html">Orgasmo: cos'è e cosa succede nel corpo</a><span class="dots" aria-hidden="true"></span><span class="m">5 min</span></span>
+<span class="x">L'orgasmo è il picco dell'eccitazione sessuale, ma non è uguale per tutti e non è un traguardo da raggiungere. Ecco cosa succede nel corpo, con calma.</span><span class="lbl"><time datetime="2026-10-20">20 ottobre 2026</time></span></li></ol>
+<section class="about" aria-labelledby="about"><h2 id="about">Su questa sezione</h2><p>Qui parliamo di quello che succede quando qualcosa ti eccita. Parliamo del corpo, cioè di come funziona e di come risponde, perché conoscerlo è il primo passo per stare bene con il proprio piacere e per saperlo dire. Parliamo del desiderio, che a volte c'è e a volte no, e che non è uguale per tutti. E parliamo dell'immaginazione, cioè delle fantasie e dei gusti che ognuno ha: quelli che si dicono, quelli che si tengono per sé, quelli che si provano e quelli che restano nella testa.</p><p>Non c'è un ordine in cui leggere: parti da quello che ti incuriosisce adesso. Il corpo ti dice cosa succede, il desiderio ti dice perché, l'immaginazione ti dice come lo vivi, e le tre cose si intrecciano di continuo. Per questo le tengo insieme, senza dividerle in cassetti: il piacere non ragiona per categorie, e nemmeno io.</p><p>Cosa trovi in queste pagine? Frasi dirette, esempi concreti, e quasi nessun «dovresti». Niente liste di trucchi e niente promesse. Trovi invece le informazioni che servono per capire cosa succede, spiegate con le fonti, e un invito costante a fare le cose con calma, un passo alla volta, e sempre con il consenso di chi c'è con te. Parlo di corpi diversi, senza dare per scontato come sia fatto il tuo o quello di chi hai accanto, e senza confronti con un modello giusto che non esiste.</p><p>Un'ultima cosa: quello che qui è normale è molto più ampio di quello che si pensa. Gusti insoliti, desideri che cambiano, piaceri che non seguono lo schema: sono tutte cose che si possono vivere con curiosità. Quando c'è sofferenza, o quando qualcosa ti pesa, lo dico chiaramente, e ti indico a chi rivolgerti.</p><p>Questa sezione è in crescita. Se c'è qualcosa che vorresti leggere e non trovi, scrivimelo: una buona parte degli articoli nasce da domande vere.</p></section>
+<aside class="close pz"><p>Non serve la parola giusta. Scrivimi come viene.</p><a class="btn-cream" href="/#contatti">Scrivimi</a></aside>
+<a class="next pz alt live" href="sezione-prevenzione-e-salute.html" style="--d:400ms"><span><span class="lbl">Prossima sezione</span><b>Prevenzione e salute</b></span><svg class="ill ill-prevenzione " viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path class="dr d1" pathLength="1" d="M32 6 52 13v16c0 13-8.5 23-20 29-11.5-6-20-16-20-29V13z"/>
+<path class="f f1 dash" d="M32 11.5 47 17v12.5c0 10-6.2 17.9-15 22.9-8.8-5-15-12.9-15-22.9V17z"/>
+<g class="lp-beat"><path class="dr d2 fillsoft" pathLength="1" d="M32 41s-9-5.5-9-11.7c0-3.1 2.4-5.3 5.1-5.3 1.8 0 3.2 1 3.9 2.4.7-1.4 2.1-2.4 3.9-2.4 2.7 0 5.1 2.2 5.1 5.3C41 35.5 32 41 32 41z"/></g>
+</svg></a><nav class="toc-mob" aria-label="Altre sezioni"><p class="lbl" style="width:100%">Altre sezioni</p><a href="sezione-corpo-piacere-e-fantasie.html" aria-current=page><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.8 3 4.6 4.8 4.6 9.6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.2-3.8 2.4-4.8-.2 2.3.9 3.6 2.1 3.6 0-3.2-1.3-5.6.1-8.4z"/><path d="M4 21.2c2.6-1.4 5.2-1.4 8 0s5.4 1.4 8 0"/></svg>Corpo, piacere e fantasie</a><a href="sezione-prevenzione-e-salute.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg>Prevenzione e salute</a><a href="sezione-comunicazione-relazioni-e-consenso.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.6L5.5 16v-3H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M17.8 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v3l-3.1-3h-3.9a2 2 0 0 1-2-2v-.4"/></svg>Comunicazione, relazioni e consenso</a><a href="sezione-difficolta-e-blocchi.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5c0-3.8 2.3-6.6 6-7.3 2.3-.5 3.9.6 5.6 0 3.2-1 6.2 1.3 6.2 5 0 1.4-.8 2.3-2.1 2.3z"/><path d="M11.8 13.3c0-2.5.4-4.9 1.2-7.1"/><path d="M12.2 8.8c-2.4.1-4-1.4-4.4-3.5 2.3-.1 4 1.3 4.4 3.5zM12.8 6.9c1.4-2 3.6-2.7 5.5-1.9-.8 1.9-3.2 2.8-5.5 1.9z"/></svg>Difficoltà e blocchi</a><a href="sezione-approfondimenti-e-attualita.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.8C9.8 17.2 6 16.9 3 17.4V6c3-.6 6.8-.2 9 1.3zM12 18.8c2.2-1.6 6-1.9 9-1.4V6c-3-.6-6.8-.2-9 1.3z"/><path d="M16.9 5.7v4.4l1-.8 1 .8V5.5"/></svg>Approfondimenti e attualità</a></nav></div></div></div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brand">aleedusex</div>
+        <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
+      </div>
+      <div>
+        <div class="label">Indice</div>
+        <ul>
+          <li><a href="/#manifesto">Manifesto</a></li>
+          <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="label">Dove trovarmi</div>
+        <ul>
+          <li><a href="https://instagram.com/aleedusex" target="_blank" rel="noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/alessiocottonaro" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span class="copy">© 2026 · aleedusex</span>
+      <a href="/legale.html">Privacy, cookie e note legali</a>
+      <span><em>Sito disegnato con cura.</em></span>
+    </div>
+  </div>
+</footer></body></html>
