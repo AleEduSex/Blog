@@ -16,7 +16,7 @@ SEZIONI = [
    "Un'ultima cosa: quello che qui è normale è molto più ampio di quello che si pensa. Gusti insoliti, desideri che cambiano, piaceri che non seguono lo schema: sono tutte cose che si possono vivere con curiosità. Quando c'è sofferenza, o quando qualcosa ti pesa, lo dico chiaramente, e ti indico a chi rivolgerti.",
    "Questa sezione è in crescita. Se c'è qualcosa che vorresti leggere e non trovi, scrivimelo: una buona parte degli articoli nasce da domande vere."
   ],
-  "icona": "corpo",
+  "icona": "maschera",
   "frase": "La sessualità non è performance. È linguaggio, permesso, presenza.",
   "vetrina": [
    "orgasmo-cos-e-cosa-succede-nel-corpo",
