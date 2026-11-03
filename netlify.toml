@@ -17,6 +17,24 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/amore-e-desiderio-nella-coppia"
+  to = "/blog/amore-e-desiderio-nella-coppia.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/sesso-orale-con-piacere-e-sicurezza"
+  to = "/blog/sesso-orale-con-piacere-e-sicurezza.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/parola-di-sicurezza-cos-e-come-usarla"
+  to = "/blog/parola-di-sicurezza-cos-e-come-usarla.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/foucault-storia-della-sessualita"
   to = "/blog/foucault-storia-della-sessualita.html"
   status = 301
