@@ -49,11 +49,15 @@ Compressi a 720p H.264 (compatibile con tutti i browser) pesano 4–12 MB: con `
 sito non li scarica finché non si preme play. Si possono ridurre ancora (540p) se serve. I file
 compressi non sono nel repository: si rigenerano dagli originali quando si passa al sito.
 
-## Da chiarire con Alessio
+## Deciso (Mirko, 3 novembre)
 
-- Dove si prenota ogni percorso: con lui direttamente (come oggi) o su OnDelights?
-- Prezzi dei percorsi sul sito sì o no (il documento li ha: 450 €, 240/300 €, 400 €, 280 €).
-- Aziende: mostrarlo già come «in arrivo» o aspettare.
+- **Video: per ora non vanno sul sito.** Le idee qui sopra restano solo come appunto; si
+  riprendono soltanto se Mirko lo chiede esplicitamente.
+- I percorsi si prenotano **direttamente con Alessio** (WhatsApp/email), come la prima consulenza.
+- **Prezzi dei percorsi sul sito: sì**, prima si studia come inserirli → prova in
+  `../percorsi/sezione-percorsi.html`, immagini in `../immagini/percorsi/`.
+- Prima consulenza: resta 60 € (la «Chiarificazione» del documento è la prima consulenza).
+- Aziende: non ancora; un'opzione «Sono un'azienda» nel prossimo futuro.
 
 ## Rete
 
