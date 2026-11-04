@@ -269,11 +269,11 @@ def dati(slug):
 ultimi = sorted(LI, key=lambda a: date[a], reverse=True)[:3]
 def card(slug, grande):
     fr, cv = dati(slug)
-    img = f'<img src="/blog/img/{cv if grande else "mini/" + cv}" alt="" width="{1600 if grande else 720}" height="{1000 if grande else 450}" loading="lazy" decoding="async" class="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-[1.02]">' if cv else ''
+    img = f'<img src="/blog/img/{cv if grande else "mini/" + cv}" alt="" width="{1600 if grande else 720}" height="{1000 if grande else 450}" loading="lazy" decoding="async" class="w-full aspect-[16/10] object-cover bg-brand-paper {"p-4 md:p-7" if grande else "p-3 md:p-4"} transition-transform duration-500 group-hover:scale-[1.02]">' if cv else ''
     return f'''
         <li class="{"md:col-span-2 md:row-span-2" if grande else ""}"><a href="/blog/{slug}.html" class="group block">
           <div class="overflow-hidden">{img}</div>
-          <p class="mt-5 font-display text-brand-cream {"text-[26px] md:text-[34px]" if grande else "text-[21px]"} leading-[1.22] tracking-tightish">{fr}</p>
+          <p class="mt-5 font-display text-brand-cream {"text-[24px] md:text-[28px] lg:text-[32px]" if grande else "text-[21px]"} leading-[1.3] tracking-tightish">{fr}</p>
           <p class="mt-3 font-body text-[16px] leading-[1.5] text-brand-cream/80 group-hover:text-brand-cream underline underline-offset-4 decoration-brand-cream/30">{titoli[slug]}</p>
         </a></li>'''
 sezioni_link = ' '.join(f'<a href="/blog/{s["slug"]}/" class="underline underline-offset-4 decoration-brand-cream/30 hover:text-brand-cream">{s["nome"]}</a>' for s in SEZ)
@@ -596,8 +596,12 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 }
 .post-cover { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: var(--paper); margin-bottom: 20px; transition: transform 500ms cubic-bezier(.16,1,.3,1); }
 .post-item > a { overflow: hidden; }
+/* cornice: passe-partout color carta (stacco di tono, niente bordi né ombre) */
+.post-cover { box-sizing: border-box; padding: 12px; background: var(--paper); }
+.post-item--lead .post-cover { padding: 20px; }
+@media (min-width: 768px) { .post-cover { padding: 14px; } .post-item--lead .post-cover { padding: 32px; } }
 .post-item > a:hover .post-cover { transform: scale(1.02); }
-.post-frase { font-family: var(--display); font-size: 21px; line-height: 1.25; color: var(--burgundy); margin: 10px 0 8px; max-width: 30em; }
+.post-frase { font-family: var(--display); font-size: 21px; line-height: 1.35; color: var(--burgundy); margin: 10px 0 8px; max-width: 30em; }
 .post-item--lead .post-frase { font-size: 26px; }
 @media (min-width: 768px) {
   .post-item > a { grid-template-columns: 300px 1fr; column-gap: 48px; }
