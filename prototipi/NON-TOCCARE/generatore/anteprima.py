@@ -269,7 +269,7 @@ def dati(slug):
 ultimi = sorted(LI, key=lambda a: date[a], reverse=True)[:3]
 def card(slug, grande):
     fr, cv = dati(slug)
-    img = f'<img src="/blog/img/{cv if grande else "mini/" + cv}" alt="" width="{1600 if grande else 720}" height="{1000 if grande else 450}" loading="lazy" decoding="async" class="w-full aspect-[16/10] object-cover bg-brand-paper {"p-4 md:p-7" if grande else "p-3 md:p-4"} transition-transform duration-500 group-hover:scale-[1.02]">' if cv else ''
+    img = f'<img src="/blog/img/{cv if grande else "mini/" + cv}" alt="" width="{1600 if grande else 720}" height="{1000 if grande else 450}" loading="lazy" decoding="async" class="w-full aspect-[16/10] object-cover assesta">' if cv else ''
     return f'''
         <li class="{"md:col-span-2 md:row-span-2" if grande else ""}"><a href="/blog/{slug}.html" class="group block">
           <div class="overflow-hidden">{img}</div>
@@ -358,6 +358,8 @@ CSS_V3 = '''<style>
   .contatti-righe a:hover, .contatti-righe a:focus-visible { background: #4A1019; }
   .contatti-righe .v { font-size: clamp(18px, .55em, 34px); white-space: nowrap; }
   .gift .arrow { transition: transform .2s ease; }
+  @keyframes assestaHome { from { scale: 1.08; opacity: .5; } to { scale: 1; opacity: 1; } }
+  @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) { img.assesta { animation: assestaHome linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; } } }
   .gift:hover .arrow { transform: translateX(4px); }
   .diag-card { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; transform: none !important; }
   @media (prefers-reduced-motion: reduce) { .split-foto .foto { transition: none; } .diag-card .pm-stamp { opacity: 1; transform: none; } }
@@ -559,7 +561,7 @@ for slug in LI:
     c = re.search(r'<figure class="cover">\s*<img src="/blog/img/([^"]+)" alt="([^"]*)"', a)
     if c:
         COVER[slug] = (c.group(1), c.group(2))
-        im = Image.open(SITE / 'blog/img' / c.group(1)).convert('RGB'); im.thumbnail((720, 450), Image.LANCZOS)
+        im = Image.open(SITE / 'blog/img' / c.group(1)).convert('RGB'); im.thumbnail((1040, 650), Image.LANCZOS)
         im.save(OUT / 'blog/img/mini' / c.group(1), quality=80, optimize=True, progressive=True)
 def ricco(h):
     def un(m):
@@ -610,6 +612,122 @@ with open(OUT / 'blog/blog.css', 'a') as c:
   .post-item--lead > a { grid-template-columns: 1fr; }
   .post-item--lead > a .post-cover { grid-row: auto; margin-bottom: 28px; aspect-ratio: 16 / 9; }
   .post-item--lead > a > * { grid-column: 1 !important; }
+}
+''')
+
+# ── 13. v3.2: le regole di Taste anche sul blog; immagini più d'impatto (grandi, a filo, nessuna cornice) ──
+def meta_sotto(h):
+    def un(m):
+        li = m.group(0); mt = re.search(r'\s*<p class="post-meta">.*?</p>', li, re.S)
+        if not mt: return li
+        li = li.replace(mt.group(0), '', 1)
+        return li.replace('</p>\n          <span class="read-more">', '</p>' + mt.group(0) + '\n          <span class="read-more">', 1) if '<span class="read-more">' in li else li
+    return re.sub(r'<li class="post-item[^"]*">.*?</li>', un, h, flags=re.S)
+for p in ['blog/index.html'] + [f'blog/{s["slug"]}/index.html' for s in SEZ]:
+    wr(p, meta_sotto(rd(p)))
+for slug in LI:
+    p = f'blog/{slug}.html'; a = rd(p)
+    # data e minuti dopo il sommario, non sopra il titolo
+    head_ = re.search(r'<header class="article-head">.*?</header>', a, re.S).group(0); nh = head_
+    mt = re.search(r'\s*<p class="post-meta">.*?</p>', nh, re.S)
+    if mt:
+        nh = nh.replace(mt.group(0), '', 1)
+        nh = re.sub(r'(<p class="lede">.*?</p>)', lambda m: m.group(1) + mt.group(0), nh, count=1, flags=re.S)
+    a = a.replace(head_, nh)
+    # percorso semplice al posto della pillola
+    a = re.sub(r'<a class="tchip" href="([^"]+)"><svg.*?</svg>([^<]+)</a>', r'<a href="\1">\2</a>', a, flags=re.S)
+    wr(p, a)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v3.2: Taste anche sul blog ── */
+html, body { overflow-x: clip; }
+/* immagini: nessuna cornice, più grandi, a filo */
+.post-cover { padding: 0 !important; background: none !important; }
+.post-item > a:hover .post-cover { transform: none; }
+@media (min-width: 768px) {
+  .post-item > a { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 56px; }
+  .post-item > a .post-cover { aspect-ratio: 4 / 3; }
+}
+/* l'ultimo articolo: una colonna, copertina a tutta larghezza */
+.post-item--lead > a { overflow: visible; grid-template-columns: 1fr !important; }
+.post-item--lead > a > * { grid-column: 1 !important; grid-row: auto !important; }
+.post-item--lead .post-cover { width: 100vw; max-width: none; margin-left: calc(50% - 50vw); aspect-ratio: auto !important; height: min(78svh, 56vw); object-fit: cover; margin-bottom: 40px; }
+/* copertina dell'articolo a tutta larghezza */
+.cover { width: 100vw; max-width: none; margin-left: calc(50% - 50vw); margin-bottom: 56px; }
+.cover img { width: 100%; height: min(72svh, 56vw); object-fit: cover; border-radius: 0 !important; border: 0 !important; }
+.cover figcaption { max-width: 760px; margin: 12px auto 0; padding: 0 24px; }
+/* titoli entro due righe: misura larga, corpo più contenuto */
+.post-title { max-width: none !important; font-size: 24px !important; }
+@media (min-width: 768px) { .post-title { font-size: 28px !important; } }
+.post-item--lead .post-title { font-size: clamp(30px, 4vw, 52px) !important; }
+.article-head h1 { font-size: clamp(32px, 4.4vw, 46px) !important; max-width: none !important; }
+/* data e minuti sotto il titolo */
+.post-item .post-meta { margin-top: 14px; }
+.article-head .post-meta { margin: 20px 0 0 !important; }
+/* niente linee sottili: spazio e un passo di tono */
+.post-item { border-bottom: 0 !important; }
+.post-item > a { padding: 36px 0 !important; }
+@media (min-width: 768px) { .post-item > a { padding: 52px 0 !important; } }
+.sez-list, .sez-list li { border: 0 !important; }
+.blog-hero { border-bottom: 0 !important; }
+.blog-hero-v31 { background: var(--paper); }
+.frase { border-bottom: 0 !important; padding-bottom: 0 !important; }
+.in-breve { border: 0 !important; }
+.more, .domanda { border-top: 0 !important; }
+.more li a { border-top: 0 !important; padding: 8px 0; }
+.site-footer .legal { font-size: 13px; }
+/* movimento: la copertina si assesta entrando, il testo sale; solo CSS, nessun JavaScript */
+@keyframes assesta { from { scale: 1.08; opacity: .5; } to { scale: 1; opacity: 1; } }
+@keyframes sale { from { opacity: 0; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .post-item:not(.post-item--lead) .post-cover { animation: assesta linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+    .post-item:not(.post-item--lead) > a > :not(.post-cover) { animation: sale linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  }
+}
+''')
+
+# ── 14. v3.3: correzioni della revisione v3 (agente) e ultimi punti di Taste sul blog ──
+INDICE = ('<li><a href="/#chi-sono">Chi sono</a></li>\n          <li><a href="/#parliamone">Di cosa parliamo</a></li>\n          <li><a href="/#funziona">Come funziona</a></li>\n'
+          '          <li><a href="/#percorsi">Percorsi</a></li>\n          <li><a href="/#faq">FAQ</a></li>\n          <li><a href="/blog/">Blog</a></li>')
+for f in OUT.rglob('*.html'):
+    if f.name == 'index.html' and f.parent == OUT: continue
+    h = f.read_text(); o = h
+    # footer: niente più «Manifesto», stesse voci e stesso ordine della testata della home
+    h = re.sub(r'<li><a href="/#manifesto">Manifesto</a></li>\s*<li><a href="/#chi-sono">Chi sono</a></li>\s*<li><a href="/#funziona">Come funziona</a></li>\s*<li><a href="/#faq">FAQ</a></li>\s*<li><a href="/blog/">Blog</a></li>', INDICE, h)
+    # testata del blog: Chi sono · Percorsi · Blog, nello stesso ordine della home
+    h = re.sub(r'<li><a href="/blog/"( aria-current="page")?>Blog</a></li>\s*<li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>',
+               lambda m: f'<li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>\n        <li class="hide-sm"><a href="/#percorsi">Percorsi</a></li>\n        <li><a href="/blog/"{m.group(1) or ""}>Blog</a></li>', h)
+    if h != o: f.write_text(h)
+assert '/#manifesto' not in ''.join(f.read_text() for f in OUT.rglob('*.html'))
+# pagina legale: data e nome del modulo come sul sito
+h = rd('legale.html')
+h = h.replace('<time datetime="2026-09-23">23 settembre 2026</time>', '<time datetime="2026-11-04">4 novembre 2026</time>')
+h = h.replace('Il modulo «Fai una domanda» in fondo agli articoli', 'Il modulo per le domande anonime in fondo agli articoli'); wr('legale.html', h)
+# home: voce attiva giusta, titoli liberi dopo un'ancora, testata più piena sopra le parti scure, footer in ordine
+h = rd('index.html')
+for a_, b_ in [("{ threshold: 0.3, rootMargin: '-10% 0px -60% 0px' }", "{ threshold: 0, rootMargin: '-90px 0px -75% 0px' }"),
+               ('sticky top-0 z-40 bg-brand-cream/85', 'sticky top-0 z-40 bg-brand-cream/95')]:
+    assert a_ in h, a_; h = h.replace(a_, b_, 1)
+h = re.sub(r'(<li><a href="#parliamone"[^>]*>Di cosa parliamo</a></li>)(\s*)(<li><a href="#chi-sono"[^>]*>Chi sono</a></li>)', r'\3\2\1', h)
+h = h.replace('</head>', '<style>section[id], [id="percorsi"] { scroll-margin-top: 88px; }</style>\n</head>', 1)
+wr('index.html', h)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* niente linee: testata e note legali separate dallo spazio */
+.site-header { border-bottom: 0 !important; }
+.site-footer .legal { border-top: 0 !important; }
+/* ── v3.3: titoli e frasi entro due-tre righe anche su tablet e telefono ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .post-item > a { grid-template-columns: 1fr !important; }
+  .post-item > a > * { grid-column: 1 !important; grid-row: auto !important; }
+  .post-item > a .post-cover { margin-bottom: 24px; }
+}
+@media (max-width: 767px) {
+  .frase { font-size: 24px !important; }
+  .post-item--lead .post-frase { font-size: 22px; }
+  .post-title { font-size: 22px !important; }
+  .post-item--lead .post-title { font-size: 26px !important; }
 }
 ''')
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
