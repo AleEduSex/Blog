@@ -66,7 +66,7 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 /* pagina di una sezione */
 .sez-hero .crumb { padding: 0 0 20px; }
 .sez-hero .head { display: grid; gap: 24px; align-items: center; }
-.sez-hero h1 { font-size: 46px; line-height: 1; }
+.sez-hero h1 { font-size: clamp(34px, 11vw, 46px); line-height: 1; }
 .sez-hero .ill { width: 96px; height: 96px; }
 @media (min-width: 768px) {
   .sez-hero .head { grid-template-columns: 1fr 180px; gap: 56px; }
@@ -370,6 +370,62 @@ wr('legale.html', leg)
 sm = rd('sitemap.xml')
 sm = sm.replace(f'<url><loc>{URL}/blog/</loc></url>', f'<url><loc>{URL}/blog/</loc></url>\n' + '\n'.join(f'  <url><loc>{URL}/blog/{s["slug"]}/</loc></url>' for s in SEZ), 1)
 wr('sitemap.xml', sm)
+
+
+# ── 10. correzioni della revisione del 4 novembre (blocco A: senza decisioni) ──
+def sost(path, a, b):
+    h = rd(path); assert a in h, (path, a[:60]); wr(path, h.replace(a, b))
+# A1. niente più «nessun modulo» dove il modulo c'è
+sost('legale.html', 'non ha moduli e non traccia nessuno', 'non traccia nessuno')
+sost('index.html', 'Nessuna segreteria, nessun modulo, nessuna AI.', 'Nessuna segreteria, nessuna AI.')
+# A2. niente segnaposto online: disdette nascoste finché Alessio non manda il testo; conservazione 12 mesi (da confermare)
+h = rd('legale.html'); h = re.sub(r'\n\n      <section id="disdette">.*?</section>', '', h, flags=re.S); wr('legale.html', h)
+h = rd('index.html'); h = re.sub(r'\s*<a href="/legale.html#disdette"[^>]*>[^<]*</a>', '', h); wr('index.html', h)
+# A8. privacy del modulo: dati tecnici di Netlify, conservazione, consenso esplicito
+sost('legale.html', 'raccoglie solo il testo che scrivi e la pagina da cui scrivi. Non chiede nome né email',
+     'raccoglie il testo che scrivi e la pagina da cui scrivi; il servizio di hosting registra anche dati tecnici come indirizzo IP e browser, per bloccare lo spam. Non chiede nome né email')
+sost('legale.html', 'le cancello entro [periodo da decidere]', 'le cancello, insieme alle email, entro 12 mesi')
+sost('legale.html', 'Base giuridica: il consenso che dai spuntando la casella (art. 6, par. 1, lett. a GDPR).',
+     'Base giuridica: il consenso esplicito che dai spuntando la casella (art. 6, par. 1, lett. a e art. 9, par. 2, lett. a GDPR), che puoi revocare scrivendomi.')
+for slug in LI:
+    p = f'blog/{slug}.html'
+    sost(p, '<span>Ho letto l’<a href="/legale.html#privacy">informativa privacy</a>.</span>',
+         '<span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span>')
+    sost(p, 'Non scrivere nome, email o dettagli che ti rendono riconoscibile: così non posso risponderti in privato. Se vuoi una risposta solo per te, scrivimi su WhatsApp.',
+         'Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.')
+    sost(p, '<p class="hp">', '<p class="hp" aria-hidden="true">')
+# A3. Foucault: titoli in corsivo vero, frase con soggetto
+p = 'blog/foucault-storia-della-sessualita.html'; h = rd(p)
+h = re.sub(r'\*([^*<\n\s][^*<\n]{1,90}?)\*', r'<em>\1</em>', h)
+h = h.replace('Io non sono un confessore e non ti giudico. Serve a capire', 'Io non sono un confessore e non ti giudico. Parlarne serve a capire')
+assert '*La volontà' not in h; wr(p, h)
+# A4 e A6. focus visibile sui fondi bordeaux del blog; telefoni stretti senza scorrimento laterale
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('\n/* Focus visibile sui fondi scuri */\n'
+            '.cta-box a:focus-visible, .cta-box button:focus-visible, .site-footer a:focus-visible { outline-color: var(--cream); }\n'
+            '/* Telefoni stretti: il conteggio della sezione va sotto il nome */\n'
+            '@media (max-width: 359px) { .sez-list a { grid-template-columns: 22px 1fr; } .sez-list .c { grid-column: 2; white-space: normal; } }\n')
+# A5 e A4 (home): video in pausa alla chiusura e uno solo alla volta; focus crema sul bordeaux
+VIDEO_JS = ('\n<script>\n  // Video dei percorsi: si fermano quando si chiude la scheda e ne suona uno alla volta.\n'
+            "  document.querySelectorAll('details video').forEach(function (v) {\n"
+            "    v.closest('details').addEventListener('toggle', function (e) { if (!e.target.open) v.pause(); });\n"
+            "    v.addEventListener('play', function () {\n"
+            "      document.querySelectorAll('details video').forEach(function (o) { if (o !== v) o.pause(); });\n"
+            '    });\n  });\n</script>\n')
+FOCUS_CSS = '<style>.bg-brand-burgundy :focus-visible, .bg-brand-burgundy-deep :focus-visible { outline-color: #F0E7D5 !important; --tw-ring-color: #F0E7D5; }</style>\n'
+h = rd('index.html'); h = h.replace('</head>', FOCUS_CSS + '</head>', 1)
+i = h.rindex('</body>'); h = h[:i] + VIDEO_JS + h[i:]; wr('index.html', h)
+# A7. il link «salta al contenuto» nelle pagine sezione
+for sz in SEZ:
+    sost(f'blog/{sz["slug"]}/index.html', '<section class="wrap" aria-label="Articoli della sezione">', '<section id="articoli" class="wrap" aria-label="Articoli della sezione">')
+# A9. virgolette dritte nel testo visibile → « » (non tocca attributi, script e stili)
+def virgolette(h):
+    parti = re.split(r'(<script.*?</script>|<style.*?</style>|<[^>]+>)', h, flags=re.S)
+    return ''.join(x if (x.startswith('<') or '"' not in x) else re.sub(r'"([^"\n]{1,200})"', r'«\1»', x) for x in parti)
+for f in OUT.rglob('*.html'):
+    if f.name.startswith('_'): continue
+    h = f.read_text(); n = virgolette(h)
+    if n != h: f.write_text(n)
 
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):

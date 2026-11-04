@@ -174,3 +174,17 @@ I sottotitoli sono dentro l'immagine, quindi per chi non vede e per Google non c
 2. **Decidere con Ale**: B1-B4 (home, testimonianze, timbri, logo) e B6-B7 (15 minuti, prezzi).
 3. **Prima di passare al sito vero**: B8 (pubblicazione semplice), C1-C3.
 4. **Dopo**: C4-C7, D (testi), B10 (trascrizioni video).
+
+---
+
+## Stato (4 novembre, sera)
+
+Fatte nella versione di prova (`generatore/anteprima.py`, passo 10), verificate nel browser:
+A1 (frasi sul modulo), A2 (disdette nascoste finché non c'è il testo; conservazione domande 12 mesi,
+da confermare con Alessio), A3 (Foucault: 7 corsivi, frase con soggetto), A4 (focus crema sui fondi
+bordeaux, home e blog), A5 (video in pausa alla chiusura, uno alla volta), A6 (nessuno scorrimento
+laterale a 320 px, anche il titolo di Approfondimenti), A7 (salta al contenuto), A8 (casella di consenso,
+nota chiara, dati tecnici di Netlify nella privacy, honeypot nascosto ai lettori di schermo),
+A9 (virgolette « » nel testo visibile di tutte le pagine).
+Restano: A10 dipende dalla scelta B8. Le correzioni A3 e A9 valgono anche per il sito di oggi:
+entrano in `site/` insieme al resto quando la prova viene approvata.
