@@ -119,3 +119,23 @@ Mirko: i colori restano, si lavora su leggibilità e calma; i video ai percorsi 
 - File: `percorsi/logo-testata.png` (logo ritagliato, 3×), `percorsi/poster/` (copertine con solo
   Alessio). I video non sono nel repository: si comprimono dagli originali del Drive (540p) e si
   passano con `--media`. `percorsi/sezione-percorsi.html` è la prima prova, superata.
+
+### Versione 3 (4 novembre, dopo la revisione totale)
+
+Fatta con le skill di design: Impeccable (distill, craft floor, detector) e Taste (draw con colori e
+caratteri del brand, direzione «split stage» seme 2097572999, inspect prima/dopo, critica sugli screenshot).
+Il corpo della home è in `generatore/home-v3.html`; lo script lo inserisce tra testata e footer.
+
+- Home da 12 a 8 sezioni (circa 1.000 parole): hero con la foto di Alessio ferma a destra che cambia
+  con la sezione, lettera «Ciao, sono Alessio», frasi che si aprono e portano al blog, blog a nomi grandi,
+  «Cosa faccio, e cosa no» con il diagramma fermo, «Come funziona» come tragitto, percorsi come listino,
+  domande come testo da leggere, contatti in righe grandi. Via «Parole nella stanza», etichette,
+  timbri, texture, numeri giganti, corsivi decorativi.
+- Ispettore Taste sulla home: prima 12 FAIL / 8 WARN, dopo 1 FAIL (falso positivo: testo dentro una
+  frase chiusa) / 4 WARN. Dimensioni di testo da 32 a 20, etichette sopra i titoli da 15 a 0.
+- Blog e articoli: niente timbro né maiuscoletto, «In breve» in alto, in fondo un solo blocco per la
+  consulenza con la domanda anonima che si apre a richiesta, 15 minuti con una sola formula e WhatsApp
+  con il messaggio già scritto, Approfondimenti fuori da Google finché ha pochi articoli.
+- Menu da telefono: da chiuso è inattivo, focus su «Chiudi» all'apertura; panino accanto a «Scrivimi».
+- Video a 30 fps (31 MB in tutto). Da fare prima del sito vero: B8 (pubblicazione con le sezioni,
+  `_modello.html`, `verifica.sh`), logo pulito da Alessio, prezzi e testi da confermare.

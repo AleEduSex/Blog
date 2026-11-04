@@ -99,6 +99,8 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 - Testata e footer sono identici in blog, 404 e pagina legale: `verifica.sh` lo controlla.
 - Skill di design esterne (Impeccable, Taste, UI/UX Pro Max, Hallmark, web-quality, Vercel
   guidelines) in `.claude/skills/`: solo per il lavoro tecnico di Mirko, mai per gli articoli.
+  Nel lavoro di Mirko su grafica, pagine o revisioni **usale sempre**, tutte quelle utili, al
+  momento giusto (prima di progettare, prima di modificare, per verificare a lavoro finito).
   Origine, licenze e verifiche in `.claude/SKILL-ESTERNE.md`.
 - `prototipi/NON-TOCCARE/`: prove del blog diviso per temi (non pubblicate). Non modificarle e
   non usarle per gli articoli; spiegazione in `prototipi/NON-TOCCARE/LEGGIMI.md`.

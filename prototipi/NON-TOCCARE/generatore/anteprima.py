@@ -233,114 +233,160 @@ land = rd('index.html')
 # 6a. logo
 old = '<a href="#top" class="font-display text-brand-burgundy text-[22px] md:text-[26px] leading-none tracking-tightish lowercase">aleedusex</a>'; assert old in land
 land = land.replace(old, '<a href="#top" class="block"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108" class="h-[24px] md:h-[28px] w-auto"></a>')
-# 6b. regalo più visibile nell'hero (era grigio 14px)
-land = land.replace('class="alt-link mt-4 inline-flex items-center gap-1.5 text-[14px] italic text-brand-ink/60 hover:text-brand-burgundy transition-colors"',
-                    'class="alt-link mt-5 inline-flex items-center gap-1.5 text-[16px] md:text-[17px] italic text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/30 hover:decoration-brand-burgundy transition-colors"', 1)
-# 6c. regalo nel passo 1, come primo passo possibile
-old = '<p class="font-body italic text-brand-burgundy/80 text-[16px]">— Non c\'è una segreteria. Non ci sono moduli infiniti.</p>'; assert old in land
-land = land.replace(old, old + '''
-          <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer" class="group mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 max-w-2xl border border-brand-burgundy/35 px-6 py-5 hover:border-brand-burgundy transition-colors">
-            <span class="font-display text-brand-burgundy text-[40px] leading-none whitespace-nowrap">15 min</span>
-            <span class="font-body text-brand-ink/85 text-[17px] leading-[1.5]"><strong class="font-semibold">In regalo, al telefono.</strong> Se hai solo una domanda, o vuoi capire se ha senso iniziare. Scrivimi e ci sentiamo. <span class="text-brand-burgundy inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span>
-          </a>''')
-# 6d. video della prima consulenza nel passo 2
-def video(n, durata, label='Guarda il video'):
-    return f'''<details class="mt-5 group/v">
-              <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer inline-flex items-center gap-2.5 min-h-[44px] text-[16px] italic text-brand-burgundy">
+# 6b. HOME v3 (restyle dopo la revisione del 4/11: Impeccable distill + Taste «split stage»)
+GIFT_URL = 'https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti.'
+EMAIL_ENT = re.search(r'href="mailto:([^"]+)"', land).group(1)
+def video(n, durata, titolo):
+    return f'''<details class="video mt-5">
+              <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer inline-flex items-center gap-2.5 min-h-[44px] font-body text-[16px] text-brand-burgundy" aria-label="Guarda il video: {titolo}, {durata}">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor" stroke="none"/></svg>
-                <span class="underline underline-offset-4 decoration-brand-burgundy/30">{label}</span><span class="not-italic text-brand-ink/55 text-[14px]">{durata}</span>
+                <span class="underline underline-offset-4 decoration-brand-burgundy/35">Guarda il video</span> <span class="text-brand-ink/80 text-[15px]">{durata}</span>
               </summary>
-              <video class="mt-4 w-full max-w-[280px] aspect-[9/16] bg-brand-ink/10 rounded-[2px]" controls preload="none" playsinline poster="/video/{n}.jpg"><source src="/video/{n}.mp4" type="video/mp4"></video>
+              <video class="mt-4 w-full max-w-[260px] aspect-[9/16] bg-brand-ink/10" controls preload="none" playsinline poster="/video/{n}.jpg" aria-label="Video: {titolo}"><source src="/video/{n}.mp4" type="video/mp4"></video>
             </details>'''
-old = '<li>60&nbsp;€</li>\n          </ul>'; assert old in land
-land = land.replace(old, old + '\n          ' + video('prima-consulenza', '44 s', 'Come funziona, in un video'), 1)
-# 6e. percorsi a righe, nello stile di «Come funziona»
-P = [
- ('al-cuore-del-problema', 'Al cuore del problema', 'Cinque incontri per capire dove ti sei bloccato e cosa fare, con il metodo DEOPIARCA della Scuola di sessuologia di Torino.',
-  ['Da solo o in coppia', '5 incontri da 60 minuti', 'Ogni due settimane'], '450&nbsp;€', 'tutto il percorso', '58 s'),
- ('dialogo-positivo-sul-desiderio', 'Dialogo positivo sul desiderio', 'Per coppie con desideri diversi, che non riescono più a parlarne senza ferirsi.',
-  ['Coppie, in piccolo gruppo', '3 incontri da 90 minuti', 'Gruppi di 4 coppie'], '240&nbsp;€', 'a coppia · 300&nbsp;€ se vieni da solo', '1 min 56'),
- ('laboratorio-del-piacere-consapevole', 'Laboratorio del piacere consapevole', 'Corpo, desiderio, comunicazione, sex toys. Niente nudità né pratiche esplicite.',
-  ['Coppie, in piccolo gruppo', '4 incontri da 90 minuti', 'Massimo 3 coppie'], '400&nbsp;€', 'a coppia', '2 min 16'),
- ('parliamo-di-sessualita-ai-figli', 'Parliamo di sessualità ai figli', 'Per genitori con figli tra 4 e 18 anni: come rispondere alle domande, età per età.',
-  ['Genitori, in piccolo gruppo', '4 incontri da 90 minuti', 'Massimo 8 persone'], '280&nbsp;€', '', '1 min 46'),
+PIU = '<svg class="piu shrink-0 mt-2 text-brand-burgundy" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg>'
+FRASI = [
+ ('Non desidero più il mio partner, e non capisco perché.', 'Il desiderio cambia nel tempo, e quasi mai per colpa di qualcuno. Si può capire cosa si è spento e da dove ripartire.', '/blog/difficolta-e-blocchi/', 'Difficoltà e blocchi'),
+ ('Ho paura di non essere all’altezza.', 'Capita a tante persone, a ogni età. Non è un difetto: è un circolo che si può interrompere.', '/blog/ansia-da-prestazione-sessuale.html', 'Ansia da prestazione'),
+ ('Ho perso il piacere e non so quando è successo.', 'A volte il piacere si spegne piano, senza un motivo chiaro. Ripartire dal corpo aiuta a ritrovarlo.', '/blog/corpo-piacere-e-fantasie/', 'Corpo, piacere e fantasie'),
+ ('Con il mio partner abbiamo smesso di parlarne.', 'Il silenzio si sedimenta e le parole diventano più difficili. Si può ricominciare da piccole frasi vere.', '/blog/come-parlare-di-sesso-con-il-partner.html', 'Come parlare di sesso con il partner'),
+ ('Non mi ritrovo più, nelle relazioni o nella mia sessualità.', 'Non serve avere già le risposte. Si parte da quello che senti adesso, senza etichette.', '#contatti', 'Scrivimi'),
 ]
-righe = ''.join(f'''
-        <li class="grid md:grid-cols-12 gap-x-10 gap-y-4 py-10 md:py-12 border-b border-brand-line/30">
-          <div class="md:col-span-6">
-            <h4 class="font-display text-brand-ink text-[30px] md:text-[38px] leading-[1.02] tracking-tighter2">{nome}</h4>
-            <p class="mt-4 font-body text-brand-ink/80 text-[17px] md:text-[18px] leading-[1.6] max-w-xl">{desc}</p>
-            {video(slug, durata)}
-          </div>
-          <ul class="md:col-span-3 md:pt-3 font-body text-brand-ink/75 text-[16px] leading-[1.9]">{"".join(f"<li>{m}</li>" for m in meta)}</ul>
-          <div class="md:col-span-3 md:pt-2 md:text-right">
-            <p class="font-display italic text-brand-burgundy text-[36px] md:text-[44px] leading-none">{prezzo}</p>
-            {f'<p class="mt-2 font-body italic text-brand-ink/60 text-[15px]">{sotto}</p>' if sotto else ''}
-          </div>
-        </li>''' for slug, nome, desc, meta, prezzo, sotto, durata in P)
-PERCORSI = f'''
-
-    <!-- Percorsi (prova): dopo la prima consulenza, se serve -->
-    <div id="percorsi" class="mt-24 md:mt-36 pt-16 md:pt-24 border-t border-brand-line/40">
-      <div class="grid md:grid-cols-12 gap-8 md:gap-16 mb-10 md:mb-14">
-        <h3 class="md:col-span-6 font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[64px] leading-[0.98] tracking-tighter2 reveal">
-          I percorsi, <span class="italic text-brand-burgundy">se servono.</span>
-        </h3>
-        <p class="md:col-span-5 md:col-start-8 self-end font-body text-brand-ink/80 text-[18px] md:text-[19px] leading-[1.6] reveal" data-delay="1">
-          Te li propongo dopo la prima consulenza, solo se hanno senso per te. Ognuno ha un obiettivo chiaro e un numero di incontri definito. Si prenotano come la prima consulenza: mi scrivi e ne parliamo.
-        </p>
-      </div>
-      <ul class="border-t border-brand-line/50">{righe}
-      </ul>
-      <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
-        <a href="#contatti" class="btn-burgundy self-start">Scrivimi per un percorso <span class="arr" aria-hidden="true">→</span></a>
-        <a href="/legale.html#disdette" class="font-body italic text-brand-ink/70 text-[15px] underline underline-offset-4 decoration-brand-line hover:text-brand-burgundy">Disdette e rimborsi: come funzionano</a>
-      </div>
-    </div>'''
-i = land.index('id="funziona"'); j = land.index('</ol>', i) + len('</ol>')
-land = land[:j] + PERCORSI + land[j:]
-# 6f. il blog nella home, dopo «Di cosa possiamo parlare»
-righe_b = ''.join(f'''
-          <li class="border-b border-brand-line/25"><a href="/blog/{s["slug"]}/" class="group grid grid-cols-[26px_1fr_auto] md:grid-cols-[30px_1fr_auto] items-center gap-4 md:gap-6 py-4 md:py-5 min-h-[64px]">
-            {ico(s["icona"], "w-[26px] h-[26px] md:w-[30px] md:h-[30px] text-brand-burgundy")}
-            <span class="font-display text-brand-ink text-[21px] md:text-[27px] leading-[1.12] tracking-tightish group-hover:text-brand-burgundy transition-colors">{s["nome"]}</span>
-            <span class="font-body italic text-brand-ink/60 text-[15px] whitespace-nowrap">{n_art(s)} <span class="text-brand-burgundy inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span>
-          </a></li>''' for s in SEZ)
+frasi = ''.join(f'''
+        <li><details class="frase">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-start justify-between gap-6 py-4 min-h-[44px]"><span class="testo font-display text-brand-ink text-[22px] md:text-[26px] leading-[1.22] tracking-tightish">«{f}»</span>{PIU}</summary>
+          <div class="pb-6 font-body text-[17px] leading-[1.6] text-brand-ink max-w-[34em]">{d} <a href="{u}" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">{"Leggi: " if u != "#contatti" else ""}{t} →</a></div>
+        </details></li>''' for f, d, u, t in FRASI)
+# diagramma di oggi, senza ombra né rotazione
+diag = re.search(r'(<svg class="pm-map pm-map-h".*?</svg>\s*<svg class="pm-map pm-map-v".*?</svg>)', land, re.S).group(1)
+diag = re.sub(r'\s*<defs>.*?</defs>', '', diag, flags=re.S).replace(' filter="url(#pm-shadow-h)"', '').replace(' filter="url(#pm-shadow-v)"', '')
+DIAG = f'<div class="diag-card reveal">{diag}</div>'
+# blog: i nomi delle sezioni grandi, come un indice
 ultimo = max(LI, key=lambda a: date[a])
-BLOG = f'''
-
-<!-- ═════════════════════════ IL BLOG (prova) ═════════════════════════ -->
-<section id="dal-blog" class="bg-brand-paper border-y border-brand-line/30">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-28">
-    <div class="grid md:grid-cols-12 gap-12 md:gap-16">
-      <div class="md:col-span-5 reveal">
-        <h2 class="font-display text-brand-ink text-[42px] sm:text-[56px] md:text-[64px] leading-[0.98] tracking-tighter2">
-          Se preferisci <span class="italic text-brand-burgundy">leggere prima.</span>
-        </h2>
-        <p class="mt-6 font-body text-brand-ink/80 text-[18px] md:text-[19px] leading-[1.6] max-w-md">
-          Nel blog rispondo alle domande che si fanno a bassa voce, con risposte scritte in chiaro. Un tema alla volta, diviso in cinque sezioni.
-        </p>
-        <p class="mt-8 font-body text-[16px] text-brand-ink/70">Ultimo articolo:<br><a href="/blog/{ultimo}.html" class="font-display text-brand-ink text-[22px] leading-[1.2] hover:text-brand-burgundy underline underline-offset-4 decoration-brand-line">{titoli[ultimo]}</a></p>
-        <a href="/blog/" class="btn-burgundy mt-10">Vai al blog <span class="arr" aria-hidden="true">→</span></a>
+nomi = ''.join(f'''
+          <li><a href="/blog/{s["slug"]}/" class="group flex items-baseline justify-between gap-6 py-3 md:py-4"><span class="font-display text-brand-ink text-[28px] md:text-[40px] xl:text-[48px] leading-[1.05] tracking-tighter2 group-hover:text-brand-burgundy transition-colors">{s["nome"]}</span><span class="font-body text-[15px] text-brand-ink/80 whitespace-nowrap">{n_art(s)} <span class="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span></a></li>''' for s in SEZ)
+BLOG = f'''<!-- ═══════ Dal blog: i nomi delle sezioni come indice ═══════ -->
+<section id="dal-blog" class="bg-brand-paper">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-36">
+    <div class="grid lg:grid-cols-12 gap-10 md:gap-16">
+      <div class="lg:col-span-4">
+        <h2 class="font-display text-brand-ink text-[34px] md:text-[48px] leading-[1.02] tracking-tighter2 reveal">Se preferisci leggere prima.</h2>
+        <p class="mt-6 font-body text-brand-ink text-[18px] leading-[1.6] reveal" data-delay="1">Nel blog rispondo alle domande che si fanno a bassa voce, un tema alla volta.</p>
+        <p class="mt-8 font-body text-[16px] text-brand-ink/80 reveal" data-delay="1">Ultimo articolo:<br><a href="/blog/{ultimo}.html" class="font-display text-brand-ink text-[22px] leading-[1.25] underline underline-offset-4 decoration-brand-burgundy/35 hover:text-brand-burgundy">{titoli[ultimo]}</a></p>
+        <a href="/blog/" class="btn-burgundy mt-10 reveal" data-delay="2">Vai al blog <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <ol class="md:col-span-7 border-t border-brand-line/50 reveal" data-delay="1">{righe_b}
+      <ol class="lg:col-span-8 reveal" data-delay="1">{nomi}
       </ol>
     </div>
   </div>
-</section>
+</section>'''
+# percorsi: come un listino, raggruppati
+P = [
+ ('Da solo o in coppia', [
+  ('al-cuore-del-problema', 'Al cuore del problema', '450&nbsp;€', 'Cinque incontri per capire dove si è bloccato qualcosa e cosa fare, con il metodo DEOPIARCA della Scuola di sessuologia di Torino.', '5 incontri da 60 minuti, ogni due settimane. Il prezzo è per tutto il percorso.', '58 s')]),
+ ('In piccolo gruppo', [
+  ('dialogo-positivo-sul-desiderio', 'Dialogo positivo sul desiderio', '240&nbsp;€', 'Per coppie con desideri diversi, che non riescono più a parlarne senza ferirsi.', '3 incontri da 90 minuti, gruppi di 4 coppie. 240 € a coppia, 300 € se partecipi senza partner.', '1 min 56'),
+  ('laboratorio-del-piacere-consapevole', 'Laboratorio del piacere consapevole', '400&nbsp;€', 'Per coppie: corpo, desiderio, comunicazione, sex toys. Niente nudità né pratiche esplicite.', '4 incontri da 90 minuti, al massimo 3 coppie. Prezzo a coppia.', '2 min 16'),
+  ('parliamo-di-sessualita-ai-figli', 'Parliamo di sessualità ai figli', '280&nbsp;€', 'Per genitori con figli tra 4 e 18 anni: come rispondere alle domande, età per età.', '4 incontri da 90 minuti, al massimo 8 persone.', '1 min 46')]),
+]
+gruppi = ''.join(f'''
+        <div class="gruppo">
+          <h3 class="font-body font-semibold text-[17px] text-brand-ink">{g}</h3>
+          <ul class="mt-2">{"".join(f"""
+            <li class="voce pt-7">
+              <div class="riga"><span class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.12] tracking-tightish">{nome}</span><span class="val">{prezzo}</span></div>
+              <p class="mt-2 font-body text-[17px] leading-[1.6] text-brand-ink max-w-[38em]">{desc}</p>
+              {video(slug, durata, nome)}
+              <p class="mt-3 font-body text-[16px] leading-[1.55] text-brand-ink/80 max-w-[38em]">{meta}</p>
+            </li>""" for slug, nome, prezzo, desc, meta, durata in voci)}
+          </ul>
+        </div>''' for g, voci in P)
+PERCORSI = f'''<!-- ═══════ I percorsi: come un listino ═══════ -->
+<section id="percorsi" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-36">
+    <div class="grid lg:grid-cols-12 gap-10 md:gap-16">
+      <div class="lg:col-span-4">
+        <h2 class="font-display text-brand-ink text-[34px] md:text-[48px] leading-[1.02] tracking-tighter2 reveal">I percorsi.</h2>
+        <p class="mt-6 font-body text-brand-ink text-[18px] leading-[1.6] reveal" data-delay="1">Te li propongo dopo la prima consulenza, solo se hanno senso per te. Ognuno ha un obiettivo chiaro e un numero di incontri definito. Si prenotano come la prima consulenza.</p>
+        <a href="#contatti" class="btn-burgundy mt-10 reveal" data-delay="2">Scrivimi per un percorso <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="lg:col-span-8 space-y-16 reveal" data-delay="1">{gruppi}
+      </div>
+    </div>
+  </div>
+</section>'''
+VIDEO_PRIMA = video('prima-consulenza', '44 s', 'come funziona la prima consulenza')
+corpo = (PERC.parent / 'generatore' / 'home-v3.html').read_text()
+for k, v in {'{{FRASI}}': frasi, '{{BLOG}}': BLOG, '{{PERCORSI}}': PERCORSI, '{{DIAGRAMMA}}': DIAG, '{{VIDEO_PRIMA}}': VIDEO_PRIMA, '{{GIFT_URL}}': GIFT_URL, '{{EMAIL_ENT}}': EMAIL_ENT}.items():
+    assert k in corpo, k; corpo = corpo.replace(k, v)
+assert '{{' not in corpo
+i = land.index('<!-- ═════════════════════════ HERO'); j = land.index('<!-- ═════════════════════════ 9 · FOOTER')
+land = land[:i] + corpo + '\n\n' + land[j:]
+# navigazione: via «Manifesto», dentro «Percorsi»
+land = re.sub(r'\s*<li><a href="#manifesto"[^>]*>Manifesto</a></li>', '', land)
+land = re.sub(r'(<li><a href="#funziona"(\s*class="[^"]*")>Come funziona</a></li>)', r'\1\n      <li><a href="#percorsi"\2>Percorsi</a></li>', land)
+assert land.count('href="#percorsi"') >= 3, land.count('href="#percorsi"')
+# stile della v3 e foto che cambiano con la sezione
+CSS_V3 = '''<style>
+  /* Home v3 */
+  .split-foto .foto { opacity: 0; transition: opacity 1.6s cubic-bezier(.4,0,.2,1); }
+  .split-foto .foto.is-on { opacity: 1; }
+  @media (max-width: 767px) { .split-foto { aspect-ratio: 4 / 5; max-height: 78svh; } }
+  .frase summary:hover .testo, .frase summary:focus-visible .testo { color: #7A1E2B; }
+  .frase .piu { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  .frase[open] .piu { transform: rotate(45deg); }
+  .riga { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+  .riga .val { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; line-height: 1; color: #1A1A1A; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @media (min-width: 768px) { .riga .val { font-size: 30px; } }
+  .faq-p { break-inside: avoid; margin-bottom: 24px; }
+  .contatti-righe a { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 26px 24px; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(28px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.02em; color: #F0E7D5; transition: background .25s ease; }
+  @media (min-width: 768px) { .contatti-righe a { padding: 30px max(40px, calc((100vw - 1280px) / 2 + 40px)); } }
+  .contatti-righe li:nth-child(odd) a { background: #5C1520; }
+  .contatti-righe a:hover, .contatti-righe a:focus-visible { background: #4A1019; }
+  .contatti-righe .v { font-size: clamp(18px, .55em, 34px); white-space: nowrap; }
+  .gift .arrow { transition: transform .2s ease; }
+  .gift:hover .arrow { transform: translateX(4px); }
+  .diag-card { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; transform: none !important; }
+  .diag-card .pm-ink { stroke-dashoffset: 0 !important; animation: none !important; }
+  .diag-card .pm-stamp, .diag-card .pm-fade, .diag-card .pm-dot { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .diag-card .pm-ripple { display: none; }
+  @media (prefers-reduced-motion: reduce) { .split-foto .foto { transition: none; } .diag-card .pm-stamp { opacity: 1; transform: none; } }
+</style>
 '''
-k = land.index('<section id="perche-me"'); k = land.rfind('\n', 0, land.rfind('<!--', 0, k))
-land = land[:k] + BLOG + land[k:]
-# 6g. contatti: il regalo accanto al prezzo, con lo stesso timbro
-old = '''<div class="price-stamp text-center">'''; assert land.count(old) == 1
-land = land.replace('<div class="md:col-span-4 flex justify-start md:justify-end reveal" data-delay="1">\n        ' + old,
-  '''<div class="md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-4 md:justify-items-end reveal" data-delay="1">
-        <div class="price-stamp text-center w-full md:w-[220px]">
-          <div class="text-[10px] tracking-[0.32em] uppercase opacity-80 mb-1">Prima di tutto</div>
-          <div class="text-[56px] md:text-[68px] leading-none">15′</div>
-          <div class="text-[10px] tracking-[0.32em] uppercase opacity-80 mt-2">in regalo</div>
-        </div>
-        ''' + old.replace('text-center', 'text-center w-full md:w-[220px]'))
+land = land.replace('</head>', CSS_V3 + '</head>', 1)
+# menu completo solo da 1024px: sotto, il menu a panino (a 768 le voci andavano a capo)
+for a_, b_ in [('<ul class="hidden md:flex items-center gap-9', '<ul class="hidden lg:flex items-center gap-9'),
+               ('class="md:hidden inline-flex flex-col justify-center gap-[5px]', 'class="lg:hidden inline-flex flex-col justify-center gap-[5px]'),
+               ('class="md:hidden fixed inset-0 z-[9998]', 'class="lg:hidden fixed inset-0 z-[9998]')]:
+    assert a_ in land, a_; land = land.replace(a_, b_, 1)
+land = land.replace('<div class="text-[10px] tracking-[0.28em] uppercase text-brand-cream/60 mb-5">', '<div class="font-body text-[15px] text-brand-cream/80 mb-4">')
+land = land.replace('<div class="tracking-[0.18em] uppercase">© 2026 · aleedusex</div>', '<div>© 2026 · aleedusex</div>')
+land = land.replace('max-w-3xl pb-16 md:pb-20 border-b border-brand-cream/15', 'max-w-3xl pb-16 md:pb-20').replace('pt-6 border-t border-brand-cream/12 flex', 'pt-6 flex')
+FOTO_JS = """
+<script>
+  // Home v3: la foto ferma cambia piano piano con la sezione che stai leggendo.
+  (function () {
+    var foto = document.querySelectorAll('.split-foto .foto');
+    if (!foto.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) {
+        if (!v.isIntersecting) return;
+        var k = v.target.getAttribute('data-foto-per');
+        foto.forEach(function (f) { f.classList.toggle('is-on', f.getAttribute('data-foto') === k); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('[data-foto-per]').forEach(function (s) { io.observe(s); });
+  })();
+</script>
+"""
+k = land.rindex('</body>'); land = land[:k] + FOTO_JS + land[k:]
+# menu da telefono: da chiuso è inattivo (niente tab sui link nascosti), all'apertura il focus va su «Chiudi»
+for a_, b_ in [
+  ('transform: translateX(100%); transition: transform 320ms cubic-bezier(.2,.7,.2,1);"\n  aria-hidden="true"',
+   'transform: translateX(100%); transition: transform 320ms cubic-bezier(.2,.7,.2,1); visibility: hidden;"\n  aria-hidden="true" inert'),
+  ("      menu.style.transform = 'translateX(0)';", "      menu.removeAttribute('inert'); menu.style.visibility = 'visible';\n      menu.style.transform = 'translateX(0)';\n      setTimeout(function () { closeBtn.focus(); }, 50);"),
+  ("      menu.style.transform = 'translateX(100%)';", "      menu.style.transform = 'translateX(100%)';\n      menu.setAttribute('inert', '');\n      setTimeout(function () { if (!isOpen) menu.style.visibility = 'hidden'; }, 330);\n      toggle.focus();")]:
+    assert a_ in land, a_[:50]; land = land.replace(a_, b_, 1)
 wr('index.html', land)
 # video e copertine
 (OUT / 'video').mkdir(exist_ok=True)
@@ -377,7 +423,6 @@ def sost(path, a, b):
     h = rd(path); assert a in h, (path, a[:60]); wr(path, h.replace(a, b))
 # A1. niente più «nessun modulo» dove il modulo c'è
 sost('legale.html', 'non ha moduli e non traccia nessuno', 'non traccia nessuno')
-sost('index.html', 'Nessuna segreteria, nessun modulo, nessuna AI.', 'Nessuna segreteria, nessuna AI.')
 # A2. niente segnaposto online: disdette nascoste finché Alessio non manda il testo; conservazione 12 mesi (da confermare)
 h = rd('legale.html'); h = re.sub(r'\n\n      <section id="disdette">.*?</section>', '', h, flags=re.S); wr('legale.html', h)
 h = rd('index.html'); h = re.sub(r'\s*<a href="/legale.html#disdette"[^>]*>[^<]*</a>', '', h); wr('index.html', h)
@@ -426,6 +471,69 @@ for f in OUT.rglob('*.html'):
     if f.name.startswith('_'): continue
     h = f.read_text(); n = virgolette(h)
     if n != h: f.write_text(n)
+
+
+# ── 11. v3: blog e articoli più calmi (revisione del 4/11, punti B5, B6, B9, B3) ──
+GIFT_URL3 = 'https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti.'
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* v3: niente timbro, testo semplice */
+.stamp { background: none !important; color: inherit !important; padding: 0 !important; box-shadow: none !important; transform: none !important; animation: none !important; font-style: normal !important; border-radius: 0 !important; display: inline !important; }
+/* v3: «In breve» subito sotto il sommario */
+.article-head + .in-breve, .in-breve.su { margin: 8px 0 48px; }
+/* v3: la domanda anonima si apre a richiesta */
+.domanda { margin: 32px 0 56px; padding-top: 28px; }
+.domanda summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 44px; }
+.domanda summary::-webkit-details-marker { display: none; }
+.domanda summary::after { content: "+"; font-family: var(--display); font-size: 32px; line-height: 1; color: var(--burgundy); transition: transform 300ms cubic-bezier(.16,1,.3,1); }
+.domanda[open] summary::after { transform: rotate(45deg); }
+.domanda summary:hover h2, .domanda summary:focus-visible h2 { color: var(--burgundy); }
+.domanda h2 { font-size: 26px; }
+.cta-box::before { display: none !important; }
+/* v3: niente ombre a riposo, niente maiuscoletto spaziato: scrittura normale come nella home */
+.cta-box { box-shadow: none !important; }
+.post-meta, .article-head .post-meta { text-transform: none; letter-spacing: 0; font-size: 15px; }
+.in-breve .eyebrow, .site-footer .label, .cta-box .eyebrow { text-transform: none; letter-spacing: 0; font-size: 15px; }
+.site-footer .legal .copy { text-transform: none; letter-spacing: 0; }
+''')
+for f in OUT.rglob('*.html'):
+    if f.name.startswith('_'): continue
+    h = f.read_text(); o = h
+    # 15 minuti: una formula sola e WhatsApp con il messaggio già scritto
+    h = h.replace('Hai solo una domanda? Una telefonata di 15 minuti, gratis', 'Hai solo una domanda? Una telefonata di 15 minuti, gratis')
+    h = h.replace('Hai solo una domanda? 15 minuti al telefono, te li regalo io', 'Hai solo una domanda? Una telefonata di 15 minuti, gratis')
+    h = h.replace('i primi 15 minuti te li regalo io', 'ci sentiamo 15 minuti al telefono, gratis')
+    h = h.replace('<a class="gift" href="https://wa.me/393273003855"', f'<a class="gift" href="{GIFT_URL3}"')
+    # niente etichette sopra i titoli
+    h = h.replace('<p class="eyebrow">Cominciamo da qui</p>', '').replace('<p class="eyebrow">Blog</p>', '')
+    h = h.replace('<h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>', '<h2 id="cta-titolo">Ne vuoi parlare?</h2>')
+    if h != o: f.write_text(h)
+for slug in LI:
+    p = f'blog/{slug}.html'; a = rd(p)
+    # «In breve» in alto, prima del testo
+    ib = re.search(r'\n\s*<aside class="in-breve".*?</aside>', a, re.S)
+    if ib:
+        a = a.replace(ib.group(0), '')
+        a = a.replace('<div class="prose">', ib.group(0).strip().replace('class="in-breve"', 'class="in-breve su"') + '\n    <div class="prose">', 1)
+    # un solo blocco finale: consulenza, poi la domanda anonima chiusa
+    dm = re.search(r'<section class="domanda".*?</section>\n\n', a, re.S); assert dm, slug
+    a = a.replace(dm.group(0), '')
+    d = dm.group(0).strip()
+    d = d.replace('<section class="domanda" aria-labelledby="domanda-titolo">\n      <h2 id="domanda-titolo">Hai una domanda su questo tema?</h2>',
+                  '<details class="domanda">\n      <summary><h2 id="domanda-titolo">Preferisci fare una domanda anonima?</h2></summary>')
+    assert d.startswith('<details'), slug
+    d = d[:d.rindex('</section>')] + '</details>'
+    i = a.index('<section class="cta-box"'); j = a.index('</section>', i) + len('</section>')
+    a = a[:j] + '\n\n    ' + d + a[j:]
+    wr(p, a)
+# Approfondimenti: fuori da Google finché ha pochi articoli, niente «In arrivo»
+p = 'blog/approfondimenti-e-attualita/index.html'; h = rd(p)
+h = re.sub(r'<p class="soon">.*?</p>', '', h, flags=re.S)
+h = h.replace('<head>', '<head>\n<meta name="robots" content="noindex, follow">', 1); wr(p, h)
+sm = rd('sitemap.xml'); sm = re.sub(r'\n\s*<url><loc>[^<]*/blog/approfondimenti-e-attualita/</loc></url>', '', sm); wr('sitemap.xml', sm)
+# home: il menu a panino accanto a «Scrivimi», non in mezzo
+h = rd('index.html'); a_ = 'class="lg:hidden inline-flex flex-col justify-center gap-[5px]'; assert a_ in h
+wr('index.html', h.replace(a_, 'class="lg:hidden ml-auto mr-4 inline-flex flex-col justify-center gap-[5px]', 1))
 
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
