@@ -285,7 +285,7 @@ BLOG = f'''<!-- ═══════ Dal blog: capitolo scuro, ultimi articoli 
   <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
       <div class="lg:col-span-5">
-        <h2 class="font-display text-brand-cream text-[40px] sm:text-[52px] lg:text-[60px] leading-[1.0] tracking-tighter2 reveal">Se preferisci <span class="italic">leggere prima.</span></h2>
+        <h2 class="font-display text-brand-cream text-[44px] sm:text-[56px] lg:text-[72px] leading-[0.98] tracking-tighter2 reveal">Se preferisci <span class="italic">leggere prima.</span></h2>
         <p class="mt-6 font-body text-brand-cream text-[18px] leading-[1.6] reveal" data-delay="1">Nel blog rispondo alle domande che si fanno a bassa voce. Ogni articolo parte da una frase vera: quella che di solito non si dice a nessuno.</p>
         <a href="/blog/" class="btn-cream-on-burgundy mt-10 reveal" data-delay="2">Vai al blog <span aria-hidden="true">→</span></a>
       </div>
@@ -297,6 +297,7 @@ BLOG = f'''<!-- ═══════ Dal blog: capitolo scuro, ultimi articoli 
     </ul>
   </div>
 </section>'''
+PREZZO_SINGOLO = 100   # incontro singolo da 60 minuti: DA CONFERMARE con Alessio (serve per mostrare il risparmio)
 # percorsi: prima scegli per chi (da solo, in coppia, in gruppo), poi vedi solo quelli adatti; funziona anche senza JavaScript
 P = [
  ('al-cuore-del-problema', 'Al cuore del problema', '450&nbsp;€', 'solo coppia', 'Cinque incontri per capire dove si è bloccato qualcosa e cosa fare, con il metodo DEOPIARCA della Scuola di sessuologia di Torino.', 'Da solo o in coppia. 5 incontri da 60 minuti, ogni due settimane. Il prezzo è per tutto il percorso.', '58 s'),
@@ -304,9 +305,19 @@ P = [
  ('laboratorio-del-piacere-consapevole', 'Laboratorio del piacere consapevole', '400&nbsp;€', 'coppia gruppo', 'Per coppie: corpo, desiderio, comunicazione, sex toys. Niente nudità né pratiche esplicite.', 'In piccolo gruppo: 4 incontri da 90 minuti, al massimo 3 coppie. Prezzo a coppia.', '2 min 16'),
  ('parliamo-di-sessualita-ai-figli', 'Parliamo di sessualità ai figli', '280&nbsp;€', 'gruppo', 'Per genitori con figli tra 4 e 18 anni: come rispondere alle domande, età per età.', 'In piccolo gruppo: 4 incontri da 90 minuti, al massimo 8 persone.', '1 min 46'),
 ]
+def risparmio(slug, prezzo):
+    tot = int(re.sub(r'\D', '', prezzo))
+    if slug == 'al-cuore-del-problema':
+        singoli = 5 * PREZZO_SINGOLO
+        if singoli > tot:
+            return (f'<span class="barrato" aria-label="invece di {singoli} euro con 5 incontri singoli"><s>{singoli}&nbsp;€</s></span><span class="val">{prezzo}</span>'
+                    f'<span class="risparmi">Risparmi {singoli - tot}&nbsp;€</span>')
+    n = {'dialogo-positivo-sul-desiderio': 3, 'laboratorio-del-piacere-consapevole': 4, 'parliamo-di-sessualita-ai-figli': 4}.get(slug)
+    extra = f'<span class="a-incontro">{round(tot / n)}&nbsp;€ a incontro da 90 minuti</span>' if n else ''
+    return f'<span class="val">{prezzo}</span>{extra}'
 voci = ''.join(f'''
           <li class="voce pt-8 pb-2" data-per="{per}">
-            <div class="riga"><span class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.12] tracking-tightish">{nome}</span><span class="val">{prezzo}</span></div>
+            <div class="riga"><span class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.12] tracking-tightish">{nome}</span><span class="prezzi">{risparmio(slug, prezzo)}</span></div>
             <p class="mt-2 font-body text-[17px] leading-[1.6] text-brand-ink max-w-[38em]">{desc}</p>
             {video(slug, durata, nome)}
             <p class="mt-3 font-body text-[16px] leading-[1.55] text-brand-ink/80 max-w-[38em]">{meta}</p>
@@ -317,7 +328,7 @@ PERCORSI = f'''<!-- ═══════ I percorsi: prima scegli per chi ═�
   <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-36">
     <div class="grid lg:grid-cols-12 gap-10 md:gap-16">
       <div class="lg:col-span-4">
-        <h2 class="font-display text-brand-ink text-[34px] md:text-[48px] leading-[1.02] tracking-tighter2 reveal">I percorsi, <span class="italic text-brand-burgundy">se servono.</span></h2>
+        <h2 class="font-display text-brand-ink text-[44px] md:text-[56px] lg:text-[64px] leading-[0.98] tracking-tighter2 reveal">I percorsi, <span class="italic text-brand-burgundy">se servono.</span></h2>
         <p class="mt-6 font-body text-brand-ink text-[18px] leading-[1.6] reveal" data-delay="1">Te li propongo dopo la prima consulenza, solo se hanno senso per te. Ognuno ha un obiettivo chiaro e un numero di incontri definito. Si prenotano come la prima consulenza.</p>
         <a href="#contatti" class="btn-burgundy mt-10 reveal" data-delay="2">Scrivimi per un percorso <span class="arr" aria-hidden="true">→</span></a>
       </div>
@@ -327,6 +338,7 @@ PERCORSI = f'''<!-- ═══════ I percorsi: prima scegli per chi ═�
           {scelte}
           <ul class="voci">{voci}
           </ul>
+          <p class="nota-singolo mt-6 font-body text-[15px] text-brand-ink/80">Un incontro singolo costa {PREZZO_SINGOLO}&nbsp;€ <span class="text-brand-burgundy">[prezzo d’esempio, da confermare con Alessio]</span>.</p>
         </fieldset>
       </div>
     </div>
@@ -354,6 +366,10 @@ for k, (q, r) in enumerate(QA, 1):
 FAQ = re.sub(r'(<ul class="border-y[^>]*>).*(</ul>)', lambda m: m.group(1) + '\n          ' + '\n          '.join(nuovi) + '\n        ' + m.group(2), faq_old, count=1, flags=re.S)
 FAQ = FAQ.replace('<section id="faq" class="bg-brand-cream">', '<section id="faq" class="bg-brand-paper">')
 assert FAQ.count('<details') == 5
+FAQ = FAQ.replace('Sono le frasi che mi ripetono in privato, prima di prenotare.', 'Sono le cose che sento più spesso, prima di una prima consulenza.')
+assert 'cose che sento più spesso' in FAQ
+assert 'text-[44px] sm:text-[56px] md:text-[72px]' in FAQ
+FAQ = FAQ.replace('text-[44px] sm:text-[56px] md:text-[72px]', 'text-[44px] sm:text-[56px] md:text-[44px] lg:text-[60px]', 1)
 corpo = (PERC.parent / 'generatore' / 'home-v3.html').read_text()
 for k, v in {'{{FRASI}}': frasi, '{{BLOG}}': BLOG, '{{PERCORSI}}': PERCORSI, '{{DIAGRAMMA}}': DIAG, '{{VIDEO_PRIMA}}': VIDEO_PRIMA, '{{GIFT_URL}}': GIFT_URL, '{{EMAIL_ENT}}': EMAIL_ENT, '{{FAQ}}': FAQ}.items():
     assert k in corpo, k; corpo = corpo.replace(k, v)
@@ -400,6 +416,12 @@ CSS_V3 = '''<style>
   #per-solo:checked ~ .voci .voce:not([data-per~="solo"]),
   #per-coppia:checked ~ .voci .voce:not([data-per~="coppia"]),
   #per-gruppo:checked ~ .voci .voce:not([data-per~="gruppo"]) { display: none; }
+  /* v4.1: prezzi con il risparmio */
+  .prezzi { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; }
+  .prezzi .barrato { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; color: rgba(26,26,26,.7); }
+  .prezzi .risparmi { display: inline-block; margin-top: 4px; padding: 4px 10px; background: #7A1E2B; color: #F0E7D5; font-size: 14px; font-weight: 600; white-space: nowrap; }
+  .prezzi .a-incontro { font-size: 14px; color: rgba(26,26,26,.78); white-space: nowrap; }
+  @media (max-width: 640px) { .voce .riga { flex-direction: column; gap: 6px; } .voce .prezzi { align-items: flex-start; text-align: left; } }
   /* v4: video grande su fondo scuro */
   .vbox { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: rgba(26,26,26,.94); padding: 56px 16px 24px; }
   .vbox[hidden] { display: none; }
