@@ -261,25 +261,38 @@ frasi = ''.join(f'''
 diag = re.search(r'(<svg class="pm-map pm-map-h".*?</svg>\s*<svg class="pm-map pm-map-v".*?</svg>)', land, re.S).group(1)
 diag = re.sub(r'\s*<defs>.*?</defs>', '', diag, flags=re.S).replace(' filter="url(#pm-shadow-h)"', '').replace(' filter="url(#pm-shadow-v)"', '')
 DIAG = f'<div class="diag-card reveal">{diag}</div>'
-# blog: i nomi delle sezioni grandi, come un indice
-ultimo = max(LI, key=lambda a: date[a])
-nomi = ''.join(f'''
-          <li><a href="/blog/{s["slug"]}/" class="group flex items-baseline justify-between gap-6 py-3 md:py-4"><span class="font-display text-brand-ink text-[28px] md:text-[40px] xl:text-[48px] leading-[1.05] tracking-tighter2 group-hover:text-brand-burgundy transition-colors">{s["nome"]}</span><span class="font-body text-[15px] text-brand-ink/80 whitespace-nowrap">{n_art(s)} <span class="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span></a></li>''' for s in SEZ)
-BLOG = f'''<!-- ═══════ Dal blog: i nomi delle sezioni come indice ═══════ -->
-<section id="dal-blog" class="bg-brand-paper">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-36">
-    <div class="grid lg:grid-cols-12 gap-10 md:gap-16">
-      <div class="lg:col-span-4">
-        <h2 class="font-display text-brand-ink text-[34px] md:text-[48px] leading-[1.02] tracking-tighter2 reveal">Se preferisci leggere prima.</h2>
-        <p class="mt-6 font-body text-brand-ink text-[18px] leading-[1.6] reveal" data-delay="1">Nel blog rispondo alle domande che si fanno a bassa voce, un tema alla volta.</p>
-        <p class="mt-8 font-body text-[16px] text-brand-ink/80 reveal" data-delay="1">Ultimo articolo:<br><a href="/blog/{ultimo}.html" class="font-display text-brand-ink text-[22px] leading-[1.25] underline underline-offset-4 decoration-brand-burgundy/35 hover:text-brand-burgundy">{titoli[ultimo]}</a></p>
-        <a href="/blog/" class="btn-burgundy mt-10 reveal" data-delay="2">Vai al blog <span class="arr" aria-hidden="true">→</span></a>
-      </div>
-      <ol class="lg:col-span-8 reveal" data-delay="1">{nomi}
-      </ol>
+# blog in home: fascia scura con gli ultimi articoli (copertina + la frase del lettore), poi le sezioni
+def dati(slug):
+    a = (SITE / f'blog/{slug}.html').read_text()
+    fr = re.search(r'<p class="frase">([^<]+)</p>', a); cv = re.search(r'<figure class="cover">\s*<img src="/blog/img/([^"]+)"', a)
+    return (fr.group(1).strip() if fr else ''), (cv.group(1) if cv else None)
+ultimi = sorted(LI, key=lambda a: date[a], reverse=True)[:3]
+def card(slug, grande):
+    fr, cv = dati(slug)
+    img = f'<img src="/blog/img/{cv if grande else "mini/" + cv}" alt="" width="{1600 if grande else 720}" height="{1000 if grande else 450}" loading="lazy" decoding="async" class="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-[1.02]">' if cv else ''
+    return f'''
+        <li class="{"md:col-span-2 md:row-span-2" if grande else ""}"><a href="/blog/{slug}.html" class="group block">
+          <div class="overflow-hidden">{img}</div>
+          <p class="mt-5 font-display text-brand-cream {"text-[26px] md:text-[34px]" if grande else "text-[21px]"} leading-[1.22] tracking-tightish">{fr}</p>
+          <p class="mt-3 font-body text-[16px] leading-[1.5] text-brand-cream/80 group-hover:text-brand-cream underline underline-offset-4 decoration-brand-cream/30">{titoli[slug]}</p>
+        </a></li>'''
+sezioni_link = ' '.join(f'<a href="/blog/{s["slug"]}/" class="underline underline-offset-4 decoration-brand-cream/30 hover:text-brand-cream">{s["nome"]}</a>' for s in SEZ)
+BLOG = f'''<!-- ═══════ Dal blog: fascia scura, gli ultimi articoli con la frase del lettore ═══════ -->
+<section id="dal-blog" class="bg-brand-ink text-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end">
+      <h2 class="lg:col-span-7 font-display text-brand-cream text-[44px] sm:text-[60px] lg:text-[80px] leading-[0.98] tracking-tighter2 reveal">Se preferisci leggere prima.</h2>
+      <p class="lg:col-span-5 font-body text-brand-cream text-[18px] md:text-[19px] leading-[1.6] reveal" data-delay="1">Nel blog rispondo alle domande che si fanno a bassa voce. Ogni articolo parte da una frase vera: quella che di solito non si dice a nessuno.</p>
+    </div>
+    <ul class="mt-14 md:mt-20 grid md:grid-cols-3 gap-x-10 gap-y-12 reveal" data-delay="1">{card(ultimi[0], True)}{card(ultimi[1], False)}{card(ultimi[2], False)}
+    </ul>
+    <div class="mt-16 grid lg:grid-cols-12 gap-8 items-start">
+      <a href="/blog/" class="btn-cream-on-burgundy lg:col-span-3 self-start justify-self-start">Vai al blog <span aria-hidden="true">→</span></a>
+      <p class="lg:col-span-9 font-body text-[16px] leading-[2] text-brand-cream/80 [&_a]:mr-5">Le sezioni: {sezioni_link}</p>
     </div>
   </div>
 </section>'''
+
 # percorsi: come un listino, raggruppati
 P = [
  ('Da solo o in coppia', [
@@ -347,13 +360,13 @@ CSS_V3 = '''<style>
   .gift .arrow { transition: transform .2s ease; }
   .gift:hover .arrow { transform: translateX(4px); }
   .diag-card { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; transform: none !important; }
-  .diag-card .pm-ink { stroke-dashoffset: 0 !important; animation: none !important; }
-  .diag-card .pm-stamp, .diag-card .pm-fade, .diag-card .pm-dot { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .diag-card .pm-ripple { display: none; }
   @media (prefers-reduced-motion: reduce) { .split-foto .foto { transition: none; } .diag-card .pm-stamp { opacity: 1; transform: none; } }
 </style>
 '''
 land = land.replace('</head>', CSS_V3 + '</head>', 1)
+for a_, b_ in [("var navLinks = document.querySelectorAll('header nav a[href^=\"#\"]');", "var navLinks = document.querySelectorAll('header nav a.nav-desktop-link[href^=\"#\"]');"),
+               ("var active = document.querySelector('header nav a[href=\"#' + e.target.id + '\"]');", "var active = document.querySelector('header nav a.nav-desktop-link[href=\"#' + e.target.id + '\"]');")]:
+    assert a_ in land, a_; land = land.replace(a_, b_, 1)
 # menu completo solo da 1024px: sotto, il menu a panino (a 768 le voci andavano a capo)
 for a_, b_ in [('<ul class="hidden md:flex items-center gap-9', '<ul class="hidden lg:flex items-center gap-9'),
                ('class="md:hidden inline-flex flex-col justify-center gap-[5px]', 'class="lg:hidden inline-flex flex-col justify-center gap-[5px]'),
@@ -535,6 +548,66 @@ sm = rd('sitemap.xml'); sm = re.sub(r'\n\s*<url><loc>[^<]*/blog/approfondimenti-
 h = rd('index.html'); a_ = 'class="lg:hidden inline-flex flex-col justify-center gap-[5px]'; assert a_ in h
 wr('index.html', h.replace(a_, 'class="lg:hidden ml-auto mr-4 inline-flex flex-col justify-center gap-[5px]', 1))
 
+
+# ── 12. v3.1: blog più ricco (Impeccable «bolder» + Taste: immagini vere, la frase del lettore) ──
+from PIL import Image
+(OUT / 'blog/img/mini').mkdir(exist_ok=True)
+FRASE, COVER = {}, {}
+for slug in LI:
+    a = (SITE / f'blog/{slug}.html').read_text()
+    m = re.search(r'<p class="frase">([^<]+)</p>', a); FRASE[slug] = m.group(1).strip() if m else ''
+    c = re.search(r'<figure class="cover">\s*<img src="/blog/img/([^"]+)" alt="([^"]*)"', a)
+    if c:
+        COVER[slug] = (c.group(1), c.group(2))
+        im = Image.open(SITE / 'blog/img' / c.group(1)).convert('RGB'); im.thumbnail((720, 450), Image.LANCZOS)
+        im.save(OUT / 'blog/img/mini' / c.group(1), quality=80, optimize=True, progressive=True)
+def ricco(h):
+    def un(m):
+        li = m.group(0); slug = re.search(r'<a href="/blog/([^"]+)\.html">', li).group(1)
+        lead = 'post-item--lead' in li
+        if slug in COVER:
+            f, alt = COVER[slug]; src = f'/blog/img/{f}' if lead else f'/blog/img/mini/{f}'
+            w, hh = (1600, 1000) if lead else Image.open(OUT / 'blog/img/mini' / f).size
+            li = li.replace(f'<a href="/blog/{slug}.html">', f'<a href="/blog/{slug}.html">\n          <img class="post-cover" src="{src}" alt="" width="{w}" height="{hh}" loading="{"eager" if lead else "lazy"}" decoding="async">', 1)
+        if FRASE.get(slug):
+            li = li.replace('<h2 class="post-title">', f'<p class="post-frase">{FRASE[slug]}</p>\n          <h2 class="post-title">', 1)
+        return li
+    return re.sub(r'<li class="post-item[^"]*">.*?</li>', un, h, flags=re.S)
+for p in ['blog/index.html'] + [f'blog/{s["slug"]}/index.html' for s in SEZ]:
+    wr(p, ricco(rd(p)))
+# /blog/: le sezioni salgono accanto al titolo (riempiono il vuoto a destra)
+h = rd('blog/index.html')
+sez = re.search(r'\s*<section class="wrap sez-index" aria-labelledby="sezioni-h">.*?</section>', h, re.S).group(0)
+h = h.replace(sez, '')
+hero = re.search(r'<section class="blog-hero">\s*<div class="wrap">(.*?)</div>\s*</section>', h, re.S)
+nuovo = ('<section class="blog-hero blog-hero-v31">\n    <div class="wrap hero-grid">\n      <div class="hero-testo">' + hero.group(1) +
+         '</div>\n      <nav class="hero-sez" aria-labelledby="sezioni-h">\n        <h2 id="sezioni-h">Le sezioni</h2>\n        ' +
+         re.search(r'<ol class="sez-list">.*?</ol>', sez, re.S).group(0) + '\n      </nav>\n    </div>\n  </section>')
+h = h.replace(hero.group(0), nuovo); wr('blog/index.html', h)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v3.1: blog più ricco ── */
+.blog-hero-v31 .hero-grid { display: grid; gap: 48px; }
+.hero-sez h2 { font-family: var(--display); font-size: 24px; line-height: 1.1; }
+.hero-sez .sez-list { margin-top: 12px; }
+.hero-sez .sez-list .n { font-size: 22px; }
+@media (min-width: 1024px) {
+  .blog-hero-v31 .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 80px; align-items: end; }
+}
+.post-cover { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: var(--paper); margin-bottom: 20px; transition: transform 500ms cubic-bezier(.16,1,.3,1); }
+.post-item > a { overflow: hidden; }
+.post-item > a:hover .post-cover { transform: scale(1.02); }
+.post-frase { font-family: var(--display); font-size: 21px; line-height: 1.25; color: var(--burgundy); margin: 10px 0 8px; max-width: 30em; }
+.post-item--lead .post-frase { font-size: 26px; }
+@media (min-width: 768px) {
+  .post-item > a { grid-template-columns: 300px 1fr; column-gap: 48px; }
+  .post-item > a .post-cover { grid-column: 1; grid-row: 1 / span 6; margin-bottom: 0; align-self: start; }
+  .post-item > a > .post-meta { grid-column: 2; padding-top: 0; }
+  .post-item--lead > a { grid-template-columns: 1fr; }
+  .post-item--lead > a .post-cover { grid-row: auto; margin-bottom: 28px; aspect-ratio: 16 / 9; }
+  .post-item--lead > a > * { grid-column: 1 !important; }
+}
+''')
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
