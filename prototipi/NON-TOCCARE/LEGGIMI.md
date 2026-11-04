@@ -103,3 +103,19 @@ tutto: si carica su Netlify come **sito nuovo e separato** (mai sopra aleedusex.
 link ad Alessio. Senza `--prova` esce la versione definitiva; quando si passa al sito vero va
 aggiornato anche `verifica.sh` (niente più `post-item--lead`, In breve con classe `in-breve pz`) e
 `PUBBLICARE.md` (ogni articolo nuovo va anche nella sua sezione).
+
+### Versione 2 (4 novembre, dopo il vocale di Alessio)
+
+Alessio: il blog a pizzini è pesante e disordinato; logo nuovo in testata; percorsi da sistemare
+e con i video; il blog deve comparire anche nella home; il regalo dei 15 minuti si perde.
+Mirko: i colori restano, si lavora su leggibilità e calma; i video ai percorsi sì.
+
+- Blog: la pagina di oggi + «Le sezioni» a righe (icona, nome, numero di articoli); la sezione
+  compare sotto la data di ogni articolo. Niente scotch, rotazioni o riquadri.
+- Pagine sezione `/blog/<sezione>/`: stessa lista del blog, disegno della sezione, testo di Alessio.
+- Home: logo nuovo, blocco «Se preferisci leggere prima» dopo «Di cosa possiamo parlare», percorsi
+  a righe sotto il passo 3 con «Guarda il video» (si carica solo premendo play), video della prima
+  consulenza al passo 2, regalo dei 15 minuti nel passo 1, nell'hero e come timbro nei contatti.
+- File: `percorsi/logo-testata.png` (logo ritagliato, 3×), `percorsi/poster/` (copertine con solo
+  Alessio). I video non sono nel repository: si comprimono dagli originali del Drive (540p) e si
+  passano con `--media`. `percorsi/sezione-percorsi.html` è la prima prova, superata.
