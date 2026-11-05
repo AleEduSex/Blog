@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/storia-del-preservativo"
+  to = "/blog/storia-del-preservativo.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/kink-piu-comuni-quali-sono"
+  to = "/blog/kink-piu-comuni-quali-sono.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/amore-e-desiderio-nella-coppia"
   to = "/blog/amore-e-desiderio-nella-coppia.html"
   status = 301
