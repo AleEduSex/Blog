@@ -842,6 +842,80 @@ for f in OUT.rglob('*.html'):
     hh = hh.replace('>aleedusex<', '>AleEduSex<').replace('© 2026 · aleedusex', '© 2026 · AleEduSex')
     hh = hh.replace('Una telefonata di 15 minuti, gratis', 'Una telefonata di 15 minuti. Gratis')
     if hh != o: f.write_text(hh)
+
+# ── 16. v5: testa del blog «Da dove parti?» (brainstorming del 5/11: muro delle frasi + ingresso dal problema) ──
+DOVE = {  # una frase per sezione, nella voce di chi legge: DA FAR APPROVARE AD ALESSIO
+ 'corpo-piacere-e-fantasie': 'Voglio capire come funziona il mio piacere.',
+ 'prevenzione-e-salute': 'Ho avuto un rapporto a rischio. E adesso?',
+ 'comunicazione-relazioni-e-consenso': 'Non riesco a parlarne con chi ho accanto.',
+ 'difficolta-e-blocchi': 'Qualcosa si è inceppato e non so perché.',
+ 'approfondimenti-e-attualita': 'Voglio capire da dove arrivano certe idee sul sesso.',
+}
+h = rd('blog/index.html')
+hero = re.search(r'<section class="blog-hero blog-hero-v31">.*?</section>', h, re.S).group(0)
+testo = re.search(r'<div class="hero-testo">(.*?)</div>\s*<nav class="quadretti"', hero, re.S).group(1)
+quad = re.search(r'<nav class="quadretti".*?</nav>', hero, re.S).group(0)
+frasi_dove = ''.join(f'''
+          <li><a href="/blog/{s["slug"]}/"><span class="f">«{DOVE[s["slug"]]}»</span><span class="s">{s["nome"]} <span aria-hidden="true">→</span></span></a></li>''' for s in SEZ)
+nuovo = f'''<section class="blog-hero dove">
+    <div class="wrap dove-grid">
+      <div class="hero-testo">{testo}</div>
+      <nav class="dove-parti" aria-labelledby="dove-h">
+        <h2 id="dove-h">Da dove parti?</h2>
+        <ul>{frasi_dove}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section class="wrap quadretti-sec" aria-label="Le sezioni del blog">
+      {quad}
+  </section>'''
+h = h.replace(hero, nuovo); wr('blog/index.html', h)
+# pagine sezione: stessa testa bordeaux, con la frase della sezione sopra il titolo
+for s in SEZ:
+    p = f'blog/{s["slug"]}/index.html'; hh = rd(p)
+    hh = hh.replace('<section class="blog-hero sez-hero">', '<section class="blog-hero sez-hero dove">', 1)
+    hh = hh.replace('<div class="head"><div><h1>', f'<div class="head"><div><p class="sez-frase">«{DOVE[s["slug"]]}»</p><h1>', 1)
+    wr(p, hh)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v5: testa del blog su bordeaux, «Da dove parti?» ── */
+.blog-hero.dove { background: var(--burgundy) !important; color: var(--cream); padding: 64px 0 72px; }
+.dove h1, .dove h1 .stamp { color: var(--cream) !important; }
+.dove .intro, .dove .lead { color: rgba(240, 231, 213, 0.92) !important; }
+.dove .crumb, .dove .crumb a { color: var(--cream) !important; }
+.dove .ill { --fg: var(--cream); --bg: var(--burgundy); color: var(--cream); }
+.dove-grid { display: grid; gap: 48px; }
+@media (min-width: 1024px) {
+  .blog-hero.dove { padding: 104px 0 112px; }
+  .dove-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 80px; align-items: center; }
+}
+.dove-parti h2 { font-family: var(--body); font-size: 17px; font-weight: 600; color: var(--cream); }
+.dove-parti ul { list-style: none; margin: 14px 0 0; padding: 0; }
+.dove-parti a { display: block; padding: 10px 0; color: var(--cream); }
+.dove-parti .f { display: block; font-family: var(--display); font-size: clamp(24px, 2.5vw, 34px); line-height: 1.15; letter-spacing: -0.01em; text-wrap: balance; }
+.dove-parti li:nth-child(even) .f { font-size: clamp(21px, 2vw, 28px); padding-left: clamp(0px, 3vw, 48px); }
+.dove-parti .s { display: block; margin-top: 4px; font-size: 15px; font-style: italic; color: rgba(240, 231, 213, 0.85); }
+.dove-parti li:nth-child(even) .s { padding-left: clamp(0px, 3vw, 48px); }
+.dove-parti a:hover .f, .dove-parti a:focus-visible .f { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.dove a:focus-visible { outline-color: var(--cream); }
+/* una frase alla volta si accende, piano (solo CSS) */
+@keyframes accendi { 0% { opacity: .72; } 4%, 18% { opacity: 1; } 22%, 100% { opacity: .72; } }
+@media (prefers-reduced-motion: no-preference) {
+  .dove-parti .f { opacity: .72; animation: accendi 15s ease-in-out infinite; }
+  .dove-parti li:nth-child(2) .f { animation-delay: 3s; } .dove-parti li:nth-child(3) .f { animation-delay: 6s; }
+  .dove-parti li:nth-child(4) .f { animation-delay: 9s; } .dove-parti li:nth-child(5) .f { animation-delay: 12s; }
+  .dove-parti ul:hover .f, .dove-parti ul:focus-within .f { animation-play-state: paused; }
+  .dove-parti li:hover .f, .dove-parti li:focus-within .f { opacity: 1 !important; animation: none; }
+}
+/* le frasi di sezione, sopra il titolo */
+.sez-frase { font-family: var(--display); font-style: italic; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; color: var(--cream); margin-bottom: 14px; }
+/* quadretti subito sotto il capitolo bordeaux */
+.quadretti-sec { padding-top: 48px; padding-bottom: 8px; }
+.quadretti-sec .quadretti a { background: var(--paper); }
+.quadretti-sec .quadretti a:hover { background: #EADFC9; }
+''')
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
