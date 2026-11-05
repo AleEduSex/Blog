@@ -399,6 +399,7 @@ CSS_V3 = '''<style>
   .contatti-righe a:hover, .contatti-righe a:focus-visible { background: #4A1019; }
   .contatti-righe .v { font-size: clamp(18px, .55em, 34px); white-space: nowrap; }
   .gift .arrow { transition: transform .2s ease; }
+  .bg-brand-burgundy ::selection, .bg-brand-ink ::selection, .bg-brand-burgundy-deep ::selection { background: rgba(240,231,213,.28); color: #F0E7D5; }
   .diag-card .pm-t-st-sig { text-transform: none; letter-spacing: .02em; }
   @keyframes assestaHome { from { scale: 1.08; opacity: .5; } to { scale: 1; opacity: 1; } }
   @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) { img.assesta { animation: assestaHome linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; } } }
@@ -909,6 +910,9 @@ with open(OUT / 'blog/blog.css', 'a') as c:
   .dove-parti ul:hover .f, .dove-parti ul:focus-within .f { animation-play-state: paused; }
   .dove-parti li:hover .f, .dove-parti li:focus-within .f { opacity: 1 !important; animation: none; }
 }
+/* selezione leggibile sulle parti scure; titolo con un filo di aria in più */
+.dove ::selection, .cta-box ::selection, .site-footer ::selection { background: rgba(240, 231, 213, 0.28); color: var(--cream); }
+.blog-hero.dove h1 { line-height: 1.06; }
 /* le frasi di sezione, sopra il titolo */
 .sez-frase { font-family: var(--display); font-style: italic; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; color: var(--cream); margin-bottom: 14px; }
 /* quadretti subito sotto il capitolo bordeaux */
