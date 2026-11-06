@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/come-dire-di-no-senza-sentirsi-in-colpa"
+  to = "/blog/come-dire-di-no-senza-sentirsi-in-colpa.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/eiaculazione-precoce-cause-e-cosa-fare"
+  to = "/blog/eiaculazione-precoce-cause-e-cosa-fare.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/storia-del-preservativo"
   to = "/blog/storia-del-preservativo.html"
   status = 301
