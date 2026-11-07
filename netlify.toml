@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/eiaculazione-ritardata-cause-e-cosa-fare"
+  to = "/blog/eiaculazione-ritardata-cause-e-cosa-fare.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/prima-volta-cosa-aspettarsi"
+  to = "/blog/prima-volta-cosa-aspettarsi.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/come-dire-di-no-senza-sentirsi-in-colpa"
   to = "/blog/come-dire-di-no-senza-sentirsi-in-colpa.html"
   status = 301
