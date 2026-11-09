@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/pulizia-intima-come-lavarsi-cosa-evitare"
+  to = "/blog/pulizia-intima-come-lavarsi-cosa-evitare.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/clitoride-come-funziona-e-piacere"
+  to = "/blog/clitoride-come-funziona-e-piacere.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/eiaculazione-ritardata-cause-e-cosa-fare"
   to = "/blog/eiaculazione-ritardata-cause-e-cosa-fare.html"
   status = 301
