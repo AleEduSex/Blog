@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/punto-g-esiste-davvero-cosa-dice-la-ricerca"
+  to = "/blog/punto-g-esiste-davvero-cosa-dice-la-ricerca.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/squirting-cose-e-da-dove-viene-il-liquido"
+  to = "/blog/squirting-cose-e-da-dove-viene-il-liquido.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/dolore-durante-i-rapporti-cause-e-cosa-fare"
   to = "/blog/dolore-durante-i-rapporti-cause-e-cosa-fare.html"
   status = 301
