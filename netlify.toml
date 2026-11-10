@@ -17,6 +17,12 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/dolore-durante-i-rapporti-cause-e-cosa-fare"
+  to = "/blog/dolore-durante-i-rapporti-cause-e-cosa-fare.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/pulizia-intima-come-lavarsi-cosa-evitare"
   to = "/blog/pulizia-intima-come-lavarsi-cosa-evitare.html"
   status = 301
