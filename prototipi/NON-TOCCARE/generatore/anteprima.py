@@ -954,6 +954,52 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 @media (max-width: 767px) { .carte .carta { min-height: 196px; } .carte .carta .ill { width: 68px; height: 68px; } }
 @media (prefers-reduced-motion: reduce) { .carte .carta { transition: none; } .carte .carta:hover { transform: none; } }
 ''')
+
+# ── 18. v7: le «chicche» finali (Taste: ink fill, opening statement, scroll progress; Impeccable: un gesto per zona) ──
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v7: quadretti da collezione: il disegno grande esce dall'angolo, la prima sezione è larga il doppio ── */
+.carte ul { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.carte li:first-child { grid-column: span 2; }
+@media (min-width: 768px) { .carte ul { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+@media (min-width: 1024px) { .carte ul { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; } }
+.carte .carta { overflow: hidden; justify-content: flex-start; min-height: 230px !important; }
+.carte .carta .testo { position: relative; z-index: 1; max-width: 12em; }
+.carte .carta .ill { position: absolute; right: -26px; bottom: -30px; width: 150px !important; height: 150px !important; margin: 0 !important; transition: transform 500ms cubic-bezier(.16,1,.3,1); }
+.carte li:first-child .carta .ill { width: 230px !important; height: 230px !important; right: -20px; bottom: -44px; }
+.carte li:first-child .carta .n { font-size: 30px; }
+.carte .carta:hover .ill, .carte .carta:focus-visible .ill { transform: translate(-6px, -6px) rotate(-3deg); }
+@media (max-width: 767px) { .carte .carta { min-height: 190px !important; } .carte .carta .ill { width: 112px !important; height: 112px !important; right: -18px; bottom: -22px; } .carte li:first-child .carta .ill { width: 170px !important; height: 170px !important; } }
+@media (prefers-reduced-motion: reduce) { .carte .carta .ill { transition: none; } .carte .carta:hover .ill { transform: none; } }
+
+/* ── v7: ogni articolo si apre con la frase di chi legge, a pagina piena su bordeaux ── */
+article.wrap-narrow > .crumb { margin: 0; padding: 28px 0 0; background: var(--burgundy); color: var(--cream); box-shadow: 0 0 0 100vmax var(--burgundy); clip-path: inset(0 -100vmax); }
+article.wrap-narrow > .crumb a { color: var(--cream); border-color: rgba(240, 231, 213, 0.4); }
+article.wrap-narrow > .crumb a:focus-visible { outline-color: var(--cream); }
+.article-head .frase { display: flex; align-items: center; min-height: 46svh; margin: 0 0 56px !important; padding: 32px 0 72px !important; background: var(--burgundy); color: var(--cream) !important; box-shadow: 0 0 0 100vmax var(--burgundy); clip-path: inset(0 -100vmax);
+  font-size: clamp(30px, 4.6vw, 54px) !important; line-height: 1.12; font-style: italic; text-wrap: balance; }
+article.wrap-narrow > .crumb ::selection, .article-head .frase::selection { background: rgba(240, 231, 213, 0.28); color: var(--cream); }
+article.wrap-narrow > .crumb { padding-bottom: 6px !important; }
+article.wrap-narrow > .crumb + .article-head { padding-top: 0 !important; margin-top: 0 !important; border-top: 0 !important; }
+@media (min-width: 1024px) { .carte .carta { min-height: 256px !important; } .carte li:not(:first-child) .carta .ill { width: 132px !important; height: 132px !important; } }
+/* ── v7: il filo di lettura (solo CSS) ── */
+@supports (animation-timeline: scroll()) { @media (prefers-reduced-motion: no-preference) {
+  body:has(article.wrap-narrow)::before { content: ""; position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60; background: var(--burgundy-deep); transform-origin: 0 50%; transform: scaleX(0); animation: filo linear both; animation-timeline: scroll(root); }
+  @keyframes filo { to { transform: scaleX(1); } }
+} }
+''')
+# home: i tre principi si riempiono d'inchiostro mentre scorri
+h = rd('index.html')
+a_ = 'Niente da dimostrare. Niente da nascondere. Niente giri di parole.</p>'; assert a_ in h
+h = h.replace(a_, '<span class="inchiostro">Niente da dimostrare. Niente da nascondere. Niente giri di parole.</span></p>', 1)
+h = h.replace('</head>', '''<style>
+  @supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) {
+    .inchiostro { background: linear-gradient(90deg, #7A1E2B 50%, rgba(122,30,43,.22) 50%) 100% 0 / 200% 100% no-repeat; -webkit-background-clip: text; background-clip: text; color: transparent; animation: inchiostro linear both; animation-timeline: view(); animation-range: entry 60% cover 55%; }
+    @keyframes inchiostro { to { background-position: 0 0; } }
+  } }
+</style>
+</head>''', 1)
+wr('index.html', h)
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
