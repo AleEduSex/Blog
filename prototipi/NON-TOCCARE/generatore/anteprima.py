@@ -1250,7 +1250,7 @@ CSS_V10 = '''<style>
   @media (max-width: 640px) { .voce .prezzi { justify-content: start; } .voce .prezzi .val { grid-column: auto; justify-self: start; } .voce .prezzi .risparmi, .voce .prezzi .a-incontro { justify-self: start; } }
   .voce .riga > span:first-child { padding-top: 6px; }
   /* 4. stessa correzione di tono su tutte le foto delle copertine */
-  .vetrina img { filter: saturate(.72) sepia(.12) contrast(.96); }
+  .vetrina img { filter: saturate(.92) sepia(.05); }
 </style>
 '''
 h = h.replace('</head>', CSS_V10 + '</head>', 1)
@@ -1407,7 +1407,7 @@ body { font-size: var(--t-body); }
 .gruppo { padding-top: clamp(64px, 8vw, 112px); }
 .gruppo header .ico { width: clamp(30px, 3vw, 44px); height: clamp(30px, 3vw, 44px); }
 /* stessa correzione di tono su tutte le copertine, finché non arrivano le illustrazioni nuove */
-.post-cover, .cover img { filter: saturate(.72) sepia(.12) contrast(.96); }
+.post-cover, .cover img { filter: saturate(.92) sepia(.05); }
 
 /* errore: a 390 px i quadretti delle sezioni non tagliano più i nomi lunghi */
 @media (max-width: 520px) {
