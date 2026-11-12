@@ -920,6 +920,40 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 .quadretti-sec .quadretti a { background: var(--paper); }
 .quadretti-sec .quadretti a:hover { background: #EADFC9; }
 ''')
+
+# ── 17. v6 (messaggi di Alessio del 5/11): titoli di studio e albi; quadretti delle sezioni con il loro disegno ──
+CRED = 'Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS'
+for slug in LI:
+    p = f'blog/{slug}.html'; a = rd(p)
+    a = re.sub(r'(<span class="role">[^<]*</span>)', rf'\1\n      <span class="cred">{CRED}</span>', a, count=1)
+    wr(p, a)
+h = rd('blog/index.html')
+nav = re.search(r'<nav class="quadretti" aria-labelledby="sezioni-h">.*?</nav>', h, re.S).group(0)
+carte = ''.join(f'''<li><a class="carta live" href="/blog/{s["slug"]}/" style="--d:{150 + k * 120}ms">{ill(s["icona"])}<span class="testo"><span class="n">{s["nome"]}</span><span class="c">{n_art(s)} <span class="ar" aria-hidden="true">→</span></span></span></a></li>''' for k, s in enumerate(SEZ))
+h = h.replace(nav, f'<nav class="quadretti carte" aria-labelledby="sezioni-h">\n        <h2 id="sezioni-h">Le sezioni</h2>\n        <ul>{carte}</ul>\n      </nav>')
+h = h.replace('</head>', f'<style>:root{{--fg:var(--burgundy);--bg:var(--paper);--muted:rgba(26,26,26,.7)}}{ICON_CSS}</style>\n</head>', 1)
+wr('blog/index.html', h)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v6: credenziali nel riquadro autore ── */
+.author-box .cred { display: block; margin-top: 6px; font-size: 14px; line-height: 1.5; color: rgba(26, 26, 26, 0.78); }
+/* ── v6: quadretti delle sezioni con il loro disegno (Impeccable «delight»: il disegno prende vita) ── */
+.carte ul { gap: 14px; }
+.carte .carta { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 236px; padding: 22px 22px 20px; background: var(--paper); color: var(--ink);
+  --fg: var(--burgundy); --bg: var(--paper); transition: background 300ms cubic-bezier(.16,1,.3,1), color 300ms cubic-bezier(.16,1,.3,1), transform 300ms cubic-bezier(.16,1,.3,1); }
+.carte .carta .ill { width: 84px; height: 84px; margin: -6px 0 0 -8px; }
+.carte .carta .n { display: block; font-family: var(--display); font-size: 21px; line-height: 1.12; letter-spacing: -0.01em; }
+.carte .carta .c { display: block; margin-top: 6px; font-size: 14px; font-style: italic; color: rgba(26, 26, 26, 0.75); transition: color 300ms ease; }
+.carte .carta .ar { display: inline-block; transition: transform 300ms cubic-bezier(.16,1,.3,1); }
+.quadretti-sec .carte .carta:hover, .quadretti-sec .carte .carta:focus-visible, .carte .carta:hover, .carte .carta:focus-visible { background: var(--burgundy); color: var(--cream); --fg: var(--cream); --bg: var(--burgundy); transform: translateY(-3px); }
+.carte .carta:hover .c, .carte .carta:focus-visible .c { color: rgba(240, 231, 213, 0.88); }
+.carte .carta:hover .ar, .carte .carta:focus-visible .ar { transform: translateX(4px); }
+.carte .carta:hover .n { color: var(--cream); }
+.carte .carta:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
+@media (min-width: 1024px) { .carte .carta { min-height: 260px; } .carte .carta .ill { width: 96px; height: 96px; } }
+@media (max-width: 767px) { .carte .carta { min-height: 196px; } .carte .carta .ill { width: 68px; height: 68px; } }
+@media (prefers-reduced-motion: reduce) { .carte .carta { transition: none; } .carte .carta:hover { transform: none; } }
+''')
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
