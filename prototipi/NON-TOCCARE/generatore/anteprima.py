@@ -1073,6 +1073,351 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 @media (min-width: 768px) { .post-list.due { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; } }
 .gruppo:last-of-type { padding-bottom: 96px; }
 ''')
+# ── 20. v10: le 6 mosse d'eccellenza (revisione 7: finitura, «», scala tipografica, primo schermo, numeri, ritmo del blog) ──
+# Ordine: 6 (finitura) e 2 (virgolette) → 1 (scala) → 5 (primo schermo) → 3 (numeri) → 4 (blog). Poi gli errori (quadretti a 390, menu).
+TOKENS = ('--t-hero: clamp(52px, 7.8vw, 120px); --t-h2: clamp(42px, 5.4vw, 80px); --t-h3: clamp(24px, 2.2vw, 28px); '
+          '--t-lead: 21px; --t-body: 18px; --t-small: 15px; --t-micro: 13px; --ease: cubic-bezier(.2,.7,.2,1); --dur: 200ms; --dur-press: 120ms;')
+FRECCIA = '<span class="freccia" aria-hidden="true">→</span>'
+
+# 6a. stesso menu in tutte le pagine: le voci della home + Scrivimi; su telefono si apre con <details> (niente JavaScript nel blog)
+VOCI = [('/#chi-sono', 'Chi sono'), ('/#parliamone', 'Di cosa parliamo'), ('/#funziona', 'Come funziona'), ('/#percorsi', 'Percorsi'), ('/#faq', 'FAQ'), ('/blog/', 'Blog')]
+def nav_blog(blog_corrente):
+    li = lambda cls: ''.join(f'\n        <li><a href="{u}"{" aria-current=\"page\"" if (u == "/blog/" and blog_corrente) else ""}>{t}</a></li>' for u, t in VOCI)
+    return (f'<nav class="nav" aria-label="Principale">\n      <ul class="nav-full">{li("")}\n      </ul>\n'
+            '      <details class="nav-m">\n        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>\n'
+            f'        <ul>{li("")}\n        </ul>\n      </details>\n'
+            '      <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>\n'
+            '    </nav>')
+n_nav = 0
+for f in OUT.rglob('*.html'):
+    if f.parent == OUT and f.name == 'index.html': continue
+    h = f.read_text()
+    m = re.search(r'(<header class="site-header">.*?)(<nav class="nav" aria-label="Principale">.*?</nav>)(.*?</header>)', h, re.S)
+    if not m: continue
+    corrente = 'aria-current="page">Blog' in m.group(2)
+    h = h.replace(m.group(0), m.group(1) + nav_blog(corrente) + m.group(3), 1); f.write_text(h); n_nav += 1
+assert n_nav >= 20, n_nav
+
+# 2a. FAQ: un solo stile di virgolette, attaccate al testo (niente « » staccate e chiare)
+h = rd('index.html')
+h, k = re.subn(r'<span class="qmark">«</span>\s*(.*?)\s*<span class="qmark">»</span>', r'«\1»', h, flags=re.S); assert k == 5, k
+# 6b. via l'occhiello sopra le FAQ
+h, k = re.subn(r'\s*<div class="[^"]*uppercase[^"]*">Pensieri ad alta voce</div>', '', h); assert k == 1, k
+# 2b. la « gigante accanto a «Le frasi che non dici» (segno del sito, solo decorazione)
+a_ = '<h2 id="parliamone-h"'; assert a_ in h
+h = h.replace(a_, '<span class="ancora" aria-hidden="true">«</span>\n      ' + a_, 1)
+# 1. una sola scala tipografica: le misure in px di Tailwind diventano 7 gradini (classi t-*)
+def gradino(px, hero=False):
+    if hero: return 't-hero'
+    if px >= 40: return 't-h2'
+    if px >= 22: return 't-h3'
+    if px >= 19: return 't-lead'
+    if px >= 16.5: return 't-body'
+    if px >= 14: return 't-small'
+    return 't-micro'
+def scala(m):
+    cls = m.group(1); px = [float(x) for x in re.findall(r'(?:^|\s)(?:[a-z]+:)?text-\[([0-9.]+)px\]', cls)]
+    if not px: return m.group(0)
+    hero = 'tracking-tighter2' in cls and max(px) >= 84 and 'xl:' in cls
+    base = [float(x) for x in re.findall(r'(?:^|\s)text-\[([0-9.]+)px\]', cls)] or px
+    g = gradino(max(px) if max(px) >= 40 else base[0], hero)
+    cls = re.sub(r'\s*(?:[a-z]+:)?text-\[[0-9.]+px\]', '', cls).strip()
+    return f'class="{g} {cls}"'
+i = h.index('<body'); h = h[:i] + re.sub(r'class="([^"]*)"', scala, h[i:])
+assert 'text-[72px]' not in h and 'text-[12.5px]' not in h and h.count('t-h2 ') >= 8 and 't-hero ' in h
+# 5. su telefono: titolo, timbro e «Scrivimi» nel primo schermo, la foto subito dopo; la foto di «Chi sono» dopo la lettera
+a_ = re.search(r'\n\s*<img src="img/alessio-cottonaro-in-consulenza.jpg" alt="" width="1199" height="1600" class="md:hidden[^"]*" loading="lazy">', h).group(0)
+h = h.replace(a_, '', 1)
+i = h.index('aria-label="Formazione e albi"'); j = h.index('</ul>', i) + 5
+h = h[:j] + '\n      <img src="img/alessio-cottonaro-in-consulenza.jpg" alt="" width="1199" height="1600" class="md:hidden foto-m mt-12" loading="lazy">' + h[j:]
+i = h.index('data-foto-per="hero"'); j = h.index('</section>', i)
+h = h[:j] + '  <img src="img/alessio-cottonaro-ritratto-principale.jpg" alt="Alessio Cottonaro, consulente in sessuologia, seduto in una stanza chiara" width="1200" height="1600" class="md:hidden foto-m hero-foto-m mt-10">\n    ' + h[j:]
+h = h.replace('<div class="md:order-1 px-6', '<div class="colonna-testo md:order-1 px-6', 1)
+# 3. «Come funziona» in tre colonne con la cifra in alto; la fascia nera sotto, a tutta riga
+fz = re.search(r'<section id="funziona".*?</section>', h, re.S).group(0)
+desc = re.findall(r'<p class="t-body mt-2 font-body[^"]*">(.*?)</p>', fz, re.S); assert len(desc) == 3, len(desc)
+vid = re.search(r'<a class="[^"]*apri-video.*?</a>', fz, re.S).group(0)
+intro = re.search(r'<p class="[^"]*"[^>]*>(Tre passi.*?)</p>', fz, re.S).group(1)
+def passo(cifra, quando, cosa, d, extra='', it=False):
+    return f'''
+      <li>
+        <p class="cifra{" cifra--it" if it else ""}">{cifra}</p>
+        <p class="quando t-small">{quando}</p>
+        <h3 class="cosa t-h3">{cosa}</h3>
+        <p class="t-body">{d}</p>{extra}
+      </li>'''
+FZ = f'''<section id="funziona" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+    <div class="testa-sez">
+      <h2 class="t-h2 font-display text-brand-ink leading-[0.98] tracking-tighter2 reveal">Come <span class="italic text-brand-burgundy">funziona.</span></h2>
+      <p class="t-body font-body text-brand-ink leading-[1.6] max-w-[30em] reveal" data-delay="1">{intro}</p>
+    </div>
+    <ol class="passi reveal" data-delay="2">{passo("Gratis", "Oggi", "Mi scrivi.", desc[0])}{passo("60&#8239;€", "La prima consulenza", "Un’ora insieme.", desc[1], chr(10) + "        " + vid)}{passo("su misura", "Dopo", "Decidiamo insieme.", desc[2], it=True)}
+      <li class="fine t-body">Alla fine sai cosa stai guardando e da dove partire.</li>
+    </ol>
+  </div>
+</section>'''
+assert 'Alla fine sai cosa stai guardando' in fz
+h = h.replace(fz, FZ, 1)
+# 1b. titoli entro due righe: più misura a «Cosa faccio» e alle FAQ (titolo sopra, domande sotto a tutta riga)
+for a_, b_ in [('<h2 class="t-h2 lg:col-span-4 font-display text-brand-cream', '<h2 class="t-h2 lg:col-span-5 font-display text-brand-cream'),
+               ('<dl class="t-body lg:col-span-8 grid', '<dl class="t-body lg:col-span-7 grid'),
+               ('<div class="grid md:grid-cols-12 gap-10 md:gap-16">\n      <div class="md:col-span-4">', '<div class="grid md:grid-cols-12 gap-10 md:gap-16">\n      <div class="md:col-span-12 testa-sez">'),
+               ('tracking-tighter2 mb-8 reveal">\n          Quello che', 'tracking-tighter2 reveal">\n          Quello che'),
+               ('<div class="md:col-span-8">\n        <ul class="border-y border-brand-line divide-y divide-brand-line">', '<div class="md:col-span-12 lg:col-start-3 lg:col-span-10">\n        <ul class="faq-lista">'),
+               # 6. niente fili: la testata della home come quella del blog
+               ('<header id="top" class="sticky top-0 z-40 bg-brand-cream/95 backdrop-blur-md border-b border-brand-line">', '<header id="top" class="sticky top-0 z-40 bg-brand-cream/95 backdrop-blur-md">')]:
+    assert h.count(a_) == 1, a_[:60]; h = h.replace(a_, b_, 1)
+# 3b. euro staccato da uno spazio fine che non va a capo
+h = re.sub(r'(\d)&nbsp;€', '\\1&#8239;€', h)
+# 6c. finitura unica, scala, virgolette appese, numeri: tutto in un foglio in fondo alla testa
+CSS_V10 = '''<style>
+  /* ── v10: un sistema solo ── */
+  :root { ''' + TOKENS + ''' }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  .t-hero { font-size: var(--t-hero); } .t-h2 { font-size: var(--t-h2); } .t-h3 { font-size: var(--t-h3); }
+  .t-lead { font-size: var(--t-lead); } .t-body { font-size: var(--t-body); } .t-small { font-size: var(--t-small); } .t-micro { font-size: var(--t-micro); }
+  h1, h2, h3, dt { text-wrap: balance; } p, li, dd { text-wrap: pretty; }
+  @media (max-width: 640px) { #main-content p, section p, dd { hyphens: auto; -webkit-hyphens: auto; } h1, h2, h3, .faq-question, .testo, #main-content [data-foto-per="hero"] p { hyphens: manual; -webkit-hyphens: manual; } }
+  /* titolo della home: grande quanto la colonna permette */
+  .colonna-testo { container-type: inline-size; }
+  #titolo.t-hero { font-size: min(var(--t-hero), 14.8cqi); }
+  /* le misure scritte nei fogli di stile, sugli stessi gradini */
+  .vetrina .t, .per label, .prezzi .a-incontro, .prezzi .risparmi { font-size: var(--t-small) !important; }
+  .prezzi .barrato { font-size: var(--t-body); }
+  .sez-home a { font-size: var(--t-lead); }
+  .sez-home h3 { font-size: var(--t-body) !important; }
+  .vetrina .f { font-size: var(--t-h3) !important; line-height: 1.2 !important; }
+  .contatti-righe a { font-size: calc(var(--t-h2) * .75) !important; }
+  .contatti-righe .v { font-size: var(--t-h3) !important; }
+  .btn-burgundy, .btn-cream-on-burgundy, .btn-outline-cream { font-size: var(--t-small); }
+  .faq-lista > li + li { margin-top: 2px; }
+  .faq-summary { padding-left: 12px; padding-right: 12px; }
+  details[open] .faq-summary { padding-left: 12px; background-color: rgba(122,30,43,0.04); }
+  .faq-answer { padding-left: 84px; }
+  @media (max-width: 767px) { .faq-answer { padding-left: 12px; } }
+  .faq-answer-text { font-size: var(--t-body); }
+  /* schema «Tu → sessuologia»: niente maiuscoletto spaziato */
+  .pm-t-cond, .pm-t-cond-v { text-transform: none !important; letter-spacing: 0 !important; font-style: italic; font-size: 18px; }
+  .pm-t-st-small { text-transform: none !important; letter-spacing: 0 !important; font-size: 18px; font-style: italic; }
+  /* 2. le «» sono il segno: la virgoletta d'apertura appesa fuori dal filo del testo */
+  .frase .testo, .faq-question, .vetrina .f { text-indent: -.42em; }
+  .ancora { display: block; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(150px, 16vw, 240px); line-height: .62; height: .62em; margin: -.12em 0 0 -.06em; color: #7A1E2B; user-select: none; pointer-events: none; }
+  /* 6. un movimento solo: stessa curva e stessa durata per tutto ciò che si tocca */
+  a:not(.reveal), button, summary, label, .arr, .arrow, .piu, .faq-plus, .v, .ar, .freccia { transition-duration: var(--dur) !important; transition-timing-function: var(--ease) !important; }
+  .btn-burgundy:hover, .btn-cream-on-burgundy:hover, .btn-outline-cream:hover { transform: none; }
+  .btn-burgundy:active, .btn-cream-on-burgundy:active, .btn-outline-cream:active, .per label:active { transform: scale(.97) !important; transition-duration: var(--dur-press) !important; }
+  .contatti-righe .v { display: inline-block; transition-property: transform; }
+  .contatti-righe a:hover .v, .contatti-righe a:focus-visible .v { transform: translateX(6px); }
+  .vetrina a:hover .ar, .vetrina a:focus-visible .ar, .gift:hover .arrow { transform: translateX(6px); }
+  .btn-burgundy:hover .arr { transform: translateX(4px); }
+  header img[alt="AleEduSex"] { mix-blend-mode: darken; }
+  @media (prefers-reduced-motion: reduce) {
+    a:not(.reveal), button, summary, label, .arr, .arrow, .piu, .faq-plus, .v, .ar, .freccia { transition-duration: .01ms !important; }
+    .contatti-righe a:hover .v, .vetrina a:hover .ar, .gift:hover .arrow, .btn-burgundy:hover .arr, .btn-burgundy:active { transform: none !important; }
+  }
+  /* 5. telefono: prima il titolo, poi la foto */
+  .foto-m { width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: 50% 30%; }
+  .hero-foto-m { max-height: 60svh; }
+  @media (max-width: 767px) {
+    .foto-m { display: block; }
+    .split-foto { display: none !important; }
+    [data-foto-per="hero"] { padding-top: 40px !important; }
+    #titolo .hero-line.mt-3 { margin-top: 8px; }
+  }
+  /* 3. i numeri protagonisti: «Come funziona» in tre colonne */
+  .testa-sez { display: grid; gap: 24px; align-items: end; }
+  @media (min-width: 1024px) { .testa-sez { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; } }
+  .passi { list-style: none; margin: 48px 0 0; padding: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 56px) 0; display: grid; gap: 80px clamp(24px, 4vw, 64px); background: #F8F1E0; }
+  .passi .fine { margin-top: -32px !important; }
+  @media (min-width: 900px) { .passi .fine { margin-top: 8px !important; } }
+  @media (min-width: 900px) { .passi { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 72px; } }
+  .passi .cifra { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: var(--t-h2); line-height: .95; letter-spacing: -0.02em; color: #1A1A1A; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .passi .cifra--it { font-style: italic; color: #7A1E2B; }
+  .passi .quando { margin-top: 20px; font-weight: 600; color: #1A1A1A; }
+  .passi .quando::after { content: "  →"; color: #7A1E2B; font-weight: 400; }
+  .passi li:nth-child(3) .quando::after { content: none; }
+  .passi .cosa { margin-top: 6px; font-family: 'DM Serif Display', Georgia, serif; line-height: 1.1; color: #1A1A1A; }
+  .passi .cosa + p { margin-top: 10px; line-height: 1.6; color: #1A1A1A; max-width: 30em; }
+  .passi .apri-video { margin-top: 12px; }
+  .passi .fine { grid-column: 1 / -1; margin: 8px calc(-1 * clamp(24px, 4vw, 56px)) 0; padding: 22px clamp(24px, 4vw, 56px); background: #1A1A1A; color: #F0E7D5; line-height: 1.5; }
+  /* 3b. percorsi: il prezzo grande, cifre in colonna, un solo filo a destra */
+  .voce .riga .val { font-size: clamp(36px, 3.4vw, 44px) !important; line-height: 1; letter-spacing: -0.01em; font-variant-numeric: lining-nums tabular-nums; }
+  .voce .riga { align-items: flex-start; }
+  .voce .prezzi { display: grid; grid-template-columns: auto auto; justify-content: end; align-items: baseline; column-gap: 12px; row-gap: 4px; }
+  .voce .prezzi .barrato { grid-column: 1; } .voce .prezzi .val { grid-column: 2; justify-self: end; }
+  .voce .prezzi .risparmi, .voce .prezzi .a-incontro { grid-column: 1 / -1; justify-self: end; margin-top: 0; }
+  @media (max-width: 640px) { .voce .prezzi { justify-content: start; } .voce .prezzi .val { grid-column: auto; justify-self: start; } .voce .prezzi .risparmi, .voce .prezzi .a-incontro { justify-self: start; } }
+  .voce .riga > span:first-child { padding-top: 6px; }
+  /* 4. stessa correzione di tono su tutte le foto delle copertine */
+  .vetrina img { filter: saturate(.72) sepia(.12) contrast(.96); }
+</style>
+'''
+h = h.replace('</head>', CSS_V10 + '</head>', 1)
+wr('index.html', h)
+
+# 2c + 5b. articoli: la fascia bordeaux tiene frase, titolo e data; il sommario subito sotto; la « gigante a destra
+for slug in LI:
+    p = f'blog/{slug}.html'; a = rd(p)
+    hd = re.search(r'<header class="article-head">(.*?)</header>', a, re.S)
+    fr = re.search(r'\s*<p class="frase">.*?</p>', hd.group(1), re.S); h1 = re.search(r'\s*<h1>.*?</h1>', hd.group(1), re.S)
+    le = re.search(r'\s*<p class="lede">.*?</p>', hd.group(1), re.S); mt = re.search(r'\s*<p class="post-meta">.*?</p>', hd.group(1), re.S)
+    assert fr and h1 and le and mt, slug
+    nuovo = f'\n      <div class="fascia">{fr.group(0)}{h1.group(0)}{mt.group(0)}\n      </div>{le.group(0)}\n    '
+    a = a.replace(hd.group(0), f'<header class="article-head">{nuovo}</header>', 1); wr(p, a)
+
+# 4. indice del blog e pagine di sezione: per ogni sezione un articolo grande, gli altri in elenco di frasi
+def a_riga(li):
+    li = li.replace('<li class="post-item">', '<li class="post-item post-item--riga">', 1)
+    li = re.sub(r'\s*<img class="post-cover"[^>]*>', '', li)
+    li = re.sub(r'\s*<p class="post-excerpt">.*?</p>', '', li, flags=re.S)
+    li = re.sub(r'<span class="read-more">.*?</span></span>', FRECCIA, li, flags=re.S)
+    return li
+def ritmo(ol_html):
+    lis = re.findall(r'<li class="post-item[^"]*">.*?</li>', ol_html, re.S)
+    out = [lis[0].replace('<li class="post-item">', '<li class="post-item post-item--primo">', 1)] + [a_riga(x) for x in lis[1:]]
+    return out
+h = rd('blog/index.html')
+for ol in re.findall(r'<ol class="post-list due">.*?</ol>', h, re.S):
+    h = h.replace(ol, '<ol class="post-list ritmo">' + ''.join(ritmo(ol)) + '</ol>', 1)
+assert h.count('class="post-item post-item--lead"') == 1 and 'post-list due' not in h
+for slug in LI: assert f'href="/blog/{slug}.html"' in h, slug
+wr('blog/index.html', h)
+for s in SEZ:
+    p = f'blog/{s["slug"]}/index.html'; hh = rd(p)
+    for ol in re.findall(r'<ol class="post-list">.*?</ol>', hh, re.S):
+        hh = hh.replace(ol, '<ol class="post-list ritmo">' + ''.join(ritmo(ol)) + '</ol>', 1)
+    wr(p, hh)
+
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ══════ v10: le 6 mosse d'eccellenza ══════ */
+:root { ''' + TOKENS + ''' }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1, h2, h3 { text-wrap: balance; } p, li { text-wrap: pretty; }
+@media (max-width: 640px) { .prose p, .prose li, .post-excerpt, .about p, .intro, .lede { hyphens: auto; -webkit-hyphens: auto; } }
+
+/* 6. lo stesso menu della home: sei voci e «Scrivimi»; su telefono si apre senza JavaScript */
+.nav { gap: 12px; }
+.nav-full { display: none !important; }
+@media (min-width: 1024px) { .nav-full { display: flex !important; gap: 36px !important; } .nav-m { display: none; } .nav { gap: 36px; } }
+.nav-m > summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: inline-flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; border-radius: 3px; }
+.nav-m > summary::-webkit-details-marker { display: none; }
+.nav-m .b { display: block; width: 20px; height: 1.5px; background: var(--ink); transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+.nav-m[open] .b:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-m[open] .b:nth-child(2) { opacity: 0; }
+.nav-m[open] .b:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-m > summary:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
+.nav-m > ul { position: absolute; left: 0; right: 0; top: 100%; display: grid; gap: 4px; list-style: none; margin: 0; padding: 20px 24px 32px; background: var(--paper); }
+.nav-m:not([open]) > ul { display: none; }
+.nav-m > ul a { display: block; padding: 8px 0; font-family: var(--display); font-size: var(--t-h3); line-height: 1.15; color: var(--ink); }
+.nav-m > ul a:hover, .nav-m > ul a[aria-current="page"] { color: var(--burgundy); }
+.wordmark img { mix-blend-mode: darken; }
+
+/* 6. un movimento solo */
+a, button, summary, .ar, .arr, .freccia, .post-cover, .carta, .carta .ill { transition-duration: var(--dur) !important; transition-timing-function: var(--ease) !important; }
+.btn-burgundy:active, .btn-cream:active, .btn-outline-cream:active, .domanda button:active { transform: scale(.97) !important; transition-duration: var(--dur-press) !important; }
+.btn-burgundy:hover .arr { transform: translateX(4px); }
+.read-more .ar, .freccia { display: inline-block; }
+.post-item > a:hover .read-more .ar, .post-item > a:focus-visible .read-more .ar { transform: translateX(6px); }
+@media (prefers-reduced-motion: reduce) {
+  a, button, summary, .ar, .arr, .freccia, .post-cover, .carta, .carta .ill { transition-duration: .01ms !important; }
+  .post-item > a:hover .read-more .ar, .post-item--riga > a:hover .freccia, .btn-burgundy:hover .arr, .btn-burgundy:active { transform: none !important; }
+}
+
+/* 1. la scala: sette gradini, uguali alla home */
+body { font-size: var(--t-body); }
+.blog-hero .hero-testo, .sez-hero .head > div { container-type: inline-size; }
+.blog-hero h1 { font-size: min(var(--t-hero), 20cqi) !important; line-height: .98 !important; max-width: none !important; }
+.sez-hero h1 { font-size: min(var(--t-h2), 13cqi) !important; line-height: 1 !important; }
+.blog-hero .intro, .lede { font-size: var(--t-lead) !important; }
+.list-h, .gruppo h2, .part-h { font-size: var(--t-h2) !important; line-height: 1 !important; letter-spacing: -0.03em; }
+.about h2, .more h2, .domanda h2, .quadretti h2, .sez-index h2, .cta-box h2 { font-size: var(--t-h3) !important; line-height: 1.1 !important; }
+.cta-box h2 { font-size: calc(var(--t-h2) * .62) !important; line-height: 1 !important; }
+.post-title { font-size: var(--t-h3) !important; }
+.post-item--lead .post-frase { font-size: var(--t-h3) !important; }
+.post-item--lead .post-title { font-size: calc(var(--t-h2) * .5) !important; }
+.btn-burgundy { font-size: var(--t-small); }
+.site-footer .brand { font-size: var(--t-h3); }
+.post-excerpt, .about p, .soon, .more li a { font-size: var(--t-body) !important; }
+.post-meta, .post-meta .sez, .crumb, .gruppo header .c, .read-more, .author-box .role, .cta-box .price, .domanda .nota, .domanda .ok, .domanda .lbl-f, .site-footer ul, .site-footer .label { font-size: var(--t-small) !important; }
+.site-footer .who, .site-footer .legal, .author-box .cred, figcaption, .disclaimer { font-size: var(--t-micro) !important; }
+.prose { font-size: var(--t-body); }
+@media (min-width: 768px) { .prose { font-size: 20px; } }
+.prose h2 { font-size: calc(var(--t-h3) * 1.2); }
+.prose blockquote { font-size: var(--t-h3); }
+.carte .carta .n { font-size: var(--t-lead) !important; }
+.carte li:first-child .carta .n { font-size: var(--t-h3) !important; }
+.carte .carta .c { font-size: var(--t-small) !important; }
+.dove-parti h2 { font-size: var(--t-small); }
+.dove-parti .s, .sez-list .c { font-size: var(--t-small) !important; }
+.sez-frase { font-size: var(--t-h3) !important; }
+
+/* niente etichette in maiuscoletto spaziato */
+.eyebrow { text-transform: none !important; letter-spacing: 0 !important; font-size: var(--t-small) !important; font-style: italic; }
+
+/* 2. le «» sono il segno: virgoletta d'apertura appesa */
+.dove-parti .f, .post-frase, .sez-frase, .article-head .frase { text-indent: -.42em; }
+
+/* 5. articolo: la fascia bordeaux tiene frase, titolo e data; il sommario subito dopo */
+.article-head .fascia { position: relative; margin-top: -1px; padding: 25px 0 44px; background: var(--burgundy); color: var(--cream); box-shadow: 0 0 0 100vmax var(--burgundy); clip-path: inset(0 -100vmax); }
+.article-head .fascia .frase { display: block !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; clip-path: none !important; background: none !important;
+  font-size: 30px !important; line-height: 1.15 !important; color: var(--cream) !important; font-style: italic; }
+.article-head .fascia h1 { margin-top: 20px; color: var(--cream); font-size: 34px !important; line-height: 1.04 !important; }
+.article-head .fascia .post-meta { margin: 18px 0 0 !important; color: rgba(240, 231, 213, .82); }
+.article-head .fascia .post-meta .sep { color: rgba(240, 231, 213, .6); }
+.article-head .fascia ::selection { background: rgba(240, 231, 213, 0.28); color: var(--cream); }
+.article-head .lede { margin-top: 32px; }
+@media (min-width: 768px) {
+  .article-head .fascia { padding: 40px 0 64px; }
+  .article-head .fascia .frase { font-size: 40px !important; }
+  .article-head .fascia h1 { margin-top: 28px; font-size: min(var(--t-h2), 54px) !important; }
+}
+@media (min-width: 1180px) {
+  .article-head .fascia::after { content: "«" / ""; position: absolute; left: calc(100% + clamp(40px, 6vw, 96px)); top: 50%; translate: 0 -50%;
+    font-family: var(--display); font-size: clamp(200px, 22vw, 320px); line-height: .7; color: rgba(240, 231, 213, .2); pointer-events: none; }
+}
+
+/* 4. il ritmo dell'indice: per ogni sezione un articolo grande, gli altri in elenco di frasi */
+.post-list.ritmo { display: block !important; padding-bottom: 0 !important; }
+#articoli > .post-list:not(.ritmo) { padding-bottom: 0 !important; }
+.post-list.ritmo .post-item--primo > a { overflow: visible !important; display: grid !important; grid-template-columns: 1fr !important; gap: 10px; padding: 32px 0 24px !important; }
+.post-list.ritmo .post-item--primo > a > * { grid-column: 1 !important; grid-row: auto !important; }
+.post-list.ritmo .post-item--primo .post-cover { margin: 0 0 14px !important; aspect-ratio: 16 / 10 !important; }
+.post-list.ritmo .post-item--primo .post-frase { font-size: var(--t-h3); line-height: 1.25; margin: 0; }
+.post-list.ritmo .post-item--primo .post-title { font-size: calc(var(--t-h2) * .5) !important; line-height: 1.08; }
+@media (min-width: 1024px) {
+  .post-list.ritmo .post-item--primo > a { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; column-gap: 56px; align-items: center; padding: 40px 0 32px !important; }
+  .post-list.ritmo .post-item--primo > a > .post-cover { grid-column: 1 !important; grid-row: 1 / span 6 !important; margin: 0 !important; }
+  .post-list.ritmo .post-item--primo > a > :not(.post-cover) { grid-column: 2 !important; }
+}
+.post-list.ritmo .post-item--riga > a { display: grid !important; grid-template-columns: minmax(0, 1fr) auto !important; column-gap: 24px; row-gap: 6px; align-items: center;
+  margin: 0 -16px; padding: 20px 16px !important; transition-property: background-color; }
+.post-list.ritmo .post-item--riga > a > * { grid-column: 1 !important; grid-row: auto !important; animation: none !important; }
+.post-list.ritmo .post-item--riga > a > .freccia { grid-column: 2 !important; grid-row: 1 / span 3 !important; font-size: var(--t-h3); color: var(--burgundy); transition-property: transform; }
+.post-list.ritmo .post-item--riga > a:hover, .post-list.ritmo .post-item--riga > a:focus-visible { background: var(--paper); }
+.post-list.ritmo .post-item--riga > a:hover .freccia, .post-list.ritmo .post-item--riga > a:focus-visible .freccia { transform: translateX(6px); }
+.post-list.ritmo .post-item--riga .post-frase { margin: 0; font-size: var(--t-h3); line-height: 1.22; color: var(--ink); max-width: 34em; }
+.post-list.ritmo .post-item--riga > a:hover .post-frase { color: var(--burgundy); }
+.post-list.ritmo .post-item--riga .post-title { font-family: var(--body); font-size: var(--t-body) !important; line-height: 1.45; letter-spacing: 0; color: rgba(26, 26, 26, .82); }
+.post-list.ritmo .post-item--riga > a:hover .post-title { color: rgba(26, 26, 26, .82); }
+.post-list.ritmo .post-item--riga .post-meta { margin-top: 0 !important; }
+.post-list.ritmo .post-item--riga .post-meta .sez { display: none; }
+.post-list.ritmo .post-item--primo + .post-item--riga { margin-top: 8px; }
+.gruppo { padding-top: clamp(64px, 8vw, 112px); }
+.gruppo header .ico { width: clamp(30px, 3vw, 44px); height: clamp(30px, 3vw, 44px); }
+/* stessa correzione di tono su tutte le copertine, finché non arrivano le illustrazioni nuove */
+.post-cover, .cover img { filter: saturate(.72) sepia(.12) contrast(.96); }
+
+/* errore: a 390 px i quadretti delle sezioni non tagliano più i nomi lunghi */
+@media (max-width: 520px) {
+  .carte .carta { padding: 16px 14px !important; }
+  .carte .carta .n { font-size: var(--t-body) !important; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .carte li:first-child .carta .n { font-size: var(--t-h3) !important; }
+  .carte .carta .testo { max-width: none; }
+}
+''')
+
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
