@@ -1016,6 +1016,63 @@ h = h.replace('</head>', '''<style>
 </style>
 </head>''', 1)
 wr('index.html', h)
+
+# ── 19. v9: revisione estetica (fondi alternati, illustrazioni su carta, blog a capitoli, niente vuoti) ──
+# 1. home: chiaro e scuro alternati; il blog scende dopo i percorsi; la carta solo per i riquadri
+h = rd('index.html')
+blog_sec = re.search(r'<section id="dal-blog".*?</section>\n?', h, re.S).group(0)
+h = h.replace(blog_sec, '', 1)
+i = h.index('<section id="faq"'); h = h[:i] + blog_sec + '\n' + h[i:]
+for a_, b_ in [('<section id="funziona" class="bg-brand-paper">', '<section id="funziona" class="bg-brand-cream">'),
+               ('class="tragitto lg:col-span-7 bg-brand-cream', 'class="tragitto lg:col-span-7 bg-brand-paper'),
+               ('<section id="faq" class="bg-brand-paper">', '<section id="faq" class="bg-brand-cream">')]:
+    assert a_ in h, a_; h = h.replace(a_, b_, 1)
+# 4. niente metà vuote: nei percorsi la colonna di sinistra resta ferma; il diagramma si stringe
+i = h.index('<section id="percorsi"'); j = h.index('<div class="lg:col-span-4">', i)
+h = h[:j] + '<div class="lg:col-span-4 lg:sticky lg:top-[120px] lg:self-start">' + h[j + len('<div class="lg:col-span-4">'):]
+h = h.replace('</head>', '<style>#percorsi > div { padding-top: 0 !important; } .diag { max-width: 940px; margin-left: auto; margin-right: auto; padding-top: 28px !important; padding-bottom: 28px !important; }</style>\n</head>', 1)
+wr('index.html', h)
+# 3. blog a capitoli: l'ultimo articolo grande, poi gli altri divisi per sezione, due per riga
+h = rd('blog/index.html')
+ol = re.search(r'<ol class="post-list"[^>]*>.*?</ol>', h, re.S).group(0)
+lis = re.findall(r'<li class="post-item[^"]*">.*?</li>', ol, re.S)
+lead = [x for x in lis if 'post-item--lead' in x]; assert len(lead) == 1
+def slug_di(li): return re.search(r'href="/blog/([^"]+)\.html"', li).group(1)
+gruppi_h = ''
+for s in SEZ:
+    suoi = [x for x in lis if x is not lead[0] and sez_of[slug_di(x)] is s]
+    if not suoi: continue
+    gruppi_h += f'''
+    <section class="gruppo" aria-labelledby="g-{s["slug"]}">
+      <header><a href="/blog/{s["slug"]}/">{ico(s["icona"])}<h2 id="g-{s["slug"]}">{s["nome"]}</h2><span class="c">{n_art(s)} <span aria-hidden="true">→</span></span></a></header>
+      <ol class="post-list due">{"".join(suoi)}</ol>
+    </section>'''
+h = h.replace(ol, f'<ol class="post-list">{lead[0]}</ol>{gruppi_h}')
+h = h.replace('id="tutti-h">Tutti gli articoli</h2>', 'id="tutti-h">L’ultimo articolo</h2>')
+wr('blog/index.html', h)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v9: illustrazioni e foto posate su un campo color carta, stesse proporzioni ── */
+.post-cover { box-sizing: border-box; padding: 12px !important; background: var(--paper) !important; aspect-ratio: 16 / 10 !important; }
+.post-item--lead .post-cover { padding: 20px !important; }
+.cover { width: auto !important; margin-left: 0 !important; }
+.cover img { box-sizing: border-box; height: auto !important; aspect-ratio: 16 / 10; padding: 14px; background: var(--paper); }
+.cover figcaption { padding: 0 !important; }
+/* ── v9: blog a capitoli ── */
+.gruppo { padding-top: 72px; }
+.gruppo header a { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+.gruppo header .ico { width: 34px; height: 34px; }
+.gruppo h2 { font-family: var(--display); font-size: clamp(28px, 3.2vw, 40px); line-height: 1.05; letter-spacing: -0.02em; }
+.gruppo header .c { font-size: 15px; font-style: italic; color: rgba(26,26,26,.75); }
+.gruppo header a:hover h2 { color: var(--burgundy); }
+.gruppo .post-meta .sez { display: none; }
+.post-list.due { padding-bottom: 0 !important; }
+.post-list.due .post-item > a { grid-template-columns: 1fr !important; padding: 28px 0 !important; }
+.post-list.due .post-item > a > * { grid-column: 1 !important; grid-row: auto !important; }
+.post-list.due .post-cover { margin-bottom: 18px !important; }
+@media (min-width: 768px) { .post-list.due { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; } }
+.gruppo:last-of-type { padding-bottom: 96px; }
+''')
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
