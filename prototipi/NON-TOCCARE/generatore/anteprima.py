@@ -260,41 +260,34 @@ diag = re.search(r'(<svg class="pm-map pm-map-h".*?</svg>\s*<svg class="pm-map p
 diag = re.sub(r'\s*<defs>.*?</defs>', '', diag, flags=re.S).replace(' filter="url(#pm-shadow-h)"', '').replace(' filter="url(#pm-shadow-v)"', '')
 assert diag.count('— Alessio') == 2; diag = diag.replace('— Alessio', 'AleEduSex')
 DIAG = f'<div class="diag-card reveal">{diag}</div>'
-# blog in home: fascia scura, tre articoli in righe con miniatura, poi le sezioni in quadretti
+# blog in home v8 (Taste «index with preview»): le frasi degli ultimi articoli grandi, la copertina a fianco cambia con la riga
 def dati(slug):
     a = (SITE / f'blog/{slug}.html').read_text()
     fr = re.search(r'<p class="frase">([^<]+)</p>', a); cv = re.search(r'<figure class="cover">\s*<img src="/blog/img/([^"]+)"', a)
     return (fr.group(1).strip() if fr else ''), (cv.group(1) if cv else None)
-ultimi = sorted(LI, key=lambda a: date[a], reverse=True)[:3]
+ultimi = sorted(LI, key=lambda a: date[a], reverse=True)[:4]
 def riga(slug):
     fr, cv = dati(slug)
-    img = f'<img src="/blog/img/mini/{cv}" alt="" width="1040" height="650" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover assesta">' if cv else ''
+    img = f'<img src="/blog/img/mini/{cv}" alt="" width="1040" height="650" loading="lazy" decoding="async">' if cv else ''
     return f'''
-        <li><a href="/blog/{slug}.html" class="group grid grid-cols-[112px_1fr] sm:grid-cols-[168px_1fr] gap-5 md:gap-7 items-start">
-          <div class="overflow-hidden">{img}</div>
-          <div><p class="font-display text-brand-cream text-[20px] md:text-[23px] leading-[1.28] tracking-tightish">{fr}</p>
-          <p class="mt-2 font-body text-[15px] leading-[1.5] text-brand-cream/80 group-hover:text-brand-cream underline underline-offset-4 decoration-brand-cream/30">{titoli[slug]}</p></div>
-        </a></li>'''
-quadretti_home = ''.join(f'''
-        <li><a href="/blog/{s["slug"]}/" class="group flex flex-col justify-between gap-6 h-full min-h-[120px] p-5 bg-white/[0.06] hover:bg-white/[0.12] transition-colors">
-          {ico(s["icona"], "w-[28px] h-[28px] text-brand-cream")}
-          <span><span class="block font-display text-brand-cream text-[19px] leading-[1.15]">{s["nome"]}</span><span class="block mt-1 font-body text-[14px] text-brand-cream/75">{n_art(s)} <span class="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span></span>
-        </a></li>''' for s in SEZ)
-BLOG = f'''<!-- ═══════ Dal blog: capitolo scuro, ultimi articoli e sezioni ═══════ -->
+        <li><a href="/blog/{slug}.html">{img}<span class="f">{fr}</span><span class="t">{titoli[slug]} <span class="ar" aria-hidden="true">→</span></span></a></li>'''
+sez_home = ''.join(f'<li><a href="/blog/{s["slug"]}/">{ico(s["icona"], "ico-s")}<span>{s["nome"]}</span></a></li>' for s in SEZ)
+BLOG = f'''<!-- ═══════ Dal blog: le frasi degli ultimi articoli, con la copertina a fianco ═══════ -->
 <section id="dal-blog" class="bg-brand-ink text-brand-cream">
   <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
-      <div class="lg:col-span-5">
-        <h2 class="font-display text-brand-cream text-[44px] sm:text-[56px] lg:text-[72px] leading-[0.98] tracking-tighter2 reveal">Se preferisci <span class="italic">leggere prima.</span></h2>
-        <p class="mt-6 font-body text-brand-cream text-[18px] leading-[1.6] reveal" data-delay="1">Nel blog rispondo alle domande che si fanno a bassa voce. Ogni articolo parte da una frase vera: quella che di solito non si dice a nessuno.</p>
-        <a href="/blog/" class="btn-cream-on-burgundy mt-10 reveal" data-delay="2">Vai al blog <span aria-hidden="true">→</span></a>
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end">
+      <h2 class="lg:col-span-7 font-display text-brand-cream text-[44px] sm:text-[56px] lg:text-[72px] leading-[0.98] tracking-tighter2 reveal">Se preferisci <span class="italic">leggere prima.</span></h2>
+      <div class="lg:col-span-5 reveal" data-delay="1">
+        <p class="font-body text-brand-cream text-[18px] leading-[1.6]">Nel blog ogni articolo parte da una frase vera: quella che di solito non si dice a nessuno. Scegli la tua.</p>
+        <a href="/blog/" class="btn-cream-on-burgundy mt-8">Vai al blog <span aria-hidden="true">→</span></a>
       </div>
-      <ul class="lg:col-span-7 space-y-8 reveal" data-delay="1">{"".join(riga(x) for x in ultimi)}
-      </ul>
     </div>
-    <h3 class="mt-20 font-display text-brand-cream text-[26px] leading-[1.1] reveal">Le sezioni del blog</h3>
-    <ul class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 reveal" data-delay="1">{quadretti_home}
+    <ul class="vetrina mt-14 md:mt-20 reveal" data-delay="1">{"".join(riga(x) for x in ultimi)}
     </ul>
+    <nav class="sez-home mt-14 md:mt-20 reveal" aria-labelledby="sez-home-h">
+      <h3 id="sez-home-h">Oppure parti da una sezione</h3>
+      <ul>{sez_home}</ul>
+    </nav>
   </div>
 </section>'''
 PREZZO_SINGOLO = 100   # incontro singolo da 60 minuti: DA CONFERMARE con Alessio (serve per mostrare il risparmio)
@@ -405,6 +398,29 @@ CSS_V3 = '''<style>
   @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) { img.assesta { animation: assestaHome linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; } } }
   .gift:hover .arrow { transform: translateX(4px); }
   .diag-card { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; transform: none !important; }
+  /* v8: blog in home, indice con anteprima */
+  .vetrina { position: relative; list-style: none; margin-left: 0; padding: 0; }
+  .vetrina a { display: block; padding: 16px 0; color: #F0E7D5; }
+  .vetrina .f { display: block; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; letter-spacing: -0.015em; text-wrap: balance; transition: opacity .3s ease; }
+  .vetrina .t { display: block; margin-top: 6px; font-size: 16px; line-height: 1.45; color: rgba(240,231,213,.82); }
+  .vetrina .ar { display: inline-block; transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  .vetrina a:hover .ar, .vetrina a:focus-visible .ar { transform: translateX(5px); }
+  .vetrina img { display: none; }
+  .vetrina li:first-child img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 20px; }
+  @media (min-width: 1024px) {
+    .vetrina { padding-right: 46%; min-height: 560px; }
+    .vetrina img, .vetrina li:first-child img { display: block; position: absolute; right: 0; top: 0; width: 40%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; margin: 0; opacity: 0; transition: opacity .4s ease; }
+    .vetrina .f { opacity: .5; }
+    .vetrina li:hover img, .vetrina li:focus-within img, .vetrina li:hover .f, .vetrina li:focus-within .f { opacity: 1; }
+    .vetrina:not(:has(li:hover)):not(:has(li:focus-within)) li:first-child img, .vetrina:not(:has(li:hover)):not(:has(li:focus-within)) li:first-child .f { opacity: 1; }
+  }
+  .sez-home h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; font-weight: 600; color: #F0E7D5; }
+  .sez-home ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  @media (min-width: 1024px) { .sez-home ul { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .sez-home a { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; min-height: 44px; color: #F0E7D5; font-family: 'DM Serif Display', Georgia, serif; font-size: 19px; line-height: 1.2; }
+  .sez-home a:hover span, .sez-home a:focus-visible span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+  .ico-s { width: 22px; height: 22px; flex: none; margin-top: 1px; color: #F0E7D5; }
+  @media (prefers-reduced-motion: reduce) { .vetrina img, .vetrina .f, .vetrina .ar { transition: none; } }
   /* v4: percorsi, scegli per chi */
   .per { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .per legend { width: 100%; }
