@@ -1519,6 +1519,44 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 }
 ''')
 
+# ── 23. v12 fase 3: micro-interazioni (tastiera come mouse, aperture morbide, percorsi a cascata, video e menu, invio) ──
+APRI = '@keyframes apri { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }'
+h = rd('index.html')
+h = h.replace('</head>', '<style>' + APRI + '''
+  @keyframes compari { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes vboxIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes vboxInDentro { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+  #mobile-menu { transition-duration: var(--dur-base) !important; transition-timing-function: var(--ease-out) !important; }
+  #mobile-menu[aria-hidden="true"] { transition-duration: var(--dur-fast) !important; transition-timing-function: var(--ease-in) !important; }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-burgundy:focus-visible .arr { transform: translateX(4px); }
+    .gift:focus-visible .arrow, .alt-link:focus-visible .alt-arrow { transform: translateX(4px); }
+    .frasi details[open] > :not(summary) { animation: apri var(--dur-base) var(--ease-out) both; }
+    .voci .voce { animation: compari 300ms var(--ease-out) both; }
+    .voci .voce:nth-child(2) { animation-delay: calc(var(--stagger) * 1); }
+    .voci .voce:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+    .voci .voce:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+    .voci .voce:nth-child(n+5) { animation-delay: calc(var(--stagger) * 4); }
+    .vbox:not([hidden]) { animation: vboxIn var(--dur-base) var(--ease-out) both; }
+    .vbox:not([hidden]) .vbox-in { animation: vboxInDentro var(--dur-base) var(--ease-out) both; }
+  }
+</style>
+</head>''', 1)
+wr('index.html', h)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('\n/* ── v12: micro-interazioni ── */\n' + APRI + '''
+@media (prefers-reduced-motion: no-preference) {
+  .btn-burgundy:focus-visible .arr { transform: translateX(4px); }
+  .carte .carta:focus-visible .n { color: var(--cream); }
+  .domanda[open] > :not(summary) { animation: apri var(--dur-base) var(--ease-out) both; }
+}
+.cta-box .gift:focus-visible { border-color: var(--cream); background: rgba(240, 231, 213, 0.08); }
+/* «Invio…» dopo il clic su un modulo valido (senza JavaScript: il pulsante resta col focus mentre la pagina parte) */
+.domanda button { position: relative; }
+.domanda form:valid button:focus:not(:focus-visible) { cursor: progress; }
+.domanda form:valid button:focus:not(:focus-visible)::after { content: "Invio…"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: inherit; }
+''')
+
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
