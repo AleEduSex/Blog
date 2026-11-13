@@ -1478,6 +1478,47 @@ h = h[:k] + '''<a class="barra-cta" href="#contatti" aria-hidden="true" tabindex
 </script>
 ''' + h[k:]
 wr('index.html', h)
+# ── 22. v12: revisione fase 1 (15 minuti una volta in meno, domanda anonima dentro «Ne vuoi parlare?», sezioni allineate, menu) ──
+h = rd('index.html')
+a = re.search(r'<a href="[^"]*" target="_blank" rel="noreferrer" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">(15 minuti al telefono\. Gratis)</a>', h)
+assert a, '15 minuti in Come funziona'
+h = h.replace(a.group(0), a.group(1), 1)
+h = h.replace('</head>', '''<style>
+  /* il pulsante del menu anima solo trasformazioni e trasparenza */
+  #ham-top, #ham-mid, #ham-bot { transition-property: transform, opacity !important; transition-duration: var(--dur-base) !important; transition-timing-function: var(--ease-out) !important; }
+</style>
+</head>''', 1)
+wr('index.html', h)
+for f in (OUT / 'blog').glob('*.html'):
+    s = f.read_text()
+    i = s.find('<section class="cta-box"')
+    if i < 0 or '<details class="domanda">' not in s: continue
+    j = s.find('</section>', i)
+    m = re.match(r'\s*<details class="domanda">.*?</details>', s[j + 10:], re.S)
+    assert m, f.name
+    d = m.group(0).strip()
+    s = s[:j] + '  ' + d + '\n    ' + s[j:j + 10] + s[j + 10 + m.end():]
+    f.write_text(s)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── v12: la domanda anonima è la seconda strada dentro «Ne vuoi parlare?» ── */
+.cta-box .domanda { margin: 28px 0 0 !important; padding-top: 20px !important; border-top: 1px solid rgba(240,231,213,.28) !important; }
+.cta-box .domanda h2 { font-family: var(--body, inherit); font-size: 18px !important; line-height: 1.4 !important; letter-spacing: 0; color: var(--cream, #F0E7D5); }
+.cta-box .domanda summary::after { color: var(--cream, #F0E7D5); font-size: 26px; }
+.cta-box .domanda summary:hover h2, .cta-box .domanda summary:focus-visible h2 { color: var(--cream, #F0E7D5); text-decoration: underline; text-underline-offset: 4px; }
+.cta-box .domanda > p { color: rgba(240,231,213,.9); font-size: 17px; }
+.cta-box .domanda form { background: var(--paper); color: var(--ink, #1A1A1A); padding: 20px; margin-top: 16px; max-width: none; }
+.cta-box .domanda form :focus-visible { outline-color: var(--burgundy) !important; }
+/* pagine sezione: testo e riquadro sulla stessa colonna dell'elenco; disegno vicino al titolo */
+.sez-page .wrap-narrow { max-width: 1280px; }
+.sez-page .wrap-narrow > * { max-width: 712px; }
+@media (min-width: 768px) {
+  .sez-page .wrap-narrow { padding: 0 40px; }
+  .sez-hero .head { grid-template-columns: minmax(0, 46rem) 160px !important; justify-content: start; }
+  .sez-hero .ill { width: 160px; height: 160px; }
+}
+''')
+
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
