@@ -97,11 +97,22 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 - Push su `main` = sito online (quando Netlify è collegato al repo).
 - Prima di ogni push: `bash verifica.sh` deve stampare OK.
 - Testata e footer sono identici in blog, 404 e pagina legale: `verifica.sh` lo controlla.
+- Skill di design esterne (Impeccable, Taste, UI/UX Pro Max, Hallmark, web-quality, Vercel
+  guidelines) in `.claude/skills/`: solo per il lavoro tecnico di Mirko, mai per gli articoli.
+  Nel lavoro di Mirko su grafica, pagine o revisioni **usale sempre**, tutte quelle utili, al
+  momento giusto (prima di progettare, prima di modificare, per verificare a lavoro finito).
+  Origine, licenze e verifiche in `.claude/SKILL-ESTERNE.md`.
+- `prototipi/NON-TOCCARE/`: prove del blog diviso per temi (non pubblicate). Non modificarle e
+  non usarle per gli articoli; spiegazione in `prototipi/NON-TOCCARE/LEGGIMI.md`.
 
 ### Da fare
 
 - P.IVA (e sede) di Alessio nel footer della landing (`© 2026 · aleedusex`) e in
   `site/legale.html` › Note legali. Rimandata su richiesta.
-- Logo originale in alta risoluzione: se arriva, rifare `og.jpg` (oggi logo 192 px ingrandito).
+- Logo ufficiale in alta definizione in `materiali/logo/` (SVG e PNG 4000 px): rifare `og.jpg`
+  (oggi logo 192 px ingrandito); proposta pronta in `materiali/logo/og-proposta.jpg`.
 - Togliere Tailwind da CDN dalla landing (CSS statico equivalente, confronto screenshot).
 - Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.
+- Verso la fase finale (prima di passare la nuova versione online): installare e usare una skill
+  per la guida legale (privacy, cookie, policy, consenso dei moduli) e una per la cybersecurity
+  (header di sicurezza, moduli, dipendenze esterne), verificate come quelle in `.claude/SKILL-ESTERNE.md`.
