@@ -1418,6 +1418,66 @@ body { font-size: var(--t-body); }
 }
 ''')
 
+
+# ── 21. v11: skill ux-animation-principles (tempi e variabili, target 44 px, barra Scrivimi su telefono, attesa del video) ──
+TOKENS = ':root { --dur-fast: 150ms; --dur-base: 250ms; --dur-enter: 400ms; --ease-out: cubic-bezier(.22,1,.36,1); --ease-in: cubic-bezier(.55,0,1,.45); --stagger: 50ms; }'
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('\n/* ── v11: una sola famiglia di tempi (skill ux-animation-principles) ── */\n' + TOKENS + '''
+.blog-hero h1, .article-head h1 { animation-duration: 450ms !important; animation-timing-function: var(--ease-out) !important; }
+/* aree da 44 px per i link isolati (non quelli dentro il testo) */
+.crumb a, .author-box a, .back-link, .site-footer ul a, .site-footer .legal a, .more > a { display: inline-flex; align-items: center; min-height: 44px; }
+.site-footer ul { gap: 0 !important; }
+.wordmark { display: inline-flex; align-items: center; min-height: 44px; }
+''')
+h = rd('index.html')
+h = h.replace('</head>', '<style>' + TOKENS + '''
+  .reveal { transition-duration: var(--dur-enter) !important; transition-timing-function: var(--ease-out) !important; }
+  .reveal[data-delay="1"] { transition-delay: calc(var(--stagger) * 1) !important; }
+  .reveal[data-delay="2"] { transition-delay: calc(var(--stagger) * 2) !important; }
+  .reveal[data-delay="3"] { transition-delay: calc(var(--stagger) * 3) !important; }
+  .hero-line { animation-duration: 450ms !important; animation-timing-function: var(--ease-out) !important; }
+  .stamp-in, .block-stamp { animation-duration: 500ms !important; }
+  footer a { display: inline-flex; align-items: center; min-height: 44px; }
+  header a[href="#top"] { display: inline-flex !important; align-items: center; min-height: 44px; }
+  footer ul { row-gap: 0 !important; }
+  footer ul > li + li { margin-top: 0 !important; }
+  /* barra «Scrivimi» in basso su telefono: compare dopo il primo schermo, sparisce sopra i contatti */
+  .barra-cta { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 45; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; padding: 0 20px; background: #7A1E2B; color: #F0E7D5; font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; box-shadow: 0 10px 24px -12px rgba(26,26,26,.55); transform: translateY(160%); transition: transform var(--dur-base) var(--ease-in); }
+  .barra-cta.vista { transform: translateY(0); transition-timing-function: var(--ease-out); }
+  .barra-cta:active { transform: translateY(0) scale(.97); }
+  .barra-cta small { font-size: 14px; color: rgba(240,231,213,.88); }
+  .barra-cta:focus-visible { outline: 2px solid #F0E7D5; outline-offset: -5px; }
+  @media (min-width: 1024px) { .barra-cta { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .barra-cta { transition: none; } }
+  /* attesa del video: un anello che gira finché non parte */
+  .vbox .attesa { position: absolute; inset: 0; margin: auto; width: 44px; height: 44px; border-radius: 50%; border: 3px solid rgba(240,231,213,.3); border-top-color: #F0E7D5; opacity: 0; pointer-events: none; transition: opacity var(--dur-fast) ease; animation: giro 800ms linear infinite; }
+  .vbox.carica .attesa { opacity: 1; }
+  .vbox.carica .vbox-play { opacity: 0; }
+  @keyframes giro { to { transform: rotate(360deg); } }
+</style>
+</head>''', 1)
+k = h.rindex('</body>')
+h = h[:k] + '''<a class="barra-cta" href="#contatti" aria-hidden="true" tabindex="-1"><span>Scrivimi <small>· 15 minuti al telefono, Gratis</small></span><span aria-hidden="true">→</span></a>
+<script>
+  // Barra «Scrivimi» su telefono: visibile tra il primo schermo e i contatti.
+  (function () {
+    var barra = document.querySelector('.barra-cta'), hero = document.querySelector('[data-foto-per="hero"]'), cont = document.getElementById('contatti');
+    if (!barra || !hero || !cont || !('IntersectionObserver' in window)) return;
+    var fuoriHero = false, neiContatti = false;
+    function agg() { var v = fuoriHero && !neiContatti; barra.classList.toggle('vista', v); barra.setAttribute('aria-hidden', v ? 'false' : 'true'); barra.tabIndex = v ? 0 : -1; }
+    new IntersectionObserver(function (e) { fuoriHero = !e[0].isIntersecting; agg(); }).observe(hero);
+    new IntersectionObserver(function (e) { neiContatti = e[0].isIntersecting; agg(); }, { rootMargin: '0px 0px -30% 0px' }).observe(cont);
+  })();
+  // Video: anello d'attesa finché il video non parte davvero.
+  (function () {
+    var box = document.querySelector('.vbox'); if (!box) return;
+    var v = box.querySelector('video'), a = document.createElement('span'); a.className = 'attesa'; a.setAttribute('aria-hidden', 'true'); box.querySelector('.vbox-in').appendChild(a);
+    ['loadstart', 'waiting'].forEach(function (t) { v.addEventListener(t, function () { box.classList.add('carica'); }); });
+    ['playing', 'canplay', 'pause', 'error', 'emptied'].forEach(function (t) { v.addEventListener(t, function () { box.classList.remove('carica'); }); });
+  })();
+</script>
+''' + h[k:]
+wr('index.html', h)
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
