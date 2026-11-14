@@ -17,6 +17,12 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/sexting-come-farlo-con-piacere-e-consapevolezza"
+  to = "/blog/sexting-come-farlo-con-piacere-e-consapevolezza.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/punto-g-esiste-davvero-cosa-dice-la-ricerca"
   to = "/blog/punto-g-esiste-davvero-cosa-dice-la-ricerca.html"
   status = 301
