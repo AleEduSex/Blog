@@ -1700,6 +1700,82 @@ h = h.replace('</head>', '<style>' + DIAG_CSS + '''
 </head>''', 1)
 wr('index.html', h)
 
+# ── 25. revisione fasi 2-5 (accessibilità, telefono, prestazioni): menu che trattiene la tastiera, barra che non copre il fuoco, errori del modulo in italiano ──
+PRELOAD = ('<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
+           '<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>\n')
+h = rd('index.html')
+a = "      menu.setAttribute('aria-hidden', 'false');"; assert h.count(a) == 1
+h = h.replace(a, a + "\n      fuori(true);", 1)
+a = "      toggle.focus();\n      menu.setAttribute('aria-hidden', 'true');"; assert h.count(a) == 1
+h = h.replace(a, "      fuori(false);\n" + a, 1)
+a = "function openMenu() {"; assert h.count(a) == 1
+h = h.replace(a, """// con il menu aperto tutto il resto della pagina è inerte: la tastiera resta nel menu
+    function fuori(on) {
+      var el = menu;
+      while (el && el !== document.body) {
+        Array.prototype.forEach.call(el.parentElement.children, function (s) {
+          if (s === el || s.tagName === 'SCRIPT') return;
+          if (on) s.setAttribute('inert', ''); else s.removeAttribute('inert');
+        });
+        el = el.parentElement;
+      }
+    }
+    """ + a, 1)
+a = '<img src="img/alessio-cottonaro-ritratto-principale.jpg" alt="Alessio Cottonaro, consulente in sessuologia, seduto in una stanza chiara" width="1200" height="1600" class="md:hidden foto-m hero-foto-m mt-10">'
+assert h.count(a) == 1
+h = h.replace(a, a.replace('mt-10">', 'mt-10" fetchpriority="high">'), 1)
+h = h.replace('<link rel="stylesheet" href="/fonts/fonts.css">', PRELOAD + '<link rel="stylesheet" href="/fonts/fonts.css">', 1)
+h = h.replace('</body>', '''<script>
+// la barra «Scrivimi» non deve coprire l'elemento che riceve il fuoco (WCAG 2.4.11): se succede, la pagina scorre quanto basta
+document.addEventListener('focusin', function (e) {
+  if (!e.target.getBoundingClientRect) return;
+  setTimeout(function () {
+    var bar = document.querySelector('.barra-cta.vista'); if (!bar) return;
+    var r = e.target.getBoundingClientRect(), top = bar.getBoundingClientRect().top - 12;
+    if (r.bottom > top) window.scrollBy({ top: r.bottom - top, behavior: 'instant' });
+  }, 60);
+});
+</script>
+</body>''', 1)
+h = h.replace('</head>', '''<style>
+  html { scroll-padding-top: 90px; }
+  @media (max-width: 1023px) { html { scroll-padding-bottom: 84px; } }
+  #nav-toggle { min-width: 44px; min-height: 44px; flex-shrink: 0; }
+</style>
+</head>''', 1)
+wr('index.html', h)
+# blog, 404, legale: caratteri in anticipo; articoli: copertina prima, titolo della domanda fuori dall'h2, errori in italiano
+ERR_T = '<p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>'
+ERR_C = '<p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>'
+for f in OUT.rglob('*.html'):
+    if f.name == 'index.html' and f.parent == OUT: continue
+    s = f.read_text(); s0 = s
+    if '<link rel="stylesheet" href="/fonts/fonts.css">' in s and 'rel="preload" href="/fonts/' not in s:
+        s = s.replace('<link rel="stylesheet" href="/fonts/fonts.css">', PRELOAD + '<link rel="stylesheet" href="/fonts/fonts.css">', 1)
+    s = re.sub(r'(<figure class="cover">\s*<img )', r'\1fetchpriority="high" ', s, count=1)
+    s = s.replace('<summary><h2 id="domanda-titolo">Preferisci fare una domanda anonima?</h2></summary>',
+                  '<summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>')
+    if 'id="domanda-testo"' in s and 'err-t' not in s:
+        s = re.sub(r'(<textarea id="domanda-testo"[^>]*></textarea>)', r'\1\n        ' + ERR_T, s, count=1)
+        s = re.sub(r'(<label class="ok">.*?</label>)', lambda m: m.group(1) + '\n        ' + ERR_C, s, count=1, flags=re.S)
+    if s != s0: f.write_text(s)
+with open(OUT / 'blog/blog.css', 'a') as c:
+    c.write('''
+/* ── revisione fasi 2-5 ── */
+html { scroll-padding-top: 90px; }
+.cta-box .domanda .d-tit { display: block; font-size: 18px; line-height: 1.4; color: var(--cream, #F0E7D5); }
+.cta-box .domanda summary:hover .d-tit, .cta-box .domanda summary:focus-visible .d-tit { text-decoration: underline; text-underline-offset: 4px; }
+.domanda textarea { border-color: rgba(122,30,43,.65); }
+.domanda .err { display: none; margin: -4px 0 0; font-size: 15px; font-weight: 600; color: #7A1E2B; }
+.domanda textarea:user-invalid { border: 2px solid #7A1E2B; }
+.domanda textarea:user-invalid + .err-t { display: block; }
+.domanda .ok:has(input:user-invalid) + .err-c { display: block; }
+.domanda .ok:has(input:user-invalid) input { outline: 2px solid #7A1E2B; outline-offset: 2px; }
+.more h2 a { display: inline-block; padding-block: 6px; }
+.site-footer ul a { min-width: 44px; }
+@media (max-width: 359px) { .cta-box { padding-left: 24px !important; padding-right: 24px !important; } }
+''')
+
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
