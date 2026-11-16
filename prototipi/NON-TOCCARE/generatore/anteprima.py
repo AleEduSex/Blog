@@ -1587,13 +1587,48 @@ def esiti3(nx, ny, dx, ys, lx, under_w, maxw, bend, off=0):
         if main: s.append(f'<path class="pm-ink pm-firma" pathLength="1" style="--d:{2450 + off}ms;--dur:700ms" d="M{lx} {y+18} C {lx+under_w*.3:.0f} {y+14}, {lx+under_w*.65:.0f} {y+22}, {lx+under_w} {y+16}"/>')
         if i == 2: s.append(chips(lx, y + 24, 2350 + off, maxw))
     return ''.join(s)
-DIAG_V = (f'<svg class="pm-map pm-map-v" viewBox="0 0 360 700" role="img" aria-label="{ARIA3}">'
-  '<text class="pm-t-tu pm-fade" x="180" y="58" text-anchor="middle" style="--d:0ms">Tu</text>'
-  '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:500ms" d="M180 80 C 187 98, 173 114, 180 132 S 181 146, 180 150"/>'
-  + stamp3(180, 156, 240, 108) +
-  '<text class="pm-cap pm-fade" x="190" y="300" text-anchor="middle" style="--d:1100ms">dopo la prima consulenza</text>'
-  '<path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:500ms" d="M62 238 C 34 252, 22 300, 22 470"/>'
-  + esiti3(22, 470, 50, (372, 470, 580), 72, 248, 280, lambda y: f'M22 470 C 22 {y}, 24 {y}, 50 {y}' if y != 470 else 'M22 470 L 50 470', off=350) + '</svg>')
+def diag_v():
+    # telefono (prova 2): tre rami a ventaglio dallo stesso punto; il centrale scende di più e pesa di più.
+    # I professionisti sono appesi alla terza strada: il suo ramo continua lungo il bordo e li «porta» in basso.
+    o = 350
+    s = [f'<svg class="pm-map pm-map-v" viewBox="0 0 360 720" role="img" aria-label="{ARIA3}">',
+         '<text class="pm-t-tu pm-fade" x="180" y="58" text-anchor="middle" style="--d:0ms">Tu</text>',
+         '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:520ms" d="M180 80 C 187 98, 173 114, 180 132 S 181 146, 180 150"/>',
+         stamp3(180, 156, 240, 108),
+         '<path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:260ms" d="M180 264 L 180 282"/>',
+         '<text class="pm-cap pm-fade" x="180" y="306" text-anchor="middle" style="--d:1250ms">dopo la prima consulenza</text>',
+         f'<circle class="pm-dot" cx="180" cy="324" r="4" style="--d:{1300 + o}ms"/>']
+    rami = [('M180 324 C 180 354, 62 348, 62 386', 62, 386), ('M180 324 L 180 446', 180, 454), ('M180 324 C 180 354, 298 348, 298 386', 298, 386)]
+    for i, (d, x, y) in enumerate(rami):
+        main = i == 1
+        s.append(f'<path class="pm-ink{" pm-main" if main else ""}" pathLength="1" style="--d:{1400 + o + i*70}ms;--dur:620ms" d="{d}"/>')
+        if main: s.append(f'<circle class="pm-ripple" cx="{x}" cy="{y}" r="7" style="--d:{2080 + o}ms"/>')
+        s.append(f'<circle class="pm-dot" cx="{x}" cy="{y}" r="{7 if main else 5}" style="--d:{2000 + o + i*70}ms"/>')
+    s.append(f'<g class="pm-fade" style="--d:{2060 + o}ms"><text class="pm-n" x="62" y="424" text-anchor="middle">ti basta</text><text class="pm-n" x="62" y="452" text-anchor="middle">così</text></g>')
+    s.append(f'<g class="pm-fade" style="--d:{2130 + o}ms"><text class="pm-n pm-n-main" x="180" y="494" text-anchor="middle">continuiamo</text><text class="pm-n pm-n-main" x="180" y="524" text-anchor="middle">insieme</text>'
+             f'<text class="pm-sub" x="180" y="562" text-anchor="middle">un percorso con</text><text class="pm-sub" x="180" y="584" text-anchor="middle">un obiettivo chiaro</text></g>')
+    s.append(f'<path class="pm-ink pm-firma" pathLength="1" style="--d:{2450 + o}ms;--dur:620ms" d="M134 534 C 160 530, 196 538, 226 532"/>')
+    s.append(f'<g class="pm-fade" style="--d:{2200 + o}ms"><text class="pm-n" x="298" y="424" text-anchor="middle">ti indirizzo</text><text class="pm-n" x="298" y="452" text-anchor="middle">a chi serve</text></g>')
+    # il terzo ramo prosegue: scende lungo il bordo destro e si apre sui professionisti
+    s.append(f'<path class="pm-ink pm-sottile" pathLength="1" style="--d:{2300 + o}ms;--dur:620ms" d="M298 464 C 298 486, 344 486, 344 520 L 344 604 C 344 616, 336 620, 326 620"/>')
+    s.append(chips_riga(12, 636, 2650 + o, 336))
+    return ''.join(s) + '</svg>'
+def chips_riga(x, y, d0, maxw):
+    # come chips(), ma con i caratteri più grandi del telefono e le righe da destra (il ramo arriva da destra)
+    righe, riga, w_riga = [], [], 0
+    for t in PROF3:
+        w = round(len(t) * 8.6 + 28)
+        if riga and w_riga + 8 + w > maxw: righe.append(riga); riga, w_riga = [], 0
+        riga.append((t, w)); w_riga += (8 if w_riga else 0) + w
+    righe.append(riga)
+    out, k = [], 0
+    for r, riga in enumerate(righe):
+        tot = sum(w for _, w in riga) + 8 * (len(riga) - 1); cx = x + maxw - tot; cy = y + r * 42
+        for t, w in riga:
+            out.append(f'<g class="pm-fade pm-chip-g" style="--d:{d0 + k*70}ms"><rect class="pm-chip" x="{cx}" y="{cy}" width="{w}" height="32" rx="16"/><text class="pm-chip-t" x="{cx + w/2}" y="{cy + 21}" text-anchor="middle">{t}</text></g>')
+            cx += w + 8; k += 1
+    return ''.join(out)
+DIAG_V = diag_v()
 DIAG_H = (f'<svg class="pm-map pm-map-h" viewBox="0 0 1100 420" role="img" aria-label="{ARIA3}">'
   '<text class="pm-t-tu pm-fade" x="70" y="226" text-anchor="middle" style="--d:0ms">Tu</text>'
   '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:500ms" d="M118 206 C 136 198, 150 214, 168 206 S 186 200, 194 204"/>'
@@ -1604,6 +1639,17 @@ DIAG_H = (f'<svg class="pm-map pm-map-h" viewBox="0 0 1100 420" role="img" aria-
 h = rd('index.html')
 h, n = re.subn(r'<svg class="pm-map pm-map-h".*?</svg>\s*<svg class="pm-map pm-map-v".*?</svg>', lambda m: DIAG_H + '\n      ' + DIAG_V, h, count=1, flags=re.S)
 assert n == 1, 'disegno'
+assert h.count('<div class="diag-card reveal">') == 1
+h = h.replace('<div class="diag-card reveal">', '<div class="diag-card">')  # lo avvia solo il suo osservatore
+assert "querySelectorAll('.reveal, .step-roman, .diag-card, .negation-row, .quote-slab')" in h
+h = h.replace("querySelectorAll('.reveal, .step-roman, .diag-card, .negation-row, .quote-slab')", "querySelectorAll('.reveal, .step-roman, .negation-row, .quote-slab')", 1)
+h = h.replace('</body>', '''<script>
+(function () { var d = document.querySelector('.diag-card'); if (!d) return;
+  if (!('IntersectionObserver' in window)) { d.classList.add('in'); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { d.classList.add('in'); io.disconnect(); } }); }, { rootMargin: '0px 0px -40% 0px' });
+  io.observe(d); })();
+</script>
+</body>''', 1)
 DIAG_CSS = '''
   .pm-n { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 32px; fill: #1A1A1A; }
   .pm-n-main { font-size: 36px; fill: #7A1E2B; }
@@ -1615,7 +1661,26 @@ DIAG_CSS = '''
   .pm-firma { stroke-width: 1.4 !important; opacity: .85; }
   .pm-chip { fill: rgba(122,30,43,.06); stroke: rgba(122,30,43,.55); stroke-width: 1; }
   .pm-chip-t { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 16px; fill: #5C1520; }
-  .diag-card.in .pm-ink { animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  .pm-sottile { stroke-width: 1.2 !important; opacity: .8; }
+  .pm-map-v .pm-n { font-size: 24px; } .pm-map-v .pm-n-main { font-size: 27px; }
+  .pm-map-v .pm-chip-t { font-size: 17px; }
+  /* fino a 1023 px il disegno verticale: quello orizzontale scenderebbe sotto i 12 px */
+  @media (max-width: 1023px) { .diag .pm-map-h { display: none !important; } .diag .pm-map-v { display: block !important; } }
+  @media (max-width: 400px) { .diag { padding-left: 4px !important; padding-right: 4px !important; } }
+  /* animazione (skill ux-animation-principles, impeccable animate, web-animation-design):
+     l'inchiostro si muove ease-in-out (è un tracciato che viaggia), ciò che entra arriva ease-out; il riquadro «si appoggia» quando la linea lo raggiunge */
+  @media (prefers-reduced-motion: no-preference) {
+    .diag .diag-card.in .pm-ink { animation-timing-function: cubic-bezier(.645,.045,.355,1); }
+    .diag .diag-card.in .pm-fade { animation: pmEntra 560ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
+    .diag .diag-card.in .pm-dot { animation: pmPunto 380ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
+    .diag .diag-card.in .pm-ripple { animation: pmRipple 900ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
+    .diag .diag-card.in .pm-stamp { animation: pmAppoggia 520ms cubic-bezier(.23,1,.32,1) 760ms both; transform-box: fill-box; transform-origin: center; }
+    .diag .diag-card.in .pm-chip-g { animation-name: pmChip; }
+  }
+  @keyframes pmEntra { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+  @keyframes pmPunto { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: none; } }
+  @keyframes pmChip { from { opacity: 0; transform: scale(.95); filter: blur(2px); } to { opacity: 1; transform: none; filter: none; } }
+  @keyframes pmAppoggia { from { opacity: 0; transform: scale(1.06) rotate(-1deg); } to { opacity: 1; transform: none; } }
 '''
 h = h.replace('</head>', '<style>' + DIAG_CSS + '''
   /* parte nera: su telefono 3 articoli, le sezioni diventano riquadri */
