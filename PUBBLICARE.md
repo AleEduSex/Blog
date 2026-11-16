@@ -116,6 +116,8 @@ Serve a chi arriva all'indirizzo senza `.html`: viene portato su quello ufficial
 
 In `sezioni.py` trova la sezione scelta e aggiungi `"<slug>",` in cima alla sua lista `"articoli"`.
 Non toccare il resto del file (titoli e testi delle sezioni sono di Alessio).
+Solo per «Approfondimenti e attualità»: aggiungilo anche nella lista `"articoli"` della sua parte
+(«Storia e idee», «Letture e ascolti» o «Notizie»).
 
 ## 7. Rigenera e verifica
 

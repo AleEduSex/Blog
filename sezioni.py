@@ -24,6 +24,11 @@ SEZIONI = [
    "kink-cos-e-come-sperimentare"
   ],
   "articoli": [
+   "clitoride-come-funziona-e-piacere",
+   "punto-g-esiste-davvero-cosa-dice-la-ricerca",
+   "squirting-cose-e-da-dove-viene-il-liquido",
+   "kink-piu-comuni-quali-sono",
+   "prima-volta-cosa-aspettarsi",
    "orgasmo-cos-e-cosa-succede-nel-corpo",
    "masturbazione-e-normale-quando-preoccuparsi",
    "fantasie-sessuali-e-immaginario-erotico",
@@ -53,6 +58,8 @@ SEZIONI = [
    "pep-e-prep-hiv"
   ],
   "articoli": [
+   "pulizia-intima-come-lavarsi-cosa-evitare",
+   "sesso-orale-con-piacere-e-sicurezza",
    "come-mettere-il-preservativo",
    "preservativo-chi-deve-saperlo-mettere",
    "lubrificante-e-preservativo",
@@ -88,6 +95,10 @@ SEZIONI = [
    "stealthing-preservativo-tolto-di-nascosto"
   ],
   "articoli": [
+   "sexting-come-farlo-con-piacere-e-consapevolezza",
+   "come-dire-di-no-senza-sentirsi-in-colpa",
+   "parola-di-sicurezza-cos-e-come-usarla",
+   "amore-e-desiderio-nella-coppia",
    "consenso-sessuale-cosa-vuol-dire-e-cosa-no",
    "stealthing-preservativo-tolto-di-nascosto",
    "come-parlare-di-sesso-con-il-partner"
@@ -115,6 +126,9 @@ SEZIONI = [
    "orgasmo-che-non-arriva-cause-e-cosa-fare"
   ],
   "articoli": [
+   "dolore-durante-i-rapporti-cause-e-cosa-fare",
+   "eiaculazione-precoce-cause-e-cosa-fare",
+   "eiaculazione-ritardata-cause-e-cosa-fare",
    "perdita-di-erezione-durante-il-rapporto",
    "ansia-da-prestazione-sessuale",
    "orgasmo-che-non-arriva-cause-e-cosa-fare"
@@ -141,13 +155,14 @@ SEZIONI = [
    "foucault-storia-della-sessualita"
   ],
   "articoli": [
+   "storia-del-preservativo",
    "foucault-storia-della-sessualita"
   ],
   "parti": [
    {
     "nome": "Storia e idee",
     "descrizione": "Storia, filosofia, religione, curiosità. Sono gli articoli che non invecchiano.",
-    "articoli": [
+    "articoli": ["storia-del-preservativo", 
      "foucault-storia-della-sessualita"
     ]
    },
