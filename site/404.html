@@ -9,18 +9,35 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -41,15 +58,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -63,7 +81,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

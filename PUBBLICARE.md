@@ -1,15 +1,17 @@
 # Pubblicare un articolo sul blog
 
 Procedura per Claude (progetto di Alessio). Seguila in ordine, senza saltare passi.
-Tutto ciò che va online sta in `site/`. Questo file resta privato.
+Tutto ciò che va online sta in `site/`, ma **`site/` non si tocca mai a mano**: si scrive in `sorgente/`,
+si dice la sezione in `sezioni.py` e poi `bash genera.sh` rigenera `site/` (blog per sezioni, conteggi,
+home, sitemap). Questo file resta privato.
 
 ## 0. Regole fisse
 
 - Nulla va online senza il "pubblica" esplicito di Alessio in chat.
-- Tocchi SOLO: il nuovo `site/blog/<slug>.html`, `site/blog/index.html`, `site/sitemap.xml`, `netlify.toml`,
-  l'eventuale foto in `site/blog/img/`. Mai `site/index.html`, mai `blog.css`, mai altri articoli
-  (salvo correzioni richieste, vedi in fondo).
-- Niente file di lavoro in `site/` (note, bozze, .md, .docx, zip).
+- Tocchi SOLO: il nuovo `sorgente/blog/<slug>.html`, `sorgente/blog/index.html`, `sorgente/sitemap.xml`,
+  `sezioni.py`, `netlify.toml`, l'eventuale foto in `sorgente/blog/img/`, e poi `site/` **solo** tramite
+  `bash genera.sh`. Mai `index.html`, mai `blog.css`, mai altri articoli (salvo correzioni richieste, vedi in fondo).
+- Niente file di lavoro in `sorgente/` né in `site/` (note, bozze, .md, .docx, zip).
 - Testo: voce di Alessio (vedi `CLAUDE.md` › Voce di Alessio). Niente moralismo, niente clinichese,
   niente promesse terapeutiche. Temi medici o psicologici: rimanda al professionista giusto.
 
@@ -24,6 +26,9 @@ Mostra ad Alessio, in chat:
 - **In breve** (3 punti chiave, max ~20 parole ciascuno)
 - **Slug** (nome del file: minuscolo, trattini, niente accenti, parola chiave in testa;
   es. `calo-del-desiderio-in-coppia`)
+- **Sezione** del blog, una di queste 5: Corpo, piacere e fantasie · Prevenzione e salute ·
+  Comunicazione, relazioni e consenso · Difficoltà e blocchi · Approfondimenti e attualità.
+  Proponi tu la più adatta; decide Alessio.
 - **Testo completo**
 - Foto sì/no
 
@@ -39,12 +44,12 @@ righe `- …` consecutive → `<ul><li>`. Non cambiare le parole di Alessio: cor
 
 ## 2. Primo articolo vero? Togli i segnaposto
 
-Solo la prima volta: cancella `site/blog/esempio-1.html`, `esempio-2.html`, `esempio-3.html`
-e le loro tre voci `<li>` in `site/blog/index.html`.
+Solo la prima volta: cancella `sorgente/blog/esempio-1.html`, `esempio-2.html`, `esempio-3.html`
+e le loro tre voci `<li>` in `sorgente/blog/index.html` (se ci sono ancora).
 
 ## 3. Crea la pagina
 
-1. Copia `site/blog/_modello.html` in `site/blog/<slug>.html`.
+1. Copia `sorgente/blog/_modello.html` in `sorgente/blog/<slug>.html`.
 2. Sostituisci ogni segnaposto (l'elenco è nel commento in testa al modello):
    - `{{DATA_ISO}}` e `{{DATA_MODIFICA_ISO}}`: data di oggi, formato `2026-10-05`
    - `{{DATA_LEGGIBILE}}`: `5 ottobre 2026`
@@ -65,13 +70,13 @@ e le loro tre voci `<li>` in `site/blog/index.html`.
 
 ## 4. Foto (solo se c'è)
 
-- Salva come `site/blog/img/<slug>.jpg` (foto nel testo: `<slug>-2.jpg`, `<slug>-3.jpg`…)
+- Salva come `sorgente/blog/img/<slug>.jpg` (foto nel testo: `<slug>-2.jpg`, `<slug>-3.jpg`…)
 - Lato lungo max 1600 px, peso max 300 KB. Se è più grande, ridimensionala prima.
 - `alt` descrittivo, in italiano. Niente foto riconoscibili di clienti.
 
 ## 5. Aggiungi all'elenco
 
-In `site/blog/index.html`, subito sotto `<!-- NUOVO ARTICOLO QUI … -->`, incolla
+In `sorgente/blog/index.html`, subito sotto `<!-- NUOVO ARTICOLO QUI … -->`, incolla
 (e togli `post-item--lead` dalla voce che prima era in cima):
 
 ```html
@@ -87,7 +92,7 @@ In `site/blog/index.html`, subito sotto `<!-- NUOVO ARTICOLO QUI … -->`, incol
 
 ## 6. Aggiungi alla sitemap
 
-In `site/sitemap.xml`, subito sotto `<!-- NUOVO ARTICOLO QUI -->`:
+In `sorgente/sitemap.xml`, subito sotto `<!-- NUOVO ARTICOLO QUI -->`:
 
 ```xml
   <url><loc>https://aleedusex.net/blog/SLUG.html</loc><lastmod>2026-10-05</lastmod></url>
@@ -107,21 +112,31 @@ In `netlify.toml`, subito sotto `# NUOVO REINDIRIZZAMENTO QUI`:
 
 Serve a chi arriva all'indirizzo senza `.html`: viene portato su quello ufficiale.
 
-## 7. Verifica
+## 6c. Mettilo nella sua sezione
+
+In `sezioni.py` trova la sezione scelta e aggiungi `"<slug>",` in cima alla sua lista `"articoli"`.
+Non toccare il resto del file (titoli e testi delle sezioni sono di Alessio).
+
+## 7. Rigenera e verifica
 
 Dalla radice del repository:
 
 ```bash
+bash genera.sh
 bash verifica.sh
 ```
 
+`genera.sh` riscrive `site/` (articolo con la sua sezione, elenco del blog, pagina della sezione,
+conteggi, ultimi articoli in home, sitemap). Se si ferma con un errore sul nome dell'articolo,
+quasi sempre manca nella lista di una sezione (passo 6c).
+
 Deve stampare `OK`. Se stampa `ERRORE`, correggi e ripeti. Poi `git status`: devono
-comparire solo i file del passo 0.
+comparire solo i file del passo 0 (più quelli cambiati in `site/` da `genera.sh`).
 
 ## 8. Pubblica
 
 ```bash
-git add site netlify.toml
+git add sorgente site sezioni.py netlify.toml
 git commit -m "Blog: TITOLO"
 git push origin main
 ```
@@ -131,7 +146,7 @@ Conferma ad Alessio con il link `https://aleedusex.net/blog/SLUG.html`
 
 ## Correggere un articolo già pubblicato
 
-Modifica solo quel file e, se cambia il contenuto, aggiorna `{{DATA_MODIFICA_ISO}}`
+Modifica solo quel file in `sorgente/blog/` e, se cambia il contenuto, aggiorna `{{DATA_MODIFICA_ISO}}`
 (`article:modified_time` e `dateModified`) e `<lastmod>` nella sitemap. Titolo o sommario
-cambiati: aggiorna anche la voce in `blog/index.html`. Mai cambiare lo slug di un articolo
+cambiati: aggiorna anche la voce in `sorgente/blog/index.html`. Mai cambiare lo slug di un articolo
 già online. Poi passi 7 e 8 con messaggio `Blog: corregge TITOLO`.

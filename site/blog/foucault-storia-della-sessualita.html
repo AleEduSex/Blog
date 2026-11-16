@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,25 +81,35 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/approfondimenti-e-attualita/">Approfondimenti e attualità</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Ho sentito nominare Foucault: cosa dice davvero sul sesso?»</p>
-      <p class="post-meta"><time datetime="2026-11-02">2 novembre 2026</time><span class="sep">·</span>6 min di lettura</p>
       <h1>Foucault e la storia della sessualità: cosa dice davvero</h1>
+      <p class="post-meta"><time datetime="2026-11-02">2 novembre 2026</time><span class="sep">·</span>6 min di lettura</p>
+      </div>
       <p class="lede">Foucault dice che il sesso non è stato solo zittito: se ne è parlato tantissimo, ma sempre con delle regole. Te lo racconto in modo semplice, senza fare i filosofi.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/foucault-storia-della-sessualita.jpg" alt="Illustrazione di una figura bordeaux dietro la grata di un confessionale, in una finestra ad arco nera" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/foucault-storia-della-sessualita.jpg" alt="Illustrazione di una figura bordeaux dietro la grata di un confessionale, in una finestra ad arco nera" width="1600" height="1000">
       <figcaption>Illustrazione per aleedusex.net</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>Foucault non dice che il sesso è stato zittito: dice che se ne è parlato tantissimo, ma con delle regole.</li>
+        <li>Il confessionale è diventato lo studio del medico: oggi raccontiamo il sesso a un esperto per capire chi siamo.</li>
+        <li>Parlare di sesso aiuta se serve a te. Se diventa un esame o un'etichetta, no.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>Foucault. Prima o poi qualcuno te lo nomina: all'università, in un podcast, in un post che cita «il potere». Se hai cercato su Google «Foucault storia della sessualità» sei in buona compagnia, perché è una delle ricerche più frequenti su questi temi. E ti dico subito una cosa: non sono un filosofo. Sono un consulente in sessuologia che ha letto Foucault e che si è accorto che certe sue idee spiegano un sacco di cose che vedo ogni giorno. Quindi proviamo a dirlo come lo direi a un amico.</p>
       <p>Questo articolo apre la sezione sulle idee e sulla storia. Non troverai consigli pratici da applicare stasera. Troverai un modo di guardare le cose che, però, poi cambia anche quello che fai.</p>
       <h2>Di cosa parliamo, esattamente</h2>
-      <p>La «Storia della sessualità» è un progetto in più volumi. Il primo si chiama *La volontà di sapere*: è uscito in Francia nel 1976 e da noi nel 1978, per Feltrinelli. Poi ci sono altri due volumi, usciti nel 1984, che guardano all'antichità: *L'uso dei piaceri* e *La cura di sé*. Un quarto, sulla confessione cristiana, è uscito dopo la morte di Foucault, nel 2018. Per la Treccani, il senso del progetto è studiare la sessualità come un rapporto sociale: cioè non solo una cosa di corpi, ma di società.</p>
+      <p>La «Storia della sessualità» è un progetto in più volumi. Il primo si chiama <em>La volontà di sapere</em>: è uscito in Francia nel 1976 e da noi nel 1978, per Feltrinelli. Poi ci sono altri due volumi, usciti nel 1984, che guardano all'antichità: <em>L'uso dei piaceri</em> e <em>La cura di sé</em>. Un quarto, sulla confessione cristiana, è uscito dopo la morte di Foucault, nel 2018. Per la Treccani, il senso del progetto è studiare la sessualità come un rapporto sociale: cioè non solo una cosa di corpi, ma di società.</p>
       <h2>L'idea che ci siamo sempre raccontati</h2>
       <p>Te la dico come la raccontano tutti: per secoli il sesso era proibito, di sesso non si parlava, poi finalmente ci siamo liberati e adesso possiamo dire tutto. Giusto? Foucault dice: ehi, aspetta un attimo. Per la Stanford Encyclopedia of Philosophy, il libro comincia proprio rifiutando questa idea, che lui chiama «ipotesi repressiva». Secondo lui la società moderna non si è limitata a reprimere il sesso. Ne ha fatto un oggetto di discorsi: medici, giuridici, psicologici. E quei discorsi sono aumentati, non diminuiti.</p>
       <p>Detto a modo mio: non è che non se ne parlasse. Se ne parlava un sacco. Ma in certi posti, con certe regole, con certe persone autorizzate: il medico, il giudice, lo psicologo.</p>
@@ -94,7 +121,7 @@
         <figcaption>Illustrazione per aleedusex.net</figcaption>
       </figure>
       <h2>Scienza del sesso o arte del piacere?</h2>
-      <p>Foucault mette a confronto due modi di avvicinarsi al sesso. Uno è la scienza (la *scientia sexualis*): guarda, classifica, misura, cerca una verità. L'altro è l'arte erotica (*ars erotica*): punta all'esperienza, al piacere vissuto. Secondo lui, l'Occidente moderno ha scelto soprattutto la prima strada. Ecco perché abbiamo tante categorie e tanti manuali, e a volte meno tempo per sentire.</p>
+      <p>Foucault mette a confronto due modi di avvicinarsi al sesso. Uno è la scienza (la <em>scientia sexualis</em>): guarda, classifica, misura, cerca una verità. L'altro è l'arte erotica (<em>ars erotica</em>): punta all'esperienza, al piacere vissuto. Secondo lui, l'Occidente moderno ha scelto soprattutto la prima strada. Ecco perché abbiamo tante categorie e tanti manuali, e a volte meno tempo per sentire.</p>
       <h2>Biopotere, cioè governare la vita</h2>
       <p>Ultima parola difficile, poi giuro che finiamo: biopotere. È un potere che non si limita a vietare o a punire. Amministra la vita, la fa funzionare, la ottimizza, e lo fa con norme e con il sapere degli esperti. È il mondo della salute pubblica, delle statistiche, dei criteri su cosa sia «normale». E anche il sesso, in questo mondo, viene messo in ordine.</p>
       <h2>Va bene, ma a me che serve?</h2>
@@ -107,9 +134,9 @@
         <li><strong>Il piacere si impara facendo.</strong> Il mio lavoro ha un lato scientifico, ma la parte che conta si sperimenta: con calma e con consenso.</li>
       </ul>
       <h2>E io cosa faccio, allora?</h2>
-      <p>Io non sono un confessore e non ti giudico. Serve a capire cosa sta succedendo e quale professionista è il più indicato. Non faccio diagnosi e non prescrivo farmaci. Se hai una domanda, <a href="https://wa.me/393273003855">scrivimi su WhatsApp</a>: i primi 15 minuti te li regalo io.</p>
+      <p>Io non sono un confessore e non ti giudico. Parlarne serve a capire cosa sta succedendo e quale professionista è il più indicato. Non faccio diagnosi e non prescrivo farmaci. Se hai una domanda, <a href="https://wa.me/393273003855">scrivimi su WhatsApp</a>: ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Se ti viene voglia di leggerlo</h2>
-      <p>Parti dal primo volume, *La volontà di sapere*. È la porta d'ingresso a tutto il progetto. Prendila con calma e non preoccuparti se non capisci tutto: è filosofia, non un libretto di istruzioni. Qui, nei prossimi mesi, arriveranno altre letture, con il mio parere in due righe.</p>
+      <p>Parti dal primo volume, <em>La volontà di sapere</em>. È la porta d'ingresso a tutto il progetto. Prendila con calma e non preoccuparti se non capisci tutto: è filosofia, non un libretto di istruzioni. Qui, nei prossimi mesi, arriveranno altre letture, con il mio parere in due righe.</p>
       <h2>Domande frequenti</h2>
       <h3>Di cosa parla La volontà di sapere?</h3>
       <p>È il primo volume della Storia della sessualità di Foucault, uscito in Francia nel 1976 e in Italia nel 1978 da Feltrinelli. Mette in dubbio l'idea che il sesso sia stato soprattutto represso, e racconta come il potere e il sapere si sono occupati di sessualità.</p>
@@ -125,37 +152,46 @@
       <ul>
         <li>Gutting e Oksala, «Michel Foucault», Stanford Encyclopedia of Philosophy, sezione 3.5 (History of Modern Sexuality), prima pubblicazione 2003, ultima revisione sostanziale 21 aprile 2026: <a href="https://plato.stanford.edu/entries/foucault/">https://plato.stanford.edu/entries/foucault/</a></li>
         <li>Enciclopedia Treccani, voce «Foucault, Michel»: <a href="https://www.treccani.it/enciclopedia/michel-foucault/">https://www.treccani.it/enciclopedia/michel-foucault/</a></li>
-        <li>Michel Foucault, *La volontà di sapere. Storia della sessualità 1*, Feltrinelli, 1978 (scheda editoriale su Sololibri): <a href="https://www.sololibri.net/La-volonta-di-sapere-Storia-della.html">https://www.sololibri.net/La-volonta-di-sapere-Storia-della.html</a></li>
+        <li>Michel Foucault, <em>La volontà di sapere. Storia della sessualità 1</em>, Feltrinelli, 1978 (scheda editoriale su Sololibri): <a href="https://www.sololibri.net/La-volonta-di-sapere-Storia-della.html">https://www.sololibri.net/La-volonta-di-sapere-Storia-della.html</a></li>
       </ul>
     </div>
-
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>Foucault non dice che il sesso è stato zittito: dice che se ne è parlato tantissimo, ma con delle regole.</li>
-        <li>Il confessionale è diventato lo studio del medico: oggi raccontiamo il sesso a un esperto per capire chi siamo.</li>
-        <li>Parlare di sesso aiuta se serve a te. Se diventa un esame o un'etichetta, no.</li>
-      </ul>
-    </aside>
 
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="foucault-storia-della-sessualita">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more"><h2>Fa parte di <a href="/blog/approfondimenti-e-attualita/">Approfondimenti e attualità</a></h2></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -164,15 +200,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -186,7 +223,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

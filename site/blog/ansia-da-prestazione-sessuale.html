@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,20 +81,30 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/difficolta-e-blocchi/">Difficoltà e blocchi</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Ho paura di non essere all'altezza, e questo rovina tutto.»</p>
-      <p class="post-meta"><time datetime="2026-10-08">8 ottobre 2026</time><span class="sep">·</span>5 min di lettura</p>
       <h1>Ansia da prestazione sessuale: cos'è e come superarla</h1>
+      <p class="post-meta"><time datetime="2026-10-08">8 ottobre 2026</time><span class="sep">·</span>5 min di lettura</p>
+      </div>
       <p class="lede">L'ansia da prestazione riguarda qualsiasi corpo, a qualsiasi età. Non è debolezza: è un meccanismo, e si può smontare un pezzo alla volta.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/ansia-da-prestazione-sessuale.jpg" alt="Colline avvolte dalla nebbia all'alba, con un albero solitario in lontananza" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/ansia-da-prestazione-sessuale.jpg" alt="Colline avvolte dalla nebbia all'alba, con un albero solitario in lontananza" width="1600" height="1000">
       <figcaption>Foto di Septimiu Lupea, Pexels</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>L'ansia da prestazione sessuale riguarda tutte le persone: porta l'attenzione dal piacere al giudizio su di te.</li>
+        <li>Non dice niente di quanto vali: si alimenta di paura e di evitamento, e si può sciogliere.</li>
+        <li>Niente diagnosi fatte in casa: un consulente in sessuologia ti aiuta a capire da dove partire.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>L'ansia da prestazione sessuale è la paura di non essere all'altezza durante un rapporto: di eccitarsi, di durare, di far godere, di godere. Riguarda tutte le persone, a qualsiasi età. Non dice niente del tuo valore. È un meccanismo, e come tutti i meccanismi si può capire e smontare, un pezzo alla volta.</p>
       <p>Se il tuo dubbio riguarda soprattutto l'erezione, lo approfondisco in <a href="/blog/perdita-di-erezione-durante-il-rapporto.html">Perdita di erezione durante il rapporto: cause e cosa fare</a>. Qui parliamo dell'ansia in generale.</p>
@@ -107,7 +134,7 @@
       <p><strong>Respira più lento.</strong> Un respiro con l'espirazione lunga dice al corpo che non c'è nessuna minaccia. Aiuta anche nel quotidiano, prima di un incontro.</p>
       <p><strong>Dillo, anche con una frase.</strong> Non serve la parola giusta. Basta: «A volte mi sale l'ansia, e mi aiuta andare piano.» Detto ad alta voce, il problema perde metà del suo peso. E l'altra persona smette di pensare che sia colpa sua. Per cominciare la conversazione, leggi <a href="/blog/come-parlare-di-sesso-con-il-partner.html">Come parlare di sesso con il partner: da dove cominciare</a>.</p>
       <p><strong>Non evitare.</strong> Evitare i rapporti per non rischiare è comprensibile, ma alimenta la paura. Meglio gesti piccoli e frequenti: un massaggio, una serata senza obiettivi, il contatto senza aspettative.</p>
-      <p>Se da solo non basta, ne possiamo parlare insieme: lavoro proprio su questo, con persone e con coppie. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, i primi 15 minuti te li regalo io.</p>
+      <p>Se da solo non basta, ne possiamo parlare insieme: lavoro proprio su questo, con persone e con coppie. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Quando chiedere aiuto, e a chi</h2>
       <p>Non sempre si va subito da un medico. Ma non si fa nemmeno da soli: cercare sintomi online e decidere «sarà ansia» o «sarà qualcosa di fisico» è una diagnosi fatta in casa, e di solito porta fuori strada.</p>
       <p>Un consulente in sessuologia serve a capire cosa sta succedendo e quale professionista è il più indicato. A volte è il lavoro su ansia, aspettative e coppia. A volte è un medico, per escludere cause fisiche, o uno psicoterapeuta. A volte più di uno, in parallelo. Io non faccio diagnosi e non prescrivo farmaci: ti aiuto a capire da dove partire.</p>
@@ -130,33 +157,42 @@
       </ul>
     </div>
 
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>L'ansia da prestazione sessuale riguarda tutte le persone: porta l'attenzione dal piacere al giudizio su di te.</li>
-        <li>Non dice niente di quanto vali: si alimenta di paura e di evitamento, e si può sciogliere.</li>
-        <li>Niente diagnosi fatte in casa: un consulente in sessuologia ti aiuta a capire da dove partire.</li>
-      </ul>
-    </aside>
-
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="ansia-da-prestazione-sessuale">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more" aria-labelledby="more-h"><h2 id="more-h">Altri articoli in <a href="/blog/difficolta-e-blocchi/">Difficoltà e blocchi</a></h2><ul><li><a href="/blog/orgasmo-che-non-arriva-cause-e-cosa-fare.html">Orgasmo che non arriva: cause e cosa fare</a></li><li><a href="/blog/perdita-di-erezione-durante-il-rapporto.html">Perdita di erezione durante il rapporto: cause e cosa fare</a></li></ul></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -165,15 +201,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -187,7 +224,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

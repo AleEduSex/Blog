@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,20 +81,30 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/comunicazione-relazioni-e-consenso/">Comunicazione, relazioni e consenso</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Non ho detto di no, ma non volevo davvero: questo è consenso?»</p>
-      <p class="post-meta"><time datetime="2026-10-16">16 ottobre 2026</time><span class="sep">·</span>6 min di lettura</p>
       <h1>Consenso sessuale: cosa vuol dire e cosa no</h1>
+      <p class="post-meta"><time datetime="2026-10-16">16 ottobre 2026</time><span class="sep">·</span>6 min di lettura</p>
+      </div>
       <p class="lede">Il consenso non è l'assenza di un no. È un sì libero, attuale e specifico, che si può ritirare in qualsiasi momento. Vediamo cosa vuol dire, e cosa no.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/consenso-sessuale-cosa-vuol-dire-e-cosa-no.jpg" alt="Due sedie a sdraio arancioni, una accanto all'altra, rivolte verso un lago al tramonto" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/consenso-sessuale-cosa-vuol-dire-e-cosa-no.jpg" alt="Due sedie a sdraio arancioni, una accanto all'altra, rivolte verso un lago al tramonto" width="1600" height="1000">
       <figcaption>Foto di MÖV Frame, Pexels</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>Il consenso è un sì libero, consapevole e specifico, che vale per quello che sta succedendo adesso.</li>
+        <li>Si può ritirare in ogni momento, anche a rapporto iniziato: silenzio e mancanza di un no non sono consenso.</li>
+        <li>Chiedere e ascoltare non rovina il mood: lo costruisce, e rende l'esperienza sicura per entrambe le persone.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>Il consenso sessuale è un sì libero, dato da chi è in grado di decidere, riferito a quello che sta succedendo adesso, e che si può ritirare in qualsiasi momento. Non è l'assenza di un no, non è il silenzio e non è un permesso che vale per sempre. Se ti sei mai chiesta o chiesto «ho detto sì o ho solo lasciato correre?», questo articolo è per te.</p>
       <h2>Cosa vuol dire, in quattro parole</h2>
@@ -113,7 +140,7 @@
       <h2>Se il consenso è stato violato</h2>
       <p>Se hai avuto un rapporto che non volevi, o in cui qualcosa è stato fatto senza il tuo consenso, non è colpa tua, e puoi chiedere aiuto. Per la salute, i passi sono quelli di <a href="/blog/preservativo-rotto-cosa-fare.html">Preservativo rotto: cosa fare adesso, senza panico</a>. Se il preservativo è stato tolto di nascosto, leggi <a href="/blog/stealthing-preservativo-tolto-di-nascosto.html">Stealthing: preservativo tolto di nascosto, cosa puoi fare</a>.</p>
       <p>Per ascolto e sostegno, il 1522 è il numero pubblico contro la violenza e lo stalking, gratuito e attivo 24 ore su 24. Sul sito ufficiale è presentato come un servizio per le donne: se non ti riconosci in questa parola, chiama e chiedi se è il servizio giusto per te, oppure rivolgiti a un centro antiviolenza o al pronto soccorso.</p>
-      <p>Se vuoi parlarne con me, in modo riservato, puoi scrivermi. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, i primi 15 minuti te li regalo io.</p>
+      <p>Se vuoi parlarne con me, in modo riservato, puoi scrivermi. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Il consenso e il preservativo</h2>
       <p>Il preservativo è un buon esempio, perché è una condizione che puoi mettere in chiaro prima. Avere il preservativo con te ti permette di decidere per te, e di dire no a un «dai, per stavolta senza»: ne parlo in <a href="/blog/preservativo-chi-deve-saperlo-mettere.html">Preservativo: chi deve saperlo mettere? Non solo chi ha il pene</a>.</p>
       <h2>Domande frequenti</h2>
@@ -136,33 +163,42 @@
       </ul>
     </div>
 
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>Il consenso è un sì libero, consapevole e specifico, che vale per quello che sta succedendo adesso.</li>
-        <li>Si può ritirare in ogni momento, anche a rapporto iniziato: silenzio e mancanza di un no non sono consenso.</li>
-        <li>Chiedere e ascoltare non rovina il mood: lo costruisce, e rende l'esperienza sicura per entrambe le persone.</li>
-      </ul>
-    </aside>
-
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="consenso-sessuale-cosa-vuol-dire-e-cosa-no">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more" aria-labelledby="more-h"><h2 id="more-h">Altri articoli in <a href="/blog/comunicazione-relazioni-e-consenso/">Comunicazione, relazioni e consenso</a></h2><ul><li><a href="/blog/come-parlare-di-sesso-con-il-partner.html">Come parlare di sesso con il partner: da dove cominciare</a></li><li><a href="/blog/stealthing-preservativo-tolto-di-nascosto.html">Stealthing: preservativo tolto di nascosto, cosa puoi fare</a></li></ul></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -171,15 +207,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -193,7 +230,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

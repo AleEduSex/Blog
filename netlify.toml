@@ -153,3 +153,33 @@
   to = "/blog/perdita-di-erezione-durante-il-rapporto.html"
   status = 301
   force = true
+
+# Sicurezza e cache (16/11). La CSP è per ora solo «Report-Only»: segnala nella console del browser
+# cosa bloccherebbe, senza rompere niente. Quando non ci sono avvisi si toglie «-Report-Only».
+# Tailwind arriva da cdn.tailwindcss.com (decisione del 16/11): per questo è nella CSP.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    X-Frame-Options = "DENY"
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+
+# Font, immagini e video cambiano di rado: una settimana in cache
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/blog/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

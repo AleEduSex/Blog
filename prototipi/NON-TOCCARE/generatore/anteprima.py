@@ -3,15 +3,16 @@ Versione 2 (4 novembre 2026), dopo il vocale di Alessio: blog sobrio e ordinato 
 indice delle sezioni a righe, logo nuovo in testata, blog nella home, percorsi ordinati con i video,
 regalo dei 15 minuti più visibile, «Fai una domanda».
 Uso: python3 anteprima.py <uscita> [--prova] [--media <cartella con v1.mp4…v5.mp4>]
+Per il sito vero: bash genera.sh (legge sorgente/ e sezioni.py, scrive site/).
 --prova: striscia «Versione di prova», noindex ovunque, robots che blocca tutto."""
 import re, sys, shutil, pathlib, runpy
 HERE = pathlib.Path(__file__).resolve().parent
-ROOT = HERE.parents[2]; SITE = ROOT / 'site'; NT = HERE.parent; PERC = NT / 'percorsi'
+ROOT = HERE.parents[2]; SITE = ROOT / 'sorgente'; NT = HERE.parent; PERC = NT / 'percorsi'
 args = sys.argv[1:]; OUT = pathlib.Path(args[0]).resolve(); PROVA = '--prova' in args
-MEDIA = pathlib.Path(args[args.index('--media') + 1]) if '--media' in args else None
+MEDIA = pathlib.Path(args[args.index('--media') + 1]) if '--media' in args else PERC / 'video'
 assert OUT != SITE.resolve(), 'mai scrivere dentro site/'
 shutil.rmtree(OUT, ignore_errors=True); shutil.copytree(SITE, OUT)
-SEZ = runpy.run_path(str(HERE / 'sezioni.py'))['SEZIONI']
+SEZ = runpy.run_path(str(ROOT / 'sezioni.py'))['SEZIONI']
 ic = runpy.run_path(str(HERE / 'icone7.py')); ill = ic['ill7']; ICON_CSS = ic['ICONE7_CSS']
 URL = 'https://aleedusex.net'
 def rd(p): return (OUT / p).read_text()
@@ -290,7 +291,7 @@ BLOG = f'''<!-- ═══════ Dal blog: le frasi degli ultimi articoli, 
     </nav>
   </div>
 </section>'''
-PREZZO_SINGOLO = 100   # incontro singolo da 60 minuti: DA CONFERMARE con Alessio (serve per mostrare il risparmio)
+PREZZO_SINGOLO = 60   # incontro singolo da 60 minuti (confermato il 16/11); 5 × 60 < 450, quindi il «Risparmi» non compare
 # percorsi: prima scegli per chi (da solo, in coppia, in gruppo), poi vedi solo quelli adatti; funziona anche senza JavaScript
 P = [
  ('al-cuore-del-problema', 'Al cuore del problema', '450&nbsp;€', 'solo coppia', 'Cinque incontri per capire dove si è bloccato qualcosa e cosa fare, con il metodo DEOPIARCA della Scuola di sessuologia di Torino.', 'Da solo o in coppia. 5 incontri da 60 minuti, ogni due settimane. Il prezzo è per tutto il percorso.', '58 s'),
@@ -331,7 +332,7 @@ PERCORSI = f'''<!-- ═══════ I percorsi: prima scegli per chi ═�
           {scelte}
           <ul class="voci">{voci}
           </ul>
-          <p class="nota-singolo mt-6 font-body text-[15px] text-brand-ink/80">Un incontro singolo costa {PREZZO_SINGOLO}&nbsp;€ <span class="text-brand-burgundy">[prezzo d’esempio, da confermare con Alessio]</span>.</p>
+          <p class="nota-singolo mt-6 font-body text-[15px] text-brand-ink/80">Un incontro singolo costa {PREZZO_SINGOLO}&nbsp;€.</p>
         </fieldset>
       </div>
     </div>

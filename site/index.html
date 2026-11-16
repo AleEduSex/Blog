@@ -83,6 +83,8 @@
 <meta name="twitter:title" content="aleedusex — Consulente in sessuologia" />
 <meta name="twitter:description" content="Parlare di sessualità senza performance. Torino · Online. Prima consulenza 60 €." />
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -580,9 +582,280 @@
   .pm-fade, .pm-dot { opacity: 1; transform: none; }
   .pm-stamp { opacity: 1; transform: rotate(-1.5deg); }
 </style></noscript>
+<style>
+  /* Home v3 */
+  .split-foto .foto { opacity: 0; transition: opacity 1.6s cubic-bezier(.4,0,.2,1); }
+  .split-foto .foto.is-on { opacity: 1; }
+  @media (max-width: 767px) { .split-foto { aspect-ratio: 4 / 5; max-height: 78svh; } }
+  .frase summary:hover .testo, .frase summary:focus-visible .testo { color: #7A1E2B; }
+  .frase .piu { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  .frase[open] .piu { transform: rotate(45deg); }
+  .riga { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+  .riga .val { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; line-height: 1; color: #1A1A1A; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @media (min-width: 768px) { .riga .val { font-size: 30px; } }
+  .faq-p { break-inside: avoid; margin-bottom: 24px; }
+  .contatti-righe a { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 26px 24px; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(28px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.02em; color: #F0E7D5; transition: background .25s ease; }
+  @media (min-width: 768px) { .contatti-righe a { padding: 30px max(40px, calc((100vw - 1280px) / 2 + 40px)); } }
+  .contatti-righe li:nth-child(odd) a { background: #5C1520; }
+  .contatti-righe a:hover, .contatti-righe a:focus-visible { background: #4A1019; }
+  .contatti-righe .v { font-size: clamp(18px, .55em, 34px); white-space: nowrap; }
+  .gift .arrow { transition: transform .2s ease; }
+  .bg-brand-burgundy ::selection, .bg-brand-ink ::selection, .bg-brand-burgundy-deep ::selection { background: rgba(240,231,213,.28); color: #F0E7D5; }
+  .diag-card .pm-t-st-sig { text-transform: none; letter-spacing: .02em; }
+  @keyframes assestaHome { from { scale: 1.08; opacity: .5; } to { scale: 1; opacity: 1; } }
+  @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) { img.assesta { animation: assestaHome linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; } } }
+  .gift:hover .arrow { transform: translateX(4px); }
+  .diag-card { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; transform: none !important; }
+  /* v8: blog in home, indice con anteprima */
+  .vetrina { position: relative; list-style: none; margin-left: 0; padding: 0; }
+  .vetrina a { display: block; padding: 16px 0; color: #F0E7D5; }
+  .vetrina .f { display: block; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; letter-spacing: -0.015em; text-wrap: balance; transition: opacity .3s ease; }
+  .vetrina .t { display: block; margin-top: 6px; font-size: 16px; line-height: 1.45; color: rgba(240,231,213,.82); }
+  .vetrina .ar { display: inline-block; transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  .vetrina a:hover .ar, .vetrina a:focus-visible .ar { transform: translateX(5px); }
+  .vetrina img { display: none; }
+  .vetrina li:first-child img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 20px; }
+  @media (min-width: 1024px) {
+    .vetrina { padding-right: 46%; min-height: 560px; }
+    .vetrina img, .vetrina li:first-child img { display: block; position: absolute; right: 0; top: 0; width: 40%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; margin: 0; opacity: 0; transition: opacity .4s ease; }
+    .vetrina .f { opacity: .5; }
+    .vetrina li:hover img, .vetrina li:focus-within img, .vetrina li:hover .f, .vetrina li:focus-within .f { opacity: 1; }
+    .vetrina:not(:has(li:hover)):not(:has(li:focus-within)) li:first-child img, .vetrina:not(:has(li:hover)):not(:has(li:focus-within)) li:first-child .f { opacity: 1; }
+  }
+  .sez-home h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; font-weight: 600; color: #F0E7D5; }
+  .sez-home ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  @media (min-width: 1024px) { .sez-home ul { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .sez-home a { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; min-height: 44px; color: #F0E7D5; font-family: 'DM Serif Display', Georgia, serif; font-size: 19px; line-height: 1.2; }
+  .sez-home a:hover span, .sez-home a:focus-visible span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+  .ico-s { width: 22px; height: 22px; flex: none; margin-top: 1px; color: #F0E7D5; }
+  @media (prefers-reduced-motion: reduce) { .vetrina img, .vetrina .f, .vetrina .ar { transition: none; } }
+  /* v4: percorsi, scegli per chi */
+  .per { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .per legend { width: 100%; }
+  .per input { position: absolute; opacity: 0; pointer-events: none; }
+  .per label { cursor: pointer; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border-radius: 2px; background: #F8F1E0; color: #1A1A1A; font-size: 16px; transition: background .2s ease, color .2s ease; }
+  .per label:hover { background: #EADFC9; }
+  .per input:checked + label { background: #7A1E2B; color: #F0E7D5; }
+  .per input:focus-visible + label { outline: 2px solid #7A1E2B; outline-offset: 3px; }
+  .per .voci { flex-basis: 100%; margin-top: 8px; }
+  #per-solo:checked ~ .voci .voce:not([data-per~="solo"]),
+  #per-coppia:checked ~ .voci .voce:not([data-per~="coppia"]),
+  #per-gruppo:checked ~ .voci .voce:not([data-per~="gruppo"]) { display: none; }
+  /* v4.1: prezzi con il risparmio */
+  .prezzi { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; }
+  .prezzi .barrato { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; color: rgba(26,26,26,.7); }
+  .prezzi .risparmi { display: inline-block; margin-top: 4px; padding: 4px 10px; background: #7A1E2B; color: #F0E7D5; font-size: 14px; font-weight: 600; white-space: nowrap; }
+  .prezzi .a-incontro { font-size: 14px; color: rgba(26,26,26,.78); white-space: nowrap; }
+  @media (max-width: 640px) { .voce .riga { flex-direction: column; gap: 6px; } .voce .prezzi { align-items: flex-start; text-align: left; } }
+  /* v4: video grande su fondo scuro */
+  .vbox { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: rgba(26,26,26,.94); padding: 56px 16px 24px; }
+  .vbox[hidden] { display: none; }
+  .vbox-in { position: relative; margin: 0; height: min(82svh, 150vw); aspect-ratio: 9 / 16; max-width: 92vw; background: #000; }
+  .vbox-in video { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; }
+  .vbox-play { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%; border: 0; background: rgba(240,231,213,.92); color: #7A1E2B; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s ease; }
+  .vbox.suona .vbox-play { opacity: 0; pointer-events: none; }
+  .vbox-barra { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; cursor: pointer; display: flex; align-items: flex-end; }
+  .vbox-barra::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(240,231,213,.3); }
+  .vbox-barra span { position: relative; height: 4px; width: 0; background: #F0E7D5; }
+  .vbox-tit { color: #F0E7D5; font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; text-align: center; max-width: 92vw; }
+  .vbox-chiudi { position: absolute; top: 12px; right: 12px; width: 48px; height: 48px; border: 0; background: transparent; color: #F0E7D5; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .vbox button:focus-visible { outline: 2px solid #F0E7D5; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .split-foto .foto { transition: none; } .diag-card .pm-stamp { opacity: 1; transform: none; } }
+</style>
+<style>.bg-brand-burgundy :focus-visible, .bg-brand-burgundy-deep :focus-visible { outline-color: #F0E7D5 !important; --tw-ring-color: #F0E7D5; }</style>
+<style>section[id], [id="percorsi"] { scroll-margin-top: 88px; }</style>
+<style>
+  @supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) {
+    .inchiostro { background: linear-gradient(90deg, #7A1E2B 50%, rgba(122,30,43,.22) 50%) 100% 0 / 200% 100% no-repeat; -webkit-background-clip: text; background-clip: text; color: transparent; animation: inchiostro linear both; animation-timeline: view(); animation-range: entry 60% cover 55%; }
+    @keyframes inchiostro { to { background-position: 0 0; } }
+  } }
+</style>
+<style>#percorsi > div { padding-top: 0 !important; } .diag { max-width: 940px; margin-left: auto; margin-right: auto; padding-top: 28px !important; padding-bottom: 28px !important; }</style>
+<style>
+  /* ── v10: un sistema solo ── */
+  :root { --t-hero: clamp(52px, 7.8vw, 120px); --t-h2: clamp(42px, 5.4vw, 80px); --t-h3: clamp(24px, 2.2vw, 28px); --t-lead: 21px; --t-body: 18px; --t-small: 15px; --t-micro: 13px; --ease: cubic-bezier(.2,.7,.2,1); --dur: 200ms; --dur-press: 120ms; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  .t-hero { font-size: var(--t-hero); } .t-h2 { font-size: var(--t-h2); } .t-h3 { font-size: var(--t-h3); }
+  .t-lead { font-size: var(--t-lead); } .t-body { font-size: var(--t-body); } .t-small { font-size: var(--t-small); } .t-micro { font-size: var(--t-micro); }
+  h1, h2, h3, dt { text-wrap: balance; } p, li, dd { text-wrap: pretty; }
+  @media (max-width: 640px) { #main-content p, section p, dd { hyphens: auto; -webkit-hyphens: auto; } h1, h2, h3, .faq-question, .testo, #main-content [data-foto-per="hero"] p { hyphens: manual; -webkit-hyphens: manual; } }
+  /* titolo della home: grande quanto la colonna permette */
+  .colonna-testo { container-type: inline-size; }
+  #titolo.t-hero { font-size: min(var(--t-hero), 14.8cqi); }
+  /* le misure scritte nei fogli di stile, sugli stessi gradini */
+  .vetrina .t, .per label, .prezzi .a-incontro, .prezzi .risparmi { font-size: var(--t-small) !important; }
+  .prezzi .barrato { font-size: var(--t-body); }
+  .sez-home a { font-size: var(--t-lead); }
+  .sez-home h3 { font-size: var(--t-body) !important; }
+  .vetrina .f { font-size: var(--t-h3) !important; line-height: 1.2 !important; }
+  .contatti-righe a { font-size: calc(var(--t-h2) * .75) !important; }
+  .contatti-righe .v { font-size: var(--t-h3) !important; }
+  .btn-burgundy, .btn-cream-on-burgundy, .btn-outline-cream { font-size: var(--t-small); }
+  .faq-lista > li + li { margin-top: 2px; }
+  .faq-summary { padding-left: 12px; padding-right: 12px; }
+  details[open] .faq-summary { padding-left: 12px; background-color: rgba(122,30,43,0.04); }
+  .faq-answer { padding-left: 84px; }
+  @media (max-width: 767px) { .faq-answer { padding-left: 12px; } }
+  .faq-answer-text { font-size: var(--t-body); }
+  /* schema «Tu → sessuologia»: niente maiuscoletto spaziato */
+  .pm-t-cond, .pm-t-cond-v { text-transform: none !important; letter-spacing: 0 !important; font-style: italic; font-size: 18px; }
+  .pm-t-st-small { text-transform: none !important; letter-spacing: 0 !important; font-size: 18px; font-style: italic; }
+  /* 2. le «» sono il segno: la virgoletta d'apertura appesa fuori dal filo del testo */
+  .frase .testo, .faq-question, .vetrina .f { text-indent: -.42em; }
+  .ancora { display: block; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(150px, 16vw, 240px); line-height: .62; height: .62em; margin: -.12em 0 0 -.06em; color: #7A1E2B; user-select: none; pointer-events: none; }
+  /* 6. un movimento solo: stessa curva e stessa durata per tutto ciò che si tocca */
+  a:not(.reveal), button, summary, label, .arr, .arrow, .piu, .faq-plus, .v, .ar, .freccia { transition-duration: var(--dur) !important; transition-timing-function: var(--ease) !important; }
+  .btn-burgundy:hover, .btn-cream-on-burgundy:hover, .btn-outline-cream:hover { transform: none; }
+  .btn-burgundy:active, .btn-cream-on-burgundy:active, .btn-outline-cream:active, .per label:active { transform: scale(.97) !important; transition-duration: var(--dur-press) !important; }
+  .contatti-righe .v { display: inline-block; transition-property: transform; }
+  .contatti-righe a:hover .v, .contatti-righe a:focus-visible .v { transform: translateX(6px); }
+  .vetrina a:hover .ar, .vetrina a:focus-visible .ar, .gift:hover .arrow { transform: translateX(6px); }
+  .btn-burgundy:hover .arr { transform: translateX(4px); }
+  header img[alt="AleEduSex"] { mix-blend-mode: darken; }
+  @media (prefers-reduced-motion: reduce) {
+    a:not(.reveal), button, summary, label, .arr, .arrow, .piu, .faq-plus, .v, .ar, .freccia { transition-duration: .01ms !important; }
+    .contatti-righe a:hover .v, .vetrina a:hover .ar, .gift:hover .arrow, .btn-burgundy:hover .arr, .btn-burgundy:active { transform: none !important; }
+  }
+  /* 5. telefono: prima il titolo, poi la foto */
+  .foto-m { width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: 50% 30%; }
+  .hero-foto-m { max-height: 60svh; }
+  @media (max-width: 767px) {
+    .foto-m { display: block; }
+    .split-foto { display: none !important; }
+    [data-foto-per="hero"] { padding-top: 40px !important; }
+    #titolo .hero-line.mt-3 { margin-top: 8px; }
+  }
+  /* 3. i numeri protagonisti: «Come funziona» in tre colonne */
+  .testa-sez { display: grid; gap: 24px; align-items: end; }
+  @media (min-width: 1024px) { .testa-sez { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; } }
+  .passi { list-style: none; margin: 48px 0 0; padding: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 56px) 0; display: grid; gap: 80px clamp(24px, 4vw, 64px); background: #F8F1E0; }
+  .passi .fine { margin-top: -32px !important; }
+  @media (min-width: 900px) { .passi .fine { margin-top: 8px !important; } }
+  @media (min-width: 900px) { .passi { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 72px; } }
+  .passi .cifra { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: var(--t-h2); line-height: .95; letter-spacing: -0.02em; color: #1A1A1A; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .passi .cifra--it { font-style: italic; color: #7A1E2B; }
+  .passi .quando { margin-top: 20px; font-weight: 600; color: #1A1A1A; }
+  .passi .quando::after { content: "  →"; color: #7A1E2B; font-weight: 400; }
+  .passi li:nth-child(3) .quando::after { content: none; }
+  .passi .cosa { margin-top: 6px; font-family: 'DM Serif Display', Georgia, serif; line-height: 1.1; color: #1A1A1A; }
+  .passi .cosa + p { margin-top: 10px; line-height: 1.6; color: #1A1A1A; max-width: 30em; }
+  .passi .apri-video { margin-top: 12px; }
+  .passi .fine { grid-column: 1 / -1; margin: 8px calc(-1 * clamp(24px, 4vw, 56px)) 0; padding: 22px clamp(24px, 4vw, 56px); background: #1A1A1A; color: #F0E7D5; line-height: 1.5; }
+  /* 3b. percorsi: il prezzo grande, cifre in colonna, un solo filo a destra */
+  .voce .riga .val { font-size: clamp(36px, 3.4vw, 44px) !important; line-height: 1; letter-spacing: -0.01em; font-variant-numeric: lining-nums tabular-nums; }
+  .voce .riga { align-items: flex-start; }
+  .voce .prezzi { display: grid; grid-template-columns: auto auto; justify-content: end; align-items: baseline; column-gap: 12px; row-gap: 4px; }
+  .voce .prezzi .barrato { grid-column: 1; } .voce .prezzi .val { grid-column: 2; justify-self: end; }
+  .voce .prezzi .risparmi, .voce .prezzi .a-incontro { grid-column: 1 / -1; justify-self: end; margin-top: 0; }
+  @media (max-width: 640px) { .voce .prezzi { justify-content: start; } .voce .prezzi .val { grid-column: auto; justify-self: start; } .voce .prezzi .risparmi, .voce .prezzi .a-incontro { justify-self: start; } }
+  .voce .riga > span:first-child { padding-top: 6px; }
+  /* 4. stessa correzione di tono su tutte le foto delle copertine */
+  .vetrina img { filter: saturate(.92) sepia(.05); }
+</style>
+<style>:root { --dur-fast: 150ms; --dur-base: 250ms; --dur-enter: 400ms; --ease-out: cubic-bezier(.22,1,.36,1); --ease-in: cubic-bezier(.55,0,1,.45); --stagger: 50ms; }
+  .reveal { transition-duration: var(--dur-enter) !important; transition-timing-function: var(--ease-out) !important; }
+  .reveal[data-delay="1"] { transition-delay: calc(var(--stagger) * 1) !important; }
+  .reveal[data-delay="2"] { transition-delay: calc(var(--stagger) * 2) !important; }
+  .reveal[data-delay="3"] { transition-delay: calc(var(--stagger) * 3) !important; }
+  .hero-line { animation-duration: 450ms !important; animation-timing-function: var(--ease-out) !important; }
+  .stamp-in, .block-stamp { animation-duration: 500ms !important; }
+  footer a { display: inline-flex; align-items: center; min-height: 44px; }
+  header a[href="#top"] { display: inline-flex !important; align-items: center; min-height: 44px; }
+  footer ul { row-gap: 0 !important; }
+  footer ul > li + li { margin-top: 0 !important; }
+  /* barra «Scrivimi» in basso su telefono: compare dopo il primo schermo, sparisce sopra i contatti */
+  .barra-cta { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 45; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; padding: 0 20px; background: #7A1E2B; color: #F0E7D5; font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; box-shadow: 0 10px 24px -12px rgba(26,26,26,.55); transform: translateY(160%); transition: transform var(--dur-base) var(--ease-in); }
+  .barra-cta.vista { transform: translateY(0); transition-timing-function: var(--ease-out); }
+  .barra-cta:active { transform: translateY(0) scale(.97); }
+  .barra-cta small { font-size: 14px; color: rgba(240,231,213,.88); }
+  .barra-cta:focus-visible { outline: 2px solid #F0E7D5; outline-offset: -5px; }
+  @media (min-width: 1024px) { .barra-cta { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .barra-cta { transition: none; } }
+  /* attesa del video: un anello che gira finché non parte */
+  .vbox .attesa { position: absolute; inset: 0; margin: auto; width: 44px; height: 44px; border-radius: 50%; border: 3px solid rgba(240,231,213,.3); border-top-color: #F0E7D5; opacity: 0; pointer-events: none; transition: opacity var(--dur-fast) ease; animation: giro 800ms linear infinite; }
+  .vbox.carica .attesa { opacity: 1; }
+  .vbox.carica .vbox-play { opacity: 0; }
+  @keyframes giro { to { transform: rotate(360deg); } }
+</style>
+<style>
+  /* il pulsante del menu anima solo trasformazioni e trasparenza */
+  #ham-top, #ham-mid, #ham-bot { transition-property: transform, opacity !important; transition-duration: var(--dur-base) !important; transition-timing-function: var(--ease-out) !important; }
+</style>
+<style>@keyframes apri { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  @keyframes compari { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes vboxIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes vboxInDentro { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+  #mobile-menu { transition-duration: var(--dur-base) !important; transition-timing-function: var(--ease-out) !important; }
+  #mobile-menu[aria-hidden="true"] { transition-duration: var(--dur-fast) !important; transition-timing-function: var(--ease-in) !important; }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-burgundy:focus-visible .arr { transform: translateX(4px); }
+    .gift:focus-visible .arrow, .alt-link:focus-visible .alt-arrow { transform: translateX(4px); }
+    .frasi details[open] > :not(summary) { animation: apri var(--dur-base) var(--ease-out) both; }
+    .voci .voce { animation: compari 300ms var(--ease-out) both; }
+    .voci .voce:nth-child(2) { animation-delay: calc(var(--stagger) * 1); }
+    .voci .voce:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+    .voci .voce:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+    .voci .voce:nth-child(n+5) { animation-delay: calc(var(--stagger) * 4); }
+    .vbox:not([hidden]) { animation: vboxIn var(--dur-base) var(--ease-out) both; }
+    .vbox:not([hidden]) .vbox-in { animation: vboxInDentro var(--dur-base) var(--ease-out) both; }
+  }
+</style>
+<style>
+  .pm-n { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 32px; fill: #1A1A1A; }
+  .pm-n-main { font-size: 36px; fill: #7A1E2B; }
+  .pm-map-v .pm-n { font-size: 24px; } .pm-map-v .pm-n-main { font-size: 28px; }
+  .pm-sub, .pm-cap { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 19px; fill: rgba(26,26,26,.74); }
+  .pm-cap { fill: #7A1E2B; }
+  .pm-map-v .pm-sub, .pm-map-v .pm-cap { font-size: 17px; }
+  .pm-main { stroke-width: 2.6 !important; }
+  .pm-firma { stroke-width: 1.4 !important; opacity: .85; }
+  .pm-chip { fill: rgba(122,30,43,.06); stroke: rgba(122,30,43,.55); stroke-width: 1; }
+  .pm-chip-t { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 16px; fill: #5C1520; }
+  .pm-sottile { stroke-width: 1.2 !important; opacity: .8; }
+  .pm-map-v .pm-n { font-size: 24px; } .pm-map-v .pm-n-main { font-size: 27px; }
+  .pm-map-v .pm-chip-t { font-size: 17px; }
+  /* fino a 1023 px il disegno verticale: quello orizzontale scenderebbe sotto i 12 px */
+  @media (max-width: 1023px) { .diag .pm-map-h { display: none !important; } .diag .pm-map-v { display: block !important; } }
+  @media (max-width: 400px) { .diag { padding-left: 4px !important; padding-right: 4px !important; } }
+  /* animazione (skill ux-animation-principles, impeccable animate, web-animation-design):
+     l'inchiostro si muove ease-in-out (è un tracciato che viaggia), ciò che entra arriva ease-out; il riquadro «si appoggia» quando la linea lo raggiunge */
+  @media (prefers-reduced-motion: no-preference) {
+    .diag .diag-card.in .pm-ink { animation-timing-function: cubic-bezier(.645,.045,.355,1); }
+    .diag .diag-card.in .pm-fade { animation: pmEntra 560ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
+    .diag .diag-card.in .pm-dot { animation: pmPunto 380ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
+    .diag .diag-card.in .pm-ripple { animation: pmRipple 900ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
+    .diag .diag-card.in .pm-stamp { animation: pmAppoggia 420ms cubic-bezier(.23,1,.32,1) 680ms both; transform-box: fill-box; transform-origin: center; }
+    .diag .diag-card.in .pm-chip-g { animation-name: pmChip; }
+  }
+  @keyframes pmEntra { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+  @keyframes pmPunto { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: none; } }
+  @keyframes pmChip { from { opacity: 0; transform: scale(.95); filter: blur(2px); } to { opacity: 1; transform: none; filter: none; } }
+  @keyframes pmAppoggia { from { opacity: 0; transform: scale(1.06) rotate(-1deg); } to { opacity: 1; transform: none; } }
+
+  /* parte nera: su telefono 3 articoli, le sezioni diventano riquadri */
+  @media (max-width: 1023px) { .vetrina li:nth-child(n+4) { display: none; } }
+  .sez-home ul { gap: 10px !important; }
+  .sez-home a { flex-direction: column; justify-content: space-between; gap: 14px; min-height: 104px; padding: 16px; border: 1px solid rgba(240,231,213,.28); background: rgba(240,231,213,.06); transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
+  .sez-home a:hover, .sez-home a:focus-visible { background: rgba(240,231,213,.13); border-color: #F0E7D5; }
+  .sez-home a:active { transform: scale(.97); }
+  .sez-home li { display: flex; }
+  .sez-home a { width: 100%; }
+  .sez-home .ico-s { width: 30px; height: 30px; }
+  /* su telefono la parola più lunga («Comunicazione,») deve stare nel riquadro */
+  @media (max-width: 639px) { .sez-home a { font-size: 19px !important; padding: 14px; } }
+  @media (max-width: 374px) { .sez-home ul { grid-template-columns: 1fr !important; } .sez-home li:last-child:nth-child(odd) { grid-column: auto; } }
+  .sez-home li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .sez-home li:last-child:nth-child(odd) { grid-column: auto; } }
+  .sez-home h3 { margin-bottom: 4px; }
+</style>
+<style>
+  html { scroll-padding-top: 90px; }
+  @media (max-width: 1023px) { html { scroll-padding-bottom: 84px; } }
+  #nav-toggle { min-width: 44px; min-height: 44px; flex-shrink: 0; }
+</style>
 </head>
 
-<body class="font-body text-brand-ink bg-brand-cream">
+<body class="font-body text-brand-ink bg-brand-cream"><div id="top"></div>
 <a href="#main-content"
    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-burgundy focus:text-brand-cream focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-body">
   Vai al contenuto principale
@@ -595,19 +868,19 @@
 -->
 
 <!-- ═════════════════════════ NAV ═════════════════════════ -->
-<header id="top" class="sticky top-0 z-40 bg-brand-cream/85 backdrop-blur-md border-b border-brand-line">
+<header class="sticky top-0 z-40 bg-brand-cream/95 backdrop-blur-md">
   <nav class="max-w-[1280px] mx-auto px-6 md:px-10 py-4 md:py-5 flex items-center justify-between">
-    <a href="#top" class="font-display text-brand-burgundy text-[22px] md:text-[26px] leading-none tracking-tightish lowercase">aleedusex</a>
-    <ul class="hidden md:flex items-center gap-9 text-[15px] text-brand-ink/85">
-      <li><a href="#manifesto" class="nav-desktop-link hover:text-brand-burgundy">Manifesto</a></li>
+    <a href="#top" class="block"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108" class="h-[24px] md:h-[28px] w-auto"></a>
+    <ul class="t-small hidden lg:flex items-center gap-9 text-brand-ink/85">
       <li><a href="#chi-sono" class="nav-desktop-link hover:text-brand-burgundy">Chi sono</a></li>
       <li><a href="#parliamone" class="nav-desktop-link hover:text-brand-burgundy">Di cosa parliamo</a></li>
       <li><a href="#funziona" class="nav-desktop-link hover:text-brand-burgundy">Come funziona</a></li>
+      <li><a href="#percorsi" class="nav-desktop-link hover:text-brand-burgundy">Percorsi</a></li>
       <li><a href="#faq" class="nav-desktop-link hover:text-brand-burgundy">FAQ</a></li>
       <li><a href="/blog/" class="nav-desktop-link hover:text-brand-burgundy">Blog</a></li>
     </ul>
     <button id="nav-toggle"
-      class="md:hidden inline-flex flex-col justify-center gap-[5px] w-10 h-10 -mr-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-burgundy"
+      class="lg:hidden ml-auto mr-4 inline-flex flex-col justify-center gap-[5px] w-10 h-10 -mr-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-burgundy"
       aria-label="Apri menu di navigazione"
       aria-expanded="false"
       aria-controls="mobile-menu">
@@ -615,7 +888,7 @@
       <span class="block w-5 h-[1.5px] bg-brand-ink transition-all duration-300" id="ham-mid"></span>
       <span class="block w-5 h-[1.5px] bg-brand-ink transition-all duration-300 origin-center" id="ham-bot"></span>
     </button>
-    <a href="#contatti" class="btn-burgundy !py-2.5 !px-4 md:!px-5 text-[14px]">
+    <a href="#contatti" class="t-small btn-burgundy !py-2.5 !px-4 md:!px-5">
       Scrivimi
       <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
     </a>
@@ -624,9 +897,9 @@
 
 <!-- ═══════ MOBILE MENU ═══════ -->
 <div id="mobile-menu"
-  class="md:hidden fixed inset-0 z-[9998] flex flex-col justify-center px-8"
-  style="background: rgba(240,231,213,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transform: translateX(100%); transition: transform 320ms cubic-bezier(.2,.7,.2,1);"
-  aria-hidden="true"
+  class="lg:hidden fixed inset-0 z-[9998] flex flex-col justify-center px-8"
+  style="background: rgba(240,231,213,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transform: translateX(100%); transition: transform 320ms cubic-bezier(.2,.7,.2,1); visibility: hidden;"
+  aria-hidden="true" inert
   role="dialog"
   aria-modal="true"
   aria-label="Menu di navigazione">
@@ -642,12 +915,12 @@
 
   <nav>
     <ul class="flex flex-col gap-7 mb-12">
-      <li><a href="#manifesto"   class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Manifesto</a></li>
-      <li><a href="#chi-sono"   class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Chi sono</a></li>
-      <li><a href="#parliamone" class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Di cosa parliamo</a></li>
-      <li><a href="#funziona"   class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Come funziona</a></li>
-      <li><a href="#faq"        class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">FAQ</a></li>
-      <li><a href="/blog/"      class="mobile-nav-link font-display text-brand-ink text-[32px] leading-none hover:text-brand-burgundy transition-colors">Blog</a></li>
+      <li><a href="#chi-sono"   class="t-h3 mobile-nav-link font-display text-brand-ink leading-none hover:text-brand-burgundy transition-colors">Chi sono</a></li>
+      <li><a href="#parliamone" class="t-h3 mobile-nav-link font-display text-brand-ink leading-none hover:text-brand-burgundy transition-colors">Di cosa parliamo</a></li>
+      <li><a href="#funziona"   class="t-h3 mobile-nav-link font-display text-brand-ink leading-none hover:text-brand-burgundy transition-colors">Come funziona</a></li>
+      <li><a href="#percorsi"   class="t-h3 mobile-nav-link font-display text-brand-ink leading-none hover:text-brand-burgundy transition-colors">Percorsi</a></li>
+      <li><a href="#faq"        class="t-h3 mobile-nav-link font-display text-brand-ink leading-none hover:text-brand-burgundy transition-colors">FAQ</a></li>
+      <li><a href="/blog/"      class="t-h3 mobile-nav-link font-display text-brand-ink leading-none hover:text-brand-burgundy transition-colors">Blog</a></li>
     </ul>
     <a href="#contatti" class="mobile-nav-link btn-burgundy inline-flex">
       Scrivimi
@@ -656,721 +929,311 @@
   </nav>
 </div>
 
-<!-- ═════════════════════════ HERO ═════════════════════════ -->
-<section id="main-content" class="relative overflow-hidden">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 pt-12 md:pt-20 pb-20 md:pb-32 relative">
+<!-- ═════════════════════════ HOME v3 (prova) ═════════════════════════
+     Restyle dopo la revisione del 4/11: direzione «split stage» (skill Taste, seme 2097572999) +
+     Impeccable distill. Le prime tre sezioni stanno accanto a una foto di Alessio che resta ferma e
+     cambia piano piano; poi le sezioni corrono a tutta larghezza. Niente etichette sopra i titoli,
+     niente corsivi decorativi, timbri, texture o numeri giganti. I segnaposto tra doppie graffe li riempie anteprima.py. -->
 
-    <!-- Dateline editoriale — centrata in modo preciso -->
-    <div class="reveal flex items-center justify-center gap-4 mb-8 md:mb-12 text-[11px] tracking-[0.30em] uppercase text-brand-burgundy/75">
-      <span>Aleedusex</span>
-      <span class="w-[80px] h-px bg-brand-line"></span>
-      <span class="text-brand-ink/45">Torino · 2026</span>
-    </div>
+<!-- ═══════ PRIMO ATTO: la foto ferma, il testo che scorre ═══════ -->
+<div id="main-content" class="split md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)]">
 
-    <!-- Headline -->
-    <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-end relative">
-      <div class="md:col-span-12">
-        <h1 class="font-display font-normal text-brand-ink leading-[0.92] tracking-tighter2 text-[60px] sm:text-[88px] md:text-[124px] lg:text-[148px] text-center">
-          <span class="hero-line" style="--d:120ms">Vivere una</span>
-          <span class="hero-line" style="--d:260ms">vita sessuale</span>
-          <span class="hero-line mt-3 md:mt-4" style="--d:400ms">
-            <span class="block-stamp font-display stamp-in text-[1.02em]">PIENA</span>
-          </span>
-        </h1>
-      </div>
-    </div>
+  <!-- Foto: su telefono in cima, su computer ferma a destra -->
+  <figure class="split-foto md:order-2 md:sticky md:top-[69px] md:h-[calc(100svh-69px)] m-0 relative overflow-hidden bg-brand-paper" aria-label="Foto di Alessio Cottonaro">
+    <img src="img/alessio-cottonaro-ritratto-principale.jpg" alt="Alessio Cottonaro, consulente in sessuologia, seduto in una stanza chiara" width="1200" height="1600" class="foto is-on absolute inset-0 w-full h-full object-cover object-[50%_30%]" data-foto="hero" fetchpriority="high">
+    <img src="img/alessio-cottonaro-in-consulenza.jpg" alt="" width="1199" height="1600" class="foto absolute inset-0 w-full h-full object-cover object-[50%_35%]" data-foto="chi-sono" loading="lazy">
+    <img src="img/alessio-cottonaro-ritratto.jpg" alt="" width="2048" height="1365" class="foto absolute inset-0 w-full h-full object-cover object-[68%_30%]" data-foto="parliamone" loading="lazy">
+  </figure>
 
-    <!-- Subhead — centrata -->
-    <div class="mt-12 md:mt-16 flex justify-center">
-      <p class="font-body text-[19px] md:text-[22px] leading-[1.55] text-brand-ink/90 max-w-2xl text-center reveal">
-        Sono Alessio, consulente in sessuologia ed educatore professionale. Aiuto persone e coppie a parlare di sessualità <em class="italic">senza performance, senza vergogna, senza giri di parole.</em>
+  <div class="colonna-testo md:order-1 px-6 md:px-10 lg:pr-16 lg:pl-[max(40px,calc((100vw_-_1280px)/2_+_40px))]">
+
+    <!-- 1 · Hero -->
+    <section class="split-sez min-h-0 md:min-h-[calc(100svh-69px)] flex flex-col justify-center py-14 md:py-20" data-foto-per="hero" aria-labelledby="titolo">
+      <h1 id="titolo" class="t-hero font-display font-normal text-brand-ink leading-[0.98] tracking-tighter2">
+        <span class="hero-line" style="--d:120ms">Vivere una vita</span>
+        <span class="hero-line" style="--d:260ms">sessuale</span>
+        <span class="hero-line mt-3 md:mt-4" style="--d:400ms"><span class="block-stamp font-display stamp-in text-[1.02em]">PIENA</span></span>
+      </h1>
+      <p class="t-lead mt-8 font-body text-brand-ink leading-[1.55] max-w-[34em] reveal">
+        Sono Alessio Cottonaro, consulente in sessuologia ed educatore professionale. Aiuto persone e coppie a parlare di sessualità senza performance, senza vergogna, senza giri di parole.
       </p>
-    </div>
-
-    <!-- CTA + credentials — colonna centrata -->
-    <div class="mt-12 md:mt-16 flex flex-col items-center gap-10">
-      <div class="reveal flex flex-col items-center" data-delay="1">
-        <a href="#contatti" class="btn-burgundy">
-          Scrivimi
-          <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </a>
-        <div class="mt-3 flex items-center justify-center gap-2 text-[11px] tracking-[0.22em] uppercase text-brand-ink/50">
-          <span>Prima consulenza</span>
-          <span class="text-brand-burgundy/60">·</span>
-          <span class="font-display italic text-brand-burgundy normal-case tracking-normal text-[14px]">60&thinsp;€</span>
-          <span class="text-brand-burgundy/60">·</span>
-          <span>60 min</span>
-        </div>
-        <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer"
-           class="alt-link mt-4 inline-flex items-center gap-1.5 text-[14px] italic text-brand-ink/60 hover:text-brand-burgundy transition-colors">
-          Hai solo una domanda? I primi 15 minuti te li regalo io
-          <span class="alt-arrow inline-block transition-transform">→</span>
-        </a>
+      <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 reveal" data-delay="1">
+        <a href="#contatti" class="btn-burgundy self-start">Scrivimi <span class="arr" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+        <p class="t-small font-body text-brand-ink/80 leading-[1.5]">Prima consulenza <strong class="font-semibold text-brand-ink">60&#8239;€</strong>, un’ora,<br class="hidden sm:inline"> online o a domicilio a Torino.</p>
       </div>
+      <a href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer" class="t-body gift mt-8 self-start inline-flex items-center gap-2 min-h-[44px] font-body text-brand-burgundy reveal" data-delay="2">
+        <span class="underline underline-offset-4 decoration-brand-burgundy/35">Hai solo una domanda? Una telefonata di 15 minuti. Gratis</span> <span aria-hidden="true" class="arrow">→</span>
+      </a>
+      <img src="img/alessio-cottonaro-ritratto-principale.jpg" alt="Alessio Cottonaro, consulente in sessuologia, seduto in una stanza chiara" width="1200" height="1600" class="md:hidden foto-m hero-foto-m mt-10" fetchpriority="high">
+    </section>
 
-      <div class="reveal text-center" data-delay="2">
-        <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] tracking-[0.22em] uppercase text-brand-ink/55">
-          <li>Torino</li>
-          <li class="text-brand-burgundy">·</li>
-          <li>Online</li>
-          <li class="text-brand-burgundy">·</li>
-          <li>A domicilio</li>
-        </ul>
-        <div class="mt-2 text-[11px] tracking-[0.20em] uppercase text-brand-ink/40 italic">Codice deontologico · supervisione · aggiornamento continuo</div>
+    <!-- 2 · Chi sono: una lettera -->
+    <section id="chi-sono" class="split-sez py-14 md:py-32" data-foto-per="chi-sono" aria-labelledby="chi-sono-h">
+      <h2 id="chi-sono-h" class="t-h2 font-display text-brand-ink leading-[1.02] tracking-tighter2 reveal">Ciao, sono <span class="italic text-brand-burgundy">Alessio.</span></h2>
+      <div class="t-body mt-8 space-y-5 font-body text-brand-ink leading-[1.65] max-w-[34em] reveal" data-delay="1">
+        <p>Sono consulente in sessuologia ed educatore professionale. Lavoro con persone e coppie tra i 20 e i 50 anni, online o a domicilio. Seguo un codice deontologico, vado in supervisione e continuo a formarmi: su questi temi improvvisare fa danni.</p>
+        <p>La sessualità non è performance. È linguaggio, permesso, presenza. Spesso un blocco non è una questione di tecnica: mancano le parole. Io lavoro lì, in modo pratico. Mi interessa cosa fare, non solo cosa pensare.</p>
+        <p class="t-h3 font-display text-brand-burgundy leading-[1.25] tracking-tightish pt-2"><span class="inchiostro">Niente da dimostrare. Niente da nascondere. Niente giri di parole.</span></p>
       </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═════════════════════════ 2 · MANIFESTO ═════════════════════════ -->
-<section id="manifesto" class="bg-brand-paper relative">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-16">
-      <div class="md:col-span-3 reveal">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy">Perché esisto</div>
-      </div>
-      <div class="md:col-span-9">
-        <h2 class="font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[72px] leading-[0.98] tracking-tighter2 reveal">
-          Un manifesto, <span class="italic text-brand-burgundy">tre regole.</span>
-        </h2>
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-      <!-- LEFT — manifesto paragraph with drop-cap -->
-      <article class="md:col-span-7 reveal">
-        <p class="drop-cap font-body text-[19px] md:text-[22px] leading-[1.55] text-brand-ink/90">
-          La sessualità non è performance. È linguaggio, permesso, presenza. La maggior parte dei blocchi sessuali non sono problemi di tecnica — sono problemi di parola, di paura, di silenzio. Lavoro su quelli.
-        </p>
-
-        <!-- ENHANCEMENT: blockquote border weight -->
-        <p class="mt-8 font-body italic text-brand-burgundy text-[20px] md:text-[24px] leading-snug border-l-[3px] border-brand-burgundy pl-6">
-          "Se non puoi dirlo a voce, intanto puoi dirlo qui. È un buon primo passo."
-        </p>
-      </article>
-
-      <!-- RIGHT — three short imperatives stacked, magazine-style -->
-      <aside class="md:col-span-5 md:border-l md:border-brand-line md:pl-12 reveal" data-delay="1">
-        <ol class="space-y-0">
-          <li class="pb-8 border-b border-brand-line/40">
-            <div class="num-eyebrow text-[44px] md:text-[56px] leading-none mb-3">1.</div>
-            <p class="font-display text-brand-ink text-[24px] md:text-[28px] leading-[1.15] tracking-tightish">
-              Niente moralismo.<br><span class="italic text-brand-burgundy">Niente clinichese.</span>
-            </p>
-          </li>
-          <li class="py-8 border-b border-brand-line/40">
-            <div class="num-eyebrow text-[44px] md:text-[56px] leading-none mb-3">2.</div>
-            <p class="font-display text-brand-ink text-[24px] md:text-[28px] leading-[1.15] tracking-tightish">
-              Si parla di te, non <span class="italic text-brand-burgundy">della tua diagnosi.</span>
-            </p>
-          </li>
-          <li class="pt-8">
-            <div class="num-eyebrow text-[44px] md:text-[56px] leading-none mb-3">3.</div>
-            <p class="font-display text-brand-ink text-[24px] md:text-[28px] leading-[1.15] tracking-tightish">
-              Ogni parola detta qui <span class="italic text-brand-burgundy">resta qui.</span>
-            </p>
-          </li>
-        </ol>
-      </aside>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═════════════════════════ 4 · CHI SONO ═════════════════════════ -->
-<section id="chi-sono" class="bg-brand-paper">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-
-      <!-- LEFT: photo gallery -->
-      <div class="md:col-span-5 reveal">
-        <div class="ale-photos" role="group" aria-label="Foto di Alessio Cottonaro">
-          <div class="ale-photo-hero">
-            <button class="ale-photo-button" type="button"
-              data-lightbox-src="img/alessio-cottonaro-ritratto-principale.jpg"
-              data-lightbox-alt="Alessio Cottonaro — consulente in sessuologia">
-              <img
-                src="img/alessio-cottonaro-ritratto-principale.jpg"
-                alt="Alessio Cottonaro — consulente in sessuologia"
-                class="ale-photo-img"
-                loading="eager"
-                decoding="async"
-              />
-            </button>
-          </div>
-          <div class="ale-photo-strip">
-            <div class="ale-photo-thumb">
-              <button class="ale-photo-button" type="button"
-                data-lightbox-src="img/alessio-cottonaro-ritratto.jpg"
-                data-lightbox-alt="Alessio Cottonaro — ritratto">
-                <img
-                  src="img/alessio-cottonaro-ritratto.jpg"
-                  alt="Alessio Cottonaro — ritratto"
-                  class="ale-photo-img"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </button>
-            </div>
-            <div class="ale-photo-thumb">
-              <button class="ale-photo-button" type="button"
-                data-lightbox-src="img/alessio-cottonaro-in-consulenza.jpg"
-                data-lightbox-alt="Alessio Cottonaro — in consulenza">
-                <img
-                  src="img/alessio-cottonaro-in-consulenza.jpg"
-                  alt="Alessio Cottonaro — in consulenza"
-                  class="ale-photo-img"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- mini info-strip -->
-        <div class="mt-6 pt-6 border-t border-dashed border-brand-line grid grid-cols-2 gap-4 text-[12px] tracking-[0.20em] uppercase text-brand-ink/55">
-          <div>
-            <div class="text-brand-burgundy mb-1">Sede</div>
-            <div class="normal-case tracking-normal italic text-brand-ink/85 text-[15px]">Torino &middot; Online</div>
-          </div>
-          <div>
-            <div class="text-brand-burgundy mb-1">Formazione</div>
-            <div class="normal-case tracking-normal italic text-brand-ink/85 text-[15px]">Sessuologia · Educazione professionale</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT: bio -->
-      <div class="md:col-span-7 reveal" data-delay="1">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Chi sono</div>
-        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[72px] leading-[1.0] tracking-tighter2 mb-10">
-          Ciao, sono <span class="italic text-brand-burgundy">Alessio.</span>
-        </h2>
-
-        <div class="space-y-5 font-body text-[17px] md:text-[18px] leading-[1.65] text-brand-ink/85 max-w-2xl">
-          <p>
-            Sono consulente in sessuologia. Mi sono formato seriamente — codice deontologico, supervisione, aggiornamento — perché su questi temi l'improvvisazione fa più danni del silenzio.
-          </p>
-          <p>
-            Lavoro con persone tra i 20 e i 50 anni, individui e coppie. Online o, in alcune zone, anche a domicilio. Non propongo percorsi infiniti e non riempio le sedute di parole inutili.
-          </p>
-          <p>
-            Quando scrivo sui social, lo faccio per smontare i tabù: senza pop, senza moralismi, senza fare scena. Quello che trovi qui è lo stesso approccio che porto in consulenza.
-          </p>
-        </div>
-
-        <!-- Pull-quote -->
-        <figure class="mt-12 md:mt-14 max-w-2xl reveal" data-delay="2">
-          <div class="font-display italic text-brand-burgundy text-[28px] md:text-[36px] leading-[1.15] tracking-tightish before:content-['—'] before:mr-3 before:font-display before:not-italic before:text-brand-burgundy/60">
-            Il mio approccio è pratico. Mi interessa cosa <span class="not-italic text-brand-burgundy/90">fare</span>, non solo cosa pensare.
-          </div>
-        </figure>
-      </div>
-    </div>
-
-    <!-- Promise row — static editorial, no marquee -->
-    <div class="mt-20 md:mt-24 -mx-6 md:-mx-10 border-y border-brand-line/60">
-      <ul class="grid grid-cols-1 md:grid-cols-3">
-        <li class="promise-cell px-6 md:px-10 py-10 md:py-12 reveal">
-          <div class="text-[11px] tracking-[0.18em] uppercase text-brand-burgundy/80 mb-3">1 &middot; Performance</div>
-          <div class="font-display italic text-brand-burgundy text-[26px] md:text-[32px] leading-[1.05] tracking-tightish">Niente da dimostrare.</div>
-        </li>
-        <li class="promise-cell px-6 md:px-10 py-10 md:py-12 reveal" data-delay="1">
-          <div class="text-[11px] tracking-[0.18em] uppercase text-brand-burgundy/80 mb-3">2 &middot; Vergogna</div>
-          <div class="font-display italic text-brand-burgundy text-[26px] md:text-[32px] leading-[1.05] tracking-tightish">Niente da nascondere.</div>
-        </li>
-        <li class="promise-cell px-6 md:px-10 py-10 md:py-12 reveal" data-delay="2">
-          <div class="text-[11px] tracking-[0.18em] uppercase text-brand-burgundy/80 mb-3">3 &middot; Linguaggio</div>
-          <div class="font-display italic text-brand-burgundy text-[26px] md:text-[32px] leading-[1.05] tracking-tightish">Niente giri di parole.</div>
-        </li>
+      <p class="mt-10 font-body reveal" data-delay="2"><span class="t-lead block italic text-brand-burgundy">Alessio Cottonaro</span><span class="t-small block text-brand-ink/75 mt-1">Consulente in sessuologia · Torino</span></p>
+      <ul class="t-small mt-6 space-y-2 font-body leading-[1.5] text-brand-ink/85 max-w-[34em] reveal" data-delay="2" aria-label="Formazione e albi">
+        <li class="pl-4 border-l-2 border-brand-burgundy">Master di I livello in Consulenza in Sessuologia, Università di Torino</li>
+        <li class="pl-4 border-l-2 border-brand-burgundy">Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</li>
       </ul>
+      <img src="img/alessio-cottonaro-in-consulenza.jpg" alt="" width="1199" height="1600" class="md:hidden foto-m mt-12" loading="lazy">
+    </section>
+
+    <!-- 3 · Di cosa possiamo parlare: la frase che non dici, aperta -->
+    <section id="parliamone" class="split-sez py-14 md:py-32" data-foto-per="parliamone" aria-labelledby="parliamone-h">
+      <span class="ancora" aria-hidden="true">«</span>
+      <h2 id="parliamone-h" class="t-h2 font-display text-brand-ink leading-[1.02] tracking-tighter2 reveal">Le frasi che <span class="italic text-brand-burgundy">non dici</span> a nessuno.</h2>
+      <p class="t-body mt-6 font-body text-brand-ink leading-[1.6] max-w-[34em] reveal" data-delay="1">Non serve la parola giusta. Se una di queste è anche tua, aprila.</p>
+      <ul class="frasi mt-10 reveal" data-delay="2">
+        <li><details class="frase">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-start justify-between gap-6 py-4 min-h-[44px]"><span class="t-h3 testo font-display text-brand-ink leading-[1.22] tracking-tightish">«Non desidero più il mio partner, e non capisco perché.»</span><svg class="piu shrink-0 mt-2 text-brand-burgundy" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></summary>
+          <div class="t-body pb-6 font-body leading-[1.6] text-brand-ink max-w-[34em]">Il desiderio cambia nel tempo, e quasi mai per colpa di qualcuno. Si può capire cosa si è spento e da dove ripartire. <a href="/blog/difficolta-e-blocchi/" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">Leggi: Difficoltà e blocchi →</a></div>
+        </details></li>
+        <li><details class="frase">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-start justify-between gap-6 py-4 min-h-[44px]"><span class="t-h3 testo font-display text-brand-ink leading-[1.22] tracking-tightish">«Ho paura di non essere all’altezza.»</span><svg class="piu shrink-0 mt-2 text-brand-burgundy" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></summary>
+          <div class="t-body pb-6 font-body leading-[1.6] text-brand-ink max-w-[34em]">Capita a tante persone, a ogni età. Non è un difetto: è un circolo che si può interrompere. <a href="/blog/ansia-da-prestazione-sessuale.html" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">Leggi: Ansia da prestazione →</a></div>
+        </details></li>
+        <li><details class="frase">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-start justify-between gap-6 py-4 min-h-[44px]"><span class="t-h3 testo font-display text-brand-ink leading-[1.22] tracking-tightish">«Ho perso il piacere e non so quando è successo.»</span><svg class="piu shrink-0 mt-2 text-brand-burgundy" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></summary>
+          <div class="t-body pb-6 font-body leading-[1.6] text-brand-ink max-w-[34em]">A volte il piacere si spegne piano, senza un motivo chiaro. Ripartire dal corpo aiuta a ritrovarlo. <a href="/blog/corpo-piacere-e-fantasie/" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">Leggi: Corpo, piacere e fantasie →</a></div>
+        </details></li>
+        <li><details class="frase">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-start justify-between gap-6 py-4 min-h-[44px]"><span class="t-h3 testo font-display text-brand-ink leading-[1.22] tracking-tightish">«Con il mio partner abbiamo smesso di parlarne.»</span><svg class="piu shrink-0 mt-2 text-brand-burgundy" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></summary>
+          <div class="t-body pb-6 font-body leading-[1.6] text-brand-ink max-w-[34em]">Il silenzio si sedimenta e le parole diventano più difficili. Si può ricominciare da piccole frasi vere. <a href="/blog/come-parlare-di-sesso-con-il-partner.html" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">Leggi: Come parlare di sesso con il partner →</a></div>
+        </details></li>
+        <li><details class="frase">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-start justify-between gap-6 py-4 min-h-[44px]"><span class="t-h3 testo font-display text-brand-ink leading-[1.22] tracking-tightish">«Non mi ritrovo più, nelle relazioni o nella mia sessualità.»</span><svg class="piu shrink-0 mt-2 text-brand-burgundy" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></summary>
+          <div class="t-body pb-6 font-body leading-[1.6] text-brand-ink max-w-[34em]">Non serve avere già le risposte. Si parte da quello che senti adesso, senza etichette. <a href="#contatti" class="text-brand-burgundy underline underline-offset-4 decoration-brand-burgundy/35">Scrivimi →</a></div>
+        </details></li>
+      </ul>
+      <p class="t-h3 mt-12 font-display text-brand-burgundy leading-[1.25] tracking-tightish reveal">Sono tutte cose normali. E si possono affrontare.</p>
+    </section>
+  </div>
+</div>
+
+<!-- ═══════ Dal blog: le frasi degli ultimi articoli, con la copertina a fianco ═══════ -->
+
+<!-- ═══════ Cosa faccio, e cosa no ═══════ -->
+<section id="cosa-faccio" class="bg-brand-burgundy text-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-36">
+    <div class="grid lg:grid-cols-12 gap-10 md:gap-16">
+      <h2 class="t-h2 lg:col-span-5 font-display text-brand-cream leading-[0.98] tracking-tighter2 reveal">Cosa faccio, <span class="italic">e cosa no.</span></h2>
+      <dl class="t-body lg:col-span-7 grid sm:grid-cols-2 gap-x-12 gap-y-10 font-body leading-[1.6] text-brand-cream reveal" data-delay="1">
+        <div><dt class="t-h3 font-display leading-[1.15]">Parlo come parli tu.</dt><dd class="mt-2">Le parole tecniche solo se servono, e te le spiego subito.</dd></div>
+        <div><dt class="t-h3 font-display leading-[1.15]">Lavoro su cosa fare.</dt><dd class="mt-2">Esci con qualcosa di concreto da provare, non solo con un’analisi.</dd></div>
+        <div><dt class="t-h3 font-display leading-[1.15]">Non sono medico né psicoterapeuta.</dt><dd class="mt-2">Se quello che porti chiede un altro professionista, te lo dico chiaramente e ti aiuto a capire a chi rivolgerti.</dd></div>
+        <div><dt class="t-h3 font-display leading-[1.15]">Non insegno a funzionare a comando.</dt><dd class="mt-2">Lavoriamo su consapevolezza, comunicazione e scelte concrete.</dd></div>
+      </dl>
+    </div>
+    <div class="diag mt-16 md:mt-24 bg-brand-paper px-4 md:px-10 py-10 md:py-14">
+      <div class="diag-card"><svg class="pm-map pm-map-h" viewBox="0 0 1100 420" role="img" aria-label="Tu, poi la prima consulenza con il consulente in sessuologia AleEduSex. Dopo, tre strade possibili: ti basta così; continuiamo insieme, con un percorso; oppure ti indirizzo a chi serve, come psicoterapeuta, andrologo, ginecologo o altri professionisti."><text class="pm-t-tu pm-fade" x="70" y="226" text-anchor="middle" style="--d:0ms">Tu</text><path class="pm-ink" pathLength="1" style="--d:300ms;--dur:500ms" d="M118 206 C 136 198, 150 214, 168 206 S 186 200, 194 204"/><g class="pm-stamp" style="--d:700ms"><rect x="195.0" y="150" width="250" height="112" rx="9" fill="#7A1E2B"/><text class="pm-t-st-small" x="320" y="186" text-anchor="middle">consulente in</text><text class="pm-t-st-big" x="320" y="222" text-anchor="middle">sessuologia</text><text class="pm-t-st-sig" x="320" y="245" text-anchor="middle">AleEduSex</text></g><path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:300ms" d="M445 206 L 516 206"/><text class="pm-cap pm-fade" x="320" y="300" text-anchor="middle" style="--d:1100ms">dopo la prima consulenza</text><circle class="pm-dot" cx="520" cy="206" r="4" style="--d:1450ms"/><path class="pm-ink" pathLength="1" style="--d:1550ms;--dur:650ms" d="M520 206 C 580 206, 570 78, 640 78"/><circle class="pm-dot" cx="640" cy="78" r="5" style="--d:2150ms"/><g class="pm-fade" style="--d:2230ms"><text class="pm-n" x="664" y="87">ti basta così</text><text class="pm-sub" x="665" y="122">a volte un’ora chiarisce abbastanza</text></g><path class="pm-ink pm-main" pathLength="1" style="--d:1610ms;--dur:650ms" d="M520 206 L 640 206"/><circle class="pm-ripple" cx="640" cy="206" r="7" style="--d:2210ms"/><circle class="pm-dot" cx="640" cy="206" r="7" style="--d:2210ms"/><g class="pm-fade" style="--d:2290ms"><text class="pm-n pm-n-main" x="664" y="215">continuiamo insieme</text><text class="pm-sub" x="665" y="250">un percorso con un obiettivo chiaro</text></g><path class="pm-ink pm-firma" pathLength="1" style="--d:2600ms;--dur:700ms" d="M664 224 C 763 220, 878 228, 994 222"/><path class="pm-ink" pathLength="1" style="--d:1670ms;--dur:650ms" d="M520 206 C 580 206, 570 318, 640 318"/><circle class="pm-dot" cx="640" cy="318" r="5" style="--d:2270ms"/><g class="pm-fade" style="--d:2350ms"><text class="pm-n" x="664" y="327">ti indirizzo a chi serve</text></g><g class="pm-fade" style="--d:2500ms"><rect class="pm-chip" x="664" y="342" width="130" height="30" rx="15"/><text class="pm-chip-t" x="729.0" y="362" text-anchor="middle">psicoterapeuta</text></g><g class="pm-fade" style="--d:2570ms"><rect class="pm-chip" x="802" y="342" width="92" height="30" rx="15"/><text class="pm-chip-t" x="848.0" y="362" text-anchor="middle">andrologo</text></g><g class="pm-fade" style="--d:2640ms"><rect class="pm-chip" x="902" y="342" width="100" height="30" rx="15"/><text class="pm-chip-t" x="952.0" y="362" text-anchor="middle">ginecologo</text></g><g class="pm-fade" style="--d:2710ms"><rect class="pm-chip" x="1010" y="342" width="77" height="30" rx="15"/><text class="pm-chip-t" x="1048.5" y="362" text-anchor="middle">e altri</text></g></svg>
+      <svg class="pm-map pm-map-v" viewBox="0 0 360 770" role="img" aria-label="Tu, poi la prima consulenza con il consulente in sessuologia AleEduSex. Dopo, tre strade possibili: ti basta così; continuiamo insieme, con un percorso; oppure ti indirizzo a chi serve, come psicoterapeuta, andrologo, ginecologo o altri professionisti."><text class="pm-t-tu pm-fade" x="180" y="58" text-anchor="middle" style="--d:0ms">Tu</text><path class="pm-ink" pathLength="1" style="--d:300ms;--dur:520ms" d="M180 80 C 187 98, 173 114, 180 132 S 181 146, 180 150"/><g class="pm-stamp" style="--d:700ms"><rect x="60.0" y="156" width="240" height="108" rx="9" fill="#7A1E2B"/><text class="pm-t-st-small" x="180" y="192" text-anchor="middle">consulente in</text><text class="pm-t-st-big" x="180" y="228" text-anchor="middle">sessuologia</text><text class="pm-t-st-sig" x="180" y="251" text-anchor="middle">AleEduSex</text></g><path class="pm-ink" pathLength="1" style="--d:1000ms;--dur:240ms" d="M180 264 L 180 282"/><text class="pm-cap pm-fade" x="180" y="306" text-anchor="middle" style="--d:1050ms">dopo la prima consulenza</text><circle class="pm-dot" cx="180" cy="324" r="4" style="--d:1300ms"/><path class="pm-ink" pathLength="1" style="--d:1400ms;--dur:620ms" d="M180 324 C 180 354, 62 348, 62 386"/><circle class="pm-dot" cx="62" cy="386" r="5" style="--d:1980ms"/><path class="pm-ink pm-main" pathLength="1" style="--d:1470ms;--dur:620ms" d="M180 324 L 180 446"/><circle class="pm-ripple" cx="180" cy="454" r="7" style="--d:2080ms"/><circle class="pm-dot" cx="180" cy="454" r="7" style="--d:2050ms"/><path class="pm-ink" pathLength="1" style="--d:1540ms;--dur:900ms" d="M180 324 C 180 352, 300 342, 328 376 C 342 394, 344 420, 344 470 L 344 584 C 344 606, 336 620, 318 624"/><circle class="pm-dot" cx="318" cy="624" r="5" style="--d:2400ms"/><g class="pm-fade" style="--d:2060ms"><text class="pm-n" x="62" y="424" text-anchor="middle">ti basta</text><text class="pm-n" x="62" y="452" text-anchor="middle">così</text></g><g class="pm-fade" style="--d:2130ms"><text class="pm-n pm-n-main" x="180" y="494" text-anchor="middle">continuiamo</text><text class="pm-n pm-n-main" x="180" y="524" text-anchor="middle">insieme</text><text class="pm-sub" x="180" y="562" text-anchor="middle">un percorso con</text><text class="pm-sub" x="180" y="584" text-anchor="middle">un obiettivo chiaro</text></g><path class="pm-ink pm-firma" pathLength="1" style="--d:2450ms;--dur:620ms" d="M134 534 C 160 530, 196 538, 226 532"/><g class="pm-fade" style="--d:2460ms"><text class="pm-n" x="348" y="662" text-anchor="end">ti indirizzo a chi serve</text></g><g class="pm-fade pm-chip-g" style="--d:2600ms"><rect class="pm-chip" x="87" y="680" width="148" height="32" rx="16"/><text class="pm-chip-t" x="161.0" y="701" text-anchor="middle">psicoterapeuta</text></g><g class="pm-fade pm-chip-g" style="--d:2670ms"><rect class="pm-chip" x="243" y="680" width="105" height="32" rx="16"/><text class="pm-chip-t" x="295.5" y="701" text-anchor="middle">andrologo</text></g><g class="pm-fade pm-chip-g" style="--d:2740ms"><rect class="pm-chip" x="138" y="722" width="114" height="32" rx="16"/><text class="pm-chip-t" x="195.0" y="743" text-anchor="middle">ginecologo</text></g><g class="pm-fade pm-chip-g" style="--d:2810ms"><rect class="pm-chip" x="260" y="722" width="88" height="32" rx="16"/><text class="pm-chip-t" x="304.0" y="743" text-anchor="middle">e altri</text></g></svg></div>
+      <p class="t-body text-center font-body text-brand-ink mt-6">Ti aiuto a capire dove sei e, se serve, a chi rivolgerti.</p>
     </div>
   </div>
 </section>
 
-
-<!-- ═════════════════════════ 3 · DI COSA POSSIAMO PARLARE ═════════════════════════ -->
-<section id="parliamone" class="bg-brand-cream">
+<!-- ═══════ Come funziona: il tragitto ═══════ -->
+<section id="funziona" class="bg-brand-cream">
   <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-8 mb-14 md:mb-20">
-      <div class="md:col-span-4 reveal">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Di cosa possiamo parlare</div>
-        <h2 class="font-display text-brand-ink text-[42px] sm:text-[56px] md:text-[72px] leading-[0.98] tracking-tighter2">
-          Le frasi che <span class="italic text-brand-burgundy">non dici</span> a nessuno.
-        </h2>
-      </div>
-      <p class="md:col-span-7 md:col-start-6 self-end font-body italic text-brand-ink/70 text-[19px] md:text-[22px] leading-snug reveal" data-delay="1">
-        Non serve la parola giusta. Bastano queste. Se ti riconosci, è già il momento di scrivere.
-      </p>
+    <div class="testa-sez">
+      <h2 class="t-h2 font-display text-brand-ink leading-[0.98] tracking-tighter2 reveal">Come <span class="italic text-brand-burgundy">funziona.</span></h2>
+      <p class="t-body font-body text-brand-ink leading-[1.6] max-w-[30em] reveal" data-delay="1">Tre passi, e sai sempre prima cosa succede e quanto costa. Non serve saperlo dire bene: basta cominciare.</p>
     </div>
-
-    <!-- Index-card grid -->
-    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      <li class="concern-card p-8 pt-12 reveal">
-        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Non desidero più il mio partner, e non capisco perché."</div>
-        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Desiderio</div>
+    <ol class="passi reveal" data-delay="2">
+      <li>
+        <p class="cifra">Gratis</p>
+        <p class="quando t-small">Oggi</p>
+        <h3 class="cosa t-h3">Mi scrivi.</h3>
+        <p class="t-body">Un messaggio o una mail, anche due righe. Ti rispondo io, di solito entro 24 ore. Se hai solo una domanda, ci sentiamo 15 minuti al telefono. Gratis.</p>
       </li>
-      <li class="concern-card p-8 pt-12 reveal" data-delay="1">
-        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Ho paura di non essere all'altezza."</div>
-        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Ansia da prestazione</div>
+      <li>
+        <p class="cifra">60&#8239;€</p>
+        <p class="quando t-small">La prima consulenza</p>
+        <h3 class="cosa t-h3">Un’ora insieme.</h3>
+        <p class="t-body">Online o a domicilio. Ti faccio qualche domanda e ascolto. Alla fine ti dico chiaramente cosa stiamo guardando e se ha senso andare avanti.</p>
+        <a class="t-small apri-video mt-5 inline-flex items-center gap-2.5 min-h-[44px] font-body text-brand-burgundy" href="/video/prima-consulenza.mp4" data-poster="/video/prima-consulenza.jpg" data-titolo="come funziona la prima consulenza">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor" stroke="none"/></svg>
+              <span class="underline underline-offset-4 decoration-brand-burgundy/35">Guarda il video</span> <span class="t-small text-brand-ink/80">44 s</span>
+            </a>
       </li>
-      <li class="concern-card p-8 pt-12 reveal" data-delay="2">
-        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Ho perso il piacere e non so quando è successo."</div>
-        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Piacere</div>
+      <li>
+        <p class="cifra cifra--it">su misura</p>
+        <p class="quando t-small">Dopo</p>
+        <h3 class="cosa t-h3">Decidiamo insieme.</h3>
+        <p class="t-body">Se serve, ti propongo un percorso con un obiettivo chiaro e un numero di incontri definito. Se serve un altro professionista, te lo dico e ti indirizzo.</p>
       </li>
-      <li class="concern-card p-8 pt-12 reveal">
-        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Con il mio partner abbiamo smesso di parlarne."</div>
-        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Comunicazione</div>
-      </li>
-      <li class="concern-card p-8 pt-12 reveal" data-delay="1">
-        <div class="font-display text-brand-ink text-[24px] md:text-[26px] leading-[1.18] tracking-tightish">"Mi sento perso/a nelle relazioni o nella mia sessualità."</div>
-        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-burgundy/80">— Identità</div>
-      </li>
-      <li class="bg-brand-burgundy text-brand-cream p-8 pt-12 reveal relative overflow-hidden" data-delay="2"
-          style="box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 18px 40px -18px rgba(92,21,32,0.60), 0 6px 14px -6px rgba(122,30,43,0.30);">
-        <span aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(rgba(240,231,213,0.55) 1px, transparent 1px); background-size: 6px 6px; opacity: 0.10;"></span>
-        <span aria-hidden="true" class="absolute top-[14px] left-[14px] w-[7px] h-[7px] rounded-full" style="border: 1px solid rgba(240,231,213,0.50);"></span>
-        <div class="font-display italic text-[26px] md:text-[28px] leading-[1.12] tracking-tightish relative">Sono tutte cose normali.<br>E si possono affrontare.</div>
-        <div class="mt-6 text-[11px] tracking-[0.22em] uppercase text-brand-cream/75 relative">→ Prossimo passo</div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ═════════════════════════ 5 · PERCHÉ VENIRE DA ME ═════════════════════════ -->
-<section id="perche-me" class="bg-brand-paper">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-8 mb-14 md:mb-20">
-      <div class="md:col-span-5 reveal">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Perché me</div>
-        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[80px] leading-[0.96] tracking-tighter2">
-          Tre motivi <span class="italic text-brand-burgundy">onesti</span> per scegliermi.
-        </h2>
-      </div>
-      <p class="md:col-span-6 md:col-start-7 self-end font-body italic text-brand-ink/70 text-[19px] md:text-[22px] leading-snug reveal" data-delay="1">
-        Non quelli che vorresti sentirti dire. Quelli che, secondo me, fanno la differenza.
-      </p>
-    </div>
-
-    <ol class="grid md:grid-cols-3 gap-10 md:gap-12">
-      <li class="reveal">
-        <div class="pillar-roman text-[32px] mb-6">1.</div>
-        <h3 class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.1] tracking-tightish mb-4">
-          Parlo come <span class="italic text-brand-burgundy">parli tu.</span>
-        </h3>
-        <p class="font-body text-brand-ink/85 text-[16.5px] leading-[1.65]">
-          Niente termini clinici, niente giri di parole. La sessualità merita un linguaggio chiaro, non un'altra barriera in più.
-        </p>
-      </li>
-      <li class="reveal" data-delay="1">
-        <div class="pillar-roman text-[32px] mb-6">2.</div>
-        <h3 class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.1] tracking-tightish mb-4">
-          Lavoro su cosa <span class="italic text-brand-burgundy">fare,</span> non solo su cosa pensare.
-        </h3>
-        <p class="font-body text-brand-ink/85 text-[16.5px] leading-[1.65]">
-          La mia formazione è quella di educatore professionale. Mi interessa che da qui tu esca con strumenti pratici, non solo con un'analisi.
-        </p>
-      </li>
-      <li class="reveal" data-delay="2">
-        <div class="pillar-roman text-[32px] mb-6">3.</div>
-        <h3 class="font-display text-brand-ink text-[26px] md:text-[30px] leading-[1.1] tracking-tightish mb-4">
-          Ti dico con chiarezza quando il tuo tema <span class="italic text-brand-burgundy">richiede un altro professionista.</span>
-        </h3>
-        <p class="font-body text-brand-ink/85 text-[16.5px] leading-[1.65]">
-          E ti accompagno alla persona giusta — andrologo, ginecologo, psicologo, endocrinologo. Senza farti perdere altri mesi.
-        </p>
-      </li>
+      <li class="fine t-body">Alla fine sai cosa stai guardando e da dove partire.</li>
     </ol>
   </div>
 </section>
 
-<!-- ═════════════════════════ 6 · COSA NON SONO ═════════════════════════ -->
-<section id="non-sono" class="bg-brand-cream">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-      <div class="md:col-span-4 reveal">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Onestà</div>
-        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[80px] leading-[0.95] tracking-tighter2 mb-6">
-          Cosa <span class="italic text-brand-burgundy">non</span> sono.
-        </h2>
-        <p class="font-body italic text-brand-ink/70 text-[18px] leading-snug max-w-xs">
-          Dirlo prima, evita di scoprirlo dopo.
-        </p>
+<!-- ═══════ I percorsi: prima scegli per chi ═══════ -->
+<section id="percorsi" class="bg-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-36">
+    <div class="grid lg:grid-cols-12 gap-10 md:gap-16">
+      <div class="lg:col-span-4 lg:sticky lg:top-[120px] lg:self-start">
+        <h2 class="t-h2 font-display text-brand-ink leading-[0.98] tracking-tighter2 reveal">I percorsi, <span class="italic text-brand-burgundy">se servono.</span></h2>
+        <p class="t-body mt-6 font-body text-brand-ink leading-[1.6] reveal" data-delay="1">Te li propongo dopo la prima consulenza, solo se hanno senso per te. Ognuno ha un obiettivo chiaro e un numero di incontri definito. Si prenotano come la prima consulenza.</p>
+        <a href="#contatti" class="btn-burgundy mt-10 reveal" data-delay="2">Scrivimi per un percorso <span class="arr" aria-hidden="true">→</span></a>
       </div>
-
-      <div class="md:col-span-7 md:col-start-6">
-        <div>
-          <div class="negation-row reveal">
-            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
-              <span class="neg-word">Non</span> sono uno <span class="text-brand-ink">psicoterapeuta.</span>
-            </div>
-            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
-              Se quello che porti richiede un lavoro clinico o terapeutico, lo nominiamo e capiamo a chi rivolgerci. Senza forzare il percorso.
-            </p>
-          </div>
-
-          <div class="negation-row reveal" data-delay="1">
-            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
-              <span class="neg-word">Non</span> sono un <span class="text-brand-ink">esperto di tutto.</span>
-            </div>
-            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
-              La sessualità tocca corpo, relazione, emozioni e storia personale. Il mio lavoro è aiutarti a fare ordine e capire quale pezzo guardare per primo.
-            </p>
-          </div>
-
-          <div class="negation-row reveal" data-delay="2">
-            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
-              <span class="neg-word">Non</span> sono un <span class="text-brand-ink">guru della prestazione.</span>
-            </div>
-            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
-              Non ti insegno tecniche per funzionare meglio a comando. Lavoriamo su consapevolezza, comunicazione e scelte concrete.
-            </p>
-          </div>
-
-          <div class="negation-row reveal" data-delay="3">
-            <div class="font-display text-[26px] md:text-[34px] leading-[1.18] tracking-tightish mb-2">
-              <span class="neg-word">Non</span> parlo in <span class="text-brand-ink">clinichese.</span>
-            </div>
-            <p class="font-body text-brand-ink/80 text-[16.5px] leading-[1.65] max-w-xl">
-              Uso parole semplici senza semplificare troppo. I termini tecnici entrano solo quando servono davvero.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════════════════════ 7 · PAROLE NELLA STANZA ═════════════════════════ -->
-<section id="voci" class="bg-brand-paper">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-10 md:gap-16">
-      <div class="md:col-span-4">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4 reveal">Parole nella stanza</div>
-        <h2 class="font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[64px] leading-[1.0] tracking-tighter2 mb-6 reveal">
-          Cose che mi hanno detto, <span class="italic text-brand-burgundy">prima di iniziare.</span>
-        </h2>
-        <p class="font-body italic text-brand-ink/70 text-[17px] leading-snug max-w-xs reveal" data-delay="1">
-          Non sono testimonianze cliniche. Sono i primi minuti, quelli in cui si decide di restare.
-        </p>
-      </div>
-
-      <div class="md:col-span-7 md:col-start-6 relative">
-        <div>
-          <figure class="quote-slab">
-            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
-              <span class="quote-mark">«</span> Pensavo bastasse aspettare. <span class="quote-mark">»</span>
-            </blockquote>
-          </figure>
-          <figure class="quote-slab">
-            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
-              <span class="quote-mark">«</span> Mi vergognavo di chiederlo al medico di base. <span class="quote-mark">»</span>
-            </blockquote>
-          </figure>
-          <figure class="quote-slab">
-            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
-              <span class="quote-mark">«</span> Non sapevo nemmeno da dove cominciare. <span class="quote-mark">»</span>
-            </blockquote>
-          </figure>
-          <figure class="quote-slab">
-            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
-              <span class="quote-mark">«</span> Credevo di essere l'unico ad avere questo problema. <span class="quote-mark">»</span>
-            </blockquote>
-          </figure>
-          <figure class="quote-slab">
-            <blockquote class="font-display italic text-brand-ink text-[24px] md:text-[32px] leading-[1.2] tracking-tightish">
-              <span class="quote-mark">«</span> Ho sempre evitato l'argomento, anche con il mio partner. <span class="quote-mark">»</span>
-            </blockquote>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════════════════════ 8 · A COSA SERVE DAVVERO UN SESSUOLOGO ═════════════════════════ -->
-<section id="posizione" class="bg-brand-cream">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="grid md:grid-cols-12 gap-8 mb-14 md:mb-20">
-      <div class="md:col-span-5 reveal">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4">Posizionamento</div>
-        <h2 class="font-display text-brand-ink text-[40px] sm:text-[52px] md:text-[72px] leading-[0.98] tracking-tighter2">
-          A cosa serve <span class="italic text-brand-burgundy">davvero</span> un sessuologo.
-        </h2>
-      </div>
-      <p class="md:col-span-6 md:col-start-7 self-end font-body text-[18px] md:text-[20px] leading-[1.55] text-brand-ink/85 reveal" data-delay="1">
-        Il consulente in sessuologia è la prima domanda, non l'ultima spiaggia. Aiuta a capire <em class="italic">dove</em> ti trovi — e a quale specialista rivolgersi se serve.
-      </p>
-    </div>
-
-    <!-- Editorial flow diagram — lifted card -->
-    <div class="diag-card reveal" data-delay="2">
-      <svg class="pm-map pm-map-h" viewBox="0 0 1070 330" role="img" aria-label="Tu, poi il consulente in sessuologia Alessio, che indirizza a psicoterapeuta se c'è un vissuto da elaborare, ad andrologo o ginecologo se c'è un aspetto organico, ad altri professionisti se c'è un bisogno specifico.">
-        <defs>
-          <filter id="pm-shadow-h" x="-20%" y="-30%" width="140%" height="170%">
-            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#5C1520" flood-opacity=".32"/>
-          </filter>
-        </defs>
-        <text class="pm-t-tu pm-fade" x="36" y="186" style="--d:0ms">Tu</text>
-        <!-- tratto a mano: piccola onda, non una riga dritta -->
-        <path class="pm-ink" pathLength="1" style="--d:350ms;--dur:750ms" d="M128 165 C 168 150, 196 181, 240 166 S 292 158, 318 164"/>
-        <g class="pm-stamp" style="--d:950ms" filter="url(#pm-shadow-h)">
-          <rect x="330" y="104" width="252" height="124" rx="9" fill="#7A1E2B"/>
-          <text class="pm-t-st-small" x="456" y="146" text-anchor="middle">consulente in</text>
-          <text class="pm-t-st-big" x="456" y="185" text-anchor="middle">sessuologia</text>
-          <text class="pm-t-st-sig" x="456" y="211" text-anchor="middle">— Alessio</text>
-        </g>
-        <!-- tre rami che si aprono dal timbro -->
-        <path class="pm-ink" pathLength="1" style="--d:1650ms" d="M596 160 C 650 158, 648 72, 712 70"/>
-        <path class="pm-ink" pathLength="1" style="--d:1780ms" d="M596 166 C 640 170, 668 164, 712 166"/>
-        <path class="pm-ink" pathLength="1" style="--d:1910ms" d="M596 172 C 650 176, 646 262, 712 262"/>
-        <circle class="pm-ripple pm-plain" cx="716" cy="70" r="4" style="--d:2300ms"/>
-        <circle class="pm-ripple pm-plain" cx="716" cy="166" r="4" style="--d:2430ms"/>
-        <circle class="pm-ripple pm-plain" cx="716" cy="262" r="4" style="--d:2560ms"/>
-        <circle class="pm-dot pm-plain" cx="716" cy="70" r="4" style="--d:2300ms"/>
-        <circle class="pm-dot pm-plain" cx="716" cy="166" r="4" style="--d:2430ms"/>
-        <circle class="pm-dot pm-plain" cx="716" cy="262" r="4" style="--d:2560ms"/>
-        <g class="pm-fade" style="--d:2350ms"><text class="pm-t-name" x="754" y="72">psicoterapeuta</text><text class="pm-t-cond" x="756" y="96">se c'è un vissuto da elaborare</text></g>
-        <g class="pm-fade" style="--d:2480ms"><text class="pm-t-name" x="754" y="168">andrologo · ginecologo</text><text class="pm-t-cond" x="756" y="192">se c'è un aspetto organico</text></g>
-        <g class="pm-fade" style="--d:2610ms"><text class="pm-t-name" x="754" y="264">altri professionisti</text><text class="pm-t-cond" x="756" y="288">se c'è un bisogno specifico</text></g>
-      </svg>
-      <svg class="pm-map pm-map-v" viewBox="0 0 360 590" role="img" aria-label="Tu, poi il consulente in sessuologia Alessio, che indirizza a psicoterapeuta se c'è un vissuto da elaborare, ad andrologo o ginecologo se c'è un aspetto organico, ad altri professionisti se c'è un bisogno specifico.">
-        <defs>
-          <filter id="pm-shadow-v" x="-20%" y="-30%" width="140%" height="170%">
-            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#5C1520" flood-opacity=".32"/>
-          </filter>
-        </defs>
-        <text class="pm-t-tu pm-fade" x="180" y="60" text-anchor="middle" style="--d:0ms">Tu</text>
-        <path class="pm-ink" pathLength="1" style="--d:350ms;--dur:600ms" d="M180 84 C 187 104, 173 122, 180 142 S 181 160, 180 166"/>
-        <g class="pm-stamp" style="--d:800ms" filter="url(#pm-shadow-v)">
-          <rect x="60" y="174" width="240" height="112" rx="9" fill="#7A1E2B"/>
-          <text class="pm-t-st-small" x="180" y="211" text-anchor="middle">consulente in</text>
-          <text class="pm-t-st-big" x="180" y="248" text-anchor="middle">sessuologia</text>
-          <text class="pm-t-st-sig" x="180" y="272" text-anchor="middle">— Alessio</text>
-        </g>
-        <!-- una sola linea: scende dal timbro, piega a sinistra e diventa la «linea» con tre fermate -->
-        <path class="pm-ink pm-trunk" pathLength="1" style="--d:1450ms;--dur:1300ms" d="M180 298 C 180 326, 40 318, 40 352 L 40 540"/>
-        <circle class="pm-ripple" cx="40" cy="364" r="5" style="--d:2000ms"/>
-        <circle class="pm-ripple" cx="40" cy="452" r="5" style="--d:2330ms"/>
-        <circle class="pm-ripple" cx="40" cy="540" r="5" style="--d:2680ms"/>
-        <circle class="pm-dot" cx="40" cy="364" r="5" style="--d:2000ms"/>
-        <circle class="pm-dot" cx="40" cy="452" r="5" style="--d:2330ms"/>
-        <circle class="pm-dot" cx="40" cy="540" r="5" style="--d:2680ms"/>
-        <g class="pm-fade" style="--d:2060ms"><text class="pm-t-name" x="64" y="372">psicoterapeuta</text><text class="pm-t-cond pm-t-cond-v" x="65" y="396">se c'è un vissuto da elaborare</text></g>
-        <g class="pm-fade" style="--d:2390ms"><text class="pm-t-name" x="64" y="460">andrologo · ginecologo</text><text class="pm-t-cond pm-t-cond-v" x="65" y="484">se c'è un aspetto organico</text></g>
-        <g class="pm-fade" style="--d:2740ms"><text class="pm-t-name" x="64" y="548">altri professionisti</text><text class="pm-t-cond pm-t-cond-v" x="65" y="572">se c'è un bisogno specifico</text></g>
-      </svg>
-
-      <!-- caption -->
-      <p class="text-center font-body italic text-[15px] mt-5" style="color:rgba(26,26,26,0.62);letter-spacing:0.02em">
-          io ti aiuto a capire dove sei e dove andare
-        </p>
-    </div>
-
-    <!-- Closing line -->
-    <p class="mt-14 md:mt-16 max-w-3xl font-body italic text-brand-burgundy text-[20px] md:text-[24px] leading-snug reveal">
-      Non serve sapere già dove ti trovi. Serve solo cominciare a chiederselo.
-    </p>
-  </div>
-</section>
-
-
-<!-- ═════════════════════════ 6 · COME FUNZIONA ═════════════════════════ -->
-<section id="funziona" class="bg-brand-paper relative">
-  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
-
-    <div class="mb-14 md:mb-20 max-w-3xl">
-      <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4 reveal">Come funziona</div>
-      <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[80px] leading-[0.95] tracking-tighter2 reveal">
-        Tre passi, <span class="italic text-brand-burgundy">niente acrobazie.</span>
-      </h2>
-    </div>
-
-    <!-- Three steps with sticky romans -->
-    <ol class="space-y-20 md:space-y-32">
-
-      <li class="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 md:pb-0 border-b border-brand-line/25 md:border-0 last:border-0 last:pb-0">
-        <div class="md:col-span-4 reveal">
-          <div class="step-roman text-[140px] md:text-[200px] roman-sticky">1.</div>
-        </div>
-        <div class="md:col-span-8 reveal" data-delay="1">
-          <h3 class="font-display text-brand-ink text-[36px] md:text-[48px] leading-[1.0] tracking-tighter2 mb-5">
-            Scrivi.
-          </h3>
-          <p class="font-body text-brand-ink/85 text-[18px] md:text-[19px] leading-[1.6] max-w-2xl mb-4">
-            Una mail o un messaggio. Due righe, anche solo un titolo. Non serve "saperlo dire bene": serve dire <em class="italic">qualcosa</em>. Rispondo io, dal mio indirizzo personale, entro 24 ore. Se prima vuoi solo capire se ha senso iniziare, ti offro anche una telefonata gratuita di 15 minuti.
-          </p>
-          <p class="font-body italic text-brand-burgundy/80 text-[16px]">— Non c'è una segreteria. Non ci sono moduli infiniti.</p>
-        </div>
-      </li>
-
-      <li class="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 md:pb-0 border-b border-brand-line/25 md:border-0 last:border-0 last:pb-0">
-        <div class="md:col-span-4 reveal">
-          <div class="step-roman text-[140px] md:text-[200px] roman-sticky">2.</div>
-        </div>
-        <div class="md:col-span-8 reveal" data-delay="1">
-          <h3 class="font-display text-brand-ink text-[36px] md:text-[48px] leading-[1.0] tracking-tighter2 mb-5">
-            Prima consulenza <span class="italic text-brand-burgundy">· 60&nbsp;€</span>
-          </h3>
-          <p class="font-body text-brand-ink/85 text-[18px] md:text-[19px] leading-[1.6] max-w-2xl mb-4">
-            Un'ora, in video o a domicilio. Ti faccio domande mirate, ascolto, e ti aiuto a mettere in parole quello che magari non hai mai detto ad alta voce. Alla fine sai due cose, e te le dico chiaramente: <strong class="font-semibold not-italic">cosa</strong> stiamo guardando, e se vale la pena proseguire.
-          </p>
-          <ul class="flex flex-wrap gap-x-5 gap-y-1 text-[12px] tracking-[0.22em] uppercase text-brand-ink/55">
-            <li>60 minuti</li><li class="text-brand-burgundy">·</li>
-            <li>Video o a domicilio</li><li class="text-brand-burgundy">·</li>
-            <li>60&nbsp;€</li>
+      <div class="lg:col-span-8 reveal" data-delay="1">
+        <fieldset class="per">
+          <legend class="t-body font-body font-semibold text-brand-ink mb-3">Per chi è?</legend>
+          <input type="radio" name="per" id="per-tutti" value="tutti" checked><label for="per-tutti">Tutti</label><input type="radio" name="per" id="per-solo" value="solo"><label for="per-solo">Da solo</label><input type="radio" name="per" id="per-coppia" value="coppia"><label for="per-coppia">In coppia</label><input type="radio" name="per" id="per-gruppo" value="gruppo"><label for="per-gruppo">In gruppo</label>
+          <ul class="voci">
+          <li class="voce pt-8 pb-2" data-per="solo coppia">
+            <div class="riga"><span class="t-h3 font-display text-brand-ink leading-[1.12] tracking-tightish">Al cuore del problema</span><span class="prezzi"><span class="val">450&#8239;€</span></span></div>
+            <p class="t-body mt-2 font-body leading-[1.6] text-brand-ink max-w-[38em]">Cinque incontri per capire dove si è bloccato qualcosa e cosa fare, con il metodo DEOPIARCA della Scuola di sessuologia di Torino.</p>
+            <a class="t-small apri-video mt-5 inline-flex items-center gap-2.5 min-h-[44px] font-body text-brand-burgundy" href="/video/al-cuore-del-problema.mp4" data-poster="/video/al-cuore-del-problema.jpg" data-titolo="Al cuore del problema">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor" stroke="none"/></svg>
+              <span class="underline underline-offset-4 decoration-brand-burgundy/35">Guarda il video</span> <span class="t-small text-brand-ink/80">58 s</span>
+            </a>
+            <p class="t-small mt-3 font-body leading-[1.55] text-brand-ink/80 max-w-[38em]">Da solo o in coppia. 5 incontri da 60 minuti, ogni due settimane. Il prezzo è per tutto il percorso.</p>
+          </li>
+          <li class="voce pt-8 pb-2" data-per="coppia gruppo solo">
+            <div class="riga"><span class="t-h3 font-display text-brand-ink leading-[1.12] tracking-tightish">Dialogo positivo sul desiderio</span><span class="prezzi"><span class="val">240&#8239;€</span><span class="a-incontro">80&#8239;€ a incontro da 90 minuti</span></span></div>
+            <p class="t-body mt-2 font-body leading-[1.6] text-brand-ink max-w-[38em]">Per coppie con desideri diversi, che non riescono più a parlarne senza ferirsi.</p>
+            <a class="t-small apri-video mt-5 inline-flex items-center gap-2.5 min-h-[44px] font-body text-brand-burgundy" href="/video/dialogo-positivo-sul-desiderio.mp4" data-poster="/video/dialogo-positivo-sul-desiderio.jpg" data-titolo="Dialogo positivo sul desiderio">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor" stroke="none"/></svg>
+              <span class="underline underline-offset-4 decoration-brand-burgundy/35">Guarda il video</span> <span class="t-small text-brand-ink/80">1 min 56</span>
+            </a>
+            <p class="t-small mt-3 font-body leading-[1.55] text-brand-ink/80 max-w-[38em]">In piccolo gruppo: 3 incontri da 90 minuti, gruppi di 4 coppie. 240 € a coppia, 300 € se partecipi senza partner.</p>
+          </li>
+          <li class="voce pt-8 pb-2" data-per="coppia gruppo">
+            <div class="riga"><span class="t-h3 font-display text-brand-ink leading-[1.12] tracking-tightish">Laboratorio del piacere consapevole</span><span class="prezzi"><span class="val">400&#8239;€</span><span class="a-incontro">100&#8239;€ a incontro da 90 minuti</span></span></div>
+            <p class="t-body mt-2 font-body leading-[1.6] text-brand-ink max-w-[38em]">Per coppie: corpo, desiderio, comunicazione, sex toys. Niente nudità né pratiche esplicite.</p>
+            <a class="t-small apri-video mt-5 inline-flex items-center gap-2.5 min-h-[44px] font-body text-brand-burgundy" href="/video/laboratorio-del-piacere-consapevole.mp4" data-poster="/video/laboratorio-del-piacere-consapevole.jpg" data-titolo="Laboratorio del piacere consapevole">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor" stroke="none"/></svg>
+              <span class="underline underline-offset-4 decoration-brand-burgundy/35">Guarda il video</span> <span class="t-small text-brand-ink/80">2 min 16</span>
+            </a>
+            <p class="t-small mt-3 font-body leading-[1.55] text-brand-ink/80 max-w-[38em]">In piccolo gruppo: 4 incontri da 90 minuti, al massimo 3 coppie. Prezzo a coppia.</p>
+          </li>
+          <li class="voce pt-8 pb-2" data-per="gruppo">
+            <div class="riga"><span class="t-h3 font-display text-brand-ink leading-[1.12] tracking-tightish">Parliamo di sessualità ai figli</span><span class="prezzi"><span class="val">280&#8239;€</span><span class="a-incontro">70&#8239;€ a incontro da 90 minuti</span></span></div>
+            <p class="t-body mt-2 font-body leading-[1.6] text-brand-ink max-w-[38em]">Per genitori con figli tra 4 e 18 anni: come rispondere alle domande, età per età.</p>
+            <a class="t-small apri-video mt-5 inline-flex items-center gap-2.5 min-h-[44px] font-body text-brand-burgundy" href="/video/parliamo-di-sessualita-ai-figli.mp4" data-poster="/video/parliamo-di-sessualita-ai-figli.jpg" data-titolo="Parliamo di sessualità ai figli">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor" stroke="none"/></svg>
+              <span class="underline underline-offset-4 decoration-brand-burgundy/35">Guarda il video</span> <span class="t-small text-brand-ink/80">1 min 46</span>
+            </a>
+            <p class="t-small mt-3 font-body leading-[1.55] text-brand-ink/80 max-w-[38em]">In piccolo gruppo: 4 incontri da 90 minuti, al massimo 8 persone.</p>
+          </li>
           </ul>
-        </div>
-      </li>
-
-      <li class="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 md:pb-0 border-b border-brand-line/25 md:border-0 last:border-0 last:pb-0">
-        <div class="md:col-span-4 reveal">
-          <div class="step-roman text-[140px] md:text-[200px] roman-sticky">3.</div>
-        </div>
-        <div class="md:col-span-8 reveal" data-delay="1">
-          <h3 class="font-display text-brand-ink text-[36px] md:text-[48px] leading-[1.0] tracking-tighter2 mb-5">
-            Decidiamo insieme.
-          </h3>
-          <p class="font-body text-brand-ink/85 text-[18px] md:text-[19px] leading-[1.6] max-w-2xl mb-4">
-            Se ha senso proseguire, ti propongo un percorso breve — di solito tra 4 e 5 incontri — con un obiettivo chiaro e verificabile. Se invece emerge che serve un altro professionista, lo capiamo insieme e ti indirizzo.
-          </p>
-          <p class="font-body italic text-brand-burgundy/80 text-[16px]">— Niente percorsi infiniti. Si lavora su un obiettivo, un passo alla volta.</p>
-        </div>
-      </li>
-    </ol>
+          <p class="t-small nota-singolo mt-6 font-body text-brand-ink/80">Un incontro singolo costa 60&#8239;€.</p>
+        </fieldset>
+      </div>
+    </div>
   </div>
 </section>
 
+<section id="dal-blog" class="bg-brand-ink text-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end">
+      <h2 class="t-h2 lg:col-span-7 font-display text-brand-cream leading-[0.98] tracking-tighter2 reveal">Se preferisci <span class="italic">leggere prima.</span></h2>
+      <div class="lg:col-span-5 reveal" data-delay="1">
+        <p class="t-body font-body text-brand-cream leading-[1.6]">Nel blog ogni articolo parte da una frase vera: quella che di solito non si dice a nessuno. Scegli la tua.</p>
+        <a href="/blog/" class="btn-cream-on-burgundy mt-8">Vai al blog <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <ul class="vetrina mt-14 md:mt-20 reveal" data-delay="1">
+        <li><a href="/blog/foucault-storia-della-sessualita.html"><img src="/blog/img/mini/foucault-storia-della-sessualita.jpg" alt="" width="1040" height="650" loading="lazy" decoding="async"><span class="f">«Ho sentito nominare Foucault: cosa dice davvero sul sesso?»</span><span class="t">Foucault e la storia della sessualità: cosa dice davvero <span class="ar" aria-hidden="true">→</span></span></a></li>
+        <li><a href="/blog/sesso-vanilla-cosa-significa.html"><img src="/blog/img/mini/sesso-vanilla-cosa-significa.jpg" alt="" width="1040" height="650" loading="lazy" decoding="async"><span class="f">«Cosa vuol dire sesso vanilla? Il nostro è noioso?»</span><span class="t">Sesso vanilla: cosa significa e come si distingue dal kink <span class="ar" aria-hidden="true">→</span></span></a></li>
+        <li><a href="/blog/come-parlare-di-sesso-con-il-partner.html"><img src="/blog/img/mini/come-parlare-di-sesso-con-il-partner.jpg" alt="" width="1040" height="650" loading="lazy" decoding="async"><span class="f">«Vorrei parlarne con il mio partner, ma non so come cominciare.»</span><span class="t">Come parlare di sesso con il partner: da dove cominciare <span class="ar" aria-hidden="true">→</span></span></a></li>
+        <li><a href="/blog/fantasie-sessuali-e-immaginario-erotico.html"><img src="/blog/img/mini/fantasie-sessuali-e-immaginario-erotico.jpg" alt="" width="1040" height="650" loading="lazy" decoding="async"><span class="f">«Ho delle fantasie sessuali che non capisco: sono normale?»</span><span class="t">Fantasie sessuali e immaginario erotico: cosa sono <span class="ar" aria-hidden="true">→</span></span></a></li>
+    </ul>
+    <nav class="sez-home mt-14 md:mt-20 reveal" aria-labelledby="sez-home-h">
+      <h3 id="sez-home-h">Oppure parti da una sezione</h3>
+      <ul><li><a href="/blog/corpo-piacere-e-fantasie/"><svg class="ico-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9.2C10 7.6 6.4 7 3.6 8 2.6 8.4 1.8 9 1.4 9.8c.5 2.8 2.3 5.2 5 5.8 2.1.4 3.8-.8 4.8-2 .3-.4.5-.5.8-.5s.5.1.8.5c1 1.2 2.7 2.4 4.8 2 2.7-.6 4.5-3 5-5.8-.4-.8-1.2-1.4-2.2-1.8C17.6 7 14 7.6 12 9.2z"/><path d="M4.8 11.2c1.2-1.4 3.4-1.5 4.9.1-1.2 1.3-3.4 1.4-4.9-.1zM19.2 11.2c-1.2-1.4-3.4-1.5-4.9.1 1.2 1.3 3.4 1.4 4.9-.1z"/><path d="M21.6 12.4c.5 3.4.7 6.8.8 10.4"/></svg><span>Corpo, piacere e fantasie</span></a></li><li><a href="/blog/prevenzione-e-salute/"><svg class="ico-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v5.4c0 4.6-3.1 8.2-7.2 10-4.1-1.8-7.2-5.4-7.2-10V5.8z"/><path d="M12 15.6s-3.2-1.9-3.2-4.2a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2.3-3.2 4.2-3.2 4.2z"/></svg><span>Prevenzione e salute</span></a></li><li><a href="/blog/comunicazione-relazioni-e-consenso/"><svg class="ico-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.6L5.5 16v-3H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M17.8 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v3l-3.1-3h-3.9a2 2 0 0 1-2-2v-.4"/></svg><span>Comunicazione, relazioni e consenso</span></a></li><li><a href="/blog/difficolta-e-blocchi/"><svg class="ico-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5c0-3.8 2.3-6.6 6-7.3 2.3-.5 3.9.6 5.6 0 3.2-1 6.2 1.3 6.2 5 0 1.4-.8 2.3-2.1 2.3z"/><path d="M11.8 13.3c0-2.5.4-4.9 1.2-7.1"/><path d="M12.2 8.8c-2.4.1-4-1.4-4.4-3.5 2.3-.1 4 1.3 4.4 3.5zM12.8 6.9c1.4-2 3.6-2.7 5.5-1.9-.8 1.9-3.2 2.8-5.5 1.9z"/></svg><span>Difficoltà e blocchi</span></a></li><li><a href="/blog/approfondimenti-e-attualita/"><svg class="ico-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.8C9.8 17.2 6 16.9 3 17.4V6c3-.6 6.8-.2 9 1.3zM12 18.8c2.2-1.6 6-1.9 9-1.4V6c-3-.6-6.8-.2-9 1.3z"/><path d="M16.9 5.7v4.4l1-.8 1 .8V5.5"/></svg><span>Approfondimenti e attualità</span></a></li></ul>
+    </nav>
+  </div>
+</section>
 
-<!-- ═════════════════════════ 7 · FAQ ═════════════════════════ -->
 <section id="faq" class="bg-brand-cream">
   <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-32">
 
     <div class="grid md:grid-cols-12 gap-10 md:gap-16">
-      <div class="md:col-span-4">
-        <div class="text-[11px] tracking-[0.28em] uppercase text-brand-burgundy mb-4 reveal">Pensieri ad alta voce</div>
-        <h2 class="font-display text-brand-ink text-[44px] sm:text-[56px] md:text-[72px] leading-[0.98] tracking-tighter2 mb-8 reveal">
+      <div class="md:col-span-12 testa-sez">
+        <h2 class="t-h2 font-display text-brand-ink leading-[0.98] tracking-tighter2 reveal">
           Quello che <span class="italic text-brand-burgundy">si pensa</span> prima di scrivere.
         </h2>
-        <p class="font-body italic text-brand-ink/70 text-[19px] leading-snug max-w-sm reveal" data-delay="1">
-          Sono le frasi che mi ripetono in privato, prima di prenotare. Rispondo come risponderei a un amico.
+        <p class="t-lead font-body italic text-brand-ink/70 leading-snug max-w-sm reveal" data-delay="1">
+          Sono le cose che sento più spesso, prima di una prima consulenza. Rispondo come risponderei a un amico.
         </p>
       </div>
 
-      <div class="md:col-span-8">
-        <ul class="border-y border-brand-line divide-y divide-brand-line">
-          <!-- 1 -->
+      <div class="md:col-span-12 lg:col-start-3 lg:col-span-10">
+        <ul class="faq-lista">
           <li>
             <details class="reveal" open>
               <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">01</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> Non so se è abbastanza grave da scriverti. <span class="qmark">»</span>
+                <span class="t-h3 num-eyebrow w-12 shrink-0 pt-1">01</span>
+                <span class="t-h3 faq-question flex-1">
+                  «Non so se è abbastanza grave da scriverti.»
                 </span>
                 <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
               </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                Te lo dico subito: non c'è un livello minimo di disagio per meritarsi un'ora di chiarezza. Tante persone arrivano con dubbi vaghi, curiosità, una sensazione che non sanno nominare. E spesso bastano sessanta minuti per metterla a fuoco.
+              <div class="t-body faq-answer pr-4 pb-7 faq-answer-text">
+                Non c’è un livello minimo di disagio per meritarsi un’ora di chiarezza. Se ci pensi da mesi, è già un buon motivo.
               </div>
             </details>
           </li>
-          <!-- 2 -->
           <li>
             <details class="reveal">
               <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">02</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> Il problema è del mio partner, posso venire da solo? <span class="qmark">»</span>
+                <span class="t-h3 num-eyebrow w-12 shrink-0 pt-1">02</span>
+                <span class="t-h3 faq-question flex-1">
+                  «Il problema è del mio partner, posso venire senza?»
                 </span>
                 <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
               </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                Sì, e succede spesso. Partiamo da quello che dipende da te — di solito è già un buon pezzo della strada. Se serve coinvolgere chi è dall'altra parte, lo decidiamo insieme. Non lo do mai per scontato.
+              <div class="t-body faq-answer pr-4 pb-7 faq-answer-text">
+                Sì, succede spesso. Partiamo da quello che dipende da te. Se serve coinvolgere l’altra persona, lo decidiamo insieme.
               </div>
             </details>
           </li>
-          <!-- 3 -->
           <li>
             <details class="reveal">
               <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">03</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> Online è la stessa cosa di una sessione vera? <span class="qmark">»</span>
+                <span class="t-h3 num-eyebrow w-12 shrink-0 pt-1">03</span>
+                <span class="t-h3 faq-question flex-1">
+                  «Online funziona come in presenza?»
                 </span>
                 <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
               </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                Sì. La videocall è criptata, l'ora è la tua, l'attenzione è piena. Lavoro online con persone in tutta Italia da quando ho cominciato, e ti dico la verità: a volte il fatto di essere a casa tua, su una poltrona che conosci, aiuta a parlarne meglio.
+              <div class="t-body faq-answer pr-4 pb-7 faq-answer-text">
+                Per molte persone sì. Ci vediamo in videochiamata e l’ora è tutta tua. A volte parlarne da casa propria aiuta.
               </div>
             </details>
           </li>
-          <!-- 4 -->
           <li>
             <details class="reveal">
               <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">04</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> Quanto mi costa, in tutto? <span class="qmark">»</span>
+                <span class="t-h3 num-eyebrow w-12 shrink-0 pt-1">04</span>
+                <span class="t-h3 faq-question flex-1">
+                  «Quanto costa, in tutto?»
                 </span>
                 <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
               </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                La prima consulenza costa 60 €. Se decidiamo di proseguire, di solito propongo un percorso breve da 4 o 5 incontri, costruito su un obiettivo preciso. Puoi pagare una seduta alla volta oppure scegliere il percorso intero: in quel caso è previsto uno sconto sul totale. Costi e tempi li chiariamo prima di iniziare, senza sorprese.
+              <div class="t-body faq-answer pr-4 pb-7 faq-answer-text">
+                La prima consulenza costa 60 €. Se poi serve un percorso, costo e numero di incontri li trovi qui sopra e li decidiamo prima di iniziare. Nessuna sorpresa.
               </div>
             </details>
           </li>
-          <!-- 5 -->
           <li>
             <details class="reveal">
               <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">05</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> Quello che dico te lo tieni davvero per te? <span class="qmark">»</span>
+                <span class="t-h3 num-eyebrow w-12 shrink-0 pt-1">05</span>
+                <span class="t-h3 faq-question flex-1">
+                  «Quello che dico resta tra noi?»
                 </span>
                 <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
               </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                Sì. Quello che porti in consulenza resta in consulenza. Non uso storie, frasi o situazioni riconoscibili sui social e non condivido contenuti personali senza consenso esplicito. La riservatezza è una parte centrale del lavoro.
-              </div>
-            </details>
-          </li>
-          <!-- 6 -->
-          <li>
-            <details class="reveal">
-              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">06</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> E se non sei tu la persona giusta per me? <span class="qmark">»</span>
-                </span>
-                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
-              </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                Può succedere, ed è uno dei motivi per cui esiste la prima consulenza. Il lavoro iniziale serve anche a capire se il tema è sessuologico, medico, psicologico o relazionale. Se emerge che serve un altro professionista — andrologo, ginecologo, psicoterapeuta, endocrinologo o un'altra figura — lo nominiamo con chiarezza e ti aiuto a orientarti.
-              </div>
-            </details>
-          </li>
-          <!-- 7 -->
-          <li>
-            <details class="reveal">
-              <summary class="faq-summary py-6 md:py-7 flex items-start gap-6">
-                <span class="num-eyebrow text-[24px] md:text-[28px] w-12 shrink-0 pt-1">07</span>
-                <span class="faq-question text-[22px] md:text-[28px] flex-1">
-                  <span class="qmark">«</span> Tanto magari passa da solo, no? <span class="qmark">»</span>
-                </span>
-                <span class="faq-plus text-brand-burgundy mt-2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg></span>
-              </summary>
-              <div class="faq-answer pr-4 pb-7 faq-answer-text text-[16.5px]">
-                A volte succede. Spesso, però, il tempo da solo non chiarisce: il silenzio si sedimenta, le parole diventano più difficili e il problema prende più spazio. Se ci stai pensando da mesi, è già un segnale che vale la pena ascoltare.
+              <div class="t-body faq-answer pr-4 pb-7 faq-answer-text">
+                Sì. Non uso storie, frasi o situazioni riconoscibili delle persone che seguo, né sul sito né sui social.
               </div>
             </details>
           </li>
@@ -1380,77 +1243,34 @@
   </div>
 </section>
 
-<!-- ═════════════════════════ 8 · CTA FINALE ═════════════════════════ -->
-<section id="contatti" class="bg-brand-burgundy text-brand-cream relative overflow-hidden">
-  <!-- layered texture -->
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div class="absolute inset-0 opacity-[0.045]" style="background-image: linear-gradient(to right, #F0E7D5 1px, transparent 1px), linear-gradient(to bottom, #F0E7D5 1px, transparent 1px); background-size: 96px 96px;"></div>
-    <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(rgba(240,231,213,0.7) 1px, transparent 1px); background-size: 8px 8px;"></div>
-    <div class="absolute inset-0" style="background: radial-gradient(80% 55% at 50% 0%, rgba(240,231,213,0.06), transparent 70%);"></div>
+<!-- ═══════ Contatti: righe grandi da toccare ═══════ -->
+<section id="contatti" class="bg-brand-burgundy text-brand-cream">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 pt-20 md:pt-32 pb-6">
+    <h2 class="t-h2 font-display text-brand-cream leading-[0.98] tracking-tighter2 reveal">Ne vuoi <span class="italic">parlare?</span></h2>
+    <p class="t-lead mt-6 font-body text-brand-cream leading-[1.55] max-w-[34em] reveal" data-delay="1">Ti rispondo io, di solito entro 24 ore. Scegli tu da dove partire.</p>
   </div>
-
-  <div class="relative max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-36">
-
-    <div class="text-[11px] tracking-[0.28em] uppercase text-brand-cream/70 mb-10 reveal">Cominciamo da qui</div>
-
-    <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-end">
-      <div class="md:col-span-8 reveal">
-        <h2 class="font-display text-brand-cream text-[64px] sm:text-[96px] md:text-[148px] leading-[0.9] tracking-tighter2">
-          Pronto<br>
-          a <span class="italic">parlarne?</span>
-        </h2>
-        <p class="font-body italic text-brand-cream/85 text-[20px] md:text-[26px] leading-snug mt-10 max-w-xl">
-          Un'ora del tuo tempo. Una mappa chiara di cosa fare.
-        </p>
-      </div>
-
-      <div class="md:col-span-4 flex justify-start md:justify-end reveal" data-delay="1">
-        <div class="price-stamp text-center">
-          <div class="text-[10px] tracking-[0.32em] uppercase opacity-80 mb-1">Prima consulenza</div>
-          <div class="text-[56px] md:text-[68px] leading-none">60 €</div>
-          <div class="text-[10px] tracking-[0.32em] uppercase opacity-80 mt-2">60 minuti</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTAs -->
-    <div class="mt-14 md:mt-20 flex flex-col sm:flex-row gap-4 reveal" data-delay="2">
-      <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer" class="btn-cream-on-burgundy">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.21-1.62A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.22-3.48-8.52zM12 22a9.94 9.94 0 0 1-5.07-1.38l-.36-.22-3.69.97.98-3.59-.24-.37A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.46-7.36c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.08.15.2 2.09 3.19 5.07 4.47.71.31 1.27.5 1.7.64.71.23 1.36.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
-        Scrivimi su WhatsApp
-      </a>
-      <a href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn-outline-cream">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Mandami un'email
-      </a>
-    </div>
-
-    <p class="mt-8 font-body italic text-brand-cream/75 text-[16px] reveal" data-delay="3">
-      Rispondo io personalmente entro 24 ore. Nessuna segreteria, nessun modulo, nessuna AI.
-    </p>
-
-    <!-- Richiamo low-friction: 15 minuti gratis (coerente col link dell'hero) -->
-    <a href="https://wa.me/393273003855" target="_blank" rel="noreferrer"
-       class="alt-link mt-4 inline-flex items-center gap-1.5 text-[16px] md:text-[17px] italic text-brand-cream hover:text-white transition-colors reveal" data-delay="3">
-      Hai solo una domanda? I primi 15 minuti te li regalo io
-      <span class="alt-arrow inline-block transition-transform">→</span>
-    </a>
-
-  </div>
+  <ul class="contatti-righe mt-10 reveal" data-delay="2">
+    <li><a href="https://wa.me/393273003855" target="_blank" rel="noreferrer"><span>Scrivimi su WhatsApp</span><span class="v">→</span></a></li>
+    <li><a href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"><span>Mandami un’email</span><span class="v">→</span></a></li>
+    <li><a href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer"><span>Telefonata di 15 minuti</span><span class="v">Gratis</span></a></li>
+    <li><a href="https://wa.me/393273003855" target="_blank" rel="noreferrer"><span>Prima consulenza, un’ora</span><span class="v">60&#8239;€</span></a></li>
+    <li><a href="/blog/"><span>Prima voglio leggere</span><span class="v">Blog →</span></a></li>
+  </ul>
 </section>
+
 
 <!-- ═════════════════════════ 9 · FOOTER ═════════════════════════ -->
 <footer class="bg-brand-burgundy-deep text-brand-cream/85">
   <div class="max-w-[1280px] mx-auto px-6 md:px-10 pt-20 md:pt-24 pb-10">
 
     <!-- Manifesto signed -->
-    <div class="max-w-3xl pb-16 md:pb-20 border-b border-brand-cream/15">
-      <p class="footer-manifesto text-[19px] md:text-[22px] reveal">
+    <div class="max-w-3xl pb-16 md:pb-20">
+      <p class="t-lead footer-manifesto reveal">
         Continuo a fare questo lavoro perché credo che la sessualità sia uno dei luoghi più sinceri dove le persone si raccontano. E uno dei più zittiti. Lavoro su quel silenzio.
       </p>
       <p class="mt-7 reveal" data-delay="1">
         <span class="text-brand-burgundy-deep" style="color: rgba(240,231,213,0.5);">—</span>
-        <span class="sig-name text-[26px] md:text-[30px] ml-1" style="font-family: 'DM Serif Display', Georgia, serif; font-style: italic; color: #F0E7D5;">Alessio</span>
+        <span class="t-h3 sig-name ml-1" style="font-family: 'DM Serif Display', Georgia, serif; font-style: italic; color: #F0E7D5;">Alessio</span>
       </p>
     </div>
 
@@ -1458,8 +1278,8 @@
     <div class="pt-12 md:pt-16 grid md:grid-cols-12 gap-10 md:gap-12">
       <!-- Identity -->
       <div class="md:col-span-5">
-        <div class="font-display text-brand-cream text-[28px] md:text-[32px] lowercase tracking-tightish leading-none">aleedusex</div>
-        <p class="text-[13px] mt-3 text-brand-cream/60 italic leading-[1.65]">
+        <div class="t-h3 font-display text-brand-cream tracking-tightish leading-none">AleEduSex</div>
+        <p class="t-micro mt-3 text-brand-cream/60 italic leading-[1.65]">
           Alessio Cottonaro<br>
           Consulente in sessuologia · Educatore professionale<br>
           Torino · Online · A domicilio
@@ -1467,20 +1287,20 @@
       </div>
       <!-- Indice -->
       <div class="md:col-span-3">
-        <div class="text-[10px] tracking-[0.28em] uppercase text-brand-cream/60 mb-5">Indice</div>
-        <ul class="space-y-2.5 text-[14px] text-brand-cream/75">
-          <li><a href="#manifesto" class="hover:text-brand-cream transition-colors">Manifesto</a></li>
-          <li><a href="#parliamone" class="hover:text-brand-cream transition-colors">Di cosa parliamo</a></li>
+        <div class="t-small font-body text-brand-cream/80 mb-4">Indice</div>
+        <ul class="t-small space-y-2.5 text-brand-cream/75">
           <li><a href="#chi-sono" class="hover:text-brand-cream transition-colors">Chi sono</a></li>
+          <li><a href="#parliamone" class="hover:text-brand-cream transition-colors">Di cosa parliamo</a></li>
           <li><a href="#funziona" class="hover:text-brand-cream transition-colors">Come funziona</a></li>
+      <li><a href="#percorsi" class="hover:text-brand-cream transition-colors">Percorsi</a></li>
           <li><a href="#faq" class="hover:text-brand-cream transition-colors">FAQ</a></li>
           <li><a href="/blog/" class="hover:text-brand-cream transition-colors">Blog</a></li>
         </ul>
       </div>
       <!-- Social -->
       <div class="md:col-span-4">
-        <div class="text-[10px] tracking-[0.28em] uppercase text-brand-cream/60 mb-5">Dove trovarmi</div>
-        <ul class="space-y-2.5 text-[14px] text-brand-cream/75">
+        <div class="t-small font-body text-brand-cream/80 mb-4">Dove trovarmi</div>
+        <ul class="t-small space-y-2.5 text-brand-cream/75">
           <li><a href="https://instagram.com/aleedusex" target="_blank" rel="noreferrer" class="hover:text-brand-cream transition-colors">Instagram</a></li>
           <li><a href="https://www.linkedin.com/in/alessiocottonaro" target="_blank" rel="noreferrer" class="hover:text-brand-cream transition-colors">LinkedIn</a></li>
         </ul>
@@ -1488,8 +1308,8 @@
     </div>
 
     <!-- Strip legale -->
-    <div class="mt-14 md:mt-20 pt-6 border-t border-brand-cream/12 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[12px] text-brand-cream/60">
-      <div class="tracking-[0.18em] uppercase">© 2026 · aleedusex</div>
+    <div class="t-micro mt-14 md:mt-20 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-brand-cream/60">
+      <div>© 2026 · AleEduSex</div>
       <ul class="flex flex-wrap gap-x-5 gap-y-2">
         <li><a href="/legale.html#privacy" class="hover:text-brand-cream/75 transition-colors">Privacy</a></li>
         <li><a href="/legale.html#cookie" class="hover:text-brand-cream/75 transition-colors">Cookie</a></li>
@@ -1520,21 +1340,21 @@
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    document.querySelectorAll('.reveal, .step-roman, .diag-card, .negation-row, .quote-slab').forEach(function(el) { io.observe(el); });
+    document.querySelectorAll('.reveal, .step-roman, .negation-row, .quote-slab').forEach(function(el) { io.observe(el); });
   })();
 
   // Scroll-spy nav highlight
   (function() {
-    var navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    var navLinks = document.querySelectorAll('header nav a.nav-desktop-link[href^="#"]');
     var sections = Array.from(document.querySelectorAll('section[id]'));
     var spy = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (!e.isIntersecting) return;
         navLinks.forEach(function(a) { a.classList.remove('nav-active'); });
-        var active = document.querySelector('header nav a[href="#' + e.target.id + '"]');
+        var active = document.querySelector('header nav a.nav-desktop-link[href="#' + e.target.id + '"]');
         if (active) active.classList.add('nav-active');
       });
-    }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+    }, { threshold: 0, rootMargin: '-90px 0px -75% 0px' });
     sections.forEach(function(s) { spy.observe(s); });
   })();
 
@@ -1549,10 +1369,24 @@
     var links   = menu.querySelectorAll('.mobile-nav-link');
     var isOpen  = false;
 
+    // con il menu aperto tutto il resto della pagina è inerte: la tastiera resta nel menu
+    function fuori(on) {
+      var el = menu;
+      while (el && el !== document.body) {
+        Array.prototype.forEach.call(el.parentElement.children, function (s) {
+          if (s === el || s.tagName === 'SCRIPT') return;
+          if (on) s.setAttribute('inert', ''); else s.removeAttribute('inert');
+        });
+        el = el.parentElement;
+      }
+    }
     function openMenu() {
       isOpen = true;
+      menu.removeAttribute('inert'); menu.style.visibility = 'visible';
       menu.style.transform = 'translateX(0)';
+      setTimeout(function () { closeBtn.focus(); }, 50);
       menu.setAttribute('aria-hidden', 'false');
+      fuori(true);
       toggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       // Animate hamburger → X
@@ -1564,6 +1398,10 @@
     function closeMenu() {
       isOpen = false;
       menu.style.transform = 'translateX(100%)';
+      menu.setAttribute('inert', '');
+      setTimeout(function () { if (!isOpen) menu.style.visibility = 'hidden'; }, 330);
+      fuori(false);
+      toggle.focus();
       menu.setAttribute('aria-hidden', 'true');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
@@ -1625,5 +1463,94 @@
   })();
 </script>
 
+
+<script>
+  // Home v3: la foto ferma cambia piano piano con la sezione che stai leggendo.
+  (function () {
+    var foto = document.querySelectorAll('.split-foto .foto');
+    if (!foto.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) {
+        if (!v.isIntersecting) return;
+        var k = v.target.getAttribute('data-foto-per');
+        foto.forEach(function (f) { f.classList.toggle('is-on', f.getAttribute('data-foto') === k); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('[data-foto-per]').forEach(function (s) { io.observe(s); });
+  })();
+</script>
+<script>
+  // Video dei percorsi: si apre grande su fondo scuro, si tocca per fermare o ripartire, Esc o la X per chiudere.
+  (function () {
+    var link = document.querySelectorAll('a.apri-video'); if (!link.length) return;
+    var box = document.createElement('div'); box.className = 'vbox'; box.hidden = true;
+    box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Video');
+    box.innerHTML = '<button type="button" class="vbox-chiudi" aria-label="Chiudi il video"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>' +
+      '<figure class="vbox-in"><video playsinline preload="none"></video><button type="button" class="vbox-play" aria-label="Riproduci"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button><div class="vbox-barra" aria-hidden="true"><span></span></div></figure>' +
+      '<p class="vbox-tit"></p>';
+    document.body.appendChild(box);
+    var v = box.querySelector('video'), play = box.querySelector('.vbox-play'), chiudi = box.querySelector('.vbox-chiudi'), barra = box.querySelector('.vbox-barra'), riemp = barra.querySelector('span'), tit = box.querySelector('.vbox-tit'), da = null;
+    function apri(a) { da = a; v.src = a.getAttribute('href'); v.poster = a.getAttribute('data-poster') || ''; tit.textContent = a.getAttribute('data-titolo') || '';
+      box.hidden = false; document.body.style.overflow = 'hidden'; chiudi.focus(); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function chiudiBox() { v.pause(); v.removeAttribute('src'); v.load(); box.hidden = true; document.body.style.overflow = ''; box.classList.remove('suona'); if (da) da.focus(); }
+    function alterna() { if (v.paused) v.play(); else v.pause(); }
+    link.forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); apri(a); }); });
+    v.addEventListener('click', alterna); play.addEventListener('click', alterna);
+    v.addEventListener('play', function () { box.classList.add('suona'); play.setAttribute('aria-label', 'Pausa'); });
+    v.addEventListener('pause', function () { box.classList.remove('suona'); play.setAttribute('aria-label', 'Riproduci'); });
+    v.addEventListener('timeupdate', function () { if (v.duration) riemp.style.width = (v.currentTime / v.duration * 100) + '%'; });
+    barra.addEventListener('click', function (e) { var r = barra.getBoundingClientRect(); if (v.duration) v.currentTime = (e.clientX - r.left) / r.width * v.duration; });
+    chiudi.addEventListener('click', chiudiBox);
+    box.addEventListener('click', function (e) { if (e.target === box) chiudiBox(); });
+    document.addEventListener('keydown', function (e) { if (box.hidden) return; if (e.key === 'Escape') chiudiBox(); if (e.key === ' ' && document.activeElement !== play) { e.preventDefault(); alterna(); } });
+  })();
+</script>
+
+<script>
+  // Video dei percorsi: si fermano quando si chiude la scheda e ne suona uno alla volta.
+  document.querySelectorAll('details video').forEach(function (v) {
+    v.closest('details').addEventListener('toggle', function (e) { if (!e.target.open) v.pause(); });
+    v.addEventListener('play', function () {
+      document.querySelectorAll('details video').forEach(function (o) { if (o !== v) o.pause(); });
+    });
+  });
+</script>
+<a class="barra-cta" href="#contatti" aria-hidden="true" tabindex="-1"><span>Scrivimi <small>· 15 minuti al telefono, Gratis</small></span><span aria-hidden="true">→</span></a>
+<script>
+  // Barra «Scrivimi» su telefono: visibile tra il primo schermo e i contatti.
+  (function () {
+    var barra = document.querySelector('.barra-cta'), hero = document.querySelector('[data-foto-per="hero"]'), cont = document.getElementById('contatti');
+    if (!barra || !hero || !cont || !('IntersectionObserver' in window)) return;
+    var fuoriHero = false, neiContatti = false;
+    function agg() { var v = fuoriHero && !neiContatti; barra.classList.toggle('vista', v); barra.setAttribute('aria-hidden', v ? 'false' : 'true'); barra.tabIndex = v ? 0 : -1; }
+    new IntersectionObserver(function (e) { fuoriHero = !e[0].isIntersecting; agg(); }).observe(hero);
+    new IntersectionObserver(function (e) { neiContatti = e[0].isIntersecting; agg(); }, { rootMargin: '0px 0px -30% 0px' }).observe(cont);
+  })();
+  // Video: anello d'attesa finché il video non parte davvero.
+  (function () {
+    var box = document.querySelector('.vbox'); if (!box) return;
+    var v = box.querySelector('video'), a = document.createElement('span'); a.className = 'attesa'; a.setAttribute('aria-hidden', 'true'); box.querySelector('.vbox-in').appendChild(a);
+    ['loadstart', 'waiting'].forEach(function (t) { v.addEventListener(t, function () { box.classList.add('carica'); }); });
+    ['playing', 'canplay', 'pause', 'error', 'emptied'].forEach(function (t) { v.addEventListener(t, function () { box.classList.remove('carica'); }); });
+  })();
+</script>
+<script>
+(function () { var d = document.querySelector('.diag-card'); if (!d) return;
+  if (!('IntersectionObserver' in window)) { d.classList.add('in'); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { d.classList.add('in'); io.disconnect(); } }); }, { rootMargin: '0px 0px -40% 0px' });
+  io.observe(d); })();
+</script>
+<script>
+// la barra «Scrivimi» non deve coprire l'elemento che riceve il fuoco (WCAG 2.4.11): se succede, la pagina scorre quanto basta
+document.addEventListener('focusin', function (e) {
+  if (!e.target.getBoundingClientRect) return;
+  setTimeout(function () {
+    var bar = document.querySelector('.barra-cta.vista'); if (!bar || e.target.closest('header')) return;
+    var br = bar.getBoundingClientRect(); if (!br.height) return;   // su computer la barra è nascosta
+    var r = e.target.getBoundingClientRect(), top = br.top - 12;
+    if (r.bottom > top) window.scrollBy({ top: r.bottom - top, behavior: 'instant' });
+  }, 60);
+});
+</script>
 </body>
 </html>
