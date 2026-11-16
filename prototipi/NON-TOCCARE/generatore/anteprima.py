@@ -1558,41 +1558,66 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 ''')
 
 # ── 24. v13 (messaggi di Ale del 16/11): sul telefono il disegno non è un percorso obbligato; parte nera con 3 articoli e sezioni in riquadri ──
-DIAG_V = '''<svg class="pm-map pm-map-v" viewBox="0 0 360 780" role="img" aria-label="Tu, poi il consulente in sessuologia AleEduSex: lavoriamo insieme. Solo se serve, ti indirizzo a uno psicoterapeuta se c'è un vissuto da elaborare, oppure a un andrologo o ginecologo se c'è un aspetto organico, oppure ad altri professionisti se c'è un bisogno specifico.">
-        <text class="pm-t-tu pm-fade" x="180" y="60" text-anchor="middle" style="--d:0ms">Tu</text>
-        <path class="pm-ink" pathLength="1" style="--d:350ms;--dur:600ms" d="M180 84 C 187 104, 173 122, 180 142 S 181 160, 180 166"/>
-        <g class="pm-stamp" style="--d:800ms">
-          <rect x="60" y="174" width="240" height="112" rx="9" fill="#7A1E2B"/>
-          <text class="pm-t-st-small" x="180" y="211" text-anchor="middle">consulente in</text>
-          <text class="pm-t-st-big" x="180" y="248" text-anchor="middle">sessuologia</text>
-          <text class="pm-t-st-sig" x="180" y="272" text-anchor="middle">AleEduSex</text>
-        </g>
-        <!-- la strada principale: si lavora insieme -->
-        <path class="pm-ink" pathLength="1" style="--d:1450ms;--dur:500ms" d="M180 298 L 180 352"/>
-        <circle class="pm-ripple" cx="180" cy="364" r="6" style="--d:1900ms"/>
-        <circle class="pm-dot" cx="180" cy="364" r="6" style="--d:1900ms"/>
-        <g class="pm-fade" style="--d:1960ms"><text class="pm-t-name" x="180" y="404" text-anchor="middle">lavoriamo insieme</text><text class="pm-t-cond pm-t-cond-v pm-c" x="180" y="430" text-anchor="middle">su quello che hai portato</text></g>
-        <!-- il ramo a parte: solo se serve, una tra tre strade -->
-        <g class="pm-fade" style="--d:2400ms">
-          <path class="pm-ramo" d="M300 236 C 330 236, 338 252, 338 280 L 338 484"/>
-          <text class="pm-t-cond pm-t-cond-v pm-c pm-se" x="22" y="476">solo se serve, ti indirizzo:</text>
-          <rect class="pm-cornice" x="12" y="490" width="336" height="272" rx="9"/>
-          <text class="pm-t-name" x="36" y="540">psicoterapeuta</text><text class="pm-t-cond pm-t-cond-v pm-c" x="37" y="564">se c'è un vissuto da elaborare</text>
-          <text class="pm-oppure" x="36" y="598">oppure</text>
-          <text class="pm-t-name" x="36" y="634">andrologo · ginecologo</text><text class="pm-t-cond pm-t-cond-v pm-c" x="37" y="658">se c'è un aspetto organico</text>
-          <text class="pm-oppure" x="36" y="692">oppure</text>
-          <text class="pm-t-name" x="36" y="726">altri professionisti</text><text class="pm-t-cond pm-t-cond-v pm-c" x="37" y="750">se c'è un bisogno specifico</text>
-        </g>
-      </svg>'''
+# disegno «tre strade» (prova 2 scelta il 16/11): da un solo punto partono tre rami; quello centrale pesa di più
+ESITI3 = [('ti basta così', 'a volte un’ora chiarisce abbastanza'), ('continuiamo insieme', 'un percorso con un obiettivo chiaro'), ('ti indirizzo a chi serve', None)]
+PROF3 = ['psicoterapeuta', 'andrologo', 'ginecologo', 'e altri']
+ARIA3 = 'Tu, poi la prima consulenza con il consulente in sessuologia AleEduSex. Dopo, tre strade possibili: ti basta così; continuiamo insieme, con un percorso; oppure ti indirizzo a chi serve, come psicoterapeuta, andrologo, ginecologo o altri professionisti.'
+def chips(x, y, d0, maxw):
+    out, cx, cy = [], x, y
+    for i, t in enumerate(PROF3):
+        w = round(len(t) * 7.6 + 24)
+        if cx + w > x + maxw: cx, cy = x, cy + 40
+        out.append(f'<g class="pm-fade" style="--d:{d0 + i*70}ms"><rect class="pm-chip" x="{cx}" y="{cy}" width="{w}" height="30" rx="15"/><text class="pm-chip-t" x="{cx + w/2}" y="{cy + 20}" text-anchor="middle">{t}</text></g>')
+        cx += w + 8
+    return ''.join(out)
+def stamp3(cx, y, w, h):
+    return (f'<g class="pm-stamp" style="--d:700ms"><rect x="{cx-w/2}" y="{y}" width="{w}" height="{h}" rx="9" fill="#7A1E2B"/>'
+            f'<text class="pm-t-st-small" x="{cx}" y="{y+36}" text-anchor="middle">consulente in</text>'
+            f'<text class="pm-t-st-big" x="{cx}" y="{y+72}" text-anchor="middle">sessuologia</text>'
+            f'<text class="pm-t-st-sig" x="{cx}" y="{y+95}" text-anchor="middle">AleEduSex</text></g>')
+def esiti3(nx, ny, dx, ys, lx, under_w, maxw, bend, off=0):
+    s = [f'<circle class="pm-dot" cx="{nx}" cy="{ny}" r="4" style="--d:{1300 + off}ms"/>']
+    for i, ((nome, sub), y) in enumerate(zip(ESITI3, ys)):
+        main = i == 1
+        s.append(f'<path class="pm-ink{" pm-main" if main else ""}" pathLength="1" style="--d:{1400 + off + i*60}ms;--dur:650ms" d="{bend(y)}"/>')
+        if main: s.append(f'<circle class="pm-ripple" cx="{dx}" cy="{y}" r="7" style="--d:{2060 + off}ms"/>')
+        s.append(f'<circle class="pm-dot" cx="{dx}" cy="{y}" r="{7 if main else 5}" style="--d:{2000 + off + i*60}ms"/>')
+        s.append(f'<g class="pm-fade" style="--d:{2080 + off + i*60}ms"><text class="pm-n{" pm-n-main" if main else ""}" x="{lx}" y="{y + 9}">{nome}</text>'
+                 + (f'<text class="pm-sub" x="{lx+1}" y="{y + 44}">{sub}</text>' if sub else '') + '</g>')
+        if main: s.append(f'<path class="pm-ink pm-firma" pathLength="1" style="--d:{2450 + off}ms;--dur:700ms" d="M{lx} {y+18} C {lx+under_w*.3:.0f} {y+14}, {lx+under_w*.65:.0f} {y+22}, {lx+under_w} {y+16}"/>')
+        if i == 2: s.append(chips(lx, y + 24, 2350 + off, maxw))
+    return ''.join(s)
+DIAG_V = (f'<svg class="pm-map pm-map-v" viewBox="0 0 360 700" role="img" aria-label="{ARIA3}">'
+  '<text class="pm-t-tu pm-fade" x="180" y="58" text-anchor="middle" style="--d:0ms">Tu</text>'
+  '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:500ms" d="M180 80 C 187 98, 173 114, 180 132 S 181 146, 180 150"/>'
+  + stamp3(180, 156, 240, 108) +
+  '<text class="pm-cap pm-fade" x="190" y="300" text-anchor="middle" style="--d:1100ms">dopo la prima consulenza</text>'
+  '<path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:500ms" d="M62 238 C 34 252, 22 300, 22 470"/>'
+  + esiti3(22, 470, 50, (372, 470, 580), 72, 248, 280, lambda y: f'M22 470 C 22 {y}, 24 {y}, 50 {y}' if y != 470 else 'M22 470 L 50 470', off=350) + '</svg>')
+DIAG_H = (f'<svg class="pm-map pm-map-h" viewBox="0 0 1100 420" role="img" aria-label="{ARIA3}">'
+  '<text class="pm-t-tu pm-fade" x="70" y="226" text-anchor="middle" style="--d:0ms">Tu</text>'
+  '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:500ms" d="M118 206 C 136 198, 150 214, 168 206 S 186 200, 194 204"/>'
+  + stamp3(320, 150, 250, 112) +
+  '<path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:300ms" d="M445 206 L 516 206"/>'
+  '<text class="pm-cap pm-fade" x="320" y="300" text-anchor="middle" style="--d:1100ms">dopo la prima consulenza</text>'
+  + esiti3(520, 206, 640, (78, 206, 318), 664, 330, 430, lambda y: f'M520 206 C 580 206, 570 {y}, 640 {y}' if y != 206 else 'M520 206 L 640 206', off=150) + '</svg>')
 h = rd('index.html')
-h, n = re.subn(r'<svg class="pm-map pm-map-v".*?</svg>', lambda m: DIAG_V, h, count=1, flags=re.S)
-assert n == 1, 'disegno verticale'
-h = h.replace('</head>', '''<style>
-  .pm-map-v .pm-t-name { font-size: 26px !important; }
-  .pm-map-v .pm-c { font-size: 18px !important; }
-  .pm-map-v .pm-se { font-weight: 600; font-style: normal; }
-  .pm-ramo, .pm-cornice { fill: none; stroke: #7A1E2B; stroke-width: 1.4; stroke-dasharray: 5 6; stroke-linecap: round; }
-  .pm-oppure { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 17px; fill: rgba(26,26,26,.6); }
+h, n = re.subn(r'<svg class="pm-map pm-map-h".*?</svg>\s*<svg class="pm-map pm-map-v".*?</svg>', lambda m: DIAG_H + '\n      ' + DIAG_V, h, count=1, flags=re.S)
+assert n == 1, 'disegno'
+DIAG_CSS = '''
+  .pm-n { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 32px; fill: #1A1A1A; }
+  .pm-n-main { font-size: 36px; fill: #7A1E2B; }
+  .pm-map-v .pm-n { font-size: 24px; } .pm-map-v .pm-n-main { font-size: 28px; }
+  .pm-sub, .pm-cap { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 19px; fill: rgba(26,26,26,.74); }
+  .pm-cap { fill: #7A1E2B; }
+  .pm-map-v .pm-sub, .pm-map-v .pm-cap { font-size: 17px; }
+  .pm-main { stroke-width: 2.6 !important; }
+  .pm-firma { stroke-width: 1.4 !important; opacity: .85; }
+  .pm-chip { fill: rgba(122,30,43,.06); stroke: rgba(122,30,43,.55); stroke-width: 1; }
+  .pm-chip-t { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 16px; fill: #5C1520; }
+  .diag-card.in .pm-ink { animation-timing-function: cubic-bezier(.65,0,.35,1); }
+'''
+h = h.replace('</head>', '<style>' + DIAG_CSS + '''
   /* parte nera: su telefono 3 articoli, le sezioni diventano riquadri */
   @media (max-width: 1023px) { .vetrina li:nth-child(n+4) { display: none; } }
   .sez-home ul { gap: 10px !important; }
