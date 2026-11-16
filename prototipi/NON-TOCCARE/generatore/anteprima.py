@@ -1590,13 +1590,13 @@ def esiti3(nx, ny, dx, ys, lx, under_w, maxw, bend, off=0):
 def diag_v():
     # telefono (prova 2): tre rami a ventaglio dallo stesso punto; il centrale scende di più e pesa di più.
     # I professionisti sono appesi alla terza strada: il suo ramo continua lungo il bordo e li «porta» in basso.
-    o = 350
+    o = 0   # niente pausa: i rami partono mentre il riquadro finisce di appoggiarsi
     s = [f'<svg class="pm-map pm-map-v" viewBox="0 0 360 770" role="img" aria-label="{ARIA3}">',
          '<text class="pm-t-tu pm-fade" x="180" y="58" text-anchor="middle" style="--d:0ms">Tu</text>',
          '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:520ms" d="M180 80 C 187 98, 173 114, 180 132 S 181 146, 180 150"/>',
          stamp3(180, 156, 240, 108),
-         '<path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:260ms" d="M180 264 L 180 282"/>',
-         '<text class="pm-cap pm-fade" x="180" y="306" text-anchor="middle" style="--d:1250ms">dopo la prima consulenza</text>',
+         '<path class="pm-ink" pathLength="1" style="--d:1000ms;--dur:240ms" d="M180 264 L 180 282"/>',
+         '<text class="pm-cap pm-fade" x="180" y="306" text-anchor="middle" style="--d:1050ms">dopo la prima consulenza</text>',
          f'<circle class="pm-dot" cx="180" cy="324" r="4" style="--d:{1300 + o}ms"/>']
     rami = [('M180 324 C 180 354, 62 348, 62 386', 62, 386, 620), ('M180 324 L 180 446', 180, 454, 620),
             ('M180 324 C 180 352, 300 342, 328 376 C 342 394, 344 420, 344 470 L 344 584 C 344 606, 336 620, 318 624', 318, 624, 900)]
@@ -1675,7 +1675,7 @@ DIAG_CSS = '''
     .diag .diag-card.in .pm-fade { animation: pmEntra 560ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
     .diag .diag-card.in .pm-dot { animation: pmPunto 380ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
     .diag .diag-card.in .pm-ripple { animation: pmRipple 900ms cubic-bezier(.23,1,.32,1) var(--d, 0ms) both; }
-    .diag .diag-card.in .pm-stamp { animation: pmAppoggia 520ms cubic-bezier(.23,1,.32,1) 760ms both; transform-box: fill-box; transform-origin: center; }
+    .diag .diag-card.in .pm-stamp { animation: pmAppoggia 420ms cubic-bezier(.23,1,.32,1) 680ms both; transform-box: fill-box; transform-origin: center; }
     .diag .diag-card.in .pm-chip-g { animation-name: pmChip; }
   }
   @keyframes pmEntra { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
@@ -1693,6 +1693,9 @@ h = h.replace('</head>', '<style>' + DIAG_CSS + '''
   .sez-home li { display: flex; }
   .sez-home a { width: 100%; }
   .sez-home .ico-s { width: 30px; height: 30px; }
+  /* su telefono la parola più lunga («Comunicazione,») deve stare nel riquadro */
+  @media (max-width: 639px) { .sez-home a { font-size: 19px !important; padding: 14px; } }
+  @media (max-width: 374px) { .sez-home ul { grid-template-columns: 1fr !important; } .sez-home li:last-child:nth-child(odd) { grid-column: auto; } }
   .sez-home li:last-child:nth-child(odd) { grid-column: 1 / -1; }
   @media (min-width: 1024px) { .sez-home li:last-child:nth-child(odd) { grid-column: auto; } }
   .sez-home h3 { margin-bottom: 4px; }
