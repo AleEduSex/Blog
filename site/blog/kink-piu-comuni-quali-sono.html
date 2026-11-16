@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,20 +81,30 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/corpo-piacere-e-fantasie/">Corpo, piacere e fantasie</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Mi eccitano cose fuori dal comune: sono l'unico a cui succede?»</p>
-      <p class="post-meta"><time datetime="2026-11-05">5 novembre 2026</time><span class="sep">·</span>5 min di lettura</p>
       <h1>Kink più comuni: quali sono e quanto sono diffusi</h1>
+      <p class="post-meta"><time datetime="2026-11-05">5 novembre 2026</time><span class="sep">·</span>5 min di lettura</p>
+      </div>
       <p class="lede">I gusti fuori dal comune sono più diffusi di quanto si pensi, soprattutto nelle fantasie. Ecco i kink più comuni, cosa dicono le ricerche e come avvicinarli con calma.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/kink-piu-comuni-quali-sono.jpg" alt="Illustrazione di una mappa di cerchi collegati da linee, con un grande cerchio bordeaux al centro" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/kink-piu-comuni-quali-sono.jpg" alt="Illustrazione di una mappa di cerchi collegati da linee, con un grande cerchio bordeaux al centro" width="1600" height="1000">
       <figcaption>Illustrazione per aleedusex.net</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>I kink più comuni sono controllo, bondage, giochi di ruolo, parole provocanti, dolore lieve e il guardare o essere guardati.</li>
+        <li>Le ricerche trovano che molti hanno questi gusti almeno nelle fantasie: avere una fantasia non vuol dire volerla vivere.</li>
+        <li>Si prova un passo alla volta, con consenso e una parola di sicurezza: nessuno è obbligato a cominciare.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>Se ti sei mai chiesto se i tuoi gusti sono strani, parti da qui: quasi mai lo sono quanto pensi. I kink, cioè i gusti erotici fuori dagli schemi più comuni, sono molto più diffusi di quanto se ne parli. Soprattutto nell'immaginazione. In questo articolo faccio una specie di mappa: quali sono quelli più frequenti, cosa dicono le ricerche, e come avvicinarli senza sentirsi in difetto.</p>
       <p>Se non l'hai ancora letto, il punto di partenza è <a href="/blog/kink-cos-e-come-sperimentare.html">Kink: cos'è e come sperimentare con piacere</a>.</p>
@@ -104,7 +131,7 @@
       <p>Parti dalla fantasia, non dalla pratica: ascolta cosa ti attira. Parlane, se vuoi, con chi è coinvolto: se non sai come, c'è <a href="/blog/come-parlare-di-sesso-con-il-partner.html">Come parlare di sesso con il partner: da dove cominciare</a>. Comincia da qualcosa di piccolo e scegliete insieme una <a href="/blog/parola-di-sicurezza-cos-e-come-usarla.html">parola di sicurezza</a>, che è un patto per fermarsi quando serve. E ricorda il consenso: libero, specifico, ritirabile (<a href="/blog/consenso-sessuale-cosa-vuol-dire-e-cosa-no.html">Consenso sessuale: cosa vuol dire e cosa no</a>).</p>
       <p>Una sola cosa va detta con chiarezza: i giochi che limitano il respiro sono i più pericolosi di tutti, perché si può perdere conoscenza in fretta, come segnala il Manuale MSD. Non sono pratiche da provare da soli o senza esperienza.</p>
       <h2>Se vuoi una mano</h2>
-      <p>Se i tuoi gusti ti mettono in imbarazzo, se non sai come dirli, o se vuoi capire cosa ti piace, un consulente in sessuologia può aiutarti senza giudizio. Io non faccio diagnosi e non prescrivo farmaci. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, i primi 15 minuti te li regalo io.</p>
+      <p>Se i tuoi gusti ti mettono in imbarazzo, se non sai come dirli, o se vuoi capire cosa ti piace, un consulente in sessuologia può aiutarti senza giudizio. Io non faccio diagnosi e non prescrivo farmaci. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Domande frequenti</h2>
       <h3>Quali sono i kink più comuni?</h3>
       <p>Controllo (dominare o lasciarsi guidare), bondage, giochi di ruolo, parole provocanti, sculacciate e un po' di dolore lieve, guardare o essere guardati, e feticci. Nelle ricerche sono tra le fantasie più frequenti, ma non è una classifica: ognuno ha i suoi gusti.</p>
@@ -119,38 +146,47 @@
       <h2>Fonti</h2>
       <ul>
         <li>Lehmiller, J. J., «3 Unusual Sexual Fantasies That Aren't Unusual at All», Psychology Today, blog «The Myths of Sex», 1 febbraio 2019 (dati dal suo sondaggio su più di 4mila americani, libro «Tell Me What You Want», 2018): <a href="https://www.psychologytoday.com/us/blog/the-myths-of-sex/201902/3-unusual-sexual-fantasies-that-arent-unusual-at-all">https://www.psychologytoday.com/us/blog/the-myths-of-sex/201902/3-unusual-sexual-fantasies-that-arent-unusual-at-all</a></li>
-        <li>Lehmiller, J. J., «"Unusual" Sexual Fantasies Are A Lot More Common Than You Might Think», Sex and Psychology, 1 ottobre 2018 (cita Castellini e colleghi, Journal of Sexual Medicine, 2018, su 775 studenti italiani): <a href="https://www.sexandpsychology.com/?p=3121">https://www.sexandpsychology.com/?p=3121</a></li>
+        <li>Lehmiller, J. J., ««Unusual» Sexual Fantasies Are A Lot More Common Than You Might Think», Sex and Psychology, 1 ottobre 2018 (cita Castellini e colleghi, Journal of Sexual Medicine, 2018, su 775 studenti italiani): <a href="https://www.sexandpsychology.com/?p=3121">https://www.sexandpsychology.com/?p=3121</a></li>
         <li>Manuale MSD, edizione per professionisti, «Panoramica sulle parafilie e sui disturbi parafilici» e «Disturbo da masochismo sessuale», ottobre 2025: <a href="https://www.msdmanuals.com/it/professionale/psichiatria/parafilie-e-disturbi-parafilici/panoramica-sulle-parafilie-e-sui-disturbi-parafilici">https://www.msdmanuals.com/it/professionale/psichiatria/parafilie-e-disturbi-parafilici/panoramica-sulle-parafilie-e-sui-disturbi-parafilici</a></li>
       </ul>
     </div>
 
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>I kink più comuni sono controllo, bondage, giochi di ruolo, parole provocanti, dolore lieve e il guardare o essere guardati.</li>
-        <li>Le ricerche trovano che molti hanno questi gusti almeno nelle fantasie: avere una fantasia non vuol dire volerla vivere.</li>
-        <li>Si prova un passo alla volta, con consenso e una parola di sicurezza: nessuno è obbligato a cominciare.</li>
-      </ul>
-    </aside>
-
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="kink-piu-comuni-quali-sono">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more" aria-labelledby="more-h"><h2 id="more-h">Altri articoli in <a href="/blog/corpo-piacere-e-fantasie/">Corpo, piacere e fantasie</a></h2><ul><li><a href="/blog/punto-g-esiste-davvero-cosa-dice-la-ricerca.html">Punto G: esiste davvero? Cosa dice la ricerca</a></li><li><a href="/blog/squirting-cose-e-da-dove-viene-il-liquido.html">Squirting: cos'è, da dove viene il liquido e cosa dice la ricerca</a></li><li><a href="/blog/clitoride-come-funziona-e-piacere.html">Clitoride: dov'è, come funziona e perché conta per il piacere</a></li><li><a href="/blog/prima-volta-cosa-aspettarsi.html">Prima volta: cosa aspettarsi, come prepararsi e cosa è normale</a></li></ul></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -159,15 +195,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -181,7 +218,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,20 +81,30 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/difficolta-e-blocchi/">Difficoltà e blocchi</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Non riesco a venire, e non capisco perché.»</p>
-      <p class="post-meta"><time datetime="2026-10-22">22 ottobre 2026</time><span class="sep">·</span>5 min di lettura</p>
       <h1>Orgasmo che non arriva: cause e cosa fare</h1>
+      <p class="post-meta"><time datetime="2026-10-22">22 ottobre 2026</time><span class="sep">·</span>5 min di lettura</p>
+      </div>
       <p class="lede">L'orgasmo che non arriva è più comune di quanto si dica, e quasi sempre ha una ragione. Ecco le cause, cosa puoi provare e quando chiedere aiuto.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/orgasmo-che-non-arriva-cause-e-cosa-fare.jpg" alt="Un sentiero di ghiaia che curva tra prati verdi in una luce di mattina, con una staccionata di pali di legno" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/orgasmo-che-non-arriva-cause-e-cosa-fare.jpg" alt="Un sentiero di ghiaia che curva tra prati verdi in una luce di mattina, con una staccionata di pali di legno" width="1600" height="1000">
       <figcaption>Foto di Z D, Pexels</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>Se l'orgasmo non arriva ogni tanto non è un problema: lo diventa quando si ripete, dura e ti pesa.</li>
+        <li>Le cause sono tante e spesso si sommano: ansia, poca stimolazione, comunicazione, farmaci, salute.</li>
+        <li>Si può lavorare: conoscere il proprio corpo, rilassarsi, dirlo; se non basta, un professionista aiuta.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>Se l'orgasmo non arriva, quasi sempre c'è una ragione, e di solito si può lavorare. Capita a molte persone, di tutte le età, anche se se ne parla poco. Non è un difetto tuo e non vuol dire che c'è qualcosa che non va nel desiderio per l'altra persona. Il Manuale MSD, un manuale medico per il pubblico, precisa che l'incapacità di avere un orgasmo è considerata un problema solo se ti causa disagio.</p>
       <p>Se non hai letto la prima parte, trovi le basi in <a href="/blog/orgasmo-cos-e-cosa-succede-nel-corpo.html">Orgasmo: cos'è e cosa succede nel corpo</a>.</p>
@@ -117,7 +144,7 @@
       </ul>
       <h2>Quando chiedere aiuto, e a chi</h2>
       <p>Chiedi aiuto se la difficoltà dura, si ripete e ti pesa, o se è comparsa all'improvviso. Il medico può escludere cause fisiche o legate ai farmaci. Il Manuale MSD indica anche percorsi psicologici e la terapia sessuale, che aiuta le coppie ad affrontare i problemi della vita sessuale e della relazione.</p>
-      <p>Un consulente in sessuologia serve a capire cosa sta succedendo e quale professionista è il più indicato. Io non faccio diagnosi e non prescrivo farmaci: ti aiuto a capire da dove partire. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, i primi 15 minuti te li regalo io.</p>
+      <p>Un consulente in sessuologia serve a capire cosa sta succedendo e quale professionista è il più indicato. Io non faccio diagnosi e non prescrivo farmaci: ti aiuto a capire da dove partire. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Domande frequenti</h2>
       <h3>Perché non riesco a venire?</h3>
       <p>Le cause sono tante e spesso si sommano: ansia, stress, poca stimolazione, scarsa comunicazione, poca conoscenza del proprio corpo, alcuni farmaci, o motivi di salute. Non c'è una sola risposta. Se ti pesa, parlane con un medico o con un consulente in sessuologia: è un lavoro che fanno ogni giorno.</p>
@@ -136,33 +163,42 @@
       </ul>
     </div>
 
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>Se l'orgasmo non arriva ogni tanto non è un problema: lo diventa quando si ripete, dura e ti pesa.</li>
-        <li>Le cause sono tante e spesso si sommano: ansia, poca stimolazione, comunicazione, farmaci, salute.</li>
-        <li>Si può lavorare: conoscere il proprio corpo, rilassarsi, dirlo; se non basta, un professionista aiuta.</li>
-      </ul>
-    </aside>
-
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="orgasmo-che-non-arriva-cause-e-cosa-fare">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more" aria-labelledby="more-h"><h2 id="more-h">Altri articoli in <a href="/blog/difficolta-e-blocchi/">Difficoltà e blocchi</a></h2><ul><li><a href="/blog/dolore-durante-i-rapporti-cause-e-cosa-fare.html">Dolore durante i rapporti: cause, cosa fare e a chi rivolgersi</a></li><li><a href="/blog/eiaculazione-ritardata-cause-e-cosa-fare.html">Eiaculazione ritardata: perché non riesco a venire e cosa fare</a></li><li><a href="/blog/eiaculazione-precoce-cause-e-cosa-fare.html">Eiaculazione precoce: cause, cosa fare e quando chiedere aiuto</a></li><li><a href="/blog/ansia-da-prestazione-sessuale.html">Ansia da prestazione sessuale: cos'è e come superarla</a></li></ul></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -171,15 +207,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -193,7 +230,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

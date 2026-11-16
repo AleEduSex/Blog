@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,20 +81,30 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/comunicazione-relazioni-e-consenso/">Comunicazione, relazioni e consenso</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Amo il mio partner, ma desidero un'altra persona: cosa mi succede?»</p>
-      <p class="post-meta"><time datetime="2026-11-03">3 novembre 2026</time><span class="sep">·</span>6 min di lettura</p>
       <h1>Amore e desiderio nella coppia: perché non sono la stessa cosa</h1>
+      <p class="post-meta"><time datetime="2026-11-03">3 novembre 2026</time><span class="sep">·</span>6 min di lettura</p>
+      </div>
       <p class="lede">Amore e desiderio sono due cose diverse, che possono andare in direzioni diverse senza che nessuno sia sbagliato. Ti spiego perché succede e cosa farne.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/amore-e-desiderio-nella-coppia.jpg" alt="Illustrazione di tre cerchi sovrapposti, bordeaux, nero e grigio, come tre sistemi collegati" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/amore-e-desiderio-nella-coppia.jpg" alt="Illustrazione di tre cerchi sovrapposti, bordeaux, nero e grigio, come tre sistemi collegati" width="1600" height="1000">
       <figcaption>Illustrazione per aleedusex.net</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>Amore e desiderio sono sistemi distinti ma collegati: puoi provare uno senza l'altro, e non c'è niente di sbagliato.</li>
+        <li>Desiderare un'altra persona non cancella l'amore: capita, e di solito dice più di te che della coppia.</li>
+        <li>Quello che conta è cosa ne fai: ascoltarlo, parlarne con onestà e scegliere cosa è giusto per voi.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>Ami il tuo partner. Ti fidi, stai bene, ci stai insieme volentieri. E poi un giorno ti accorgi che un'altra persona ti piace. Non l'hai cercato, è successo. E adesso? Ti senti in colpa, ti chiedi cosa non va, magari pensi che l'amore sia finito. Lascia che ti dica subito una cosa: succede, e quasi nessuno ne parla. E non vuol dire che c'è qualcosa che non va in te, né che la tua relazione sia finita. Amore e desiderio non sono la stessa cosa.</p>
       <h2>Due cose, non una</h2>
@@ -100,7 +127,7 @@
       <h2>Cosa farne, in pratica</h2>
       <p>Per prima cosa, non agire d'impulso: un desiderio non è un ordine. Poi ascoltalo: cosa ti sta dicendo di te e di quello che ti serve? Se senti il bisogno di parlarne con il partner, non farlo per «confessare», ma per dire con onestà cosa sta succedendo. Parti da te, non da quello che fa o non fa l'altra persona. Se non sai da dove cominciare, c'è <a href="/blog/come-parlare-di-sesso-con-il-partner.html">Come parlare di sesso con il partner: da dove cominciare</a>. E infine, scegliete insieme: cosa significa per noi? Cosa ci serve? Se bisogna cambiare qualcosa, che sia con il consenso di tutti.</p>
       <h2>Quando chiedere una mano</h2>
-      <p>Se il desiderio per un'altra persona ti fa soffrire, se c'è già stato un tradimento, o se parlarne con il partner ti sembra impossibile, un consulente in sessuologia può aiutarti a capire da dove partire, da solo o in coppia. A volte serve anche uno psicoterapeuta, o un percorso di coppia. Io non faccio diagnosi e non prescrivo farmaci. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, i primi 15 minuti te li regalo io.</p>
+      <p>Se il desiderio per un'altra persona ti fa soffrire, se c'è già stato un tradimento, o se parlarne con il partner ti sembra impossibile, un consulente in sessuologia può aiutarti a capire da dove partire, da solo o in coppia. A volte serve anche uno psicoterapeuta, o un percorso di coppia. Io non faccio diagnosi e non prescrivo farmaci. <a href="https://wa.me/393273003855">Scrivimi su WhatsApp</a>: se hai solo una domanda, ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Domande frequenti</h2>
       <h3>Si può amare una persona e desiderarne un'altra?</h3>
       <p>Sì. Amore e desiderio sono due cose diverse: secondo un'ipotesi della ricerca, sono sistemi distinti ma collegati. Puoi sentire un legame con una persona e provare comunque desiderio per qualcun altro. Non vuol dire che l'amore sia finito: vuol dire che le due cose non coincidono sempre.</p>
@@ -120,33 +147,42 @@
       </ul>
     </div>
 
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>Amore e desiderio sono sistemi distinti ma collegati: puoi provare uno senza l'altro, e non c'è niente di sbagliato.</li>
-        <li>Desiderare un'altra persona non cancella l'amore: capita, e di solito dice più di te che della coppia.</li>
-        <li>Quello che conta è cosa ne fai: ascoltarlo, parlarne con onestà e scegliere cosa è giusto per voi.</li>
-      </ul>
-    </aside>
-
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="amore-e-desiderio-nella-coppia">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more" aria-labelledby="more-h"><h2 id="more-h">Altri articoli in <a href="/blog/comunicazione-relazioni-e-consenso/">Comunicazione, relazioni e consenso</a></h2><ul><li><a href="/blog/sexting-come-farlo-con-piacere-e-consapevolezza.html">Sexting: come farlo con piacere, consapevolezza e sicurezza</a></li><li><a href="/blog/come-dire-di-no-senza-sentirsi-in-colpa.html">Come dire di no senza sentirsi in colpa (anche a letto)</a></li><li><a href="/blog/parola-di-sicurezza-cos-e-come-usarla.html">Parola di sicurezza: cos'è, come sceglierla e come usarla</a></li><li><a href="/blog/come-parlare-di-sesso-con-il-partner.html">Come parlare di sesso con il partner: da dove cominciare</a></li></ul></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -155,15 +191,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -177,7 +214,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

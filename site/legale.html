@@ -10,6 +10,8 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 </head>
@@ -18,12 +20,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -32,9 +49,9 @@
 <main id="contenuto">
   <article class="wrap-narrow">
     <header class="article-head">
-      <p class="post-meta">Ultimo aggiornamento: <time datetime="2026-09-23">23 settembre 2026</time></p>
+      <p class="post-meta">Ultimo aggiornamento: <time datetime="2026-11-04">4 novembre 2026</time></p>
       <h1>Privacy, cookie e note legali</h1>
-      <p class="lede">In breve: questo sito non usa cookie, non ha moduli e non traccia nessuno. Quello che mi scrivi resta tra noi.</p>
+      <p class="lede">In breve: questo sito non usa cookie, non traccia nessuno. Quello che mi scrivi resta tra noi.</p>
       <p class="toc"><a href="#note-legali">Note legali</a> · <a href="#cookie">Cookie</a> · <a href="#privacy">Privacy</a></p>
     </header>
 
@@ -73,10 +90,11 @@
         <p><strong>Dati di navigazione.</strong> Quando visiti il sito, il servizio di hosting registra in automatico dati tecnici come indirizzo IP, browser, data, ora e pagina richiesta. Servono a far funzionare il sito e a proteggerlo da abusi. Base giuridica: legittimo interesse (art. 6, par. 1, lett. f GDPR).</p>
         <p><strong>Dati che mi mandi tu.</strong> Se mi scrivi via email o WhatsApp, tratto il tuo nome, i tuoi recapiti e il contenuto del messaggio per risponderti e, se lo vuoi, organizzare una consulenza. Base giuridica: rispondere a una tua richiesta prima di un eventuale incarico (art. 6, par. 1, lett. b GDPR).</p>
         <p>Nei messaggi potresti raccontare aspetti della tua salute o della tua vita sessuale. Sono dati che la legge protegge in modo particolare (art. 9 GDPR). Condividi solo quello che ritieni utile: li uso esclusivamente per risponderti e preparare la consulenza, sulla base del consenso esplicito che esprimi inviandomeli, e che puoi revocare in qualsiasi momento.</p>
+        <p><strong>Domande dal blog.</strong> Il modulo per le domande anonime in fondo agli articoli raccoglie il testo che scrivi e la pagina da cui scrivi; il servizio di hosting registra anche dati tecnici come indirizzo IP e browser, per bloccare lo spam. Non chiede nome né email: ti chiedo di non inserire dati che ti rendono riconoscibile. Le domande sono conservate dal servizio di hosting (Netlify) e arrivano a me per email; le uso per scrivere articoli, senza dati di chi le ha fatte, e le cancello, insieme alle email, entro 12 mesi. Base giuridica: il consenso esplicito che dai spuntando la casella (art. 6, par. 1, lett. a e art. 9, par. 2, lett. a GDPR), che puoi revocare scrivendomi.</p>
         <p>I dati trattati durante una consulenza sono oggetto di un'informativa specifica, che ricevi prima dell'inizio.</p>
 
         <h3>Cosa non faccio</h3>
-        <p>Il sito non ha moduli, non usa strumenti di statistica, non traccia la navigazione e non fa profilazione. Non vendo né cedo i tuoi dati a nessuno. Non uso storie o situazioni riconoscibili delle persone che seguo, né sul sito né sui social.</p>
+        <p>Il sito non usa strumenti di statistica, non traccia la navigazione e non fa profilazione. Non vendo né cedo i tuoi dati a nessuno. Non uso storie o situazioni riconoscibili delle persone che seguo, né sul sito né sui social.</p>
 
         <h3>A chi arrivano i dati</h3>
         <ul>
@@ -105,15 +123,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -127,7 +146,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

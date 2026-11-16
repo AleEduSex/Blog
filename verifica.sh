@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Controlli del sito prima di ogni push. Uso: bash verifica.sh  (dalla radice del repo)
+# site/ è generato da sorgente/ con genera.sh: i controlli 1-7 guardano il risultato, l'8 che sia aggiornato.
 cd "$(dirname "$0")/site" || exit 1
 shopt -s nullglob
 err=0
@@ -41,9 +42,9 @@ for f in blog/*.html; do
   og=$(grep -o 'og:image" content="https://aleedusex.net/blog/img/[^"]*' "$f" | sed 's|.*aleedusex.net/||')
   [ -z "$og" ] || [ -f "$og" ] || fail "$b: foto og:image site/$og non esiste"
   grep -q 'class="frase"' "$f" || fail "$b: manca la frase di apertura"
-  [ "$(sed -n '/class="in-breve"/,/<\/aside>/p' "$f" | grep -c '<li>')" = 3 ] || fail "$b: In breve deve avere 3 punti"
+  [ "$(sed -n '/class="in-breve[ "]/,/<\/aside>/p' "$f" | grep -c '<li>')" = 3 ] || fail "$b: In breve deve avere 3 punti"
 done
-[ "$(grep -c 'class="post-item post-item--lead"' blog/index.html)" = 1 ] || fail "blog/index.html: serve esattamente un post-item--lead"
+: # lead non più usato
 
 # 5. Sitemap
 if [ -f sitemap.xml ]; then
@@ -61,6 +62,15 @@ for f in blog/*.html 404.html legale.html; do
   h=$(sed -n '/<header class="site-header">/,/<\/header>/p; /<footer class="site-footer">/,/<\/footer>/p' "$f" | sed 's/ aria-current="page"//' | cksum)
   if [ -z "$ref" ]; then ref=$h; rf=$f; else [ "$h" = "$ref" ] || fail "$f: testata o footer diversi da $rf"; fi
 done
+
+# 8. site/ si scrive solo con genera.sh: deve essere identico a quello che il generatore produce da sorgente/
+root=$(cd .. && pwd); tmp=$(mktemp -d)
+if python3 "$root/prototipi/NON-TOCCARE/generatore/anteprima.py" "$tmp/s" >/dev/null 2>&1; then
+  diff -rq "$tmp/s" . >/dev/null || fail "site/ non è aggiornato o è stato modificato a mano: esegui bash genera.sh"
+else
+  fail "il generatore non parte: controlla sorgente/ e sezioni.py (ogni articolo deve stare in una sezione)"
+fi
+rm -rf "$tmp"
 
 [ $err = 0 ] && echo OK
 exit $err

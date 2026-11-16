@@ -23,6 +23,8 @@
 <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<link rel="preload" href="/fonts/dm-serif-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/blog/blog.css">
 
@@ -51,12 +53,27 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/">aleedusex</a>
+    <a class="wordmark" href="/"><img src="/img/logo-aleedusex.png" alt="AleEduSex" width="487" height="108"></a>
     <nav class="nav" aria-label="Principale">
-      <ul>
+      <ul class="nav-full">
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li class="hide-sm"><a href="/#chi-sono">Chi sono</a></li>
       </ul>
+      <details class="nav-m">
+        <summary aria-label="Menu"><span class="b"></span><span class="b"></span><span class="b"></span></summary>
+        <ul>
+        <li><a href="/#chi-sono">Chi sono</a></li>
+        <li><a href="/#parliamone">Di cosa parliamo</a></li>
+        <li><a href="/#funziona">Come funziona</a></li>
+        <li><a href="/#percorsi">Percorsi</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </details>
       <a class="btn-burgundy" href="/#contatti">Scrivimi <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
     </nav>
   </div>
@@ -64,20 +81,30 @@
 
 <main id="articolo">
   <article class="wrap-narrow">
-    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span></p>
+    <p class="crumb"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/approfondimenti-e-attualita/">Approfondimenti e attualità</a></p>
 
     <header class="article-head">
+      <div class="fascia">
       <p class="frase">«Ma chi ha inventato il preservativo, e da quando esiste?»</p>
-      <p class="post-meta"><time datetime="2026-11-05">5 novembre 2026</time><span class="sep">·</span>6 min di lettura</p>
       <h1>Storia del preservativo: da Falloppio ai giorni nostri</h1>
+      <p class="post-meta"><time datetime="2026-11-05">5 novembre 2026</time><span class="sep">·</span>6 min di lettura</p>
+      </div>
       <p class="lede">Il preservativo nasce molto prima della pillola e ha una storia lunga, fatta di leggende, sifilide, materiali di ogni tipo e gomma. Te la racconto in modo semplice.</p>
     </header>
 
     <figure class="cover">
-      <img src="/blog/img/storia-del-preservativo.jpg" alt="Illustrazione di una linea del tempo con tre punti: 1564, 1839 e Novecento" width="1600" height="1000">
+      <img fetchpriority="high" src="/blog/img/storia-del-preservativo.jpg" alt="Illustrazione di una linea del tempo con tre punti: 1564, 1839 e Novecento" width="1600" height="1000">
       <figcaption>Illustrazione per aleedusex.net</figcaption>
     </figure>
 
+    <aside class="in-breve su" aria-label="In breve">
+      <p class="eyebrow">In breve</p>
+      <ul>
+        <li>Le origini antiche sono in gran parte leggende: il primo uso documentato in Europa è del 1564, con Falloppio.</li>
+        <li>Nasce per proteggersi dalle malattie, soprattutto dalla sifilide, prima ancora che per evitare una gravidanza.</li>
+        <li>La gomma di Goodyear lo rende accessibile a tutti nell'Ottocento, e il lattice lo trasforma in quello di oggi.</li>
+      </ul>
+    </aside>
     <div class="prose">
       <p>Il preservativo è una di quelle cose che usiamo senza chiederci da dove vengano. Eppure ha una storia lunghissima, e molto meno ovvia di quello che si pensa. Se te lo sei mai chiesto, ti racconto cosa si sa davvero, cosa è leggenda e perché oggi lo usiamo come lo usiamo. Non sono uno storico, quindi vado sulle fonti, e dove le fonti non sono sicure te lo dico.</p>
       <p>Questo articolo è per la sezione sulle idee e sulla storia. Se invece ti serve la parte pratica, trovi <a href="/blog/come-mettere-il-preservativo.html">Come mettere il preservativo: guida passo per passo</a>.</p>
@@ -103,7 +130,7 @@
       <p>Mi colpisce una cosa: il preservativo è nato per proteggere la salute, non per la contraccezione. Già cinque secoli fa si parlava di quello che diciamo adesso: prevenzione, rischio, malattie. E per secoli ha fatto discutere, perché il sesso è sempre stato anche una questione morale. Anche la Chiesa cattolica, ricorda la Wellcome, ha accettato il suo uso solo con riluttanza nel 2010, e solo per prevenire malattie gravi come l'HIV. È un bell'esempio di quello che racconto in <a href="/blog/foucault-storia-della-sessualita.html">Foucault e la storia della sessualità: cosa dice davvero</a>: le norme sul sesso hanno una storia, e quella storia si può cambiare.</p>
       <p>Oggi il preservativo è uno degli strumenti più semplici per ridurre il rischio di infezioni e di gravidanze non cercate. Se hai dubbi pratici, trovi le risposte in <a href="/blog/lubrificante-e-preservativo.html">Lubrificante e preservativo: quale usare e quale evitare</a> e in <a href="/blog/preservativo-rotto-cosa-fare.html">Preservativo rotto: cosa fare adesso, senza panico</a>. E se ti interessa la prevenzione in generale, c'è <a href="/blog/infezioni-sessualmente-trasmissibili-test.html">Infezioni sessualmente trasmissibili: quali test fare e dove</a>.</p>
       <h2>Se ti va di parlarne</h2>
-      <p>Un consulente in sessuologia serve a capire cosa sta succedendo e quale professionista è il più indicato. Io non faccio diagnosi e non prescrivo farmaci. Se hai solo una domanda, <a href="https://wa.me/393273003855">scrivimi su WhatsApp</a>: i primi 15 minuti te li regalo io.</p>
+      <p>Un consulente in sessuologia serve a capire cosa sta succedendo e quale professionista è il più indicato. Io non faccio diagnosi e non prescrivo farmaci. Se hai solo una domanda, <a href="https://wa.me/393273003855">scrivimi su WhatsApp</a>: ci sentiamo 15 minuti al telefono, gratis.</p>
       <h2>Domande frequenti</h2>
       <h3>Chi ha inventato il preservativo?</h3>
       <p>Non c'è un inventore unico. Le origini antiche sono in gran parte leggende. Il primo uso documentato in Europa è del 1564, con l'anatomista italiano Gabriele Falloppio, che lo descrisse come protezione dalla sifilide. In Giappone e in Cina esistevano versioni più antiche.</p>
@@ -122,33 +149,42 @@
       </ul>
     </div>
 
-    <aside class="in-breve" aria-label="In breve">
-      <p class="eyebrow">In breve</p>
-      <ul>
-        <li>Le origini antiche sono in gran parte leggende: il primo uso documentato in Europa è del 1564, con Falloppio.</li>
-        <li>Nasce per proteggersi dalle malattie, soprattutto dalla sifilide, prima ancora che per evitare una gravidanza.</li>
-        <li>La gomma di Goodyear lo rende accessibile a tutti nell'Ottocento, e il lattice lo trasforma in quello di oggi.</li>
-      </ul>
-    </aside>
-
     <aside class="author-box" aria-label="Autore">
       <span class="name">Alessio Cottonaro</span>
       <span class="role">Consulente in sessuologia · Educatore professionale · Torino e online</span>
+      <span class="cred">Master di I livello in Consulenza in Sessuologia, Università di Torino · Albo degli Educatori professionali (FNO TSRM e PSTRP) · Albo dei Consulenti in sessuologia FISS</span>
       <a href="/#chi-sono">Chi sono →</a>
     </aside>
     <p class="disclaimer">Questo articolo ha uno scopo informativo e non sostituisce una consulenza personale.</p>
 
-    <section class="cta-box" aria-labelledby="cta-titolo">
-      <p class="eyebrow">Cominciamo da qui</p>
-      <h2 id="cta-titolo">Ne vuoi <span style="font-style:italic">parlare?</span></h2>
+        <section class="cta-box" aria-labelledby="cta-titolo">
+      
+      <h2 id="cta-titolo">Ne vuoi parlare?</h2>
       <p class="price">Prima consulenza · 60 € · 60 minuti · online o a domicilio</p>
       <div class="actions">
         <a class="btn-cream" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
         <a class="btn-outline-cream" href="mailto:&#97;&#108;&#101;&#115;&#115;&#105;&#111;&#46;&#101;&#100;&#117;&#46;&#115;&#101;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">Mandami un'email</a>
       </div>
-      <a class="gift" href="https://wa.me/393273003855" target="_blank" rel="noreferrer">Hai solo una domanda? I primi 15 minuti te li regalo io →</a>
+      <a class="gift" href="https://wa.me/393273003855?text=Ciao%20Alessio%2C%20vorrei%20fissare%20la%20telefonata%20gratuita%20di%2015%20minuti." target="_blank" rel="noreferrer">Hai solo una domanda? Una telefonata di 15 minuti. Gratis →</a>
+      <details class="domanda">
+      <summary><span id="domanda-titolo" class="d-tit">Preferisci fare una domanda anonima?</span></summary>
+      <p>Scrivila qui, anche senza nome. Non serve la parola giusta. Arriva solo a me e non viene pubblicata: se può servire anche ad altre persone, diventa un articolo, senza niente che ti renda riconoscibile.</p>
+      <form name="domanda" method="POST" action="/domanda-inviata.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="domanda">
+        <input type="hidden" name="articolo" value="storia-del-preservativo">
+        <p class="hp" aria-hidden="true"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label class="lbl-f" for="domanda-testo">La tua domanda</label>
+        <textarea id="domanda-testo" name="domanda" rows="5" maxlength="2000" required></textarea>
+        <p class="err err-t" aria-live="polite">Scrivi la tua domanda prima di inviarla.</p>
+        <p class="nota">Non scrivere nome, email o dettagli che ti rendono riconoscibile. Le domande arrivano senza mittente, quindi non posso risponderti in privato: se vuoi una risposta solo per te, scrivimi su WhatsApp.</p>
+        <label class="ok"><input type="checkbox" name="privacy" value="si" required><span>Acconsento al trattamento di quello che scrivo, come spiegato nell’<a href="/legale.html#privacy">informativa privacy</a>.</span></label>
+        <p class="err err-c" aria-live="polite">Per inviarla serve il tuo consenso.</p>
+        <button class="btn-burgundy" type="submit">Invia la domanda <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </details>
     </section>
 
+    <section class="more" aria-labelledby="more-h"><h2 id="more-h">Altri articoli in <a href="/blog/approfondimenti-e-attualita/">Approfondimenti e attualità</a></h2><ul><li><a href="/blog/foucault-storia-della-sessualita.html">Foucault e la storia della sessualità: cosa dice davvero</a></li></ul></section>
     <a class="back-link" href="/blog/">← Tutti gli articoli</a>
   </article>
 </main>
@@ -157,15 +193,16 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brand">aleedusex</div>
+        <div class="brand">AleEduSex</div>
         <p class="who">Alessio Cottonaro<br>Consulente in sessuologia · Educatore professionale<br>Torino · Online · A domicilio</p>
       </div>
       <div>
         <div class="label">Indice</div>
         <ul>
-          <li><a href="/#manifesto">Manifesto</a></li>
           <li><a href="/#chi-sono">Chi sono</a></li>
+          <li><a href="/#parliamone">Di cosa parliamo</a></li>
           <li><a href="/#funziona">Come funziona</a></li>
+          <li><a href="/#percorsi">Percorsi</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -179,7 +216,7 @@
       </div>
     </div>
     <div class="legal">
-      <span class="copy">© 2026 · aleedusex</span>
+      <span class="copy">© 2026 · AleEduSex</span>
       <a href="/legale.html">Privacy, cookie e note legali</a>
       <span><em>Sito disegnato con cura.</em></span>
     </div>

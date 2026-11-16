@@ -1,0 +1,50 @@
+<!-- PROVA: blocco «Percorsi» da inserire nella landing dopo il passo 3 di «Come funziona».
+     Solo stili inline + font del sito: non dipende da Tailwind. Testi = bozza da far approvare ad Alessio.
+     Dati dal documento «Pacchetti» (Drive). Prenotazione: direttamente con Alessio (Scrivimi). Niente video sul sito (deciso da Mirko il 3/11). -->
+<div id="percorsi-prova" style="margin-top:96px;font-family:'Source Serif 4',Georgia,serif;color:#1A1A1A">
+  <style>
+    #percorsi-prova .pz{position:relative;background:#F0E7D5;border-radius:3px;padding:28px 24px 22px;box-shadow:0 10px 24px -16px rgba(60,30,20,.35),0 2px 5px -3px rgba(60,30,20,.25)}
+    #percorsi-prova .pz::before{content:"";position:absolute;top:-11px;left:50%;width:84px;height:24px;transform:translateX(-50%) rotate(-2deg);background:rgba(214,196,163,.55)}
+    #percorsi-prova h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.02;letter-spacing:-.02em}
+    #percorsi-prova .meta{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,26,26,.7)}
+    #percorsi-prova .meta li.dot{color:#7A1E2B}
+    #percorsi-prova .meta li.prezzo{color:#7A1E2B;font-family:'DM Serif Display',Georgia,serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:20px}
+    #percorsi-prova .tot{display:none;text-align:right;font-family:'DM Serif Display',Georgia,serif;font-size:64px;line-height:1;color:#7A1E2B;font-style:italic}#percorsi-prova .tot small{display:block;margin-top:8px;font-family:'Source Serif 4',Georgia,serif;font-style:normal;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,26,26,.6)}
+    #percorsi-prova .grid{display:grid;gap:36px;margin-top:40px}
+    @media(min-width:768px){#percorsi-prova .grid{grid-template-columns:repeat(3,1fr);gap:28px}#percorsi-prova .big{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;padding:36px 40px;transform:rotate(-.5deg)}#percorsi-prova .big .meta li.prezzo,#percorsi-prova .big .meta li.pd{display:none}#percorsi-prova .big .tot{display:block}
+      #percorsi-prova .g1{transform:rotate(.8deg)}#percorsi-prova .g3{transform:rotate(-.7deg)}}
+  </style>
+  <div style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#7A1E2B">I percorsi</div>
+  <h3 style="font-size:clamp(38px,6vw,64px);margin-top:14px">Dopo la prima consulenza, <span style="font-style:italic;color:#7A1E2B">se serve.</span></h3>
+  <p style="margin-top:18px;font-size:19px;line-height:1.6;max-width:36em;color:rgba(26,26,26,.85)">Te li propongo solo se hanno senso per te. Ognuno ha un obiettivo chiaro e un numero di incontri definito: niente percorsi infiniti.</p>
+  <div class="grid">
+    <article class="pz big">
+      <div>
+        <h3 style="font-size:clamp(30px,4vw,44px)">Al cuore del problema</h3>
+        <p style="margin-top:10px;font-size:17px;line-height:1.6;max-width:40em">Per te, da solo o in coppia. Cinque incontri per capire dove ti sei bloccato e cosa fare, con il metodo DEOPIARCA della Scuola di sessuologia di Torino.</p>
+        <ul class="meta"><li>5 incontri</li><li class="dot">·</li><li>60 minuti</li><li class="dot">·</li><li>Ogni due settimane</li><li class="dot pd">·</li><li class="prezzo">450&nbsp;€</li></ul>
+      </div>
+      <div class="tot">450&nbsp;€<small>tutto il percorso</small></div>
+    </article>
+    <article class="pz g1">
+      <h3 style="font-size:28px">Dialogo positivo sul desiderio</h3>
+      <p style="margin-top:10px;font-size:16px;line-height:1.55">Per coppie con desideri diversi, che non riescono più a parlarne senza ferirsi.</p>
+      <ul class="meta"><li>3 incontri</li><li class="dot">·</li><li>90 minuti</li><li class="dot">·</li><li>Gruppi di 4 coppie</li></ul>
+      <ul class="meta" style="margin-top:6px"><li class="prezzo">240&nbsp;€ a coppia · 300&nbsp;€ da soli</li></ul>
+    </article>
+    <article class="pz g2">
+      <h3 style="font-size:28px">Laboratorio del piacere consapevole</h3>
+      <p style="margin-top:10px;font-size:16px;line-height:1.55">Per coppie: corpo, desiderio, comunicazione, sex toys. Niente nudità né pratiche esplicite.</p>
+      <ul class="meta"><li>4 incontri</li><li class="dot">·</li><li>90 minuti</li><li class="dot">·</li><li>Massimo 3 coppie</li></ul>
+      <ul class="meta" style="margin-top:6px"><li class="prezzo">400&nbsp;€ a coppia</li></ul>
+    </article>
+    <article class="pz g3">
+      <h3 style="font-size:28px">Parliamo di sessualità ai figli</h3>
+      <p style="margin-top:10px;font-size:16px;line-height:1.55">Per genitori con figli tra 4 e 18 anni: come rispondere alle domande, età per età.</p>
+      <ul class="meta"><li>4 incontri</li><li class="dot">·</li><li>90 minuti</li><li class="dot">·</li><li>Massimo 8 persone</li></ul>
+      <ul class="meta" style="margin-top:6px"><li class="prezzo">280&nbsp;€</li></ul>
+    </article>
+  </div>
+  <p style="margin-top:40px;font-size:18px;line-height:1.6">Si prenotano come la prima consulenza: <a href="#contatti" style="color:#7A1E2B;text-decoration:underline;text-underline-offset:4px">mi scrivi e ne parliamo</a>.</p>
+  <p style="margin-top:8px;font-size:15px;font-style:italic;color:rgba(26,26,26,.7)">Disdette e rimborsi: come funzionano (pagina «Note legali»).</p>
+</div>

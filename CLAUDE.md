@@ -80,9 +80,12 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 ```
 /              privato (Netlify non lo pubblica)
 ├── CLAUDE.md, PUBBLICARE.md, README.md
-├── verifica.sh    controlli prima di ogni push: `bash verifica.sh` → OK
-├── netlify.toml   publish = "site", nessun build
-└── site/          unica cartella pubblicata
+├── genera.sh      rigenera site/ da sorgente/ + sezioni.py: `bash genera.sh`
+├── sezioni.py     le 5 sezioni del blog e i loro articoli (testi di Alessio)
+├── verifica.sh    controlli prima di ogni push: `bash verifica.sh` → OK (controlla anche che site/ sia rigenerato)
+├── netlify.toml   publish = "site", nessun build; redirect, header di sicurezza e cache
+├── sorgente/      il sito «semplice» dove si scrivono articoli e pagine (stessa struttura di sotto)
+└── site/          unica cartella pubblicata, GENERATA: non si modifica a mano
     ├── index.html        landing: HTML + Tailwind da CDN, JS inline
     ├── 404.html, legale.html
     ├── fonts/            font ospitati sul sito (fonts.css + woff2)
@@ -93,15 +96,29 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
 
 - **Landing** (`/`): converte verso la prima consulenza. **Blog** (`/blog/`): farsi trovare su Google.
 - `site/` contiene solo file che vanno online. Niente `.md`, zip, bozze, file grafici.
+- `site/` si rigenera con `bash genera.sh` (generatore in `prototipi/NON-TOCCARE/generatore/anteprima.py`,
+  che aggiunge sezioni, home nuova, percorsi, video e correzioni). Le modifiche si fanno in `sorgente/`
+  o nel generatore, mai direttamente in `site/`.
 - Nessun build, nessun npm, nessun JavaScript nelle pagine del blog.
 - Push su `main` = sito online (quando Netlify è collegato al repo).
 - Prima di ogni push: `bash verifica.sh` deve stampare OK.
 - Testata e footer sono identici in blog, 404 e pagina legale: `verifica.sh` lo controlla.
+- Skill di design esterne (Impeccable, Taste, UI/UX Pro Max, Hallmark, web-quality, Vercel
+  guidelines) in `.claude/skills/`: solo per il lavoro tecnico di Mirko, mai per gli articoli.
+  Nel lavoro di Mirko su grafica, pagine o revisioni **usale sempre**, tutte quelle utili, al
+  momento giusto (prima di progettare, prima di modificare, per verificare a lavoro finito).
+  Origine, licenze e verifiche in `.claude/SKILL-ESTERNE.md`.
+- `prototipi/NON-TOCCARE/`: prove del blog diviso per temi e il generatore usato da `genera.sh`.
+  Non modificarle durante il lavoro sugli articoli; spiegazione in `prototipi/NON-TOCCARE/LEGGIMI.md`.
 
 ### Da fare
 
 - P.IVA (e sede) di Alessio nel footer della landing (`© 2026 · aleedusex`) e in
   `site/legale.html` › Note legali. Rimandata su richiesta.
-- Logo originale in alta risoluzione: se arriva, rifare `og.jpg` (oggi logo 192 px ingrandito).
-- Togliere Tailwind da CDN dalla landing (CSS statico equivalente, confronto screenshot).
-- Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.
+- Logo ufficiale in alta definizione in `materiali/logo/` (SVG e PNG 4000 px): rifare `og.jpg`
+  (oggi logo 192 px ingrandito); proposta pronta in `materiali/logo/og-proposta.jpg`.
+- Tailwind da CDN sulla landing: si tiene (decisione del 16/11). La CSP in `netlify.toml` deve
+  permettere `https://cdn.tailwindcss.com`.
+- Verso la fase finale (prima di passare la nuova versione online): installare e usare una skill
+  per la guida legale (privacy, cookie, policy, consenso dei moduli) e una per la cybersecurity
+  (header di sicurezza, moduli, dipendenze esterne), verificate come quelle in `.claude/SKILL-ESTERNE.md`.
