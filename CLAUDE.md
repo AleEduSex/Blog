@@ -115,7 +115,6 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
   permettere `https://cdn.tailwindcss.com`.
 - Nuova versione (blog per sezioni, home nuova): è pronta in `prototipi/NON-TOCCARE/generatore/`
   (`anteprima.py`) sul ramo di lavoro. Si porta in `site/` solo dopo l'ok di Alessio sui testi in sospeso.
-- Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.
 - Verso la fase finale (prima di passare la nuova versione online): installare e usare una skill
   per la guida legale (privacy, cookie, policy, consenso dei moduli) e una per la cybersecurity
   (header di sicurezza, moduli, dipendenze esterne), verificate come quelle in `.claude/SKILL-ESTERNE.md`.
