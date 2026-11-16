@@ -1733,13 +1733,18 @@ h = h.replace('</body>', '''<script>
 document.addEventListener('focusin', function (e) {
   if (!e.target.getBoundingClientRect) return;
   setTimeout(function () {
-    var bar = document.querySelector('.barra-cta.vista'); if (!bar) return;
-    var r = e.target.getBoundingClientRect(), top = bar.getBoundingClientRect().top - 12;
+    var bar = document.querySelector('.barra-cta.vista'); if (!bar || e.target.closest('header')) return;
+    var br = bar.getBoundingClientRect(); if (!br.height) return;   // su computer la barra è nascosta
+    var r = e.target.getBoundingClientRect(), top = br.top - 12;
     if (r.bottom > top) window.scrollBy({ top: r.bottom - top, behavior: 'instant' });
   }, 60);
 });
 </script>
 </body>''', 1)
+# il logo porta davvero in cima: l'ancora era sulla testata «sticky», che il browser considera già in vista
+assert h.count('<header id="top"') == 1
+h = h.replace('<header id="top"', '<header', 1)
+h = re.sub(r'(<body[^>]*>)', r'\1<div id="top"></div>', h, count=1)
 h = h.replace('</head>', '''<style>
   html { scroll-padding-top: 90px; }
   @media (max-width: 1023px) { html { scroll-padding-bottom: 84px; } }
