@@ -16,5 +16,24 @@ lettura degli script: nessuna chiamata di rete nascosta, nessun hook installato 
 | `skills/accessibility`, `best-practices`, `core-web-vitals`, `performance`, `seo`, `web-quality-audit` | [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills) `afa8da9` | MIT | `analyze.sh` è di sola lettura. |
 | `skills/web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) `1a2c79d` + [web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) | MIT | L'originale scarica le regole da internet a ogni uso: qui sono in copia fissa (`guidelines.md`). |
 
+## Da valutare (non installate)
+
+**ECC** ([affaan-m/ECC](https://github.com/affaan-m/ECC), MIT, letto il 2026-11-16): pacchetto con
+71 agenti e 314 skill per Claude Code, più hook, memoria e AgentShield. **Non installarlo intero**:
+- l'installazione (`npx ecc-universal…` o il plugin) esegue codice npm;
+- gli hook si attivano a ogni comando;
+- alcune funzioni mandano il codice a servizi esterni (`/astra-review` → OpenAI).
+
+Se servono, copiare solo singole skill, rileggerle e registrarle nella tabella sopra.
+Candidate per la fase finale, prima della pubblicazione:
+- `browser-qa`: controlli dopo la pubblicazione su console, Core Web Vitals, moduli e axe;
+- `click-path-audit`: link rotti e percorso dei moduli, da verificare;
+- `delivery-gate`: lista di controllo prima del rilascio, da verificare;
+- `security-review` e l'agente `security-reviewer`: da confrontare con la skill di cybersecurity
+  prevista in `CLAUDE.md`.
+
+Doppioni di skill che abbiamo già, quindi non servono: `accessibility`, `design-system`, `frontend-patterns`.
+`brand-voice` è pensata per testi in inglese; la voce di Alessio è già in `CLAUDE.md`.
+
 Aggiornare una skill: riscaricare il repository, rileggere gli script cambiati, sostituire la
 cartella e aggiornare il commit in questa tabella.
