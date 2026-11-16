@@ -111,7 +111,10 @@ contenuti finiti in `instagram/contenuti/`. Non si pubblica niente: i testi li c
   `site/legale.html` › Note legali. Rimandata su richiesta.
 - Logo ufficiale in alta definizione in `materiali/logo/` (SVG e PNG 4000 px): rifare `og.jpg`
   (oggi logo 192 px ingrandito); proposta pronta in `materiali/logo/og-proposta.jpg`.
-- Togliere Tailwind da CDN dalla landing (CSS statico equivalente, confronto screenshot).
+- Tailwind da CDN sulla landing: si tiene (decisione del 16/11). La CSP in `netlify.toml` deve
+  permettere `https://cdn.tailwindcss.com`.
+- Nuova versione (blog per sezioni, home nuova): è pronta in `prototipi/NON-TOCCARE/generatore/`
+  (`anteprima.py`) sul ramo di lavoro. Si porta in `site/` solo dopo l'ok di Alessio sui testi in sospeso.
 - Netlify non ancora collegato al repo: il sito online è ancora il caricamento manuale.
 - Verso la fase finale (prima di passare la nuova versione online): installare e usare una skill
   per la guida legale (privacy, cookie, policy, consenso dei moduli) e una per la cybersecurity
