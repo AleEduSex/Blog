@@ -1591,27 +1591,28 @@ def diag_v():
     # telefono (prova 2): tre rami a ventaglio dallo stesso punto; il centrale scende di più e pesa di più.
     # I professionisti sono appesi alla terza strada: il suo ramo continua lungo il bordo e li «porta» in basso.
     o = 350
-    s = [f'<svg class="pm-map pm-map-v" viewBox="0 0 360 720" role="img" aria-label="{ARIA3}">',
+    s = [f'<svg class="pm-map pm-map-v" viewBox="0 0 360 770" role="img" aria-label="{ARIA3}">',
          '<text class="pm-t-tu pm-fade" x="180" y="58" text-anchor="middle" style="--d:0ms">Tu</text>',
          '<path class="pm-ink" pathLength="1" style="--d:300ms;--dur:520ms" d="M180 80 C 187 98, 173 114, 180 132 S 181 146, 180 150"/>',
          stamp3(180, 156, 240, 108),
          '<path class="pm-ink" pathLength="1" style="--d:1150ms;--dur:260ms" d="M180 264 L 180 282"/>',
          '<text class="pm-cap pm-fade" x="180" y="306" text-anchor="middle" style="--d:1250ms">dopo la prima consulenza</text>',
          f'<circle class="pm-dot" cx="180" cy="324" r="4" style="--d:{1300 + o}ms"/>']
-    rami = [('M180 324 C 180 354, 62 348, 62 386', 62, 386), ('M180 324 L 180 446', 180, 454), ('M180 324 C 180 354, 298 348, 298 386', 298, 386)]
-    for i, (d, x, y) in enumerate(rami):
+    rami = [('M180 324 C 180 354, 62 348, 62 386', 62, 386, 620), ('M180 324 L 180 446', 180, 454, 620),
+            ('M180 324 C 180 352, 300 342, 328 376 C 342 394, 344 420, 344 470 L 344 584 C 344 606, 336 620, 318 624', 318, 624, 900)]
+    fine = []
+    for i, (d, x, y, dur) in enumerate(rami):
         main = i == 1
-        s.append(f'<path class="pm-ink{" pm-main" if main else ""}" pathLength="1" style="--d:{1400 + o + i*70}ms;--dur:620ms" d="{d}"/>')
+        t = 1400 + o + i*70; fine.append(t + dur)   # la durata segue la lunghezza del ramo
+        s.append(f'<path class="pm-ink{" pm-main" if main else ""}" pathLength="1" style="--d:{t}ms;--dur:{dur}ms" d="{d}"/>')
         if main: s.append(f'<circle class="pm-ripple" cx="{x}" cy="{y}" r="7" style="--d:{2080 + o}ms"/>')
-        s.append(f'<circle class="pm-dot" cx="{x}" cy="{y}" r="{7 if main else 5}" style="--d:{2000 + o + i*70}ms"/>')
+        s.append(f'<circle class="pm-dot" cx="{x}" cy="{y}" r="{7 if main else 5}" style="--d:{t + dur - 40}ms"/>')
     s.append(f'<g class="pm-fade" style="--d:{2060 + o}ms"><text class="pm-n" x="62" y="424" text-anchor="middle">ti basta</text><text class="pm-n" x="62" y="452" text-anchor="middle">così</text></g>')
     s.append(f'<g class="pm-fade" style="--d:{2130 + o}ms"><text class="pm-n pm-n-main" x="180" y="494" text-anchor="middle">continuiamo</text><text class="pm-n pm-n-main" x="180" y="524" text-anchor="middle">insieme</text>'
              f'<text class="pm-sub" x="180" y="562" text-anchor="middle">un percorso con</text><text class="pm-sub" x="180" y="584" text-anchor="middle">un obiettivo chiaro</text></g>')
     s.append(f'<path class="pm-ink pm-firma" pathLength="1" style="--d:{2450 + o}ms;--dur:620ms" d="M134 534 C 160 530, 196 538, 226 532"/>')
-    s.append(f'<g class="pm-fade" style="--d:{2200 + o}ms"><text class="pm-n" x="298" y="424" text-anchor="middle">ti indirizzo</text><text class="pm-n" x="298" y="452" text-anchor="middle">a chi serve</text></g>')
-    # il terzo ramo prosegue: scende lungo il bordo destro e si apre sui professionisti
-    s.append(f'<path class="pm-ink pm-sottile" pathLength="1" style="--d:{2300 + o}ms;--dur:620ms" d="M298 464 C 298 486, 344 486, 344 520 L 344 604 C 344 616, 336 620, 326 620"/>')
-    s.append(chips_riga(12, 636, 2650 + o, 336))
+    s.append(f'<g class="pm-fade" style="--d:{fine[2] + 20}ms"><text class="pm-n" x="348" y="662" text-anchor="end">ti indirizzo a chi serve</text></g>')
+    s.append(chips_riga(12, 680, fine[2] + 160, 336))
     return ''.join(s) + '</svg>'
 def chips_riga(x, y, d0, maxw):
     # come chips(), ma con i caratteri più grandi del telefono e le righe da destra (il ramo arriva da destra)
