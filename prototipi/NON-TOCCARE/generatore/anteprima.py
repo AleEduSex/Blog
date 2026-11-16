@@ -1557,6 +1557,58 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 .domanda form:valid button:focus:not(:focus-visible)::after { content: "Invio…"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: inherit; }
 ''')
 
+# ── 24. v13 (messaggi di Ale del 16/11): sul telefono il disegno non è un percorso obbligato; parte nera con 3 articoli e sezioni in riquadri ──
+DIAG_V = '''<svg class="pm-map pm-map-v" viewBox="0 0 360 780" role="img" aria-label="Tu, poi il consulente in sessuologia AleEduSex: lavoriamo insieme. Solo se serve, ti indirizzo a uno psicoterapeuta se c'è un vissuto da elaborare, oppure a un andrologo o ginecologo se c'è un aspetto organico, oppure ad altri professionisti se c'è un bisogno specifico.">
+        <text class="pm-t-tu pm-fade" x="180" y="60" text-anchor="middle" style="--d:0ms">Tu</text>
+        <path class="pm-ink" pathLength="1" style="--d:350ms;--dur:600ms" d="M180 84 C 187 104, 173 122, 180 142 S 181 160, 180 166"/>
+        <g class="pm-stamp" style="--d:800ms">
+          <rect x="60" y="174" width="240" height="112" rx="9" fill="#7A1E2B"/>
+          <text class="pm-t-st-small" x="180" y="211" text-anchor="middle">consulente in</text>
+          <text class="pm-t-st-big" x="180" y="248" text-anchor="middle">sessuologia</text>
+          <text class="pm-t-st-sig" x="180" y="272" text-anchor="middle">AleEduSex</text>
+        </g>
+        <!-- la strada principale: si lavora insieme -->
+        <path class="pm-ink" pathLength="1" style="--d:1450ms;--dur:500ms" d="M180 298 L 180 352"/>
+        <circle class="pm-ripple" cx="180" cy="364" r="6" style="--d:1900ms"/>
+        <circle class="pm-dot" cx="180" cy="364" r="6" style="--d:1900ms"/>
+        <g class="pm-fade" style="--d:1960ms"><text class="pm-t-name" x="180" y="404" text-anchor="middle">lavoriamo insieme</text><text class="pm-t-cond pm-t-cond-v pm-c" x="180" y="430" text-anchor="middle">su quello che hai portato</text></g>
+        <!-- il ramo a parte: solo se serve, una tra tre strade -->
+        <g class="pm-fade" style="--d:2400ms">
+          <path class="pm-ramo" d="M300 236 C 330 236, 338 252, 338 280 L 338 484"/>
+          <text class="pm-t-cond pm-t-cond-v pm-c pm-se" x="22" y="476">solo se serve, ti indirizzo:</text>
+          <rect class="pm-cornice" x="12" y="490" width="336" height="272" rx="9"/>
+          <text class="pm-t-name" x="36" y="540">psicoterapeuta</text><text class="pm-t-cond pm-t-cond-v pm-c" x="37" y="564">se c'è un vissuto da elaborare</text>
+          <text class="pm-oppure" x="36" y="598">oppure</text>
+          <text class="pm-t-name" x="36" y="634">andrologo · ginecologo</text><text class="pm-t-cond pm-t-cond-v pm-c" x="37" y="658">se c'è un aspetto organico</text>
+          <text class="pm-oppure" x="36" y="692">oppure</text>
+          <text class="pm-t-name" x="36" y="726">altri professionisti</text><text class="pm-t-cond pm-t-cond-v pm-c" x="37" y="750">se c'è un bisogno specifico</text>
+        </g>
+      </svg>'''
+h = rd('index.html')
+h, n = re.subn(r'<svg class="pm-map pm-map-v".*?</svg>', lambda m: DIAG_V, h, count=1, flags=re.S)
+assert n == 1, 'disegno verticale'
+h = h.replace('</head>', '''<style>
+  .pm-map-v .pm-t-name { font-size: 26px !important; }
+  .pm-map-v .pm-c { font-size: 18px !important; }
+  .pm-map-v .pm-se { font-weight: 600; font-style: normal; }
+  .pm-ramo, .pm-cornice { fill: none; stroke: #7A1E2B; stroke-width: 1.4; stroke-dasharray: 5 6; stroke-linecap: round; }
+  .pm-oppure { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 17px; fill: rgba(26,26,26,.6); }
+  /* parte nera: su telefono 3 articoli, le sezioni diventano riquadri */
+  @media (max-width: 1023px) { .vetrina li:nth-child(n+4) { display: none; } }
+  .sez-home ul { gap: 10px !important; }
+  .sez-home a { flex-direction: column; justify-content: space-between; gap: 14px; min-height: 104px; padding: 16px; border: 1px solid rgba(240,231,213,.28); background: rgba(240,231,213,.06); transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
+  .sez-home a:hover, .sez-home a:focus-visible { background: rgba(240,231,213,.13); border-color: #F0E7D5; }
+  .sez-home a:active { transform: scale(.97); }
+  .sez-home li { display: flex; }
+  .sez-home a { width: 100%; }
+  .sez-home .ico-s { width: 30px; height: 30px; }
+  .sez-home li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .sez-home li:last-child:nth-child(odd) { grid-column: auto; } }
+  .sez-home h3 { margin-bottom: 4px; }
+</style>
+</head>''', 1)
+wr('index.html', h)
+
 # logo in testata, su tutte le pagine (alla fine, dopo che le pagine sono state riscritte)
 for f in OUT.rglob('*.html'):
     h = f.read_text()
