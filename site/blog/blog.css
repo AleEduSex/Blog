@@ -660,7 +660,7 @@ article.wrap-narrow > .crumb + .article-head { padding-top: 0 !important; margin
 :root { --t-hero: clamp(52px, 7.8vw, 120px); --t-h2: clamp(42px, 5.4vw, 80px); --t-h3: clamp(24px, 2.2vw, 28px); --t-lead: 21px; --t-body: 18px; --t-small: 15px; --t-micro: 13px; --ease: cubic-bezier(.2,.7,.2,1); --dur: 200ms; --dur-press: 120ms; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 h1, h2, h3 { text-wrap: balance; } p, li { text-wrap: pretty; }
-@media (max-width: 640px) { .prose p, .prose li, .post-excerpt, .about p, .intro, .lede { hyphens: auto; -webkit-hyphens: auto; } }
+.prose p, .prose li, .post-excerpt, .about p, .intro, .lede { text-wrap: pretty; }
 
 /* 6. lo stesso menu della home: sei voci e «Scrivimi»; su telefono si apre senza JavaScript */
 .nav { gap: 12px; }
@@ -777,7 +777,7 @@ body { font-size: var(--t-body); }
 /* errore: a 390 px i quadretti delle sezioni non tagliano più i nomi lunghi */
 @media (max-width: 520px) {
   .carte .carta { padding: 16px 14px !important; }
-  .carte .carta .n { font-size: var(--t-body) !important; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .carte .carta .n { font-size: var(--t-body) !important; overflow-wrap: break-word; }
   .carte li:first-child .carta .n { font-size: var(--t-h3) !important; }
   .carte .carta .testo { max-width: none; }
 }

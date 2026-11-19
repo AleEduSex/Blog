@@ -1153,7 +1153,7 @@ FZ = f'''<section id="funziona" class="bg-brand-cream">
       <h2 class="t-h2 font-display text-brand-ink leading-[0.98] tracking-tighter2 reveal">Come <span class="italic text-brand-burgundy">funziona.</span></h2>
       <p class="t-body font-body text-brand-ink leading-[1.6] max-w-[30em] reveal" data-delay="1">{intro}</p>
     </div>
-    <ol class="passi reveal" data-delay="2">{passo("Gratis", "Oggi", "Mi scrivi.", desc[0])}{passo("60&#8239;€", "La prima consulenza", "Un’ora insieme.", desc[1], chr(10) + "        " + vid)}{passo("su misura", "Dopo", "Decidiamo insieme.", desc[2], it=True)}
+    <ol class="passi reveal" data-delay="2">{passo("Gratis", "Oggi", "Mi scrivi.", desc[0])}{passo("60&#8239;€", "La prima consulenza", "Un’ora insieme.", desc[1], chr(10) + "        " + vid)}{passo("Su misura", "Dopo", "Decidiamo insieme.", desc[2], it=True)}
       <li class="fine t-body">Alla fine sai cosa stai guardando e da dove partire.</li>
     </ol>
   </div>
@@ -1179,7 +1179,8 @@ CSS_V10 = '''<style>
   .t-hero { font-size: var(--t-hero); } .t-h2 { font-size: var(--t-h2); } .t-h3 { font-size: var(--t-h3); }
   .t-lead { font-size: var(--t-lead); } .t-body { font-size: var(--t-body); } .t-small { font-size: var(--t-small); } .t-micro { font-size: var(--t-micro); }
   h1, h2, h3, dt { text-wrap: balance; } p, li, dd { text-wrap: pretty; }
-  @media (max-width: 640px) { #main-content p, section p, dd { hyphens: auto; -webkit-hyphens: auto; } h1, h2, h3, .faq-question, .testo, #main-content [data-foto-per="hero"] p { hyphens: manual; -webkit-hyphens: manual; } }
+  /* niente parole spezzate col trattino su telefono (richiesta di Ale): righe bilanciate tra parola e parola */
+  #main-content p, section p, dd { text-wrap: pretty; }
   /* titolo della home: grande quanto la colonna permette */
   .colonna-testo { container-type: inline-size; }
   #titolo.t-hero { font-size: min(var(--t-hero), 14.8cqi); }
@@ -1296,7 +1297,7 @@ with open(OUT / 'blog/blog.css', 'a') as c:
 :root { ''' + TOKENS + ''' }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 h1, h2, h3 { text-wrap: balance; } p, li { text-wrap: pretty; }
-@media (max-width: 640px) { .prose p, .prose li, .post-excerpt, .about p, .intro, .lede { hyphens: auto; -webkit-hyphens: auto; } }
+.prose p, .prose li, .post-excerpt, .about p, .intro, .lede { text-wrap: pretty; }
 
 /* 6. lo stesso menu della home: sei voci e «Scrivimi»; su telefono si apre senza JavaScript */
 .nav { gap: 12px; }
@@ -1413,7 +1414,7 @@ body { font-size: var(--t-body); }
 /* errore: a 390 px i quadretti delle sezioni non tagliano più i nomi lunghi */
 @media (max-width: 520px) {
   .carte .carta { padding: 16px 14px !important; }
-  .carte .carta .n { font-size: var(--t-body) !important; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .carte .carta .n { font-size: var(--t-body) !important; overflow-wrap: break-word; }
   .carte li:first-child .carta .n { font-size: var(--t-h3) !important; }
   .carte .carta .testo { max-width: none; }
 }
