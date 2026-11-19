@@ -1751,6 +1751,8 @@ h = h.replace('</head>', '''<style>
   html { scroll-padding-top: 90px; }
   @media (max-width: 1023px) { html { scroll-padding-bottom: 84px; } }
   #nav-toggle { min-width: 44px; min-height: 44px; flex-shrink: 0; }
+  /* su telefono e tablet il «Scrivimi» in testata è doppio con la barra in basso: resta solo la barra (richiesta di Ale, 19/11) */
+  @media (max-width: 1023px) { header a.btn-burgundy[href="#contatti"] { display: none !important; } #nav-toggle { margin-right: 0 !important; } }
 </style>
 </head>''', 1)
 wr('index.html', h)
