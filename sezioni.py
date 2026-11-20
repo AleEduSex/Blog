@@ -24,6 +24,7 @@ SEZIONI = [
    "kink-cos-e-come-sperimentare"
   ],
   "articoli": [
+   "mi-piace-una-persona-dello-stesso-sesso-cosa-fare",
    "clitoride-come-funziona-e-piacere",
    "punto-g-esiste-davvero-cosa-dice-la-ricerca",
    "squirting-cose-e-da-dove-viene-il-liquido",
@@ -126,6 +127,7 @@ SEZIONI = [
    "orgasmo-che-non-arriva-cause-e-cosa-fare"
   ],
   "articoli": [
+   "secchezza-vaginale-cause-e-cosa-fare",
    "dolore-durante-i-rapporti-cause-e-cosa-fare",
    "eiaculazione-precoce-cause-e-cosa-fare",
    "eiaculazione-ritardata-cause-e-cosa-fare",

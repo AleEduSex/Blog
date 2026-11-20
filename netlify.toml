@@ -17,6 +17,18 @@
 
 # NUOVO REINDIRIZZAMENTO QUI
 [[redirects]]
+  from = "/blog/mi-piace-una-persona-dello-stesso-sesso-cosa-fare"
+  to = "/blog/mi-piace-una-persona-dello-stesso-sesso-cosa-fare.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/secchezza-vaginale-cause-e-cosa-fare"
+  to = "/blog/secchezza-vaginale-cause-e-cosa-fare.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/sexting-come-farlo-con-piacere-e-consapevolezza"
   to = "/blog/sexting-come-farlo-con-piacere-e-consapevolezza.html"
   status = 301
